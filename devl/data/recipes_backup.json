@@ -1,0 +1,8421 @@
+[
+  {
+    "id": "1",
+    "title": "계란말이",
+    "author": "요잘알",
+    "time": 10,
+    "difficulty": "쉬움",
+    "calories": 220,
+    "rating": 4.8,
+    "image": "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=400",
+    "category": "아침",
+    "description": "부드럽고 촉촉한 계란말이입니다. 당근을 넣어 식감도 예쁘고 영양도 챙겼어요. 밥반찬으로도 최고지만 아침에 간단히 먹기에도 좋습니다.",
+    "ingredients": [
+      {
+        "name": "달걀",
+        "amount": "4개",
+        "icon": "🥚"
+      },
+      {
+        "name": "대파",
+        "amount": "1대",
+        "icon": "🧅"
+      },
+      {
+        "name": "당근",
+        "amount": "1/4개",
+        "icon": "🥕"
+      },
+      {
+        "name": "소금",
+        "amount": "약간",
+        "icon": "🧂"
+      },
+      {
+        "name": "식용유",
+        "amount": "적당량",
+        "icon": "🫒"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "볼에 달걀 4개를 깨서 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "달걀을 풀어서 흰자가 안 보일 때까지 잘 섞어주세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "대파 1대를 0.5cm 크기로 송송 썰어주세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "당근 1/4개를 0.5cm 크기로 잘게 다져주세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "달걀물에 다진 대파, 당근, 소금 2꼬집을 넣고 섞으세요",
+        "time": 0
+      },
+      {
+        "step": 6,
+        "description": "팬에 식용유 1큰술을 두르고 중불로 켜세요",
+        "time": 0
+      },
+      {
+        "step": 7,
+        "description": "달걀물을 국자로 1국자만 팬에 얇게 펴주세요",
+        "time": 0
+      },
+      {
+        "step": 8,
+        "description": "윗면이 살짝 촉촉할 때 젓가락으로 한쪽에서 돌돌 말아주세요",
+        "time": 0
+      },
+      {
+        "step": 9,
+        "description": "말아놓은 것을 한쪽으로 밀고 달걀물 1국자를 더 부으세요",
+        "time": 0
+      },
+      {
+        "step": 10,
+        "description": "같은 방법으로 반복 풀어서 말기를 달걀물이 없어질 때까지 반복하세요",
+        "time": 0
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "title": "토스트",
+    "author": "요잘알",
+    "time": 8,
+    "difficulty": "쉬움",
+    "calories": 280,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=400",
+    "category": "아침",
+    "description": "바삭한 식빵에 달걀과 치즈를 올린 간단 토스트입니다. 바쁜 아침에 5분이면 뚝딱 만들 수 있어요.",
+    "ingredients": [
+      {
+        "name": "식빵",
+        "amount": "2장",
+        "icon": "🍞"
+      },
+      {
+        "name": "달걀",
+        "amount": "1개",
+        "icon": "🥚"
+      },
+      {
+        "name": "슬라이스 치즈",
+        "amount": "1장",
+        "icon": "🧀"
+      },
+      {
+        "name": "버터",
+        "amount": "1큰술",
+        "icon": "🧈"
+      },
+      {
+        "name": "소금",
+        "amount": "약간",
+        "icon": "🧂"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "팬을 중불로 달궈주세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "버터 1큰술을 팬에 녹여주세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "식빵 2장을 팬에 올려 앞뒤로 노릇하게 구워주세요",
+        "time": 2
+      },
+      {
+        "step": 4,
+        "description": "구운 식빵을 접시에 올려놓으세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "같은 팬에 달걀 1개를 깨서 프라이를 만드세요",
+        "time": 2
+      },
+      {
+        "step": 6,
+        "description": "소금을 살짝 뿌려주세요",
+        "time": 0
+      },
+      {
+        "step": 7,
+        "description": "식빵 위에 슬라이스 치즈를 올리세요",
+        "time": 0
+      },
+      {
+        "step": 8,
+        "description": "치즈 위에 달걀 프라이를 올리세요",
+        "time": 0
+      },
+      {
+        "step": 9,
+        "description": "나머지 식빵을 위에 덮어 완성하세요",
+        "time": 0
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "title": "오트밀 죽",
+    "author": "요잘알",
+    "time": 15,
+    "difficulty": "쉬움",
+    "calories": 180,
+    "rating": 4.3,
+    "image": "https://images.unsplash.com/photo-1517673400267-0251440c45dc?w=400",
+    "category": "아침",
+    "description": "부드럽고 든든한 오트밀 죽입니다. 우유와 꿀을 넣어 고소하고 달콤해요. 다이어트 중에도 좋은 건강식입니다.",
+    "ingredients": [
+      {
+        "name": "오트밀",
+        "amount": "1컵",
+        "icon": "🥣"
+      },
+      {
+        "name": "우유",
+        "amount": "1.5컵",
+        "icon": "🥛"
+      },
+      {
+        "name": "꿀",
+        "amount": "1큰술",
+        "icon": "🍯"
+      },
+      {
+        "name": "바나나",
+        "amount": "1/2개",
+        "icon": "🍌"
+      },
+      {
+        "name": "블루베리",
+        "amount": "한줌",
+        "icon": "🫐"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "냄비에 우유 1.5컵을 부어주세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "오트밀 1컵을 우유에 넣어주세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "중불로 켜고 저어가며 끓여주세요",
+        "time": 3
+      },
+      {
+        "step": 4,
+        "description": "오트밀이 부드러워지면 약불로 줄이세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "걸쭉해질 때까지 2~3분 더 저어주세요",
+        "time": 3
+      },
+      {
+        "step": 6,
+        "description": "불을 끄고 그릇에 담아주세요",
+        "time": 0
+      },
+      {
+        "step": 7,
+        "description": "바나나 반개를 슬라이스해서 올리세요",
+        "time": 0
+      },
+      {
+        "step": 8,
+        "description": "블루베리를 한줌 올려주세요",
+        "time": 0
+      },
+      {
+        "step": 9,
+        "description": "꿀 1큰술을 위에 뿌려 완성하세요",
+        "time": 0
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "title": "참치마요 주먹밥",
+    "author": "요잘알",
+    "time": 10,
+    "difficulty": "쉬움",
+    "calories": 320,
+    "rating": 4.7,
+    "image": "https://images.unsplash.com/photo-1536304929831-ee1ca9d44906?w=400",
+    "category": "아침",
+    "description": "참치캔과 마요네즈로 만드는 간단 주먹밥입니다. 도시락으로도 좋고, 아침에 빠르게 만들어 먹기 딱 좋아요.",
+    "ingredients": [
+      {
+        "name": "밥",
+        "amount": "1공기",
+        "icon": "🍚"
+      },
+      {
+        "name": "참치캔",
+        "amount": "1개",
+        "icon": "🐟"
+      },
+      {
+        "name": "마요네즈",
+        "amount": "2큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "김",
+        "amount": "2장",
+        "icon": "🍙"
+      },
+      {
+        "name": "참기름",
+        "amount": "1작은술",
+        "icon": "🫒"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "참치캔의 기름을 꼭 짜서 빼주세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "볼에 참치와 마요네즈 2큰술을 넣고 섞으세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "따뜻한 밥 1공기에 참기름 1작은술을 넣고 섞으세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "밥 위에 참치마요를 올려주세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "랩을 깔고 밥과 참치를 올린 뒤 동그랗게 쥐어주세요",
+        "time": 0
+      },
+      {
+        "step": 6,
+        "description": "김을 적당한 크기로 잘라주세요",
+        "time": 0
+      },
+      {
+        "step": 7,
+        "description": "주먹밥 바깥에 김을 감싸서 완성하세요",
+        "time": 0
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "title": "김치볶음밥",
+    "author": "요잘알",
+    "time": 15,
+    "difficulty": "쉬움",
+    "calories": 450,
+    "rating": 4.9,
+    "image": "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400",
+    "category": "점심",
+    "description": "잘 익은 김치로 만드는 고소한 김치볶음밥입니다. 참기름과 달걀 프라이를 올려 더욱 맛있어요.",
+    "ingredients": [
+      {
+        "name": "밥",
+        "amount": "1공기",
+        "icon": "🍚"
+      },
+      {
+        "name": "김치",
+        "amount": "1컵",
+        "icon": "🥬"
+      },
+      {
+        "name": "달걀",
+        "amount": "1개",
+        "icon": "🥚"
+      },
+      {
+        "name": "참기름",
+        "amount": "1큰술",
+        "icon": "🫒"
+      },
+      {
+        "name": "식용유",
+        "amount": "1큰술",
+        "icon": "🫒"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "김치 1컵을 가위로 잘게 잘라주세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "팬에 식용유 1큰술을 두르고 중불로 켜세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "김치를 팬에 넣고 2분간 볶아주세요",
+        "time": 2
+      },
+      {
+        "step": 4,
+        "description": "밥 1공기를 넣고 김치와 잘 섞어가며 볶으세요",
+        "time": 3
+      },
+      {
+        "step": 5,
+        "description": "참기름 1큰술을 넣고 30초 더 볶으세요",
+        "time": 0.5
+      },
+      {
+        "step": 6,
+        "description": "접시에 볶음밥을 담아주세요",
+        "time": 0
+      },
+      {
+        "step": 7,
+        "description": "같은 팬에 달걀 프라이를 만드세요",
+        "time": 2
+      },
+      {
+        "step": 8,
+        "description": "볶음밥 위에 달걀 프라이를 올려 완성하세요",
+        "time": 0
+      }
+    ]
+  },
+  {
+    "id": "6",
+    "title": "비빔밥",
+    "author": "요잘알",
+    "time": 25,
+    "difficulty": "보통",
+    "calories": 520,
+    "rating": 4.8,
+    "image": "https://images.unsplash.com/photo-1553163147-622ab57be1c7?w=400",
+    "category": "점심",
+    "description": "색색의 나물과 고추장을 넣어 비벼먹는 건강한 비빔밥입니다. 냉장고 속 남은 채소로 만들 수 있어요.",
+    "ingredients": [
+      {
+        "name": "밥",
+        "amount": "1공기",
+        "icon": "🍚"
+      },
+      {
+        "name": "시금치",
+        "amount": "1줌",
+        "icon": "🥬"
+      },
+      {
+        "name": "콩나물",
+        "amount": "1줌",
+        "icon": "🌱"
+      },
+      {
+        "name": "당근",
+        "amount": "1/3개",
+        "icon": "🥕"
+      },
+      {
+        "name": "고추장",
+        "amount": "2큰술",
+        "icon": "🌶️"
+      },
+      {
+        "name": "참기름",
+        "amount": "1큰술",
+        "icon": "🫒"
+      },
+      {
+        "name": "달걀",
+        "amount": "1개",
+        "icon": "🥚"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "시금치를 끓는 물에 30초 데쳐서 찬물에 헹구세요",
+        "time": 0.5
+      },
+      {
+        "step": 2,
+        "description": "데친 시금치를 꼭 짜서 참기름, 소금으로 무치세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "콩나물을 끓는 물에 3분간 삶아주세요",
+        "time": 3
+      },
+      {
+        "step": 4,
+        "description": "삶은 콩나물에 소금, 참기름을 넣고 무치세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "당근을 채 썰어 팬에 살짝 볶아주세요",
+        "time": 2
+      },
+      {
+        "step": 6,
+        "description": "달걀 프라이를 반숙으로 만드세요",
+        "time": 2
+      },
+      {
+        "step": 7,
+        "description": "그릇에 밥을 담고 나물을 색깔별로 돌려 담으세요",
+        "time": 0
+      },
+      {
+        "step": 8,
+        "description": "가운데에 달걀 프라이를 올리세요",
+        "time": 0
+      },
+      {
+        "step": 9,
+        "description": "고추장 2큰술과 참기름을 넣고 쓱쓱 비벼 드세요",
+        "time": 0
+      }
+    ]
+  },
+  {
+    "id": "7",
+    "title": "라면",
+    "author": "요잘알",
+    "time": 10,
+    "difficulty": "쉬움",
+    "calories": 500,
+    "rating": 4.6,
+    "image": "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400",
+    "category": "점심",
+    "description": "달걀과 파를 넣은 기본 라면입니다. 누구나 좋아하는 맛으로, 간단하지만 확실한 한 끼예요.",
+    "ingredients": [
+      {
+        "name": "라면",
+        "amount": "1봉지",
+        "icon": "🍜"
+      },
+      {
+        "name": "달걀",
+        "amount": "1개",
+        "icon": "🥚"
+      },
+      {
+        "name": "대파",
+        "amount": "1/2대",
+        "icon": "🧅"
+      },
+      {
+        "name": "물",
+        "amount": "550ml",
+        "icon": "💧"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "냄비에 물 550ml를 넣고 센불로 끓이세요",
+        "time": 3
+      },
+      {
+        "step": 2,
+        "description": "물이 끓으면 스프와 면을 함께 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "면을 젓가락으로 풀어가며 3분간 끓이세요",
+        "time": 3
+      },
+      {
+        "step": 4,
+        "description": "대파를 송송 썰어 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "달걀 1개를 깨서 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 6,
+        "description": "30초 더 끓인 후 불을 끄세요",
+        "time": 0.5
+      },
+      {
+        "step": 7,
+        "description": "뚜껑을 덮고 1분간 뜸을 들여 완성하세요",
+        "time": 1
+      }
+    ]
+  },
+  {
+    "id": "8",
+    "title": "볶음우동",
+    "author": "요잘알",
+    "time": 15,
+    "difficulty": "쉬움",
+    "calories": 480,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1552611052-33e04de2b6f5?w=400",
+    "category": "점심",
+    "description": "쫄깃한 우동면에 채소를 넣고 간장소스로 볶는 볶음우동입니다. 아이들도 좋아하는 든든한 한끼예요.",
+    "ingredients": [
+      {
+        "name": "우동면",
+        "amount": "1인분",
+        "icon": "🍝"
+      },
+      {
+        "name": "양배추",
+        "amount": "2장",
+        "icon": "🥬"
+      },
+      {
+        "name": "양파",
+        "amount": "1/2개",
+        "icon": "🧅"
+      },
+      {
+        "name": "간장",
+        "amount": "2큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "굴소스",
+        "amount": "1큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "식용유",
+        "amount": "1큰술",
+        "icon": "🫒"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "우동면을 끓는 물에 1분간 삶아 건져주세요",
+        "time": 2
+      },
+      {
+        "step": 2,
+        "description": "양배추를 한입 크기로 썰어주세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "양파를 채 썰어주세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "팬에 식용유를 두르고 센불로 양파를 볶으세요",
+        "time": 1
+      },
+      {
+        "step": 5,
+        "description": "양배추를 넣고 1분간 같이 볶으세요",
+        "time": 1
+      },
+      {
+        "step": 6,
+        "description": "삶은 우동면을 넣어주세요",
+        "time": 0
+      },
+      {
+        "step": 7,
+        "description": "간장 2큰술, 굴소스 1큰술을 넣고 센불에서 볶으세요",
+        "time": 2
+      },
+      {
+        "step": 8,
+        "description": "골고루 섞이면 접시에 담아 완성하세요",
+        "time": 0
+      }
+    ]
+  },
+  {
+    "id": "9",
+    "title": "된장찌개",
+    "author": "요잘알",
+    "time": 25,
+    "difficulty": "보통",
+    "calories": 180,
+    "rating": 4.9,
+    "image": "https://images.unsplash.com/photo-1498654896293-37aacf113fd9?w=400",
+    "category": "저녁",
+    "description": "구수한 된장찌개입니다. 두부와 채소가 듬뿍 들어가 영양 만점이에요. 밥과 함께 먹으면 최고의 저녁식사입니다.",
+    "ingredients": [
+      {
+        "name": "된장",
+        "amount": "2큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "두부",
+        "amount": "1/2모",
+        "icon": "🧈"
+      },
+      {
+        "name": "감자",
+        "amount": "1개",
+        "icon": "🥔"
+      },
+      {
+        "name": "양파",
+        "amount": "1/2개",
+        "icon": "🧅"
+      },
+      {
+        "name": "대파",
+        "amount": "1대",
+        "icon": "🧅"
+      },
+      {
+        "name": "고추",
+        "amount": "1개",
+        "icon": "🌶️"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "냄비에 물 2컵을 넣고 끓이세요",
+        "time": 3
+      },
+      {
+        "step": 2,
+        "description": "감자를 깍둑썰기로 잘라 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "양파를 굵게 썰어 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "된장 2큰술을 풀어 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "감자가 익을 때까지 중불에서 7분 끓이세요",
+        "time": 7
+      },
+      {
+        "step": 6,
+        "description": "두부를 깍둑썰기로 잘라 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 7,
+        "description": "고추를 어슷 썰어 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 8,
+        "description": "대파를 송송 썰어 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 9,
+        "description": "3분 더 끓인 뒤 불을 꺼 완성하세요",
+        "time": 3
+      }
+    ]
+  },
+  {
+    "id": "10",
+    "title": "불고기",
+    "author": "요잘알",
+    "time": 30,
+    "difficulty": "보통",
+    "calories": 550,
+    "rating": 4.9,
+    "image": "https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=400",
+    "category": "저녁",
+    "description": "달콤짭짤한 간장 양념에 재운 소고기 불고기입니다. 밥도둑 1등이에요. 온 가족이 좋아하는 저녁 메뉴예요.",
+    "ingredients": [
+      {
+        "name": "소고기",
+        "amount": "300g",
+        "icon": "🥩"
+      },
+      {
+        "name": "양파",
+        "amount": "1개",
+        "icon": "🧅"
+      },
+      {
+        "name": "간장",
+        "amount": "3큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "설탕",
+        "amount": "1큰술",
+        "icon": "🍬"
+      },
+      {
+        "name": "배",
+        "amount": "1/4개",
+        "icon": "🍐"
+      },
+      {
+        "name": "참기름",
+        "amount": "1큰술",
+        "icon": "🫒"
+      },
+      {
+        "name": "대파",
+        "amount": "1대",
+        "icon": "🧅"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "배 1/4개를 갈아서 즙을 내세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "볼에 간장 3큰술, 설탕 1큰술, 배즙, 참기름을 섞으세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "소고기에 양념장을 넣고 잘 주물러주세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "냉장고에서 최소 10분간 재워주세요",
+        "time": 10
+      },
+      {
+        "step": 5,
+        "description": "양파를 채 썰어주세요",
+        "time": 0
+      },
+      {
+        "step": 6,
+        "description": "대파를 어슷 썰어주세요",
+        "time": 0
+      },
+      {
+        "step": 7,
+        "description": "팬을 센불로 달군 뒤 고기를 넣고 볶으세요",
+        "time": 3
+      },
+      {
+        "step": 8,
+        "description": "고기가 반쯤 익으면 양파를 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 9,
+        "description": "대파를 넣고 1분 더 볶아 완성하세요",
+        "time": 1
+      }
+    ]
+  },
+  {
+    "id": "11",
+    "title": "잡채",
+    "author": "요잘알",
+    "time": 30,
+    "difficulty": "보통",
+    "calories": 380,
+    "rating": 4.7,
+    "image": "https://images.unsplash.com/photo-1534938665831-e5b3bbfdd08c?w=400",
+    "category": "저녁",
+    "description": "쫄깃한 당면과 알록달록 채소가 어우러진 잡채입니다. 명절에도, 평일 저녁에도 인기 만점이에요.",
+    "ingredients": [
+      {
+        "name": "당면",
+        "amount": "100g",
+        "icon": "🍝"
+      },
+      {
+        "name": "시금치",
+        "amount": "1줌",
+        "icon": "🥬"
+      },
+      {
+        "name": "당근",
+        "amount": "1/2개",
+        "icon": "🥕"
+      },
+      {
+        "name": "양파",
+        "amount": "1/2개",
+        "icon": "🧅"
+      },
+      {
+        "name": "간장",
+        "amount": "3큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "설탕",
+        "amount": "1큰술",
+        "icon": "🍬"
+      },
+      {
+        "name": "참기름",
+        "amount": "2큰술",
+        "icon": "🫒"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "당면을 끓는 물에 6분간 삶아주세요",
+        "time": 6
+      },
+      {
+        "step": 2,
+        "description": "삶은 당면을 찬물에 헹구고 가위로 적당히 잘라주세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "당근과 양파를 채 썰어주세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "시금치를 끓는 물에 30초 데치고 찬물에 헹구세요",
+        "time": 0.5
+      },
+      {
+        "step": 5,
+        "description": "팬에 기름을 두르고 당근, 양파를 볶으세요",
+        "time": 2
+      },
+      {
+        "step": 6,
+        "description": "볶은 채소에 당면을 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 7,
+        "description": "간장 3큰술, 설탕 1큰술을 넣고 골고루 섞으세요",
+        "time": 0
+      },
+      {
+        "step": 8,
+        "description": "시금치와 참기름 2큰술을 넣고 마무리하세요",
+        "time": 0
+      }
+    ]
+  },
+  {
+    "id": "12",
+    "title": "김치찌개",
+    "author": "요잘알",
+    "time": 25,
+    "difficulty": "보통",
+    "calories": 350,
+    "rating": 4.8,
+    "image": "https://images.unsplash.com/photo-1583224964978-2257b960c3f3?w=400",
+    "category": "저녁",
+    "description": "얼큰하고 칼칼한 김치찌개입니다. 잘 익은 김치와 돼지고기가 만나 깊은 맛을 내요. 추운 날 딱이에요.",
+    "ingredients": [
+      {
+        "name": "김치",
+        "amount": "2컵",
+        "icon": "🥬"
+      },
+      {
+        "name": "돼지고기",
+        "amount": "150g",
+        "icon": "🥩"
+      },
+      {
+        "name": "두부",
+        "amount": "1/2모",
+        "icon": "🧈"
+      },
+      {
+        "name": "대파",
+        "amount": "1대",
+        "icon": "🧅"
+      },
+      {
+        "name": "고춧가루",
+        "amount": "1큰술",
+        "icon": "🌶️"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "냄비에 참기름 1큰술을 두르고 중불로 켜세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "돼지고기 150g을 넣고 2분간 볶으세요",
+        "time": 2
+      },
+      {
+        "step": 3,
+        "description": "김치 2컵을 넣고 함께 3분간 볶으세요",
+        "time": 3
+      },
+      {
+        "step": 4,
+        "description": "물 2컵을 넣고 센불로 끓이세요",
+        "time": 3
+      },
+      {
+        "step": 5,
+        "description": "끓어오르면 고춧가루 1큰술을 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 6,
+        "description": "중불로 줄이고 10분간 끓이세요",
+        "time": 10
+      },
+      {
+        "step": 7,
+        "description": "두부를 깍둑 썰어 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 8,
+        "description": "대파를 송송 썰어 올리고 3분 더 끓여 완성하세요",
+        "time": 3
+      }
+    ]
+  },
+  {
+    "id": "13",
+    "title": "호떡",
+    "author": "요잘알",
+    "time": 30,
+    "difficulty": "보통",
+    "calories": 350,
+    "rating": 4.6,
+    "image": "https://images.unsplash.com/photo-1639024471283-03518883512d?w=400",
+    "category": "디저트",
+    "description": "바삭한 겉면 속에 달콤한 흑설탕이 가득한 호떡입니다. 겨울 간식의 대명사예요.",
+    "ingredients": [
+      {
+        "name": "호떡믹스",
+        "amount": "1봉지",
+        "icon": "📦"
+      },
+      {
+        "name": "흑설탕",
+        "amount": "1/2컵",
+        "icon": "🍬"
+      },
+      {
+        "name": "견과류",
+        "amount": "2큰술",
+        "icon": "🥜"
+      },
+      {
+        "name": "식용유",
+        "amount": "적당량",
+        "icon": "🫒"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "호떡믹스에 따뜻한 물을 넣고 반죽하세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "반죽을 따뜻한 곳에서 30분간 발효시키세요",
+        "time": 5
+      },
+      {
+        "step": 3,
+        "description": "흑설탕과 견과류를 섞어 소를 만드세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "반죽을 동그랗게 펴서 소를 넣고 오므리세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "팬에 식용유를 두르고 약불로 켜세요",
+        "time": 0
+      },
+      {
+        "step": 6,
+        "description": "호떡을 팬에 올리고 눌러주세요",
+        "time": 0
+      },
+      {
+        "step": 7,
+        "description": "한쪽 면이 노릇해지면 뒤집어주세요",
+        "time": 0
+      },
+      {
+        "step": 8,
+        "description": "양면이 노릇해지면 꺼내서 완성하세요",
+        "time": 0
+      }
+    ]
+  },
+  {
+    "id": "14",
+    "title": "붕어빵",
+    "author": "요잘알",
+    "time": 25,
+    "difficulty": "보통",
+    "calories": 280,
+    "rating": 4.4,
+    "image": "https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?w=400",
+    "category": "디저트",
+    "description": "바삭한 반죽 속에 달콤한 팥앙금이 가득한 붕어빵입니다. 집에서도 간단하게 만들 수 있어요.",
+    "ingredients": [
+      {
+        "name": "핫케이크 가루",
+        "amount": "1컵",
+        "icon": "🧁"
+      },
+      {
+        "name": "달걀",
+        "amount": "1개",
+        "icon": "🥚"
+      },
+      {
+        "name": "우유",
+        "amount": "1/2컵",
+        "icon": "🥛"
+      },
+      {
+        "name": "팥앙금",
+        "amount": "1컵",
+        "icon": "🫘"
+      },
+      {
+        "name": "식용유",
+        "amount": "약간",
+        "icon": "🫒"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "볼에 핫케이크 가루, 달걀, 우유를 넣고 섞으세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "덩어리 없이 매끈하게 반죽을 만드세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "붕어빵 틀에 기름을 살짝 발라주세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "틀에 반죽을 반쯤 채우세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "팥앙금을 1큰술씩 올리세요",
+        "time": 0
+      },
+      {
+        "step": 6,
+        "description": "그 위에 반죽을 더 올려 덮으세요",
+        "time": 0
+      },
+      {
+        "step": 7,
+        "description": "틀을 닫고 약불에서 앞뒤 3분씩 구우세요",
+        "time": 6
+      },
+      {
+        "step": 8,
+        "description": "노릇하게 구워지면 꺼내서 완성하세요",
+        "time": 0
+      }
+    ]
+  },
+  {
+    "id": "15",
+    "title": "약과",
+    "author": "요잘알",
+    "time": 40,
+    "difficulty": "어려움",
+    "calories": 200,
+    "rating": 4.7,
+    "image": "https://images.unsplash.com/photo-1558312657-b2dead03d494?w=400",
+    "category": "디저트",
+    "description": "달콤하고 쫀득한 전통 약과입니다. 꿀과 참기름의 향이 가득해요. 선물용으로도 좋습니다.",
+    "ingredients": [
+      {
+        "name": "밀가루",
+        "amount": "2컵",
+        "icon": "🌾"
+      },
+      {
+        "name": "참기름",
+        "amount": "3큰술",
+        "icon": "🫒"
+      },
+      {
+        "name": "꿀",
+        "amount": "3큰술",
+        "icon": "🍯"
+      },
+      {
+        "name": "조청",
+        "amount": "2큰술",
+        "icon": "🍯"
+      },
+      {
+        "name": "식용유",
+        "amount": "튀김용",
+        "icon": "🫒"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "밀가루 2컵에 참기름 3큰술을 넣고 비벼주세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "꿀 3큰술을 넣고 반죽을 만드세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "반죽을 랩에 싸서 냉장고에 30분 휴지시키세요",
+        "time": 5
+      },
+      {
+        "step": 4,
+        "description": "반죽을 밀대로 1cm 두께로 밀어주세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "약과 틀이나 쿠키틀로 모양을 찍으세요",
+        "time": 0
+      },
+      {
+        "step": 6,
+        "description": "젓가락으로 가운데 구멍을 뚫어주세요",
+        "time": 0
+      },
+      {
+        "step": 7,
+        "description": "140도 기름에서 5분간 서서히 튀기세요",
+        "time": 5
+      },
+      {
+        "step": 8,
+        "description": "노릇해지면 건져서 기름을 빼세요",
+        "time": 0
+      },
+      {
+        "step": 9,
+        "description": "따뜻한 조청에 담가 코팅해서 완성하세요",
+        "time": 0
+      }
+    ]
+  },
+  {
+    "id": "16",
+    "title": "인절미",
+    "author": "요잘알",
+    "time": 20,
+    "difficulty": "보통",
+    "calories": 250,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1582716401301-b2407dc7563d?w=400",
+    "category": "디저트",
+    "description": "쫀득쫀득한 인절미에 고소한 콩가루를 묻힌 전통 떡입니다. 찹쌀가루로 간단하게 만들 수 있어요.",
+    "ingredients": [
+      {
+        "name": "찹쌀가루",
+        "amount": "2컵",
+        "icon": "🌾"
+      },
+      {
+        "name": "설탕",
+        "amount": "2큰술",
+        "icon": "🍬"
+      },
+      {
+        "name": "소금",
+        "amount": "1/2작은술",
+        "icon": "🧂"
+      },
+      {
+        "name": "콩가루",
+        "amount": "1컵",
+        "icon": "🫘"
+      },
+      {
+        "name": "물",
+        "amount": "3/4컵",
+        "icon": "💧"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "찹쌀가루에 설탕, 소금, 물을 넣고 섞으세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "내열 그릇에 반죽을 담고 랩을 씌우세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "전자레인지에서 3분간 돌리세요",
+        "time": 3
+      },
+      {
+        "step": 4,
+        "description": "꺼내서 주걱으로 잘 치대주세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "다시 전자레인지에 2분 돌리세요",
+        "time": 2
+      },
+      {
+        "step": 6,
+        "description": "꺼내서 다시 힘껏 치대주세요",
+        "time": 0
+      },
+      {
+        "step": 7,
+        "description": "도마에 콩가루를 펴고 반죽을 올리세요",
+        "time": 0
+      },
+      {
+        "step": 8,
+        "description": "한입 크기로 잘라 콩가루를 묻혀 완성하세요",
+        "time": 0
+      }
+    ]
+  },
+  {
+    "id": "17",
+    "title": "떡볶이",
+    "author": "요잘알",
+    "time": 20,
+    "difficulty": "쉬움",
+    "calories": 420,
+    "rating": 4.9,
+    "image": "https://images.unsplash.com/photo-1635363638580-c2809d049eee?w=400",
+    "category": "간식",
+    "description": "매콤달콤한 국민 간식 떡볶이입니다. 쫄깃한 떡에 고추장 소스가 잘 배어 중독성 있는 맛이에요.",
+    "ingredients": [
+      {
+        "name": "떡",
+        "amount": "300g",
+        "icon": "🍡"
+      },
+      {
+        "name": "어묵",
+        "amount": "2장",
+        "icon": "🍢"
+      },
+      {
+        "name": "고추장",
+        "amount": "2큰술",
+        "icon": "🌶️"
+      },
+      {
+        "name": "고춧가루",
+        "amount": "1큰술",
+        "icon": "🌶️"
+      },
+      {
+        "name": "설탕",
+        "amount": "1큰술",
+        "icon": "🍬"
+      },
+      {
+        "name": "대파",
+        "amount": "1/2대",
+        "icon": "🧅"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "떡을 찬물에 5분간 불려주세요",
+        "time": 5
+      },
+      {
+        "step": 2,
+        "description": "어묵을 세모 모양으로 잘라주세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "냄비에 물 1.5컵을 넣고 끓이세요",
+        "time": 2
+      },
+      {
+        "step": 4,
+        "description": "고추장 2큰술, 고춧가루 1큰술, 설탕 1큰술을 넣고 풀어주세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "떡과 어묵을 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 6,
+        "description": "중불에서 떡이 말랑해질 때까지 5분간 끓이세요",
+        "time": 5
+      },
+      {
+        "step": 7,
+        "description": "소스가 걸쭉해지면 대파를 넣고 1분 더 끓이세요",
+        "time": 1
+      },
+      {
+        "step": 8,
+        "description": "접시에 담아 완성하세요",
+        "time": 0
+      }
+    ]
+  },
+  {
+    "id": "18",
+    "title": "계란빵",
+    "author": "요잘알",
+    "time": 20,
+    "difficulty": "쉬움",
+    "calories": 250,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400",
+    "category": "간식",
+    "description": "달콤한 빵 위에 달걀이 올라간 길거리 간식 계란빵입니다. 오븐 없이 팬으로도 만들 수 있어요.",
+    "ingredients": [
+      {
+        "name": "핫케이크 가루",
+        "amount": "1컵",
+        "icon": "🧁"
+      },
+      {
+        "name": "달걀",
+        "amount": "4개",
+        "icon": "🥚"
+      },
+      {
+        "name": "우유",
+        "amount": "1/3컵",
+        "icon": "🥛"
+      },
+      {
+        "name": "설탕",
+        "amount": "1큰술",
+        "icon": "🍬"
+      },
+      {
+        "name": "식용유",
+        "amount": "약간",
+        "icon": "🫒"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "핫케이크 가루에 달걀 1개와 우유를 넣고 섞으세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "설탕 1큰술을 넣고 매끈하게 반죽하세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "머핀틀이나 종이컵에 기름을 살짝 바르세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "반죽을 틀의 반 정도까지 부으세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "달걀 1개씩을 반죽 위에 깨서 올리세요",
+        "time": 0
+      },
+      {
+        "step": 6,
+        "description": "소금을 살짝 뿌려주세요",
+        "time": 0
+      },
+      {
+        "step": 7,
+        "description": "180도 오븐에서 15분간 구우세요",
+        "time": 15
+      },
+      {
+        "step": 8,
+        "description": "달걀이 익고 빵이 부풀면 꺼내서 완성하세요",
+        "time": 0
+      }
+    ]
+  },
+  {
+    "id": "19",
+    "title": "감자전",
+    "author": "요잘알",
+    "time": 20,
+    "difficulty": "쉬움",
+    "calories": 300,
+    "rating": 4.6,
+    "image": "https://images.unsplash.com/photo-1528750717929-32abb73d3bd9?w=400",
+    "category": "간식",
+    "description": "바삭하고 쫀득한 감자전입니다. 감자를 갈아서 전을 부치면 비 오는 날 최고의 간식이에요.",
+    "ingredients": [
+      {
+        "name": "감자",
+        "amount": "3개",
+        "icon": "🥔"
+      },
+      {
+        "name": "소금",
+        "amount": "1/2작은술",
+        "icon": "🧂"
+      },
+      {
+        "name": "식용유",
+        "amount": "3큰술",
+        "icon": "🫒"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "감자 3개의 껍질을 벗기세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "강판에 감자를 곱게 갈아주세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "간 감자를 면보에 넣고 물기를 꼭 짜세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "가라앉은 녹말은 남기고 물만 따라 버리세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "감자 반죽에 녹말과 소금을 넣고 섞으세요",
+        "time": 0
+      },
+      {
+        "step": 6,
+        "description": "팬에 식용유를 넉넉히 두르고 중불로 켜세요",
+        "time": 0
+      },
+      {
+        "step": 7,
+        "description": "반죽을 얇게 펴서 올리세요",
+        "time": 0
+      },
+      {
+        "step": 8,
+        "description": "한쪽 면이 노릇해지면 뒤집어서 양면을 구우세요",
+        "time": 4
+      },
+      {
+        "step": 9,
+        "description": "간장 소스와 함께 완성하세요",
+        "time": 0
+      }
+    ]
+  },
+  {
+    "id": "20",
+    "title": "핫도그",
+    "author": "요잘알",
+    "time": 25,
+    "difficulty": "보통",
+    "calories": 380,
+    "rating": 4.4,
+    "image": "https://images.unsplash.com/photo-1619740455993-9d701c58ea40?w=400",
+    "category": "간식",
+    "description": "바삭한 튀김옷 속에 소시지가 들어간 핫도그입니다. 아이들이 특히 좋아하는 인기 간식이에요.",
+    "ingredients": [
+      {
+        "name": "소시지",
+        "amount": "4개",
+        "icon": "🌭"
+      },
+      {
+        "name": "핫케이크 가루",
+        "amount": "1컵",
+        "icon": "🧁"
+      },
+      {
+        "name": "달걀",
+        "amount": "1개",
+        "icon": "🥚"
+      },
+      {
+        "name": "우유",
+        "amount": "1/3컵",
+        "icon": "🥛"
+      },
+      {
+        "name": "빵가루",
+        "amount": "1컵",
+        "icon": "🍞"
+      },
+      {
+        "name": "식용유",
+        "amount": "튀김용",
+        "icon": "🫒"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "소시지에 나무젓가락을 꽂아주세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "핫케이크 가루에 달걀과 우유를 넣고 반죽하세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "소시지에 반죽을 골고루 입혀주세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "빵가루를 골고루 묻혀주세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "170도 기름에서 3~4분간 튀기세요",
+        "time": 4
+      },
+      {
+        "step": 6,
+        "description": "노릇하게 익으면 건져서 기름을 빼세요",
+        "time": 0
+      },
+      {
+        "step": 7,
+        "description": "케첩과 머스타드를 뿌려 완성하세요",
+        "time": 0
+      }
+    ]
+  },
+  {
+    "id": "21",
+    "title": "딸기 스무디",
+    "author": "요잘알",
+    "time": 5,
+    "difficulty": "쉬움",
+    "calories": 150,
+    "rating": 4.7,
+    "image": "https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=400",
+    "category": "음료",
+    "description": "새콤달콤한 딸기 스무디입니다. 냉동 딸기를 사용하면 시원하고 걸쭉하게 즐길 수 있어요.",
+    "ingredients": [
+      {
+        "name": "딸기",
+        "amount": "10개",
+        "icon": "🍓"
+      },
+      {
+        "name": "우유",
+        "amount": "1컵",
+        "icon": "🥛"
+      },
+      {
+        "name": "꿀",
+        "amount": "1큰술",
+        "icon": "🍯"
+      },
+      {
+        "name": "얼음",
+        "amount": "1컵",
+        "icon": "🧊"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "딸기 10개를 씻어서 꼭지를 떼세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "블렌더에 딸기를 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "우유 1컵을 부어주세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "꿀 1큰술을 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "얼음 1컵을 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 6,
+        "description": "블렌더로 30초간 갈아주세요",
+        "time": 0.5
+      },
+      {
+        "step": 7,
+        "description": "컵에 담아 완성하세요",
+        "time": 0
+      }
+    ]
+  },
+  {
+    "id": "22",
+    "title": "아이스 아메리카노",
+    "author": "요잘알",
+    "time": 5,
+    "difficulty": "쉬움",
+    "calories": 10,
+    "rating": 4.3,
+    "image": "https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?w=400",
+    "category": "음료",
+    "description": "시원하고 깔끔한 아이스 아메리카노입니다. 집에서도 카페 못지않은 커피를 즐길 수 있어요.",
+    "ingredients": [
+      {
+        "name": "커피 원두",
+        "amount": "2큰술",
+        "icon": "☕"
+      },
+      {
+        "name": "물",
+        "amount": "1/2컵",
+        "icon": "💧"
+      },
+      {
+        "name": "얼음",
+        "amount": "가득",
+        "icon": "🧊"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "커피 원두를 곱게 갈아주세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "뜨거운 물로 에스프레소를 추출하세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "큰 컵에 얼음을 가득 채우세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "얼음 위에 에스프레소를 부으세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "찬물을 취향껏 추가하세요",
+        "time": 0
+      },
+      {
+        "step": 6,
+        "description": "잘 저어서 완성하세요",
+        "time": 0
+      }
+    ]
+  },
+  {
+    "id": "23",
+    "title": "수박 주스",
+    "author": "요잘알",
+    "time": 5,
+    "difficulty": "쉬움",
+    "calories": 120,
+    "rating": 4.6,
+    "image": "https://images.unsplash.com/photo-1534353473418-4cfa6c56fd38?w=400",
+    "category": "음료",
+    "description": "시원하고 달콤한 수박 주스입니다. 여름에 딱 맞는 상큼한 음료예요. 설탕 없이도 충분히 달아요.",
+    "ingredients": [
+      {
+        "name": "수박",
+        "amount": "3컵",
+        "icon": "🍉"
+      },
+      {
+        "name": "얼음",
+        "amount": "1컵",
+        "icon": "🧊"
+      },
+      {
+        "name": "레몬즙",
+        "amount": "1큰술",
+        "icon": "🍋"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "수박을 큼직하게 자르고 씨를 빼세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "블렌더에 수박 3컵을 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "얼음 1컵을 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "레몬즙 1큰술을 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "블렌더로 20초간 갈아주세요",
+        "time": 1
+      },
+      {
+        "step": 6,
+        "description": "컵에 담아 완성하세요",
+        "time": 0
+      }
+    ]
+  },
+  {
+    "id": "24",
+    "title": "바나나 우유",
+    "author": "요잘알",
+    "time": 5,
+    "difficulty": "쉬움",
+    "calories": 200,
+    "rating": 4.8,
+    "image": "https://images.unsplash.com/photo-1528498882649-2b3faaea2f09?w=400",
+    "category": "음료",
+    "description": "달콤하고 고소한 바나나 우유입니다. 바나나와 우유만으로 만드는 건강한 음료예요. 아이들 간식으로 최고입니다.",
+    "ingredients": [
+      {
+        "name": "바나나",
+        "amount": "2개",
+        "icon": "🍌"
+      },
+      {
+        "name": "우유",
+        "amount": "1.5컵",
+        "icon": "🥛"
+      },
+      {
+        "name": "꿀",
+        "amount": "1큰술",
+        "icon": "🍯"
+      },
+      {
+        "name": "얼음",
+        "amount": "1/2컵",
+        "icon": "🧊"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "바나나 2개의 껍질을 벗기세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "바나나를 적당히 잘라 블렌더에 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "우유 1.5컵을 부어주세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "꿀 1큰술을 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "얼음 1/2컵을 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 6,
+        "description": "블렌더로 30초간 갈아주세요",
+        "time": 0.5
+      },
+      {
+        "step": 7,
+        "description": "컵에 담아 완성하세요",
+        "time": 0
+      }
+    ]
+  },
+  {
+    "id": "25",
+    "title": "소고기 미역국",
+    "category": "아침",
+    "time": 30,
+    "difficulty": "보통",
+    "calories": 180,
+    "rating": 4.8,
+    "image": "https://images.unsplash.com/photo-1547592180-85f173990554?w=400",
+    "description": "생일날 꼭 먹는 따뜻한 소고기 미역국입니다. 구수한 국물이 속을 편안하게 해줘요.",
+    "ingredients": [
+      {
+        "name": "소고기",
+        "amount": "100g",
+        "icon": "🥩"
+      },
+      {
+        "name": "건미역",
+        "amount": "1줌",
+        "icon": "🌿"
+      },
+      {
+        "name": "참기름",
+        "amount": "1큰술",
+        "icon": "🫒"
+      },
+      {
+        "name": "간장",
+        "amount": "1큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "다진마늘",
+        "amount": "1작은술",
+        "icon": "🧄"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "건미역을 찬물에 10분간 불려주세요",
+        "time": 10
+      },
+      {
+        "step": 2,
+        "description": "불린 미역을 먹기 좋은 크기로 잘라주세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "냄비에 참기름을 두르고 소고기를 볶으세요",
+        "time": 2
+      },
+      {
+        "step": 4,
+        "description": "고기가 익으면 미역을 넣고 3분간 같이 볶으세요",
+        "time": 3
+      },
+      {
+        "step": 5,
+        "description": "물 4컵을 넣고 센불로 끓이세요",
+        "time": 3
+      },
+      {
+        "step": 6,
+        "description": "끓어오르면 중불로 줄이고 15분간 끓이세요",
+        "time": 15
+      },
+      {
+        "step": 7,
+        "description": "간장과 다진마늘을 넣고 간을 맞춰 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "26",
+    "title": "프렌치토스트",
+    "category": "아침",
+    "time": 15,
+    "difficulty": "쉬움",
+    "calories": 320,
+    "rating": 4.6,
+    "image": "https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=400",
+    "description": "달콤한 달걀물에 적셔 구운 프렌치토스트입니다. 메이플시럽을 뿌리면 카페 브런치 느낌이에요.",
+    "ingredients": [
+      {
+        "name": "식빵",
+        "amount": "3장",
+        "icon": "🍞"
+      },
+      {
+        "name": "달걀",
+        "amount": "2개",
+        "icon": "🥚"
+      },
+      {
+        "name": "우유",
+        "amount": "1/2컵",
+        "icon": "🥛"
+      },
+      {
+        "name": "설탕",
+        "amount": "1큰술",
+        "icon": "🍬"
+      },
+      {
+        "name": "버터",
+        "amount": "1큰술",
+        "icon": "🧈"
+      },
+      {
+        "name": "시나몬",
+        "amount": "약간",
+        "icon": "🫙"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "볼에 달걀, 우유, 설탕, 시나몬을 넣고 섞으세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "식빵을 달걀물에 양면이 충분히 적시세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "팬에 버터를 녹이고 약불로 줄이세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "적신 식빵을 올려 양면을 노릇하게 구우세요",
+        "time": 3
+      },
+      {
+        "step": 5,
+        "description": "접시에 담고 꿀이나 시럽을 뿌려 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "27",
+    "title": "감자 수프",
+    "category": "아침",
+    "time": 20,
+    "difficulty": "쉬움",
+    "calories": 200,
+    "rating": 4.4,
+    "image": "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400",
+    "description": "부드럽고 고소한 감자 수프입니다. 따뜻하게 먹으면 아침에 속이 편안해요.",
+    "ingredients": [
+      {
+        "name": "감자",
+        "amount": "2개",
+        "icon": "🥔"
+      },
+      {
+        "name": "양파",
+        "amount": "1/2개",
+        "icon": "🧅"
+      },
+      {
+        "name": "버터",
+        "amount": "1큰술",
+        "icon": "🧈"
+      },
+      {
+        "name": "우유",
+        "amount": "1컵",
+        "icon": "🥛"
+      },
+      {
+        "name": "소금",
+        "amount": "약간",
+        "icon": "🧂"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "감자와 양파를 작게 깍둑 썰어주세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "냄비에 버터를 녹이고 양파를 볶으세요",
+        "time": 2
+      },
+      {
+        "step": 3,
+        "description": "감자를 넣고 물 1컵을 부어 끓이세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "감자가 푹 익을 때까지 10분간 끓이세요",
+        "time": 10
+      },
+      {
+        "step": 5,
+        "description": "블렌더로 곱게 갈아주세요",
+        "time": 0
+      },
+      {
+        "step": 6,
+        "description": "우유를 넣고 소금으로 간을 맞춰 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "28",
+    "title": "김밥",
+    "category": "점심",
+    "time": 25,
+    "difficulty": "보통",
+    "calories": 400,
+    "rating": 4.7,
+    "image": "https://images.unsplash.com/photo-1590301157890-4810ed352733?w=400",
+    "description": "한 줄이면 한 끼가 되는 든든한 김밥입니다. 소풍 도시락으로도 최고예요.",
+    "ingredients": [
+      {
+        "name": "밥",
+        "amount": "2공기",
+        "icon": "🍚"
+      },
+      {
+        "name": "김",
+        "amount": "2장",
+        "icon": "🍙"
+      },
+      {
+        "name": "단무지",
+        "amount": "2줄",
+        "icon": "🟡"
+      },
+      {
+        "name": "당근",
+        "amount": "1/2개",
+        "icon": "🥕"
+      },
+      {
+        "name": "시금치",
+        "amount": "1줌",
+        "icon": "🥬"
+      },
+      {
+        "name": "달걀",
+        "amount": "2개",
+        "icon": "🥚"
+      },
+      {
+        "name": "참기름",
+        "amount": "1큰술",
+        "icon": "🫒"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "밥에 참기름과 소금을 넣고 섞으세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "당근을 채 썰어 팬에 볶으세요",
+        "time": 2
+      },
+      {
+        "step": 3,
+        "description": "시금치를 데쳐서 참기름으로 무치세요",
+        "time": 2
+      },
+      {
+        "step": 4,
+        "description": "달걀을 풀어 얇게 지단을 부치세요",
+        "time": 2
+      },
+      {
+        "step": 5,
+        "description": "김 위에 밥을 얇게 펴주세요",
+        "time": 0
+      },
+      {
+        "step": 6,
+        "description": "재료를 가지런히 올리고 돌돌 말아주세요",
+        "time": 0
+      },
+      {
+        "step": 7,
+        "description": "참기름을 바르고 먹기 좋게 썰어 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "29",
+    "title": "제육볶음",
+    "category": "점심",
+    "time": 20,
+    "difficulty": "보통",
+    "calories": 520,
+    "rating": 4.9,
+    "image": "https://images.unsplash.com/photo-1580651214613-f4692d6d138e?w=400",
+    "description": "매콤달콤한 양념에 볶은 돼지고기 제육볶음입니다. 밥 위에 올려 먹으면 밥도둑이에요.",
+    "ingredients": [
+      {
+        "name": "돼지고기",
+        "amount": "300g",
+        "icon": "🥩"
+      },
+      {
+        "name": "양파",
+        "amount": "1개",
+        "icon": "🧅"
+      },
+      {
+        "name": "고추장",
+        "amount": "2큰술",
+        "icon": "🌶️"
+      },
+      {
+        "name": "고춧가루",
+        "amount": "1큰술",
+        "icon": "🌶️"
+      },
+      {
+        "name": "간장",
+        "amount": "1큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "설탕",
+        "amount": "1큰술",
+        "icon": "🍬"
+      },
+      {
+        "name": "다진마늘",
+        "amount": "1큰술",
+        "icon": "🧄"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "고추장, 고춧가루, 간장, 설탕, 마늘을 섞어 양념장을 만드세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "돼지고기에 양념장을 넣고 10분간 재우세요",
+        "time": 10
+      },
+      {
+        "step": 3,
+        "description": "양파를 굵게 채 썰어주세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "팬을 센불로 달구고 고기를 볶으세요",
+        "time": 3
+      },
+      {
+        "step": 5,
+        "description": "고기가 반쯤 익으면 양파를 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 6,
+        "description": "양파가 투명해질 때까지 볶아 완성하세요",
+        "time": 2
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "30",
+    "title": "참치김치찌개",
+    "category": "점심",
+    "time": 15,
+    "difficulty": "쉬움",
+    "calories": 280,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=400",
+    "description": "참치캔으로 간편하게 끓이는 김치찌개입니다. 고기 없이도 깊은 맛이 나요.",
+    "ingredients": [
+      {
+        "name": "김치",
+        "amount": "2컵",
+        "icon": "🥬"
+      },
+      {
+        "name": "참치캔",
+        "amount": "1개",
+        "icon": "🐟"
+      },
+      {
+        "name": "두부",
+        "amount": "1/2모",
+        "icon": "🧈"
+      },
+      {
+        "name": "대파",
+        "amount": "1대",
+        "icon": "🧅"
+      },
+      {
+        "name": "고춧가루",
+        "amount": "1큰술",
+        "icon": "🌶️"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "냄비에 김치를 넣고 참기름에 볶으세요",
+        "time": 2
+      },
+      {
+        "step": 2,
+        "description": "물 2컵을 넣고 끓이세요",
+        "time": 3
+      },
+      {
+        "step": 3,
+        "description": "끓으면 참치를 기름째 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "두부를 깍둑 썰어 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "고춧가루를 넣고 5분간 끓이세요",
+        "time": 5
+      },
+      {
+        "step": 6,
+        "description": "대파를 송송 썰어 올려 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "31",
+    "title": "콩나물국밥",
+    "category": "점심",
+    "time": 20,
+    "difficulty": "쉬움",
+    "calories": 350,
+    "rating": 4.6,
+    "image": "https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?w=400",
+    "description": "해장으로 최고인 콩나물국밥입니다. 얼큰하고 시원한 국물이 속을 확 풀어줘요.",
+    "ingredients": [
+      {
+        "name": "콩나물",
+        "amount": "2줌",
+        "icon": "🌱"
+      },
+      {
+        "name": "밥",
+        "amount": "1공기",
+        "icon": "🍚"
+      },
+      {
+        "name": "대파",
+        "amount": "1대",
+        "icon": "🧅"
+      },
+      {
+        "name": "고춧가루",
+        "amount": "1큰술",
+        "icon": "🌶️"
+      },
+      {
+        "name": "달걀",
+        "amount": "1개",
+        "icon": "🥚"
+      },
+      {
+        "name": "새우젓",
+        "amount": "1작은술",
+        "icon": "🦐"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "뚝배기에 물 2컵을 넣고 끓이세요",
+        "time": 3
+      },
+      {
+        "step": 2,
+        "description": "콩나물을 넣고 뚜껑 덮어 5분 끓이세요",
+        "time": 5
+      },
+      {
+        "step": 3,
+        "description": "밥을 넣고 풀어주세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "고춧가루, 새우젓을 넣고 간을 맞추세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "달걀을 풀어 넣고 대파를 올려 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "32",
+    "title": "오므라이스",
+    "category": "점심",
+    "time": 20,
+    "difficulty": "보통",
+    "calories": 480,
+    "rating": 4.7,
+    "image": "https://images.unsplash.com/photo-1525755662778-989d0524087e?w=400",
+    "description": "케첩 볶음밥을 달걀로 감싼 오므라이스입니다. 아이부터 어른까지 모두 좋아해요.",
+    "ingredients": [
+      {
+        "name": "밥",
+        "amount": "1공기",
+        "icon": "🍚"
+      },
+      {
+        "name": "달걀",
+        "amount": "3개",
+        "icon": "🥚"
+      },
+      {
+        "name": "양파",
+        "amount": "1/2개",
+        "icon": "🧅"
+      },
+      {
+        "name": "당근",
+        "amount": "1/4개",
+        "icon": "🥕"
+      },
+      {
+        "name": "케첩",
+        "amount": "3큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "버터",
+        "amount": "1큰술",
+        "icon": "🧈"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "양파와 당근을 잘게 다져주세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "팬에 버터를 녹이고 채소를 볶으세요",
+        "time": 2
+      },
+      {
+        "step": 3,
+        "description": "밥과 케첩을 넣고 골고루 볶으세요",
+        "time": 2
+      },
+      {
+        "step": 4,
+        "description": "볶음밥을 그릇에 담아두세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "달걀 3개를 풀고 팬에 얇게 부으세요",
+        "time": 0
+      },
+      {
+        "step": 6,
+        "description": "반숙일 때 볶음밥을 올리고 접어 완성하세요",
+        "time": 2
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "33",
+    "title": "갈비찜",
+    "category": "저녁",
+    "time": 50,
+    "difficulty": "어려움",
+    "calories": 620,
+    "rating": 4.9,
+    "image": "https://images.unsplash.com/photo-1544025162-d76694265947?w=400",
+    "description": "간장 양념에 푹 익힌 갈비찜입니다. 특별한 날이나 명절에 어울리는 고급 요리예요.",
+    "ingredients": [
+      {
+        "name": "소갈비",
+        "amount": "500g",
+        "icon": "🥩"
+      },
+      {
+        "name": "감자",
+        "amount": "1개",
+        "icon": "🥔"
+      },
+      {
+        "name": "당근",
+        "amount": "1개",
+        "icon": "🥕"
+      },
+      {
+        "name": "간장",
+        "amount": "4큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "설탕",
+        "amount": "2큰술",
+        "icon": "🍬"
+      },
+      {
+        "name": "배",
+        "amount": "1/4개",
+        "icon": "🍐"
+      },
+      {
+        "name": "다진마늘",
+        "amount": "1큰술",
+        "icon": "🧄"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "갈비를 찬물에 30분간 담가 핏물을 빼세요",
+        "time": 30
+      },
+      {
+        "step": 2,
+        "description": "끓는 물에 갈비를 5분간 삶아 거품을 제거하세요",
+        "time": 5
+      },
+      {
+        "step": 3,
+        "description": "간장, 설탕, 배즙, 마늘로 양념장을 만드세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "냄비에 갈비와 양념장, 물 1컵을 넣고 끓이세요",
+        "time": 3
+      },
+      {
+        "step": 5,
+        "description": "끓으면 중불로 줄여 30분간 조리세요",
+        "time": 30
+      },
+      {
+        "step": 6,
+        "description": "감자와 당근을 큼직하게 썰어 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 7,
+        "description": "채소가 익을 때까지 15분 더 끓여 완성하세요",
+        "time": 15
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "34",
+    "title": "순두부찌개",
+    "category": "저녁",
+    "time": 20,
+    "difficulty": "보통",
+    "calories": 220,
+    "rating": 4.8,
+    "image": "https://images.unsplash.com/photo-1583187855778-e89e4012e0b5?w=400",
+    "description": "뜨끈뜨끈 얼큰한 순두부찌개입니다. 부드러운 순두부에 달걀을 톡 풀면 맛이 배가돼요.",
+    "ingredients": [
+      {
+        "name": "순두부",
+        "amount": "1팩",
+        "icon": "🧈"
+      },
+      {
+        "name": "달걀",
+        "amount": "1개",
+        "icon": "🥚"
+      },
+      {
+        "name": "고춧가루",
+        "amount": "1큰술",
+        "icon": "🌶️"
+      },
+      {
+        "name": "대파",
+        "amount": "1/2대",
+        "icon": "🧅"
+      },
+      {
+        "name": "다진마늘",
+        "amount": "1작은술",
+        "icon": "🧄"
+      },
+      {
+        "name": "참기름",
+        "amount": "1큰술",
+        "icon": "🫒"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "뚝배기에 참기름을 두르고 고춧가루를 볶으세요",
+        "time": 1
+      },
+      {
+        "step": 2,
+        "description": "물 1컵을 넣고 끓이세요",
+        "time": 2
+      },
+      {
+        "step": 3,
+        "description": "순두부를 넣고 숟가락으로 떠넣으세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "다진마늘과 새우젓으로 간을 맞추세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "5분간 보글보글 끓이세요",
+        "time": 5
+      },
+      {
+        "step": 6,
+        "description": "달걀을 톡 깨넣고 대파를 올려 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "35",
+    "title": "닭볶음탕",
+    "category": "저녁",
+    "time": 35,
+    "difficulty": "보통",
+    "calories": 480,
+    "rating": 4.7,
+    "image": "https://images.unsplash.com/photo-1527477396000-e27163b481c2?w=400",
+    "description": "매콤하고 칼칼한 닭볶음탕입니다. 감자와 당근이 양념을 머금어 더 맛있어요.",
+    "ingredients": [
+      {
+        "name": "닭",
+        "amount": "1마리",
+        "icon": "🍗"
+      },
+      {
+        "name": "감자",
+        "amount": "2개",
+        "icon": "🥔"
+      },
+      {
+        "name": "당근",
+        "amount": "1개",
+        "icon": "🥕"
+      },
+      {
+        "name": "양파",
+        "amount": "1개",
+        "icon": "🧅"
+      },
+      {
+        "name": "고추장",
+        "amount": "2큰술",
+        "icon": "🌶️"
+      },
+      {
+        "name": "고춧가루",
+        "amount": "2큰술",
+        "icon": "🌶️"
+      },
+      {
+        "name": "간장",
+        "amount": "2큰술",
+        "icon": "🫙"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "닭을 토막 내서 끓는 물에 2분 데쳐주세요",
+        "time": 2
+      },
+      {
+        "step": 2,
+        "description": "감자, 당근, 양파를 큼직하게 썰어주세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "고추장, 고춧가루, 간장, 설탕으로 양념을 만드세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "냄비에 닭, 채소, 양념, 물 2컵을 넣고 끓이세요",
+        "time": 3
+      },
+      {
+        "step": 5,
+        "description": "끓으면 중불로 줄여 20분간 조리하세요",
+        "time": 20
+      },
+      {
+        "step": 6,
+        "description": "국물이 자작해지면 대파를 넣어 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "36",
+    "title": "돼지갈비 구이",
+    "category": "저녁",
+    "time": 30,
+    "difficulty": "보통",
+    "calories": 580,
+    "rating": 4.8,
+    "image": "https://images.unsplash.com/photo-1558030006-450675393462?w=400",
+    "description": "달콤짭짤한 양념에 재운 돼지갈비 구이입니다. 가족 모임에 빠질 수 없는 메뉴예요.",
+    "ingredients": [
+      {
+        "name": "돼지갈비",
+        "amount": "500g",
+        "icon": "🥩"
+      },
+      {
+        "name": "간장",
+        "amount": "3큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "설탕",
+        "amount": "2큰술",
+        "icon": "🍬"
+      },
+      {
+        "name": "다진마늘",
+        "amount": "1큰술",
+        "icon": "🧄"
+      },
+      {
+        "name": "참기름",
+        "amount": "1큰술",
+        "icon": "🫒"
+      },
+      {
+        "name": "후추",
+        "amount": "약간",
+        "icon": "🫙"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "갈비를 찬물에 20분간 담가 핏물을 빼세요",
+        "time": 20
+      },
+      {
+        "step": 2,
+        "description": "간장, 설탕, 마늘, 참기름, 후추로 양념을 만드세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "갈비에 양념을 골고루 발라 10분 재우세요",
+        "time": 10
+      },
+      {
+        "step": 4,
+        "description": "팬이나 그릴을 센불로 달구세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "갈비를 올려 앞뒤로 노릇하게 구우세요",
+        "time": 5
+      },
+      {
+        "step": 6,
+        "description": "접시에 담아 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "37",
+    "title": "두부조림",
+    "category": "저녁",
+    "time": 15,
+    "difficulty": "쉬움",
+    "calories": 180,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400",
+    "description": "양념장이 쏙 밴 두부조림입니다. 간단하지만 밥반찬으로 최고예요.",
+    "ingredients": [
+      {
+        "name": "두부",
+        "amount": "1모",
+        "icon": "🧈"
+      },
+      {
+        "name": "간장",
+        "amount": "2큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "고춧가루",
+        "amount": "1큰술",
+        "icon": "🌶️"
+      },
+      {
+        "name": "대파",
+        "amount": "1/2대",
+        "icon": "🧅"
+      },
+      {
+        "name": "다진마늘",
+        "amount": "1작은술",
+        "icon": "🧄"
+      },
+      {
+        "name": "설탕",
+        "amount": "1작은술",
+        "icon": "🍬"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "두부를 1cm 두께로 썰어주세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "간장, 고춧가루, 설탕, 마늘, 물 3큰술로 양념을 만드세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "팬에 기름을 두르고 두부를 앞뒤로 노릇하게 구우세요",
+        "time": 3
+      },
+      {
+        "step": 4,
+        "description": "양념장을 부어 중불에서 5분 조리세요",
+        "time": 5
+      },
+      {
+        "step": 5,
+        "description": "대파를 올려 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "38",
+    "title": "팥빙수",
+    "category": "디저트",
+    "time": 10,
+    "difficulty": "쉬움",
+    "calories": 300,
+    "rating": 4.7,
+    "image": "https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?w=400",
+    "description": "시원한 얼음 위에 달콤한 팥과 떡을 올린 팥빙수입니다. 여름 디저트의 끝판왕이에요.",
+    "ingredients": [
+      {
+        "name": "얼음",
+        "amount": "3컵",
+        "icon": "🧊"
+      },
+      {
+        "name": "팥앙금",
+        "amount": "3큰술",
+        "icon": "🫘"
+      },
+      {
+        "name": "떡",
+        "amount": "적당량",
+        "icon": "🍡"
+      },
+      {
+        "name": "연유",
+        "amount": "2큰술",
+        "icon": "🥛"
+      },
+      {
+        "name": "견과류",
+        "amount": "1큰술",
+        "icon": "🥜"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "얼음을 곱게 갈아 그릇에 담으세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "팥앙금을 듬뿍 올리세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "떡을 올리세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "연유를 뿌리세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "견과류를 올려 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "39",
+    "title": "꿀떡",
+    "category": "디저트",
+    "time": 25,
+    "difficulty": "보통",
+    "calories": 220,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400",
+    "description": "쫀득한 떡 속에 달콤한 꿀이 들어간 꿀떡입니다. 한입 깨물면 꿀이 살짝 흘러나와요.",
+    "ingredients": [
+      {
+        "name": "찹쌀가루",
+        "amount": "2컵",
+        "icon": "🌾"
+      },
+      {
+        "name": "꿀",
+        "amount": "3큰술",
+        "icon": "🍯"
+      },
+      {
+        "name": "시나몬",
+        "amount": "1작은술",
+        "icon": "🫙"
+      },
+      {
+        "name": "소금",
+        "amount": "약간",
+        "icon": "🧂"
+      },
+      {
+        "name": "물",
+        "amount": "1/2컵",
+        "icon": "💧"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "꿀에 시나몬을 섞어 소를 만드세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "찹쌀가루에 소금과 물을 넣어 반죽하세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "반죽을 동글게 빚어 가운데를 눌러주세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "꿀 소를 넣고 오므려 둥글게 만드세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "끓는 물에 떡을 넣고 떠오를 때까지 삶으세요",
+        "time": 5
+      },
+      {
+        "step": 6,
+        "description": "찬물에 헹궈 접시에 담아 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "40",
+    "title": "찰떡 아이스크림",
+    "category": "디저트",
+    "time": 15,
+    "difficulty": "쉬움",
+    "calories": 280,
+    "rating": 4.6,
+    "image": "https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=400",
+    "description": "쫀득한 찰떡 속에 아이스크림을 넣은 찰떡 아이스크림입니다. 시원하고 쫀득한 식감이 매력이에요.",
+    "ingredients": [
+      {
+        "name": "찹쌀가루",
+        "amount": "1컵",
+        "icon": "🌾"
+      },
+      {
+        "name": "설탕",
+        "amount": "2큰술",
+        "icon": "🍬"
+      },
+      {
+        "name": "아이스크림",
+        "amount": "적당량",
+        "icon": "🍦"
+      },
+      {
+        "name": "전분",
+        "amount": "적당량",
+        "icon": "🌾"
+      },
+      {
+        "name": "물",
+        "amount": "1/3컵",
+        "icon": "💧"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "찹쌀가루와 설탕, 물을 섞어 반죽하세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "전자레인지에 3분 돌려 익히세요",
+        "time": 3
+      },
+      {
+        "step": 3,
+        "description": "꺼내서 잘 치대주세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "전분을 뿌린 도마 위에서 얇게 펴세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "아이스크림을 올리고 빠르게 감싸세요",
+        "time": 0
+      },
+      {
+        "step": 6,
+        "description": "냉동실에서 30분 굳혀 완성하세요",
+        "time": 30
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "41",
+    "title": "치즈볼",
+    "category": "간식",
+    "time": 20,
+    "difficulty": "쉬움",
+    "calories": 260,
+    "rating": 4.6,
+    "image": "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?w=400",
+    "description": "겉바속촉 쭉 늘어나는 치즈볼입니다. 따뜻할 때 먹으면 치즈가 쭈욱 늘어나요.",
+    "ingredients": [
+      {
+        "name": "핫케이크 가루",
+        "amount": "1컵",
+        "icon": "🧁"
+      },
+      {
+        "name": "모짜렐라 치즈",
+        "amount": "100g",
+        "icon": "🧀"
+      },
+      {
+        "name": "달걀",
+        "amount": "1개",
+        "icon": "🥚"
+      },
+      {
+        "name": "식용유",
+        "amount": "튀김용",
+        "icon": "🫒"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "핫케이크 가루에 달걀을 넣고 반죽하세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "치즈를 작게 잘라 반죽으로 감싸세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "동그랗게 굴려 모양을 만드세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "170도 기름에 3분간 튀기세요",
+        "time": 3
+      },
+      {
+        "step": 5,
+        "description": "노릇해지면 건져서 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "42",
+    "title": "소떡소떡",
+    "category": "간식",
+    "time": 15,
+    "difficulty": "쉬움",
+    "calories": 320,
+    "rating": 4.7,
+    "image": "https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=400",
+    "description": "소시지와 떡을 번갈아 꽂은 소떡소떡입니다. 매콤달콤 소스를 발라 구우면 최고예요.",
+    "ingredients": [
+      {
+        "name": "소시지",
+        "amount": "4개",
+        "icon": "🌭"
+      },
+      {
+        "name": "떡",
+        "amount": "8개",
+        "icon": "🍡"
+      },
+      {
+        "name": "고추장",
+        "amount": "1큰술",
+        "icon": "🌶️"
+      },
+      {
+        "name": "케첩",
+        "amount": "2큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "설탕",
+        "amount": "1큰술",
+        "icon": "🍬"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "꼬치에 소시지와 떡을 번갈아 꽂으세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "팬에 기름을 살짝 두르고 꼬치를 구우세요",
+        "time": 3
+      },
+      {
+        "step": 3,
+        "description": "고추장, 케첩, 설탕을 섞어 소스를 만드세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "구운 꼬치에 소스를 발라 다시 구우세요",
+        "time": 2
+      },
+      {
+        "step": 5,
+        "description": "접시에 담아 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "43",
+    "title": "군고구마",
+    "category": "간식",
+    "time": 40,
+    "difficulty": "쉬움",
+    "calories": 200,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1576107232684-1279f390859f?w=400",
+    "description": "오븐에서 꿀이 줄줄 흐르게 구운 군고구마입니다. 겨울에 먹으면 행복 그 자체예요.",
+    "ingredients": [
+      {
+        "name": "고구마",
+        "amount": "3개",
+        "icon": "🍠"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "고구마를 깨끗이 씻어주세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "포크로 고구마에 구멍을 몇 개 뚫어주세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "오븐을 200도로 예열하세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "고구마를 오븐에 넣고 40분간 구우세요",
+        "time": 40
+      },
+      {
+        "step": 5,
+        "description": "젓가락으로 찔러 푹 들어가면 완성이에요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "44",
+    "title": "마늘빵",
+    "category": "간식",
+    "time": 15,
+    "difficulty": "쉬움",
+    "calories": 280,
+    "rating": 4.6,
+    "image": "https://images.unsplash.com/photo-1509722747041-616f39b57569?w=400",
+    "description": "고소한 버터와 마늘향이 가득한 마늘빵입니다. 바삭하게 구우면 자꾸 손이 가요.",
+    "ingredients": [
+      {
+        "name": "바게트",
+        "amount": "1개",
+        "icon": "🥖"
+      },
+      {
+        "name": "버터",
+        "amount": "3큰술",
+        "icon": "🧈"
+      },
+      {
+        "name": "다진마늘",
+        "amount": "2큰술",
+        "icon": "🧄"
+      },
+      {
+        "name": "파슬리",
+        "amount": "약간",
+        "icon": "🌿"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "버터를 실온에서 부드럽게 만드세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "버터에 다진마늘과 파슬리를 섞으세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "바게트를 2cm 두께로 썰어주세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "빵 위에 마늘버터를 발라주세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "180도 오븐에서 8분간 구워 완성하세요",
+        "time": 8
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "45",
+    "title": "복숭아 아이스티",
+    "category": "음료",
+    "time": 10,
+    "difficulty": "쉬움",
+    "calories": 80,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400",
+    "description": "달콤한 복숭아향이 솔솔 나는 아이스티입니다. 시원하게 마시면 기분이 상쾌해져요.",
+    "ingredients": [
+      {
+        "name": "홍차 티백",
+        "amount": "2개",
+        "icon": "🍵"
+      },
+      {
+        "name": "복숭아",
+        "amount": "1개",
+        "icon": "🍑"
+      },
+      {
+        "name": "꿀",
+        "amount": "1큰술",
+        "icon": "🍯"
+      },
+      {
+        "name": "얼음",
+        "amount": "가득",
+        "icon": "🧊"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "뜨거운 물 1컵에 티백 2개를 우려주세요",
+        "time": 3
+      },
+      {
+        "step": 2,
+        "description": "복숭아를 작게 깍둑 썰어주세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "우린 차에 꿀을 넣고 저어주세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "컵에 얼음을 가득 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "차를 붓고 복숭아를 올려 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "46",
+    "title": "레몬에이드",
+    "category": "음료",
+    "time": 5,
+    "difficulty": "쉬움",
+    "calories": 90,
+    "rating": 4.4,
+    "image": "https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=400",
+    "description": "새콤달콤한 레몬에이드입니다. 레몬즙과 탄산수로 간단하게 만드는 상큼한 음료예요.",
+    "ingredients": [
+      {
+        "name": "레몬",
+        "amount": "1개",
+        "icon": "🍋"
+      },
+      {
+        "name": "설탕",
+        "amount": "2큰술",
+        "icon": "🍬"
+      },
+      {
+        "name": "탄산수",
+        "amount": "1컵",
+        "icon": "💧"
+      },
+      {
+        "name": "얼음",
+        "amount": "가득",
+        "icon": "🧊"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "레몬을 반으로 잘라 즙을 짜세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "컵에 레몬즙과 설탕을 넣고 저어 녹이세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "얼음을 가득 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "탄산수를 부어 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "47",
+    "title": "대추차",
+    "category": "음료",
+    "time": 20,
+    "difficulty": "쉬움",
+    "calories": 60,
+    "rating": 4.3,
+    "image": "https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400",
+    "description": "달콤하고 따뜻한 대추차입니다. 겨울에 마시면 몸이 따뜻해지고 마음도 편안해져요.",
+    "ingredients": [
+      {
+        "name": "대추",
+        "amount": "10개",
+        "icon": "🫘"
+      },
+      {
+        "name": "물",
+        "amount": "3컵",
+        "icon": "💧"
+      },
+      {
+        "name": "꿀",
+        "amount": "1큰술",
+        "icon": "🍯"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "대추를 깨끗이 씻어주세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "냄비에 대추와 물 3컵을 넣고 끓이세요",
+        "time": 3
+      },
+      {
+        "step": 3,
+        "description": "끓으면 약불로 줄여 15분간 우려주세요",
+        "time": 15
+      },
+      {
+        "step": 4,
+        "description": "체에 걸러 컵에 담으세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "꿀을 넣어 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "48",
+    "title": "미숫가루",
+    "category": "음료",
+    "time": 5,
+    "difficulty": "쉬움",
+    "calories": 150,
+    "rating": 4.3,
+    "image": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400",
+    "description": "고소하고 달달한 미숫가루 음료입니다. 우유에 타면 간식으로도 식사대용으로도 좋아요.",
+    "ingredients": [
+      {
+        "name": "미숫가루",
+        "amount": "3큰술",
+        "icon": "🌾"
+      },
+      {
+        "name": "우유",
+        "amount": "1컵",
+        "icon": "🥛"
+      },
+      {
+        "name": "꿀",
+        "amount": "1큰술",
+        "icon": "🍯"
+      },
+      {
+        "name": "얼음",
+        "amount": "적당량",
+        "icon": "🧊"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "컵에 미숫가루 3큰술을 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "우유를 조금 넣고 덩어리 없이 잘 저으세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "남은 우유를 다 부으세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "꿀을 넣고 잘 저어 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "49",
+    "title": "계란찜",
+    "category": "아침",
+    "time": 15,
+    "difficulty": "쉬움",
+    "calories": 160,
+    "rating": 4.6,
+    "image": "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=400",
+    "description": "폭신폭신 부풀어오른 계란찜입니다. 뚝배기에 끓이면 보글보글 먹음직스러워요.",
+    "ingredients": [
+      {
+        "name": "달걀",
+        "amount": "3개",
+        "icon": "🥚"
+      },
+      {
+        "name": "물",
+        "amount": "1/2컵",
+        "icon": "💧"
+      },
+      {
+        "name": "새우젓",
+        "amount": "1작은술",
+        "icon": "🦐"
+      },
+      {
+        "name": "대파",
+        "amount": "1/2대",
+        "icon": "🧅"
+      },
+      {
+        "name": "참기름",
+        "amount": "약간",
+        "icon": "🫒"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "달걀 3개를 풀어 물과 섞으세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "새우젓을 넣고 간을 맞추세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "뚝배기에 참기름을 바르고 달걀물을 부으세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "약불에서 뚜껑 덮고 10분간 찌세요",
+        "time": 10
+      },
+      {
+        "step": 5,
+        "description": "대파를 올리고 불을 꺼 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "50",
+    "title": "스팸 마요 덮밥",
+    "category": "점심",
+    "time": 10,
+    "difficulty": "쉬움",
+    "calories": 520,
+    "rating": 4.6,
+    "image": "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400",
+    "description": "노릇하게 구운 스팸과 마요네즈를 올린 덮밥입니다. 간단하지만 중독성 있는 한 끼예요.",
+    "ingredients": [
+      {
+        "name": "밥",
+        "amount": "1공기",
+        "icon": "🍚"
+      },
+      {
+        "name": "스팸",
+        "amount": "1/2캔",
+        "icon": "🥩"
+      },
+      {
+        "name": "마요네즈",
+        "amount": "2큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "달걀",
+        "amount": "1개",
+        "icon": "🥚"
+      },
+      {
+        "name": "김가루",
+        "amount": "약간",
+        "icon": "🍙"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "스팸을 1cm 두께로 썰어주세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "팬에 스팸을 노릇하게 양면 구우세요",
+        "time": 3
+      },
+      {
+        "step": 3,
+        "description": "같은 팬에 달걀 프라이를 만드세요",
+        "time": 2
+      },
+      {
+        "step": 4,
+        "description": "밥 위에 스팸과 달걀을 올리세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "마요네즈와 김가루를 뿌려 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "51",
+    "title": "부대찌개",
+    "category": "저녁",
+    "time": 20,
+    "difficulty": "쉬움",
+    "calories": 480,
+    "rating": 4.7,
+    "image": "https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=400",
+    "description": "소시지, 스팸, 라면 등을 넣고 끓인 부대찌개입니다. 얼큰하고 든든한 저녁 메뉴예요.",
+    "ingredients": [
+      {
+        "name": "스팸",
+        "amount": "1/4캔",
+        "icon": "🥩"
+      },
+      {
+        "name": "소시지",
+        "amount": "3개",
+        "icon": "🌭"
+      },
+      {
+        "name": "라면",
+        "amount": "1개",
+        "icon": "🍜"
+      },
+      {
+        "name": "김치",
+        "amount": "1컵",
+        "icon": "🥬"
+      },
+      {
+        "name": "떡",
+        "amount": "적당량",
+        "icon": "🍡"
+      },
+      {
+        "name": "고춧가루",
+        "amount": "1큰술",
+        "icon": "🌶️"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "냄비에 김치, 스팸, 소시지를 담으세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "떡과 고춧가루를 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "물 2컵을 넣고 끓이세요",
+        "time": 3
+      },
+      {
+        "step": 4,
+        "description": "끓으면 라면 사리를 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "면이 익을 때까지 3분 더 끓여 완성하세요",
+        "time": 3
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "52",
+    "title": "카레라이스",
+    "category": "저녁",
+    "time": 25,
+    "difficulty": "쉬움",
+    "calories": 500,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400",
+    "description": "진하고 걸쭉한 카레라이스입니다. 감자와 당근이 듬뿍 들어가 영양도 맛도 좋아요.",
+    "ingredients": [
+      {
+        "name": "카레 가루",
+        "amount": "1봉지",
+        "icon": "🫙"
+      },
+      {
+        "name": "감자",
+        "amount": "1개",
+        "icon": "🥔"
+      },
+      {
+        "name": "당근",
+        "amount": "1/2개",
+        "icon": "🥕"
+      },
+      {
+        "name": "양파",
+        "amount": "1개",
+        "icon": "🧅"
+      },
+      {
+        "name": "돼지고기",
+        "amount": "150g",
+        "icon": "🥩"
+      },
+      {
+        "name": "밥",
+        "amount": "1공기",
+        "icon": "🍚"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "감자, 당근, 양파를 깍둑 썰기 하세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "냄비에 기름을 두르고 고기를 볶으세요",
+        "time": 2
+      },
+      {
+        "step": 3,
+        "description": "채소를 넣고 2분 더 볶으세요",
+        "time": 2
+      },
+      {
+        "step": 4,
+        "description": "물 3컵을 넣고 끓이세요",
+        "time": 3
+      },
+      {
+        "step": 5,
+        "description": "감자가 익으면 카레 가루를 풀어 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 6,
+        "description": "걸쭉해질 때까지 5분 더 끓여 밥에 곁들이세요",
+        "time": 5
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "53",
+    "title": "달걀덮밥",
+    "category": "점심",
+    "time": 10,
+    "difficulty": "쉬움",
+    "calories": 380,
+    "rating": 4.4,
+    "image": "https://images.unsplash.com/photo-1546069901-d5bfd2cbfb1f?w=400",
+    "description": "부드러운 달걀 스크램블을 밥 위에 올린 달걀덮밥입니다. 5분이면 만드는 초스피드 한끼예요.",
+    "ingredients": [
+      {
+        "name": "밥",
+        "amount": "1공기",
+        "icon": "🍚"
+      },
+      {
+        "name": "달걀",
+        "amount": "3개",
+        "icon": "🥚"
+      },
+      {
+        "name": "대파",
+        "amount": "1/2대",
+        "icon": "🧅"
+      },
+      {
+        "name": "간장",
+        "amount": "1큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "버터",
+        "amount": "1큰술",
+        "icon": "🧈"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "달걀 3개를 풀어 간장을 넣고 섞으세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "팬에 버터를 녹이세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "달걀물을 부어 젓가락으로 저으며 반숙으로 익히세요",
+        "time": 2
+      },
+      {
+        "step": 4,
+        "description": "밥 위에 올리고 대파를 뿌려 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "54",
+    "title": "양념치킨",
+    "category": "저녁",
+    "time": 30,
+    "difficulty": "보통",
+    "calories": 600,
+    "rating": 4.9,
+    "image": "https://images.unsplash.com/photo-1575932444877-5106bee2a599?w=400",
+    "description": "바삭하게 튀긴 치킨에 매콤달콤한 양념을 버무린 양념치킨입니다. 집에서도 배달 맛을 재현할 수 있어요.",
+    "ingredients": [
+      {
+        "name": "닭",
+        "amount": "500g",
+        "icon": "🍗"
+      },
+      {
+        "name": "전분",
+        "amount": "1컵",
+        "icon": "🌾"
+      },
+      {
+        "name": "고추장",
+        "amount": "2큰술",
+        "icon": "🌶️"
+      },
+      {
+        "name": "케첩",
+        "amount": "3큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "설탕",
+        "amount": "2큰술",
+        "icon": "🍬"
+      },
+      {
+        "name": "식용유",
+        "amount": "튀김용",
+        "icon": "🫒"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "닭에 소금, 후추로 밑간하세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "전분을 골고루 묻혀주세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "170도 기름에서 7분간 튀기세요",
+        "time": 7
+      },
+      {
+        "step": 4,
+        "description": "건져서 3분 휴지 후 다시 2분 튀기세요",
+        "time": 5
+      },
+      {
+        "step": 5,
+        "description": "고추장, 케첩, 설탕을 팬에서 살짝 끓이세요",
+        "time": 1
+      },
+      {
+        "step": 6,
+        "description": "튀긴 치킨에 양념을 버무려 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "55",
+    "title": "떡국",
+    "category": "아침",
+    "time": 25,
+    "difficulty": "보통",
+    "calories": 380,
+    "rating": 4.7,
+    "image": "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=400",
+    "description": "맑은 국물에 쫄깃한 떡이 들어간 떡국입니다. 설날 아침뿐 아니라 평소에도 든든해요.",
+    "ingredients": [
+      {
+        "name": "떡국떡",
+        "amount": "2컵",
+        "icon": "🍡"
+      },
+      {
+        "name": "달걀",
+        "amount": "1개",
+        "icon": "🥚"
+      },
+      {
+        "name": "대파",
+        "amount": "1대",
+        "icon": "🧅"
+      },
+      {
+        "name": "간장",
+        "amount": "1큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "다진마늘",
+        "amount": "1작은술",
+        "icon": "🧄"
+      },
+      {
+        "name": "김",
+        "amount": "약간",
+        "icon": "🍙"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "떡을 찬물에 10분간 불려주세요",
+        "time": 10
+      },
+      {
+        "step": 2,
+        "description": "냄비에 물 3컵, 간장, 마늘을 넣고 끓이세요",
+        "time": 3
+      },
+      {
+        "step": 3,
+        "description": "떡을 넣고 투명해질 때까지 5분 끓이세요",
+        "time": 5
+      },
+      {
+        "step": 4,
+        "description": "달걀을 풀어 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "대파와 김을 올려 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "56",
+    "title": "해물파전",
+    "category": "간식",
+    "time": 20,
+    "difficulty": "보통",
+    "calories": 350,
+    "rating": 4.7,
+    "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400",
+    "description": "바삭한 해물파전입니다. 비 오는 날 막걸리와 함께 먹으면 그 이상의 조합은 없어요.",
+    "ingredients": [
+      {
+        "name": "부침가루",
+        "amount": "1컵",
+        "icon": "🌾"
+      },
+      {
+        "name": "대파",
+        "amount": "3대",
+        "icon": "🧅"
+      },
+      {
+        "name": "해물믹스",
+        "amount": "1컵",
+        "icon": "🦐"
+      },
+      {
+        "name": "달걀",
+        "amount": "1개",
+        "icon": "🥚"
+      },
+      {
+        "name": "식용유",
+        "amount": "3큰술",
+        "icon": "🫒"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "부침가루에 물 1컵과 달걀을 넣어 반죽하세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "대파를 길게 썰어주세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "반죽에 해물과 대파를 섞으세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "팬에 기름을 넉넉히 두르고 반죽을 얇게 펴세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "중불에서 양면을 노릇하게 부치세요",
+        "time": 5
+      },
+      {
+        "step": 6,
+        "description": "간장 소스와 함께 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "57",
+    "title": "잔치국수",
+    "category": "점심",
+    "time": 15,
+    "difficulty": "쉬움",
+    "calories": 380,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1555126634-323283e090fa?w=400",
+    "description": "멸치 육수에 소면을 삶아 올린 잔치국수입니다. 시원한 국물에 호로록 넘기면 행복해져요.",
+    "ingredients": [
+      {
+        "name": "소면",
+        "amount": "2인분",
+        "icon": "🍝"
+      },
+      {
+        "name": "멸치",
+        "amount": "1줌",
+        "icon": "🐟"
+      },
+      {
+        "name": "호박",
+        "amount": "1/4개",
+        "icon": "🥒"
+      },
+      {
+        "name": "달걀",
+        "amount": "1개",
+        "icon": "🥚"
+      },
+      {
+        "name": "간장",
+        "amount": "1큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "김",
+        "amount": "약간",
+        "icon": "🍙"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "멸치와 물 4컵으로 육수를 5분간 끓이세요",
+        "time": 5
+      },
+      {
+        "step": 2,
+        "description": "멸치를 건지고 간장으로 간하세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "다른 냄비에 소면을 삶으세요",
+        "time": 3
+      },
+      {
+        "step": 4,
+        "description": "삶은 면을 찬물에 헹구세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "그릇에 면을 담고 육수를 부으세요",
+        "time": 0
+      },
+      {
+        "step": 6,
+        "description": "호박, 달걀지단, 김을 올려 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "58",
+    "title": "치킨마요 덮밥",
+    "category": "점심",
+    "time": 15,
+    "difficulty": "쉬움",
+    "calories": 550,
+    "rating": 4.6,
+    "image": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400",
+    "description": "바삭한 치킨을 잘게 썰어 밥 위에 올리고 마요네즈를 뿌린 치킨마요 덮밥입니다.",
+    "ingredients": [
+      {
+        "name": "치킨너겟",
+        "amount": "6개",
+        "icon": "🍗"
+      },
+      {
+        "name": "밥",
+        "amount": "1공기",
+        "icon": "🍚"
+      },
+      {
+        "name": "마요네즈",
+        "amount": "3큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "양상추",
+        "amount": "2장",
+        "icon": "🥬"
+      },
+      {
+        "name": "간장",
+        "amount": "1큰술",
+        "icon": "🫙"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "치킨너겟을 에어프라이어에서 10분 구우세요",
+        "time": 10
+      },
+      {
+        "step": 2,
+        "description": "구운 치킨을 먹기 좋게 잘라주세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "양상추를 채 썰어주세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "밥 위에 양상추와 치킨을 올리세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "마요네즈와 간장을 뿌려 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "59",
+    "title": "감자조림",
+    "category": "저녁",
+    "time": 20,
+    "difficulty": "쉬움",
+    "calories": 220,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1518977676601-b53f82ber6af?w=400",
+    "description": "간장 양념에 조려낸 감자조림입니다. 윤기 나는 감자가 밥반찬으로 딱이에요.",
+    "ingredients": [
+      {
+        "name": "감자",
+        "amount": "2개",
+        "icon": "🥔"
+      },
+      {
+        "name": "간장",
+        "amount": "2큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "설탕",
+        "amount": "1큰술",
+        "icon": "🍬"
+      },
+      {
+        "name": "다진마늘",
+        "amount": "1작은술",
+        "icon": "🧄"
+      },
+      {
+        "name": "참기름",
+        "amount": "1큰술",
+        "icon": "🫒"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "감자를 깍둑 썰기 하세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "냄비에 감자와 물 1컵을 넣고 끓이세요",
+        "time": 3
+      },
+      {
+        "step": 3,
+        "description": "간장, 설탕, 마늘을 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "중불에서 국물이 자작해질 때까지 조리세요",
+        "time": 10
+      },
+      {
+        "step": 5,
+        "description": "참기름을 넣어 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "60",
+    "title": "어묵탕",
+    "category": "저녁",
+    "time": 15,
+    "difficulty": "쉬움",
+    "calories": 180,
+    "rating": 4.4,
+    "image": "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=400",
+    "description": "시원한 국물이 일품인 어묵탕입니다. 꼬치에 꽂은 어묵을 국물에 담가 먹으면 최고예요.",
+    "ingredients": [
+      {
+        "name": "어묵",
+        "amount": "5장",
+        "icon": "🍢"
+      },
+      {
+        "name": "무",
+        "amount": "1/4개",
+        "icon": "🥬"
+      },
+      {
+        "name": "대파",
+        "amount": "1대",
+        "icon": "🧅"
+      },
+      {
+        "name": "간장",
+        "amount": "1큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "멸치",
+        "amount": "1줌",
+        "icon": "🐟"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "멸치와 무로 육수를 10분간 끓이세요",
+        "time": 10
+      },
+      {
+        "step": 2,
+        "description": "멸치를 건져내세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "어묵을 꼬치에 꽂아주세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "육수에 어묵을 넣고 5분 끓이세요",
+        "time": 5
+      },
+      {
+        "step": 5,
+        "description": "대파를 넣고 간장으로 간해 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "61",
+    "title": "비빔국수",
+    "category": "점심",
+    "time": 15,
+    "difficulty": "쉬움",
+    "calories": 400,
+    "rating": 4.6,
+    "image": "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=400",
+    "description": "매콤새콤한 양념에 비벼먹는 비빔국수입니다. 여름에 시원하게 먹으면 입맛이 돌아와요.",
+    "ingredients": [
+      {
+        "name": "소면",
+        "amount": "1인분",
+        "icon": "🍝"
+      },
+      {
+        "name": "고추장",
+        "amount": "2큰술",
+        "icon": "🌶️"
+      },
+      {
+        "name": "식초",
+        "amount": "1큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "설탕",
+        "amount": "1큰술",
+        "icon": "🍬"
+      },
+      {
+        "name": "오이",
+        "amount": "1/2개",
+        "icon": "🥒"
+      },
+      {
+        "name": "달걀",
+        "amount": "1개",
+        "icon": "🥚"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "소면을 삶아 찬물에 헹구세요",
+        "time": 3
+      },
+      {
+        "step": 2,
+        "description": "고추장, 식초, 설탕, 참기름으로 양념을 만드세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "오이를 채 썰어주세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "달걀을 삶아 반으로 잘라주세요",
+        "time": 7
+      },
+      {
+        "step": 5,
+        "description": "면에 양념을 넣고 비비세요",
+        "time": 0
+      },
+      {
+        "step": 6,
+        "description": "오이와 달걀을 올려 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "62",
+    "title": "콘치즈",
+    "category": "간식",
+    "time": 10,
+    "difficulty": "쉬움",
+    "calories": 280,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=400",
+    "description": "달콤한 옥수수에 치즈를 듬뿍 올려 구운 콘치즈입니다. 맥주 안주로도 최고예요.",
+    "ingredients": [
+      {
+        "name": "옥수수캔",
+        "amount": "1개",
+        "icon": "🌽"
+      },
+      {
+        "name": "모짜렐라 치즈",
+        "amount": "1컵",
+        "icon": "🧀"
+      },
+      {
+        "name": "마요네즈",
+        "amount": "2큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "설탕",
+        "amount": "1큰술",
+        "icon": "🍬"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "옥수수캔의 물기를 빼세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "옥수수에 마요네즈와 설탕을 섞으세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "오븐용 그릇에 담고 치즈를 올리세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "오븐이나 에어프라이어에서 5분간 구우세요",
+        "time": 5
+      },
+      {
+        "step": 5,
+        "description": "치즈가 녹으면 완성이에요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "63",
+    "title": "유부초밥",
+    "category": "점심",
+    "time": 15,
+    "difficulty": "쉬움",
+    "calories": 350,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=400",
+    "description": "달콤한 유부 속에 초밥을 채운 유부초밥입니다. 소풍 도시락으로 인기 만점이에요.",
+    "ingredients": [
+      {
+        "name": "유부",
+        "amount": "10장",
+        "icon": "🟡"
+      },
+      {
+        "name": "밥",
+        "amount": "1.5공기",
+        "icon": "🍚"
+      },
+      {
+        "name": "식초",
+        "amount": "2큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "설탕",
+        "amount": "1큰술",
+        "icon": "🍬"
+      },
+      {
+        "name": "참깨",
+        "amount": "1큰술",
+        "icon": "🫘"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "밥에 식초, 설탕, 소금을 넣고 초밥을 만드세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "참깨를 넣고 골고루 섞으세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "유부를 살짝 벌려주세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "초밥을 적당량 넣어 채우세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "모양을 잡아 접시에 담아 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "64",
+    "title": "미역줄기 볶음",
+    "category": "저녁",
+    "time": 15,
+    "difficulty": "쉬움",
+    "calories": 120,
+    "rating": 4.3,
+    "image": "https://images.unsplash.com/photo-1543339308-d595c4025dbb?w=400",
+    "description": "아삭한 미역줄기를 양념에 볶은 반찬입니다. 칼로리 낮고 식이섬유가 풍부해요.",
+    "ingredients": [
+      {
+        "name": "미역줄기",
+        "amount": "200g",
+        "icon": "🌿"
+      },
+      {
+        "name": "간장",
+        "amount": "1큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "고춧가루",
+        "amount": "1작은술",
+        "icon": "🌶️"
+      },
+      {
+        "name": "참기름",
+        "amount": "1큰술",
+        "icon": "🫒"
+      },
+      {
+        "name": "다진마늘",
+        "amount": "1작은술",
+        "icon": "🧄"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "미역줄기를 먹기 좋은 크기로 자르세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "팬에 참기름을 두르고 마늘을 볶으세요",
+        "time": 1
+      },
+      {
+        "step": 3,
+        "description": "미역줄기를 넣고 3분 볶으세요",
+        "time": 3
+      },
+      {
+        "step": 4,
+        "description": "간장과 고춧가루를 넣고 2분 더 볶아 완성하세요",
+        "time": 2
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "65",
+    "title": "치즈 떡볶이",
+    "category": "간식",
+    "time": 15,
+    "difficulty": "쉬움",
+    "calories": 480,
+    "rating": 4.8,
+    "image": "https://images.unsplash.com/photo-1632709810780-b5a4343cebec?w=400",
+    "description": "매콤한 떡볶이 위에 치즈를 듬뿍 올린 치즈 떡볶이입니다. 치즈가 쭉 늘어나 더 맛있어요.",
+    "ingredients": [
+      {
+        "name": "떡",
+        "amount": "300g",
+        "icon": "🍡"
+      },
+      {
+        "name": "어묵",
+        "amount": "2장",
+        "icon": "🍢"
+      },
+      {
+        "name": "고추장",
+        "amount": "2큰술",
+        "icon": "🌶️"
+      },
+      {
+        "name": "모짜렐라 치즈",
+        "amount": "1컵",
+        "icon": "🧀"
+      },
+      {
+        "name": "설탕",
+        "amount": "1큰술",
+        "icon": "🍬"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "냄비에 물 1.5컵과 고추장, 설탕을 넣고 끓이세요",
+        "time": 2
+      },
+      {
+        "step": 2,
+        "description": "떡과 어묵을 넣고 5분 끓이세요",
+        "time": 5
+      },
+      {
+        "step": 3,
+        "description": "소스가 걸쭉해지면 치즈를 올리세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "뚜껑을 덮고 1분 더 끓여 완성하세요",
+        "time": 1
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "66",
+    "title": "만두국",
+    "category": "아침",
+    "time": 15,
+    "difficulty": "쉬움",
+    "calories": 350,
+    "rating": 4.6,
+    "image": "https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=400",
+    "description": "따끈한 국물에 만두가 동동 떠있는 만두국입니다. 간편하지만 든든한 아침이에요.",
+    "ingredients": [
+      {
+        "name": "냉동만두",
+        "amount": "8개",
+        "icon": "🥟"
+      },
+      {
+        "name": "달걀",
+        "amount": "1개",
+        "icon": "🥚"
+      },
+      {
+        "name": "대파",
+        "amount": "1/2대",
+        "icon": "🧅"
+      },
+      {
+        "name": "간장",
+        "amount": "1큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "다진마늘",
+        "amount": "1작은술",
+        "icon": "🧄"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "냄비에 물 3컵을 넣고 끓이세요",
+        "time": 3
+      },
+      {
+        "step": 2,
+        "description": "만두를 넣고 떠오를 때까지 끓이세요",
+        "time": 5
+      },
+      {
+        "step": 3,
+        "description": "간장과 마늘로 간을 맞추세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "달걀을 풀어 넣고 대파를 올려 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "67",
+    "title": "오이무침",
+    "category": "저녁",
+    "time": 10,
+    "difficulty": "쉬움",
+    "calories": 50,
+    "rating": 4.4,
+    "image": "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400",
+    "description": "아삭하고 새콤한 오이무침입니다. 여름 밥반찬으로 입맛을 살려줘요.",
+    "ingredients": [
+      {
+        "name": "오이",
+        "amount": "2개",
+        "icon": "🥒"
+      },
+      {
+        "name": "고춧가루",
+        "amount": "1큰술",
+        "icon": "🌶️"
+      },
+      {
+        "name": "식초",
+        "amount": "1큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "설탕",
+        "amount": "1작은술",
+        "icon": "🍬"
+      },
+      {
+        "name": "참기름",
+        "amount": "1큰술",
+        "icon": "🫒"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "오이를 반달 모양으로 썰어주세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "소금을 뿌려 5분간 절이세요",
+        "time": 5
+      },
+      {
+        "step": 3,
+        "description": "물기를 꼭 짜주세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "고춧가루, 식초, 설탕, 참기름을 넣고 무쳐 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "68",
+    "title": "콩나물무침",
+    "category": "저녁",
+    "time": 10,
+    "difficulty": "쉬움",
+    "calories": 60,
+    "rating": 4.3,
+    "image": "https://images.unsplash.com/photo-1590301157890-4810ed352733?w=400",
+    "description": "아삭한 콩나물에 참기름과 깨를 넣어 무친 콩나물무침입니다. 기본 반찬이지만 없으면 아쉬워요.",
+    "ingredients": [
+      {
+        "name": "콩나물",
+        "amount": "2줌",
+        "icon": "🌱"
+      },
+      {
+        "name": "참기름",
+        "amount": "1큰술",
+        "icon": "🫒"
+      },
+      {
+        "name": "소금",
+        "amount": "약간",
+        "icon": "🧂"
+      },
+      {
+        "name": "다진마늘",
+        "amount": "1작은술",
+        "icon": "🧄"
+      },
+      {
+        "name": "참깨",
+        "amount": "약간",
+        "icon": "🫘"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "끓는 물에 콩나물을 3분간 삶으세요",
+        "time": 3
+      },
+      {
+        "step": 2,
+        "description": "찬물에 헹구고 물기를 빼세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "참기름, 소금, 마늘을 넣고 무치세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "참깨를 뿌려 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "69",
+    "title": "볶음라면",
+    "category": "점심",
+    "time": 10,
+    "difficulty": "쉬움",
+    "calories": 480,
+    "rating": 4.4,
+    "image": "https://images.unsplash.com/photo-1617622141675-d3005b9067ce?w=400",
+    "description": "국물 없이 볶아낸 볶음라면입니다. 쫄깃한 면발에 양념이 골고루 배어 맛있어요.",
+    "ingredients": [
+      {
+        "name": "라면",
+        "amount": "1봉지",
+        "icon": "🍜"
+      },
+      {
+        "name": "달걀",
+        "amount": "1개",
+        "icon": "🥚"
+      },
+      {
+        "name": "대파",
+        "amount": "1/2대",
+        "icon": "🧅"
+      },
+      {
+        "name": "식용유",
+        "amount": "1큰술",
+        "icon": "🫒"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "라면을 끓는 물에 2분만 삶아 건지세요",
+        "time": 2
+      },
+      {
+        "step": 2,
+        "description": "팬에 기름을 두르고 면을 볶으세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "스프를 반봉지만 넣고 섞으세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "달걀을 넣고 함께 볶으세요",
+        "time": 2
+      },
+      {
+        "step": 5,
+        "description": "대파를 올려 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "70",
+    "title": "계란국",
+    "category": "아침",
+    "time": 10,
+    "difficulty": "쉬움",
+    "calories": 80,
+    "rating": 4.3,
+    "image": "https://images.unsplash.com/photo-1547592180-85f173990554?w=400",
+    "description": "맑고 시원한 계란국입니다. 간단하게 끓여도 국물이 깊고 속이 편해요.",
+    "ingredients": [
+      {
+        "name": "달걀",
+        "amount": "2개",
+        "icon": "🥚"
+      },
+      {
+        "name": "대파",
+        "amount": "1/2대",
+        "icon": "🧅"
+      },
+      {
+        "name": "간장",
+        "amount": "1큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "다진마늘",
+        "amount": "1/2작은술",
+        "icon": "🧄"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "냄비에 물 2컵을 넣고 끓이세요",
+        "time": 3
+      },
+      {
+        "step": 2,
+        "description": "간장과 마늘을 넣어 간을 맞추세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "달걀을 풀어 천천히 부어주세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "대파를 넣고 1분 더 끓여 완성하세요",
+        "time": 1
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "71",
+    "title": "우삼겹 덮밥",
+    "category": "점심",
+    "time": 15,
+    "difficulty": "쉬움",
+    "calories": 550,
+    "rating": 4.7,
+    "image": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400",
+    "description": "달콤한 간장소스에 볶은 우삼겹 덮밥입니다. 규동 느낌으로 간단하지만 고급스러워요.",
+    "ingredients": [
+      {
+        "name": "우삼겹",
+        "amount": "200g",
+        "icon": "🥩"
+      },
+      {
+        "name": "양파",
+        "amount": "1개",
+        "icon": "🧅"
+      },
+      {
+        "name": "간장",
+        "amount": "2큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "설탕",
+        "amount": "1큰술",
+        "icon": "🍬"
+      },
+      {
+        "name": "밥",
+        "amount": "1공기",
+        "icon": "🍚"
+      },
+      {
+        "name": "대파",
+        "amount": "1/2대",
+        "icon": "🧅"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "양파를 채 썰어주세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "팬에 우삼겹을 볶으세요",
+        "time": 2
+      },
+      {
+        "step": 3,
+        "description": "양파를 넣고 함께 볶으세요",
+        "time": 2
+      },
+      {
+        "step": 4,
+        "description": "간장, 설탕, 물 2큰술을 넣고 조리세요",
+        "time": 2
+      },
+      {
+        "step": 5,
+        "description": "밥 위에 올리고 대파를 뿌려 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "72",
+    "title": "닭갈비",
+    "category": "저녁",
+    "time": 25,
+    "difficulty": "보통",
+    "calories": 520,
+    "rating": 4.8,
+    "image": "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=400",
+    "description": "매콤한 양념에 닭고기와 채소를 볶은 닭갈비입니다. 마지막에 비비는 볶음밥까지 완벽해요.",
+    "ingredients": [
+      {
+        "name": "닭가슴살",
+        "amount": "300g",
+        "icon": "🍗"
+      },
+      {
+        "name": "양배추",
+        "amount": "3장",
+        "icon": "🥬"
+      },
+      {
+        "name": "고구마",
+        "amount": "1개",
+        "icon": "🍠"
+      },
+      {
+        "name": "고추장",
+        "amount": "2큰술",
+        "icon": "🌶️"
+      },
+      {
+        "name": "고춧가루",
+        "amount": "1큰술",
+        "icon": "🌶️"
+      },
+      {
+        "name": "간장",
+        "amount": "1큰술",
+        "icon": "🫙"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "닭고기를 한입 크기로 자르세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "고추장, 고춧가루, 간장, 설탕으로 양념을 만드세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "닭에 양념을 바르고 10분 재우세요",
+        "time": 10
+      },
+      {
+        "step": 4,
+        "description": "양배추와 고구마를 썰어주세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "팬에 닭과 채소를 넣고 볶으세요",
+        "time": 5
+      },
+      {
+        "step": 6,
+        "description": "뚜껑 덮고 5분 더 익혀 완성하세요",
+        "time": 5
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "73",
+    "title": "크림파스타",
+    "category": "저녁",
+    "time": 20,
+    "difficulty": "보통",
+    "calories": 520,
+    "rating": 4.6,
+    "image": "https://images.unsplash.com/photo-1645112411341-6c4fd023714a?w=400",
+    "description": "부드러운 크림소스에 버무린 크림파스타입니다. 집에서도 레스토랑 맛을 낼 수 있어요.",
+    "ingredients": [
+      {
+        "name": "파스타면",
+        "amount": "1인분",
+        "icon": "🍝"
+      },
+      {
+        "name": "생크림",
+        "amount": "1컵",
+        "icon": "🥛"
+      },
+      {
+        "name": "베이컨",
+        "amount": "3줄",
+        "icon": "🥓"
+      },
+      {
+        "name": "양파",
+        "amount": "1/2개",
+        "icon": "🧅"
+      },
+      {
+        "name": "파르메산 치즈",
+        "amount": "2큰술",
+        "icon": "🧀"
+      },
+      {
+        "name": "버터",
+        "amount": "1큰술",
+        "icon": "🧈"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "파스타면을 삶으세요",
+        "time": 8
+      },
+      {
+        "step": 2,
+        "description": "팬에 버터를 녹이고 베이컨을 볶으세요",
+        "time": 2
+      },
+      {
+        "step": 3,
+        "description": "양파를 넣고 투명해질 때까지 볶으세요",
+        "time": 2
+      },
+      {
+        "step": 4,
+        "description": "생크림을 넣고 끓이세요",
+        "time": 2
+      },
+      {
+        "step": 5,
+        "description": "삶은 면을 넣고 버무리세요",
+        "time": 0
+      },
+      {
+        "step": 6,
+        "description": "치즈를 뿌려 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "74",
+    "title": "토마토 파스타",
+    "category": "저녁",
+    "time": 20,
+    "difficulty": "보통",
+    "calories": 450,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=400",
+    "description": "토마토소스의 감칠맛이 살아있는 파스타입니다. 마늘과 올리브유의 조합이 완벽해요.",
+    "ingredients": [
+      {
+        "name": "파스타면",
+        "amount": "1인분",
+        "icon": "🍝"
+      },
+      {
+        "name": "토마토소스",
+        "amount": "1컵",
+        "icon": "🍅"
+      },
+      {
+        "name": "다진마늘",
+        "amount": "1큰술",
+        "icon": "🧄"
+      },
+      {
+        "name": "올리브유",
+        "amount": "2큰술",
+        "icon": "🫒"
+      },
+      {
+        "name": "양파",
+        "amount": "1/2개",
+        "icon": "🧅"
+      },
+      {
+        "name": "바질",
+        "amount": "약간",
+        "icon": "🌿"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "파스타면을 삶으세요",
+        "time": 8
+      },
+      {
+        "step": 2,
+        "description": "팬에 올리브유와 마늘을 볶으세요",
+        "time": 1
+      },
+      {
+        "step": 3,
+        "description": "양파를 넣고 볶으세요",
+        "time": 2
+      },
+      {
+        "step": 4,
+        "description": "토마토소스를 넣고 5분 끓이세요",
+        "time": 5
+      },
+      {
+        "step": 5,
+        "description": "삶은 면을 넣고 섞어 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "75",
+    "title": "볶음 떡볶이",
+    "category": "간식",
+    "time": 15,
+    "difficulty": "쉬움",
+    "calories": 400,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1635363638580-c2809d049eee?w=400",
+    "description": "국물 없이 매콤하게 볶은 볶음 떡볶이입니다. 쫄깃한 떡에 양념이 쏙 배어 맛있어요.",
+    "ingredients": [
+      {
+        "name": "떡",
+        "amount": "300g",
+        "icon": "🍡"
+      },
+      {
+        "name": "고추장",
+        "amount": "1큰술",
+        "icon": "🌶️"
+      },
+      {
+        "name": "간장",
+        "amount": "1큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "설탕",
+        "amount": "1큰술",
+        "icon": "🍬"
+      },
+      {
+        "name": "식용유",
+        "amount": "1큰술",
+        "icon": "🫒"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "떡을 끓는 물에 1분 데쳐주세요",
+        "time": 1
+      },
+      {
+        "step": 2,
+        "description": "팬에 기름을 두르고 떡을 볶으세요",
+        "time": 2
+      },
+      {
+        "step": 3,
+        "description": "고추장, 간장, 설탕을 넣고 볶으세요",
+        "time": 2
+      },
+      {
+        "step": 4,
+        "description": "양념이 골고루 배면 완성이에요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "76",
+    "title": "호박죽",
+    "category": "아침",
+    "time": 30,
+    "difficulty": "보통",
+    "calories": 200,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?w=400",
+    "description": "달콤하고 부드러운 호박죽입니다. 찹쌀 경단과 함께 먹으면 든든한 아침이 돼요.",
+    "ingredients": [
+      {
+        "name": "단호박",
+        "amount": "1/2개",
+        "icon": "🎃"
+      },
+      {
+        "name": "찹쌀가루",
+        "amount": "3큰술",
+        "icon": "🌾"
+      },
+      {
+        "name": "설탕",
+        "amount": "2큰술",
+        "icon": "🍬"
+      },
+      {
+        "name": "소금",
+        "amount": "약간",
+        "icon": "🧂"
+      },
+      {
+        "name": "물",
+        "amount": "2컵",
+        "icon": "💧"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "단호박을 잘라 전자레인지에 5분 돌리세요",
+        "time": 5
+      },
+      {
+        "step": 2,
+        "description": "숟가락으로 살을 긁어내세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "호박살과 물을 블렌더에 갈아주세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "냄비에 넣고 설탕, 소금을 넣어 끓이세요",
+        "time": 3
+      },
+      {
+        "step": 5,
+        "description": "찹쌀가루를 물에 풀어 넣고 저으세요",
+        "time": 0
+      },
+      {
+        "step": 6,
+        "description": "걸쭉해질 때까지 5분 더 끓여 완성하세요",
+        "time": 5
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "77",
+    "title": "두부 김치",
+    "category": "저녁",
+    "time": 10,
+    "difficulty": "쉬움",
+    "calories": 200,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=400",
+    "description": "김치와 두부의 완벽한 조합입니다. 술안주로도 밥반찬으로도 좋아요.",
+    "ingredients": [
+      {
+        "name": "두부",
+        "amount": "1모",
+        "icon": "🧈"
+      },
+      {
+        "name": "김치",
+        "amount": "1컵",
+        "icon": "🥬"
+      },
+      {
+        "name": "돼지고기",
+        "amount": "100g",
+        "icon": "🥩"
+      },
+      {
+        "name": "참기름",
+        "amount": "1큰술",
+        "icon": "🫒"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "두부를 1cm 두께로 썰어 끓는 물에 데치세요",
+        "time": 2
+      },
+      {
+        "step": 2,
+        "description": "팬에 돼지고기를 볶으세요",
+        "time": 2
+      },
+      {
+        "step": 3,
+        "description": "김치를 넣고 3분간 볶으세요",
+        "time": 3
+      },
+      {
+        "step": 4,
+        "description": "접시에 두부를 깔고 김치볶음을 올려 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "78",
+    "title": "참치전",
+    "category": "간식",
+    "time": 15,
+    "difficulty": "쉬움",
+    "calories": 280,
+    "rating": 4.4,
+    "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400",
+    "description": "참치캔으로 간단하게 부치는 참치전입니다. 바삭하고 고소해서 아이들도 잘 먹어요.",
+    "ingredients": [
+      {
+        "name": "참치캔",
+        "amount": "1개",
+        "icon": "🐟"
+      },
+      {
+        "name": "달걀",
+        "amount": "1개",
+        "icon": "🥚"
+      },
+      {
+        "name": "부침가루",
+        "amount": "3큰술",
+        "icon": "🌾"
+      },
+      {
+        "name": "양파",
+        "amount": "1/4개",
+        "icon": "🧅"
+      },
+      {
+        "name": "식용유",
+        "amount": "2큰술",
+        "icon": "🫒"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "참치캔의 기름을 빼세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "참치에 달걀, 부침가루, 다진 양파를 섞으세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "팬에 기름을 두르고 한 숟가락씩 올리세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "양면을 노릇하게 부쳐 완성하세요",
+        "time": 4
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "79",
+    "title": "소고기 볶음밥",
+    "category": "점심",
+    "time": 15,
+    "difficulty": "쉬움",
+    "calories": 500,
+    "rating": 4.6,
+    "image": "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400",
+    "description": "소고기와 채소를 넣고 볶은 볶음밥입니다. 간장으로 간해 고소하고 감칠맛이 나요.",
+    "ingredients": [
+      {
+        "name": "밥",
+        "amount": "1공기",
+        "icon": "🍚"
+      },
+      {
+        "name": "소고기",
+        "amount": "100g",
+        "icon": "🥩"
+      },
+      {
+        "name": "양파",
+        "amount": "1/2개",
+        "icon": "🧅"
+      },
+      {
+        "name": "당근",
+        "amount": "1/4개",
+        "icon": "🥕"
+      },
+      {
+        "name": "간장",
+        "amount": "1큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "참기름",
+        "amount": "1큰술",
+        "icon": "🫒"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "소고기와 채소를 잘게 다지세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "팬에 소고기를 먼저 볶으세요",
+        "time": 2
+      },
+      {
+        "step": 3,
+        "description": "채소를 넣고 함께 볶으세요",
+        "time": 2
+      },
+      {
+        "step": 4,
+        "description": "밥과 간장을 넣고 센불에서 볶으세요",
+        "time": 2
+      },
+      {
+        "step": 5,
+        "description": "참기름을 넣어 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "80",
+    "title": "돈까스",
+    "category": "저녁",
+    "time": 25,
+    "difficulty": "보통",
+    "calories": 580,
+    "rating": 4.7,
+    "image": "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=400",
+    "description": "바삭한 돈까스를 집에서 만들어보세요. 쫄깃한 돼지고기에 빵가루 옷을 입혀 튀겼어요.",
+    "ingredients": [
+      {
+        "name": "돼지 등심",
+        "amount": "2장",
+        "icon": "🥩"
+      },
+      {
+        "name": "밀가루",
+        "amount": "1/2컵",
+        "icon": "🌾"
+      },
+      {
+        "name": "달걀",
+        "amount": "2개",
+        "icon": "🥚"
+      },
+      {
+        "name": "빵가루",
+        "amount": "1컵",
+        "icon": "🍞"
+      },
+      {
+        "name": "식용유",
+        "amount": "튀김용",
+        "icon": "🫒"
+      },
+      {
+        "name": "소금",
+        "amount": "약간",
+        "icon": "🧂"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "등심을 칼등으로 두들겨 펴주세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "소금, 후추로 밑간하세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "밀가루, 달걀물, 빵가루 순서로 옷을 입히세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "170도 기름에서 5분간 튀기세요",
+        "time": 5
+      },
+      {
+        "step": 5,
+        "description": "건져서 기름을 빼고 먹기 좋게 썰어 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "81",
+    "title": "콩국수",
+    "category": "점심",
+    "time": 20,
+    "difficulty": "쉬움",
+    "calories": 380,
+    "rating": 4.4,
+    "image": "https://images.unsplash.com/photo-1555126634-323283e090fa?w=400",
+    "description": "시원하고 고소한 콩국수입니다. 여름 별미로 최고예요. 고소한 콩물이 일품이에요.",
+    "ingredients": [
+      {
+        "name": "불린 콩",
+        "amount": "1컵",
+        "icon": "🫘"
+      },
+      {
+        "name": "소면",
+        "amount": "1인분",
+        "icon": "🍝"
+      },
+      {
+        "name": "오이",
+        "amount": "1/2개",
+        "icon": "🥒"
+      },
+      {
+        "name": "소금",
+        "amount": "약간",
+        "icon": "🧂"
+      },
+      {
+        "name": "얼음",
+        "amount": "적당량",
+        "icon": "🧊"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "불린 콩을 삶아 식히세요",
+        "time": 10
+      },
+      {
+        "step": 2,
+        "description": "콩과 물을 블렌더에 갈아주세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "소면을 삶아 찬물에 헹구세요",
+        "time": 3
+      },
+      {
+        "step": 4,
+        "description": "그릇에 면을 담고 콩물을 부으세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "오이와 얼음을 올려 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "82",
+    "title": "마라탕",
+    "category": "저녁",
+    "time": 20,
+    "difficulty": "보통",
+    "calories": 450,
+    "rating": 4.6,
+    "image": "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400",
+    "description": "매콤하고 얼얼한 마라탕입니다. 좋아하는 재료를 넣어 나만의 마라탕을 만들어보세요.",
+    "ingredients": [
+      {
+        "name": "마라 소스",
+        "amount": "2큰술",
+        "icon": "🌶️"
+      },
+      {
+        "name": "당면",
+        "amount": "1줌",
+        "icon": "🍝"
+      },
+      {
+        "name": "청경채",
+        "amount": "2포기",
+        "icon": "🥬"
+      },
+      {
+        "name": "버섯",
+        "amount": "1줌",
+        "icon": "🍄"
+      },
+      {
+        "name": "어묵",
+        "amount": "2장",
+        "icon": "🍢"
+      },
+      {
+        "name": "두부",
+        "amount": "1/4모",
+        "icon": "🧈"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "당면을 물에 불려주세요",
+        "time": 5
+      },
+      {
+        "step": 2,
+        "description": "냄비에 기름을 두르고 마라 소스를 볶으세요",
+        "time": 1
+      },
+      {
+        "step": 3,
+        "description": "물 3컵을 넣고 끓이세요",
+        "time": 3
+      },
+      {
+        "step": 4,
+        "description": "재료를 넣고 5분간 끓이세요",
+        "time": 5
+      },
+      {
+        "step": 5,
+        "description": "당면을 넣고 3분 더 끓여 완성하세요",
+        "time": 3
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "83",
+    "title": "떡갈비",
+    "category": "저녁",
+    "time": 25,
+    "difficulty": "보통",
+    "calories": 420,
+    "rating": 4.7,
+    "image": "https://images.unsplash.com/photo-1544025162-d76694265947?w=400",
+    "description": "부드러운 떡갈비입니다. 다진 고기에 양념을 넣어 구우면 어른 아이 모두 좋아해요.",
+    "ingredients": [
+      {
+        "name": "다진 소고기",
+        "amount": "200g",
+        "icon": "🥩"
+      },
+      {
+        "name": "다진 돼지고기",
+        "amount": "100g",
+        "icon": "🥩"
+      },
+      {
+        "name": "양파",
+        "amount": "1/2개",
+        "icon": "🧅"
+      },
+      {
+        "name": "간장",
+        "amount": "2큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "설탕",
+        "amount": "1큰술",
+        "icon": "🍬"
+      },
+      {
+        "name": "참기름",
+        "amount": "1큰술",
+        "icon": "🫒"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "양파를 곱게 다지세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "고기에 양파, 간장, 설탕, 참기름을 넣고 치대세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "동글납작하게 빚어주세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "팬에 기름을 두르고 중불에서 구우세요",
+        "time": 4
+      },
+      {
+        "step": 5,
+        "description": "뒤집어서 뚜껑 덮고 3분 더 구워 완성하세요",
+        "time": 3
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "84",
+    "title": "새우볶음밥",
+    "category": "점심",
+    "time": 15,
+    "difficulty": "쉬움",
+    "calories": 450,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400",
+    "description": "탱글탱글한 새우가 들어간 볶음밥입니다. 달걀과 함께 볶으면 고소하고 든든해요.",
+    "ingredients": [
+      {
+        "name": "밥",
+        "amount": "1공기",
+        "icon": "🍚"
+      },
+      {
+        "name": "새우",
+        "amount": "10마리",
+        "icon": "🦐"
+      },
+      {
+        "name": "달걀",
+        "amount": "1개",
+        "icon": "🥚"
+      },
+      {
+        "name": "대파",
+        "amount": "1/2대",
+        "icon": "🧅"
+      },
+      {
+        "name": "간장",
+        "amount": "1큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "식용유",
+        "amount": "1큰술",
+        "icon": "🫒"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "새우 껍질을 벗기고 손질하세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "팬에 기름을 두르고 새우를 볶으세요",
+        "time": 2
+      },
+      {
+        "step": 3,
+        "description": "달걀을 풀어 넣고 스크램블 하세요",
+        "time": 1
+      },
+      {
+        "step": 4,
+        "description": "밥과 간장을 넣고 센불에서 볶으세요",
+        "time": 2
+      },
+      {
+        "step": 5,
+        "description": "대파를 넣어 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "85",
+    "title": "미니 핫케이크",
+    "category": "아침",
+    "time": 15,
+    "difficulty": "쉬움",
+    "calories": 300,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=400",
+    "description": "작고 귀여운 미니 핫케이크입니다. 시럽과 버터를 올려 브런치처럼 즐기세요.",
+    "ingredients": [
+      {
+        "name": "핫케이크 가루",
+        "amount": "1컵",
+        "icon": "🧁"
+      },
+      {
+        "name": "달걀",
+        "amount": "1개",
+        "icon": "🥚"
+      },
+      {
+        "name": "우유",
+        "amount": "1/2컵",
+        "icon": "🥛"
+      },
+      {
+        "name": "버터",
+        "amount": "1큰술",
+        "icon": "🧈"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "핫케이크 가루에 달걀과 우유를 넣고 섞으세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "팬을 약불로 예열하세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "반죽을 작게 동그랗게 부으세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "기포가 올라오면 뒤집어 구우세요",
+        "time": 3
+      },
+      {
+        "step": 5,
+        "description": "버터와 시럽을 올려 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "86",
+    "title": "어묵볶음",
+    "category": "간식",
+    "time": 10,
+    "difficulty": "쉬움",
+    "calories": 180,
+    "rating": 4.3,
+    "image": "https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=400",
+    "description": "달콤짭짤한 양념에 볶은 어묵볶음입니다. 도시락 반찬으로도 최고예요.",
+    "ingredients": [
+      {
+        "name": "어묵",
+        "amount": "3장",
+        "icon": "🍢"
+      },
+      {
+        "name": "간장",
+        "amount": "1큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "설탕",
+        "amount": "1큰술",
+        "icon": "🍬"
+      },
+      {
+        "name": "고춧가루",
+        "amount": "1/2작은술",
+        "icon": "🌶️"
+      },
+      {
+        "name": "참기름",
+        "amount": "1작은술",
+        "icon": "🫒"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "어묵을 먹기 좋은 크기로 자르세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "팬에 기름을 두르고 어묵을 볶으세요",
+        "time": 2
+      },
+      {
+        "step": 3,
+        "description": "간장, 설탕, 고춧가루를 넣고 볶으세요",
+        "time": 2
+      },
+      {
+        "step": 4,
+        "description": "참기름을 넣어 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "87",
+    "title": "매운 닭발",
+    "category": "간식",
+    "time": 25,
+    "difficulty": "보통",
+    "calories": 350,
+    "rating": 4.4,
+    "image": "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=400",
+    "description": "매콤하게 양념한 닭발입니다. 중독성 있는 매운맛에 자꾸 손이 가요.",
+    "ingredients": [
+      {
+        "name": "닭발",
+        "amount": "300g",
+        "icon": "🍗"
+      },
+      {
+        "name": "고추장",
+        "amount": "2큰술",
+        "icon": "🌶️"
+      },
+      {
+        "name": "고춧가루",
+        "amount": "2큰술",
+        "icon": "🌶️"
+      },
+      {
+        "name": "간장",
+        "amount": "1큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "설탕",
+        "amount": "1큰술",
+        "icon": "🍬"
+      },
+      {
+        "name": "다진마늘",
+        "amount": "1큰술",
+        "icon": "🧄"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "닭발을 끓는 물에 5분 삶아 헹구세요",
+        "time": 5
+      },
+      {
+        "step": 2,
+        "description": "양념 재료를 모두 섞으세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "팬에 닭발과 양념을 넣고 볶으세요",
+        "time": 3
+      },
+      {
+        "step": 4,
+        "description": "물 1/2컵을 넣고 10분 조려 완성하세요",
+        "time": 10
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "88",
+    "title": "매실차",
+    "category": "음료",
+    "time": 5,
+    "difficulty": "쉬움",
+    "calories": 50,
+    "rating": 4.3,
+    "image": "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400",
+    "description": "새콤달콤한 매실차입니다. 소화에 좋고 상쾌한 맛이에요.",
+    "ingredients": [
+      {
+        "name": "매실청",
+        "amount": "2큰술",
+        "icon": "🟢"
+      },
+      {
+        "name": "물",
+        "amount": "1컵",
+        "icon": "💧"
+      },
+      {
+        "name": "얼음",
+        "amount": "적당량",
+        "icon": "🧊"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "컵에 매실청 2큰술을 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "물이나 탄산수를 부으세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "얼음을 넣고 저어 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "89",
+    "title": "카페라떼",
+    "category": "음료",
+    "time": 5,
+    "difficulty": "쉬움",
+    "calories": 120,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400",
+    "description": "부드러운 우유와 에스프레소가 어우러진 카페라떼입니다. 집에서도 카페 분위기를 즐기세요.",
+    "ingredients": [
+      {
+        "name": "커피 원두",
+        "amount": "2큰술",
+        "icon": "☕"
+      },
+      {
+        "name": "우유",
+        "amount": "1컵",
+        "icon": "🥛"
+      },
+      {
+        "name": "설탕",
+        "amount": "취향껏",
+        "icon": "🍬"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "에스프레소를 추출하세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "우유를 따뜻하게 데우세요",
+        "time": 1
+      },
+      {
+        "step": 3,
+        "description": "컵에 에스프레소를 붓고 우유를 부어 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "90",
+    "title": "망고 라씨",
+    "category": "음료",
+    "time": 5,
+    "difficulty": "쉬움",
+    "calories": 180,
+    "rating": 4.6,
+    "image": "https://images.unsplash.com/photo-1546173159-315724a31696?w=400",
+    "description": "달콤한 망고와 요거트를 갈아 만든 라씨입니다. 부드럽고 이국적인 맛이에요.",
+    "ingredients": [
+      {
+        "name": "망고",
+        "amount": "1개",
+        "icon": "🥭"
+      },
+      {
+        "name": "요거트",
+        "amount": "1컵",
+        "icon": "🥛"
+      },
+      {
+        "name": "꿀",
+        "amount": "1큰술",
+        "icon": "🍯"
+      },
+      {
+        "name": "얼음",
+        "amount": "1/2컵",
+        "icon": "🧊"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "망고 껍질을 벗기고 잘라주세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "블렌더에 망고, 요거트, 꿀, 얼음을 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "30초간 갈아 컵에 담아 완성하세요",
+        "time": 0.5
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "91",
+    "title": "소시지 야채볶음",
+    "category": "아침",
+    "time": 10,
+    "difficulty": "쉬움",
+    "calories": 280,
+    "rating": 4.4,
+    "image": "https://images.unsplash.com/photo-1432139509613-5c4255a1d608?w=400",
+    "description": "알록달록한 야채와 소시지를 볶은 간단한 아침 반찬입니다. 도시락에 넣어도 좋아요.",
+    "ingredients": [
+      {
+        "name": "소시지",
+        "amount": "4개",
+        "icon": "🌭"
+      },
+      {
+        "name": "피망",
+        "amount": "1개",
+        "icon": "🫑"
+      },
+      {
+        "name": "양파",
+        "amount": "1/2개",
+        "icon": "🧅"
+      },
+      {
+        "name": "케첩",
+        "amount": "2큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "식용유",
+        "amount": "1큰술",
+        "icon": "🫒"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "소시지를 어슷하게 썰어주세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "피망과 양파를 잘게 썰어주세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "팬에 기름을 두르고 소시지를 볶으세요",
+        "time": 2
+      },
+      {
+        "step": 4,
+        "description": "야채를 넣고 1분 더 볶으세요",
+        "time": 1
+      },
+      {
+        "step": 5,
+        "description": "케첩을 넣고 버무려 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "92",
+    "title": "멸치볶음",
+    "category": "저녁",
+    "time": 10,
+    "difficulty": "쉬움",
+    "calories": 120,
+    "rating": 4.3,
+    "image": "https://images.unsplash.com/photo-1506354666786-959d6d497f1a?w=400",
+    "description": "고소하고 달콤짭짤한 멸치볶음입니다. 밥반찬으로 빠질 수 없는 단골 메뉴예요.",
+    "ingredients": [
+      {
+        "name": "멸치",
+        "amount": "1컵",
+        "icon": "🐟"
+      },
+      {
+        "name": "간장",
+        "amount": "1큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "설탕",
+        "amount": "1큰술",
+        "icon": "🍬"
+      },
+      {
+        "name": "참기름",
+        "amount": "1큰술",
+        "icon": "🫒"
+      },
+      {
+        "name": "참깨",
+        "amount": "약간",
+        "icon": "🫘"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "팬에 멸치를 넣고 약불에서 볶아 비린내를 날리세요",
+        "time": 2
+      },
+      {
+        "step": 2,
+        "description": "간장과 설탕을 넣고 섞으세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "참기름과 참깨를 뿌려 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "93",
+    "title": "주먹밥",
+    "category": "아침",
+    "time": 10,
+    "difficulty": "쉬움",
+    "calories": 300,
+    "rating": 4.4,
+    "image": "https://images.unsplash.com/photo-1536304929831-ee1ca9d44906?w=400",
+    "description": "한입에 쏙 들어가는 주먹밥입니다. 여러 가지 재료를 넣어 영양도 챙겼어요.",
+    "ingredients": [
+      {
+        "name": "밥",
+        "amount": "1공기",
+        "icon": "🍚"
+      },
+      {
+        "name": "김가루",
+        "amount": "2큰술",
+        "icon": "🍙"
+      },
+      {
+        "name": "참기름",
+        "amount": "1큰술",
+        "icon": "🫒"
+      },
+      {
+        "name": "소금",
+        "amount": "약간",
+        "icon": "🧂"
+      },
+      {
+        "name": "참깨",
+        "amount": "약간",
+        "icon": "🫘"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "밥에 참기름, 소금, 김가루, 참깨를 넣고 섞으세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "랩을 깔고 밥을 적당량 올리세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "동그랗게 쥐어 모양을 만드세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "접시에 담아 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "94",
+    "title": "감자볶음",
+    "category": "저녁",
+    "time": 15,
+    "difficulty": "쉬움",
+    "calories": 180,
+    "rating": 4.3,
+    "image": "https://images.unsplash.com/photo-1518977676601-b53f82ber6af?w=400",
+    "description": "채 썬 감자를 아삭하게 볶은 감자볶음입니다. 밑반찬으로 만들어두면 편해요.",
+    "ingredients": [
+      {
+        "name": "감자",
+        "amount": "2개",
+        "icon": "🥔"
+      },
+      {
+        "name": "식용유",
+        "amount": "2큰술",
+        "icon": "🫒"
+      },
+      {
+        "name": "소금",
+        "amount": "약간",
+        "icon": "🧂"
+      },
+      {
+        "name": "참깨",
+        "amount": "약간",
+        "icon": "🫘"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "감자를 채 썰어 찬물에 헹구세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "물기를 빼주세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "팬에 기름을 두르고 감자를 볶으세요",
+        "time": 3
+      },
+      {
+        "step": 4,
+        "description": "투명해지면 소금으로 간하고 참깨를 뿌려 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "95",
+    "title": "낙지볶음",
+    "category": "저녁",
+    "time": 20,
+    "difficulty": "보통",
+    "calories": 380,
+    "rating": 4.7,
+    "image": "https://images.unsplash.com/photo-1580651214613-f4692d6d138e?w=400",
+    "description": "매콤하니 불맛 나는 낙지볶음입니다. 쫄깃한 낙지에 양념이 쏙 배어 밥도둑이에요.",
+    "ingredients": [
+      {
+        "name": "낙지",
+        "amount": "2마리",
+        "icon": "🐙"
+      },
+      {
+        "name": "양파",
+        "amount": "1개",
+        "icon": "🧅"
+      },
+      {
+        "name": "고추장",
+        "amount": "2큰술",
+        "icon": "🌶️"
+      },
+      {
+        "name": "고춧가루",
+        "amount": "1큰술",
+        "icon": "🌶️"
+      },
+      {
+        "name": "간장",
+        "amount": "1큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "설탕",
+        "amount": "1큰술",
+        "icon": "🍬"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "낙지를 소금으로 주물러 씻고 먹기 좋게 자르세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "고추장, 고춧가루, 간장, 설탕으로 양념을 만드세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "팬에 센불로 양파를 먼저 볶으세요",
+        "time": 1
+      },
+      {
+        "step": 4,
+        "description": "낙지와 양념을 넣고 빠르게 볶으세요",
+        "time": 3
+      },
+      {
+        "step": 5,
+        "description": "대파를 넣어 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "96",
+    "title": "팝콘",
+    "category": "간식",
+    "time": 10,
+    "difficulty": "쉬움",
+    "calories": 150,
+    "rating": 4.3,
+    "image": "https://images.unsplash.com/photo-1585647347483-22b66260dfff?w=400",
+    "description": "집에서 직접 튀기는 팝콘입니다. 영화 볼 때 함께하면 극장 분위기가 나요.",
+    "ingredients": [
+      {
+        "name": "팝콘 옥수수",
+        "amount": "1/2컵",
+        "icon": "🌽"
+      },
+      {
+        "name": "식용유",
+        "amount": "2큰술",
+        "icon": "🫒"
+      },
+      {
+        "name": "소금",
+        "amount": "약간",
+        "icon": "🧂"
+      },
+      {
+        "name": "버터",
+        "amount": "1큰술",
+        "icon": "🧈"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "냄비에 기름을 두르고 센불로 달구세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "옥수수를 넣고 뚜껑을 꼭 덮으세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "탁탁 소리가 멈출 때까지 가끔 흔들어주세요",
+        "time": 3
+      },
+      {
+        "step": 4,
+        "description": "버터와 소금을 넣고 섞어 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "97",
+    "title": "초코 바나나",
+    "category": "디저트",
+    "time": 10,
+    "difficulty": "쉬움",
+    "calories": 250,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1481391319762-47dff72954d9?w=400",
+    "description": "바나나에 초콜릿을 입힌 간단 디저트입니다. 아이들과 함께 만들기 좋아요.",
+    "ingredients": [
+      {
+        "name": "바나나",
+        "amount": "2개",
+        "icon": "🍌"
+      },
+      {
+        "name": "초콜릿",
+        "amount": "100g",
+        "icon": "🍫"
+      },
+      {
+        "name": "견과류",
+        "amount": "약간",
+        "icon": "🥜"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "바나나를 반으로 잘라 꼬치에 꽂으세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "초콜릿을 전자레인지에서 30초씩 녹이세요",
+        "time": 0.5
+      },
+      {
+        "step": 3,
+        "description": "바나나에 초콜릿을 입히세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "견과류를 뿌리고 냉장고에서 굳혀 완성하세요",
+        "time": 15
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "98",
+    "title": "와플",
+    "category": "디저트",
+    "time": 15,
+    "difficulty": "쉬움",
+    "calories": 320,
+    "rating": 4.6,
+    "image": "https://images.unsplash.com/photo-1562376552-0d160a2f238d?w=400",
+    "description": "바삭한 와플에 생크림과 과일을 올린 카페 디저트입니다. 브런치로도 좋아요.",
+    "ingredients": [
+      {
+        "name": "핫케이크 가루",
+        "amount": "1컵",
+        "icon": "🧁"
+      },
+      {
+        "name": "달걀",
+        "amount": "1개",
+        "icon": "🥚"
+      },
+      {
+        "name": "우유",
+        "amount": "1/2컵",
+        "icon": "🥛"
+      },
+      {
+        "name": "버터",
+        "amount": "2큰술",
+        "icon": "🧈"
+      },
+      {
+        "name": "딸기",
+        "amount": "5개",
+        "icon": "🍓"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "가루에 달걀, 우유, 녹인 버터를 넣고 반죽하세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "와플기를 예열하세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "반죽을 부어 3~4분 구우세요",
+        "time": 4
+      },
+      {
+        "step": 4,
+        "description": "딸기와 시럽을 올려 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "99",
+    "title": "식혜",
+    "category": "음료",
+    "time": 30,
+    "difficulty": "보통",
+    "calories": 100,
+    "rating": 4.4,
+    "image": "https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400",
+    "description": "달콤하고 시원한 전통 식혜입니다. 밥알이 동동 떠있는 것이 매력이에요.",
+    "ingredients": [
+      {
+        "name": "엿기름가루",
+        "amount": "1컵",
+        "icon": "🌾"
+      },
+      {
+        "name": "밥",
+        "amount": "1공기",
+        "icon": "🍚"
+      },
+      {
+        "name": "설탕",
+        "amount": "1/2컵",
+        "icon": "🍬"
+      },
+      {
+        "name": "물",
+        "amount": "5컵",
+        "icon": "💧"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "엿기름가루를 물에 30분 우려 체에 거르세요",
+        "time": 30
+      },
+      {
+        "step": 2,
+        "description": "밥에 엿기름물을 부으세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "보온밥솥에 넣고 4시간 삭히세요 (밥알이 뜨면 완성)",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "냄비에 옮겨 설탕을 넣고 한번 끓이세요",
+        "time": 5
+      },
+      {
+        "step": 5,
+        "description": "식혀서 냉장고에 보관하고 차갑게 마시세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "100",
+    "title": "쑥떡",
+    "category": "디저트",
+    "time": 25,
+    "difficulty": "보통",
+    "calories": 200,
+    "rating": 4.4,
+    "image": "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400",
+    "description": "향긋한 쑥이 들어간 전통 떡입니다. 콩가루를 묻혀 고소하게 즐기세요.",
+    "ingredients": [
+      {
+        "name": "쑥",
+        "amount": "1줌",
+        "icon": "🌿"
+      },
+      {
+        "name": "찹쌀가루",
+        "amount": "2컵",
+        "icon": "🌾"
+      },
+      {
+        "name": "설탕",
+        "amount": "2큰술",
+        "icon": "🍬"
+      },
+      {
+        "name": "소금",
+        "amount": "약간",
+        "icon": "🧂"
+      },
+      {
+        "name": "콩가루",
+        "amount": "1컵",
+        "icon": "🫘"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "쑥을 끓는 물에 데쳐 찬물에 헹구세요",
+        "time": 2
+      },
+      {
+        "step": 2,
+        "description": "쑥을 물기 짜고 잘게 다지세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "찹쌀가루에 쑥, 설탕, 소금, 물을 넣고 반죽하세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "전자레인지에서 3분 돌리고 치대기를 반복하세요",
+        "time": 5
+      },
+      {
+        "step": 5,
+        "description": "한입 크기로 잘라 콩가루를 묻혀 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "101",
+    "title": "양배추쌈밥",
+    "category": "점심",
+    "time": 15,
+    "difficulty": "쉬움",
+    "calories": 350,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400",
+    "description": "데친 양배추에 밥과 쌈장을 싸먹는 건강식입니다. 다이어트에도 좋은 가벼운 한끼예요.",
+    "ingredients": [
+      {
+        "name": "양배추",
+        "amount": "6장",
+        "icon": "🥬"
+      },
+      {
+        "name": "밥",
+        "amount": "1공기",
+        "icon": "🍚"
+      },
+      {
+        "name": "쌈장",
+        "amount": "2큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "당근",
+        "amount": "1/4개",
+        "icon": "🥕"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "양배추를 끓는 물에 1분 데쳐주세요",
+        "time": 1
+      },
+      {
+        "step": 2,
+        "description": "찬물에 헹구고 물기를 빼세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "밥에 잘게 다진 당근을 섞으세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "양배추에 밥과 쌈장을 올려 싸서 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "102",
+    "title": "장조림",
+    "category": "저녁",
+    "time": 40,
+    "difficulty": "보통",
+    "calories": 250,
+    "rating": 4.6,
+    "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400",
+    "description": "간장에 졸인 소고기 장조림입니다. 만들어두면 며칠 두고 먹을 수 있는 밑반찬이에요.",
+    "ingredients": [
+      {
+        "name": "소고기",
+        "amount": "300g",
+        "icon": "🥩"
+      },
+      {
+        "name": "간장",
+        "amount": "4큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "설탕",
+        "amount": "1큰술",
+        "icon": "🍬"
+      },
+      {
+        "name": "다진마늘",
+        "amount": "1큰술",
+        "icon": "🧄"
+      },
+      {
+        "name": "달걀",
+        "amount": "4개",
+        "icon": "🥚"
+      },
+      {
+        "name": "꽈리고추",
+        "amount": "10개",
+        "icon": "🌶️"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "소고기를 통째로 끓는 물에 10분 삶으세요",
+        "time": 10
+      },
+      {
+        "step": 2,
+        "description": "삶은 고기를 결대로 찢어주세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "냄비에 간장, 설탕, 마늘, 물 1컵을 넣고 끓이세요",
+        "time": 3
+      },
+      {
+        "step": 4,
+        "description": "고기를 넣고 중불에서 20분 조리세요",
+        "time": 20
+      },
+      {
+        "step": 5,
+        "description": "삶은 달걀과 꽈리고추를 넣고 5분 더 조려 완성하세요",
+        "time": 5
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "103",
+    "title": "볶은 김치",
+    "category": "저녁",
+    "time": 10,
+    "difficulty": "쉬움",
+    "calories": 80,
+    "rating": 4.3,
+    "image": "https://images.unsplash.com/photo-1583224964978-2257b960c3f3?w=400",
+    "description": "참기름에 볶아 감칠맛 나는 볶은 김치입니다. 밥반찬이나 라면에 얹어 먹으면 맛있어요.",
+    "ingredients": [
+      {
+        "name": "김치",
+        "amount": "2컵",
+        "icon": "🥬"
+      },
+      {
+        "name": "참기름",
+        "amount": "1큰술",
+        "icon": "🫒"
+      },
+      {
+        "name": "설탕",
+        "amount": "1작은술",
+        "icon": "🍬"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "김치를 먹기 좋게 잘라주세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "팬에 참기름을 두르고 김치를 볶으세요",
+        "time": 3
+      },
+      {
+        "step": 3,
+        "description": "설탕을 넣고 2분 더 볶아 완성하세요",
+        "time": 2
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "104",
+    "title": "부추전",
+    "category": "간식",
+    "time": 15,
+    "difficulty": "쉬움",
+    "calories": 250,
+    "rating": 4.4,
+    "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400",
+    "description": "향긋한 부추를 넣어 부친 바삭한 전입니다. 간장 소스에 찍어 먹으면 맛있어요.",
+    "ingredients": [
+      {
+        "name": "부추",
+        "amount": "1줌",
+        "icon": "🌿"
+      },
+      {
+        "name": "부침가루",
+        "amount": "1컵",
+        "icon": "🌾"
+      },
+      {
+        "name": "달걀",
+        "amount": "1개",
+        "icon": "🥚"
+      },
+      {
+        "name": "물",
+        "amount": "3/4컵",
+        "icon": "💧"
+      },
+      {
+        "name": "식용유",
+        "amount": "3큰술",
+        "icon": "🫒"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "부추를 5cm 길이로 잘라주세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "부침가루에 달걀과 물을 넣어 반죽하세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "부추를 넣고 섞으세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "팬에 기름을 넉넉히 두르고 반죽을 펴세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "양면을 노릇하게 부쳐 완성하세요",
+        "time": 4
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "105",
+    "title": "크림스프",
+    "category": "아침",
+    "time": 15,
+    "difficulty": "쉬움",
+    "calories": 200,
+    "rating": 4.4,
+    "image": "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400",
+    "description": "부드럽고 진한 크림스프입니다. 빵과 함께 먹으면 훌륭한 아침이에요.",
+    "ingredients": [
+      {
+        "name": "양송이버섯",
+        "amount": "5개",
+        "icon": "🍄"
+      },
+      {
+        "name": "양파",
+        "amount": "1/2개",
+        "icon": "🧅"
+      },
+      {
+        "name": "버터",
+        "amount": "1큰술",
+        "icon": "🧈"
+      },
+      {
+        "name": "우유",
+        "amount": "1컵",
+        "icon": "🥛"
+      },
+      {
+        "name": "생크림",
+        "amount": "1/2컵",
+        "icon": "🥛"
+      },
+      {
+        "name": "소금",
+        "amount": "약간",
+        "icon": "🧂"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "양송이와 양파를 잘게 썰어주세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "냄비에 버터를 녹이고 양파를 볶으세요",
+        "time": 2
+      },
+      {
+        "step": 3,
+        "description": "버섯을 넣고 볶으세요",
+        "time": 2
+      },
+      {
+        "step": 4,
+        "description": "우유와 생크림을 넣고 끓이세요",
+        "time": 3
+      },
+      {
+        "step": 5,
+        "description": "블렌더로 곱게 갈고 소금으로 간해 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "106",
+    "title": "약식",
+    "category": "디저트",
+    "time": 40,
+    "difficulty": "보통",
+    "calories": 350,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400",
+    "description": "찹쌀에 간장, 참기름, 대추, 밤을 넣어 만든 전통 약식입니다. 명절 디저트로 좋아요.",
+    "ingredients": [
+      {
+        "name": "찹쌀",
+        "amount": "2컵",
+        "icon": "🌾"
+      },
+      {
+        "name": "간장",
+        "amount": "2큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "참기름",
+        "amount": "1큰술",
+        "icon": "🫒"
+      },
+      {
+        "name": "대추",
+        "amount": "5개",
+        "icon": "🫘"
+      },
+      {
+        "name": "밤",
+        "amount": "5개",
+        "icon": "🌰"
+      },
+      {
+        "name": "꿀",
+        "amount": "2큰술",
+        "icon": "🍯"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "찹쌀을 씻어 30분 불리세요",
+        "time": 30
+      },
+      {
+        "step": 2,
+        "description": "밥솥에 찹쌀밥을 지으세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "뜨거울 때 간장, 참기름, 꿀을 넣고 섞으세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "대추와 밤을 넣고 섞으세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "그릇에 꾹꾹 눌러 담고 식혀 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "107",
+    "title": "해물볶음밥",
+    "category": "점심",
+    "time": 15,
+    "difficulty": "쉬움",
+    "calories": 420,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400",
+    "description": "오징어, 새우 등 해물이 들어간 볶음밥입니다. 불맛이 살아있는 한끼예요.",
+    "ingredients": [
+      {
+        "name": "밥",
+        "amount": "1공기",
+        "icon": "🍚"
+      },
+      {
+        "name": "해물믹스",
+        "amount": "1컵",
+        "icon": "🦐"
+      },
+      {
+        "name": "달걀",
+        "amount": "1개",
+        "icon": "🥚"
+      },
+      {
+        "name": "간장",
+        "amount": "1큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "대파",
+        "amount": "1/2대",
+        "icon": "🧅"
+      },
+      {
+        "name": "식용유",
+        "amount": "1큰술",
+        "icon": "🫒"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "팬에 기름을 두르고 해물을 볶으세요",
+        "time": 2
+      },
+      {
+        "step": 2,
+        "description": "밥을 넣고 센불에서 볶으세요",
+        "time": 2
+      },
+      {
+        "step": 3,
+        "description": "간장을 넣고 섞으세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "달걀을 넣고 빠르게 볶으세요",
+        "time": 1
+      },
+      {
+        "step": 5,
+        "description": "대파를 올려 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "108",
+    "title": "떡꼬치",
+    "category": "간식",
+    "time": 10,
+    "difficulty": "쉬움",
+    "calories": 280,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1632709810780-b5a4343cebec?w=400",
+    "description": "매콤달콤한 소스를 바른 떡꼬치입니다. 길거리 간식의 추억을 집에서 즐기세요.",
+    "ingredients": [
+      {
+        "name": "떡",
+        "amount": "200g",
+        "icon": "🍡"
+      },
+      {
+        "name": "고추장",
+        "amount": "1큰술",
+        "icon": "🌶️"
+      },
+      {
+        "name": "케첩",
+        "amount": "1큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "설탕",
+        "amount": "1큰술",
+        "icon": "🍬"
+      },
+      {
+        "name": "식용유",
+        "amount": "1큰술",
+        "icon": "🫒"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "떡을 꼬치에 꽂으세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "팬에 기름을 두르고 떡꼬치를 구우세요",
+        "time": 3
+      },
+      {
+        "step": 3,
+        "description": "고추장, 케첩, 설탕을 섞어 소스를 만드세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "소스를 발라 다시 살짝 구워 완성하세요",
+        "time": 1
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "109",
+    "title": "된장국",
+    "category": "아침",
+    "time": 15,
+    "difficulty": "쉬움",
+    "calories": 80,
+    "rating": 4.3,
+    "image": "https://images.unsplash.com/photo-1498654896293-37aacf113fd9?w=400",
+    "description": "구수한 된장국입니다. 두부와 시금치를 넣어 가볍지만 속이 든든해요.",
+    "ingredients": [
+      {
+        "name": "된장",
+        "amount": "1.5큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "두부",
+        "amount": "1/4모",
+        "icon": "🧈"
+      },
+      {
+        "name": "시금치",
+        "amount": "1줌",
+        "icon": "🥬"
+      },
+      {
+        "name": "대파",
+        "amount": "1/2대",
+        "icon": "🧅"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "냄비에 물 2컵을 넣고 끓이세요",
+        "time": 3
+      },
+      {
+        "step": 2,
+        "description": "된장을 풀어 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "두부를 깍둑 썰어 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "시금치와 대파를 넣고 3분 더 끓여 완성하세요",
+        "time": 3
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "110",
+    "title": "깻잎전",
+    "category": "간식",
+    "time": 15,
+    "difficulty": "쉬움",
+    "calories": 220,
+    "rating": 4.4,
+    "image": "https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=400",
+    "description": "향긋한 깻잎에 고기 소를 넣어 부친 깻잎전입니다. 반찬으로도 안주로도 좋아요.",
+    "ingredients": [
+      {
+        "name": "깻잎",
+        "amount": "10장",
+        "icon": "🌿"
+      },
+      {
+        "name": "다진 고기",
+        "amount": "100g",
+        "icon": "🥩"
+      },
+      {
+        "name": "두부",
+        "amount": "1/4모",
+        "icon": "🧈"
+      },
+      {
+        "name": "달걀",
+        "amount": "1개",
+        "icon": "🥚"
+      },
+      {
+        "name": "부침가루",
+        "amount": "3큰술",
+        "icon": "🌾"
+      },
+      {
+        "name": "식용유",
+        "amount": "2큰술",
+        "icon": "🫒"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "다진 고기에 으깬 두부, 소금을 섞어 소를 만드세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "깻잎 2장 사이에 소를 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "부침가루, 달걀물 순서로 입히세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "팬에 기름을 두르고 양면을 노릇하게 구워 완성하세요",
+        "time": 4
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "111",
+    "title": "찐만두",
+    "category": "간식",
+    "time": 15,
+    "difficulty": "쉬움",
+    "calories": 300,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=400",
+    "description": "쫀득한 피 속에 꽉 찬 소가 들어간 찐만두입니다. 간장 소스에 찍어 먹으면 최고예요.",
+    "ingredients": [
+      {
+        "name": "냉동만두",
+        "amount": "10개",
+        "icon": "🥟"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "찜기에 물을 넣고 끓이세요",
+        "time": 3
+      },
+      {
+        "step": 2,
+        "description": "찜기 위에 면보를 깔고 만두를 올리세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "뚜껑 덮고 10분간 쪄주세요",
+        "time": 10
+      },
+      {
+        "step": 4,
+        "description": "간장 소스와 함께 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "112",
+    "title": "녹차 라떼",
+    "category": "음료",
+    "time": 5,
+    "difficulty": "쉬움",
+    "calories": 140,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1515823064-d6e0c04616a7?w=400",
+    "description": "진한 녹차와 부드러운 우유가 만난 녹차 라떼입니다. 카페 인기 메뉴를 집에서 즐기세요.",
+    "ingredients": [
+      {
+        "name": "녹차 가루",
+        "amount": "2작은술",
+        "icon": "🍵"
+      },
+      {
+        "name": "우유",
+        "amount": "1컵",
+        "icon": "🥛"
+      },
+      {
+        "name": "꿀",
+        "amount": "1큰술",
+        "icon": "🍯"
+      },
+      {
+        "name": "얼음",
+        "amount": "적당량",
+        "icon": "🧊"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "녹차 가루에 뜨거운 물 2큰술을 넣고 개세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "꿀을 넣고 섞으세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "컵에 얼음을 넣고 우유를 부으세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "녹차를 부어 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "113",
+    "title": "고구마 맛탕",
+    "category": "디저트",
+    "time": 20,
+    "difficulty": "보통",
+    "calories": 320,
+    "rating": 4.6,
+    "image": "https://images.unsplash.com/photo-1576107232684-1279f390859f?w=400",
+    "description": "겉은 바삭하고 안은 부드러운 고구마 맛탕입니다. 달콤한 시럽이 쫀득해요.",
+    "ingredients": [
+      {
+        "name": "고구마",
+        "amount": "2개",
+        "icon": "🍠"
+      },
+      {
+        "name": "설탕",
+        "amount": "3큰술",
+        "icon": "🍬"
+      },
+      {
+        "name": "식용유",
+        "amount": "튀김용",
+        "icon": "🫒"
+      },
+      {
+        "name": "검은깨",
+        "amount": "약간",
+        "icon": "🫘"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "고구마를 깍둑 썰기 하세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "170도 기름에서 5분 튀기세요",
+        "time": 5
+      },
+      {
+        "step": 3,
+        "description": "팬에 설탕과 물 2큰술을 넣고 시럽을 만드세요",
+        "time": 2
+      },
+      {
+        "step": 4,
+        "description": "튀긴 고구마를 시럽에 버무리세요",
+        "time": 0
+      },
+      {
+        "step": 5,
+        "description": "검은깨를 뿌려 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "114",
+    "title": "삼겹살 구이",
+    "category": "저녁",
+    "time": 20,
+    "difficulty": "쉬움",
+    "calories": 600,
+    "rating": 4.9,
+    "image": "https://images.unsplash.com/photo-1558030006-450675393462?w=400",
+    "description": "두툼한 삼겹살을 구워 쌈장과 함께 먹는 국민 저녁입니다. 상추에 싸서 한입에 쏙!",
+    "ingredients": [
+      {
+        "name": "삼겹살",
+        "amount": "300g",
+        "icon": "🥩"
+      },
+      {
+        "name": "상추",
+        "amount": "적당량",
+        "icon": "🥬"
+      },
+      {
+        "name": "쌈장",
+        "amount": "2큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "마늘",
+        "amount": "5쪽",
+        "icon": "🧄"
+      },
+      {
+        "name": "소금",
+        "amount": "약간",
+        "icon": "🧂"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "팬이나 그릴을 센불로 달구세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "삼겹살을 올려 앞뒤로 노릇하게 구우세요",
+        "time": 5
+      },
+      {
+        "step": 3,
+        "description": "옆에서 마늘도 함께 구우세요",
+        "time": 2
+      },
+      {
+        "step": 4,
+        "description": "먹기 좋게 잘라 상추, 쌈장과 함께 드세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "115",
+    "title": "고추장찌개",
+    "category": "저녁",
+    "time": 20,
+    "difficulty": "보통",
+    "calories": 280,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=400",
+    "description": "칼칼하고 구수한 고추장찌개입니다. 두부와 호박이 들어가 든든해요.",
+    "ingredients": [
+      {
+        "name": "고추장",
+        "amount": "1.5큰술",
+        "icon": "🌶️"
+      },
+      {
+        "name": "두부",
+        "amount": "1/2모",
+        "icon": "🧈"
+      },
+      {
+        "name": "호박",
+        "amount": "1/4개",
+        "icon": "🥒"
+      },
+      {
+        "name": "양파",
+        "amount": "1/2개",
+        "icon": "🧅"
+      },
+      {
+        "name": "대파",
+        "amount": "1/2대",
+        "icon": "🧅"
+      },
+      {
+        "name": "다진마늘",
+        "amount": "1작은술",
+        "icon": "🧄"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "냄비에 물 2컵을 넣고 끓이세요",
+        "time": 3
+      },
+      {
+        "step": 2,
+        "description": "고추장을 풀어 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "호박, 양파, 마늘을 넣고 5분 끓이세요",
+        "time": 5
+      },
+      {
+        "step": 4,
+        "description": "두부를 넣고 3분 더 끓이세요",
+        "time": 3
+      },
+      {
+        "step": 5,
+        "description": "대파를 올려 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "116",
+    "title": "오징어볶음",
+    "category": "저녁",
+    "time": 15,
+    "difficulty": "보통",
+    "calories": 320,
+    "rating": 4.6,
+    "image": "https://images.unsplash.com/photo-1580651214613-f4692d6d138e?w=400",
+    "description": "매콤달콤하게 볶은 오징어볶음입니다. 채소와 함께 볶아 아삭한 식감도 살렸어요.",
+    "ingredients": [
+      {
+        "name": "오징어",
+        "amount": "1마리",
+        "icon": "🦑"
+      },
+      {
+        "name": "양파",
+        "amount": "1개",
+        "icon": "🧅"
+      },
+      {
+        "name": "양배추",
+        "amount": "2장",
+        "icon": "🥬"
+      },
+      {
+        "name": "고추장",
+        "amount": "1.5큰술",
+        "icon": "🌶️"
+      },
+      {
+        "name": "고춧가루",
+        "amount": "1큰술",
+        "icon": "🌶️"
+      },
+      {
+        "name": "간장",
+        "amount": "1큰술",
+        "icon": "🫙"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "오징어를 손질하고 칼집을 넣어 먹기 좋게 자르세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "양파, 양배추를 썰어주세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "고추장, 고춧가루, 간장, 설탕으로 양념장을 만드세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "팬에 기름을 두르고 채소를 볶으세요",
+        "time": 2
+      },
+      {
+        "step": 5,
+        "description": "오징어와 양념을 넣고 센불에서 빠르게 볶아 완성하세요",
+        "time": 3
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "117",
+    "title": "고구마 라떼",
+    "category": "음료",
+    "time": 10,
+    "difficulty": "쉬움",
+    "calories": 200,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400",
+    "description": "달콤한 고구마와 우유가 만난 고구마 라떼입니다. 따뜻하게 마시면 겨울에 딱이에요.",
+    "ingredients": [
+      {
+        "name": "고구마",
+        "amount": "1개",
+        "icon": "🍠"
+      },
+      {
+        "name": "우유",
+        "amount": "1컵",
+        "icon": "🥛"
+      },
+      {
+        "name": "꿀",
+        "amount": "1큰술",
+        "icon": "🍯"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "고구마를 삶거나 전자레인지에 5분 익히세요",
+        "time": 5
+      },
+      {
+        "step": 2,
+        "description": "껍질을 벗기고 으깨세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "우유와 함께 블렌더에 갈아주세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "꿀을 넣어 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "118",
+    "title": "계란 샌드위치",
+    "category": "아침",
+    "time": 10,
+    "difficulty": "쉬움",
+    "calories": 320,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=400",
+    "description": "부드러운 계란 샐러드를 넣은 샌드위치입니다. 편의점 못지않은 맛을 집에서 즐기세요.",
+    "ingredients": [
+      {
+        "name": "식빵",
+        "amount": "2장",
+        "icon": "🍞"
+      },
+      {
+        "name": "달걀",
+        "amount": "3개",
+        "icon": "🥚"
+      },
+      {
+        "name": "마요네즈",
+        "amount": "2큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "소금",
+        "amount": "약간",
+        "icon": "🧂"
+      },
+      {
+        "name": "후추",
+        "amount": "약간",
+        "icon": "🫙"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "달걀을 삶아주세요",
+        "time": 10
+      },
+      {
+        "step": 2,
+        "description": "삶은 달걀을 포크로 잘게 으깨세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "마요네즈, 소금, 후추를 넣고 섞으세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "식빵에 계란 샐러드를 올리고 덮어 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "119",
+    "title": "미소 된장국",
+    "category": "아침",
+    "time": 10,
+    "difficulty": "쉬움",
+    "calories": 60,
+    "rating": 4.3,
+    "image": "https://images.unsplash.com/photo-1547592180-85f173990554?w=400",
+    "description": "일본식 미소 된장국입니다. 미역과 두부가 들어간 가볍고 속 편한 국이에요.",
+    "ingredients": [
+      {
+        "name": "미소 된장",
+        "amount": "1큰술",
+        "icon": "🫙"
+      },
+      {
+        "name": "두부",
+        "amount": "1/4모",
+        "icon": "🧈"
+      },
+      {
+        "name": "미역",
+        "amount": "약간",
+        "icon": "🌿"
+      },
+      {
+        "name": "대파",
+        "amount": "1/4대",
+        "icon": "🧅"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "냄비에 물 1.5컵을 끓이세요",
+        "time": 2
+      },
+      {
+        "step": 2,
+        "description": "두부를 작게 잘라 넣으세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "불을 끄고 미소 된장을 풀어주세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "미역과 대파를 올려 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "120",
+    "title": "치킨텐더",
+    "category": "간식",
+    "time": 20,
+    "difficulty": "쉬움",
+    "calories": 400,
+    "rating": 4.6,
+    "image": "https://images.unsplash.com/photo-1575932444877-5106bee2a599?w=400",
+    "description": "바삭하게 튀긴 치킨텐더입니다. 허니머스타드 소스에 찍어 먹으면 멈출 수 없어요.",
+    "ingredients": [
+      {
+        "name": "닭가슴살",
+        "amount": "200g",
+        "icon": "🍗"
+      },
+      {
+        "name": "빵가루",
+        "amount": "1컵",
+        "icon": "🍞"
+      },
+      {
+        "name": "달걀",
+        "amount": "1개",
+        "icon": "🥚"
+      },
+      {
+        "name": "밀가루",
+        "amount": "1/2컵",
+        "icon": "🌾"
+      },
+      {
+        "name": "식용유",
+        "amount": "튀김용",
+        "icon": "🫒"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "닭가슴살을 길쭉하게 잘라주세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "밀가루, 달걀물, 빵가루 순서로 입히세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "170도 기름에서 4분간 튀기세요",
+        "time": 4
+      },
+      {
+        "step": 4,
+        "description": "노릇하면 건져 기름을 빼고 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "121",
+    "title": "불닭볶음면",
+    "category": "점심",
+    "time": 10,
+    "difficulty": "쉬움",
+    "calories": 530,
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1617622141675-d3005b9067ce?w=400",
+    "description": "매콤한 불닭볶음면에 치즈와 달걀을 추가한 레시피입니다. 매운 맛을 치즈로 잡아줘요.",
+    "ingredients": [
+      {
+        "name": "불닭볶음면",
+        "amount": "1봉지",
+        "icon": "🍜"
+      },
+      {
+        "name": "슬라이스 치즈",
+        "amount": "1장",
+        "icon": "🧀"
+      },
+      {
+        "name": "달걀",
+        "amount": "1개",
+        "icon": "🥚"
+      },
+      {
+        "name": "참깨",
+        "amount": "약간",
+        "icon": "🫘"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "면을 삶아 물을 거의 다 버리세요",
+        "time": 4
+      },
+      {
+        "step": 2,
+        "description": "소스를 넣고 비비세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "그릇에 담고 치즈와 달걀 프라이를 올리세요",
+        "time": 2
+      },
+      {
+        "step": 4,
+        "description": "참깨를 뿌려 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "122",
+    "title": "닭죽",
+    "category": "아침",
+    "time": 30,
+    "difficulty": "보통",
+    "calories": 280,
+    "rating": 4.6,
+    "image": "https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?w=400",
+    "description": "부드럽고 든든한 닭죽입니다. 몸이 안 좋을 때 먹으면 속이 편하고 기운이 나요.",
+    "ingredients": [
+      {
+        "name": "닭가슴살",
+        "amount": "150g",
+        "icon": "🍗"
+      },
+      {
+        "name": "쌀",
+        "amount": "1/2컵",
+        "icon": "🍚"
+      },
+      {
+        "name": "당근",
+        "amount": "1/4개",
+        "icon": "🥕"
+      },
+      {
+        "name": "대파",
+        "amount": "1/2대",
+        "icon": "🧅"
+      },
+      {
+        "name": "참기름",
+        "amount": "1큰술",
+        "icon": "🫒"
+      },
+      {
+        "name": "소금",
+        "amount": "약간",
+        "icon": "🧂"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "닭가슴살을 삶아 잘게 찢으세요",
+        "time": 10
+      },
+      {
+        "step": 2,
+        "description": "냄비에 참기름을 두르고 쌀을 볶으세요",
+        "time": 2
+      },
+      {
+        "step": 3,
+        "description": "닭 삶은 물 3컵을 넣고 끓이세요",
+        "time": 3
+      },
+      {
+        "step": 4,
+        "description": "쌀이 퍼질 때까지 15분 저으며 끓이세요",
+        "time": 15
+      },
+      {
+        "step": 5,
+        "description": "찢은 닭과 당근을 넣고 소금으로 간해 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "123",
+    "title": "사과 주스",
+    "category": "음료",
+    "time": 5,
+    "difficulty": "쉬움",
+    "calories": 100,
+    "rating": 4.3,
+    "image": "https://images.unsplash.com/photo-1576179635662-9d1983e97e1e?w=400",
+    "description": "갓 짜낸 신선한 사과 주스입니다. 달콤하고 상큼해서 아침에 마시기 좋아요.",
+    "ingredients": [
+      {
+        "name": "사과",
+        "amount": "2개",
+        "icon": "🍎"
+      },
+      {
+        "name": "레몬즙",
+        "amount": "1작은술",
+        "icon": "🍋"
+      },
+      {
+        "name": "꿀",
+        "amount": "1작은술",
+        "icon": "🍯"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "사과를 깨끗이 씻어 자르세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "블렌더에 사과와 물 반컵을 넣고 갈으세요",
+        "time": 0
+      },
+      {
+        "step": 3,
+        "description": "체에 걸러 즙만 받으세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "레몬즙과 꿀을 넣어 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  },
+  {
+    "id": "124",
+    "title": "크로플",
+    "category": "디저트",
+    "time": 10,
+    "difficulty": "쉬움",
+    "calories": 350,
+    "rating": 4.7,
+    "image": "https://images.unsplash.com/photo-1562376552-0d160a2f238d?w=400",
+    "description": "크루아상을 와플기에 눌러 구운 크로플입니다. 겉바속촉의 끝판왕이에요.",
+    "ingredients": [
+      {
+        "name": "냉동 크루아상",
+        "amount": "2개",
+        "icon": "🥐"
+      },
+      {
+        "name": "아이스크림",
+        "amount": "1스쿱",
+        "icon": "🍦"
+      },
+      {
+        "name": "꿀",
+        "amount": "1큰술",
+        "icon": "🍯"
+      }
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "description": "와플기를 예열하세요",
+        "time": 0
+      },
+      {
+        "step": 2,
+        "description": "크루아상을 와플기에 넣고 눌러 구우세요",
+        "time": 3
+      },
+      {
+        "step": 3,
+        "description": "노릇해지면 꺼내세요",
+        "time": 0
+      },
+      {
+        "step": 4,
+        "description": "아이스크림과 꿀을 올려 완성하세요",
+        "time": 0
+      }
+    ],
+    "author": "요잘알"
+  }
+]

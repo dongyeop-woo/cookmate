@@ -1,0 +1,8 @@
+﻿[
+  { "id": "1", "name": "아침", "icon": "🥞", "color": "#0B9A61" },
+  { "id": "2", "name": "점심", "icon": "🍱", "color": "#FF6B6B" },
+  { "id": "3", "name": "저녁", "icon": "🍽️", "color": "#4ECDC4" },
+  { "id": "4", "name": "디저트", "icon": "🍰", "color": "#FFE66D" },
+  { "id": "5", "name": "간식", "icon": "🍿", "color": "#A8E6CF" },
+  { "id": "6", "name": "음료", "icon": "🥤", "color": "#DDA0DD" }
+]

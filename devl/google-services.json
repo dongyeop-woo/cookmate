@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "879574205436",
+    "project_id": "cookingbasedyw",
+    "storage_bucket": "cookingbasedyw.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:879574205436:android:009582fb2778cb552ae879",
+        "android_client_info": {
+          "package_name": "com.dyw.cookmate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "879574205436-m8qr7cp242pp6hrolnm8su99thumpf1a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dyw.cookmate",
+            "certificate_hash": "fb93b0e2b58e661cbeab7b03f78e01dd343d48f6"
+          }
+        },
+        {
+          "client_id": "879574205436-39lmp1t64f1mb7je6bh7va6lvqa01r14.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAarb_0MDXbgVfmtYePS1wrdBAoNQKQJuQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "879574205436-39lmp1t64f1mb7je6bh7va6lvqa01r14.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
