@@ -1,0 +1,7 @@
+.gradle
+build/classes
+build/generated
+build/tmp
+build/reports
+src/test
+*.md
