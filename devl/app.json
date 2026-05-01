@@ -77,7 +77,7 @@
         "applinks:devl-backend-879574205436.asia-northeast3.run.app"
       ],
       "infoPlist": {
-        "CFBundleDevelopmentRegion": "ko_KR",
+        "CFBundleDevelopmentRegion": "ko",
         "CFBundleLocalizations": ["ko", "en"],
         "ITSAppUsesNonExemptEncryption": false,
         "NSSupportsLiveActivities": true,
