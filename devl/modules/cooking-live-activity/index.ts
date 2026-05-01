@@ -37,12 +37,14 @@ const noopDiagnose = async (): Promise<LiveActivityDiagnosis> => ({
   areActivitiesEnabled: false,
 });
 
+// 각 메서드를 한 단계씩 더 보호 — 이전 native 빌드에 새 함수가 없을 때
+// (예: diagnose 추가 후 native 재빌드 전 dev 환경) bind 단계에서 throw 나지 않도록.
 export const CookingLiveActivity = {
-  isSupported: native?.isSupported.bind(native) ?? noopBool,
-  diagnose: native?.diagnose.bind(native) ?? noopDiagnose,
-  start: native?.start.bind(native) ?? noopReturn,
-  pause: native?.pause.bind(native) ?? noop,
-  resume: native?.resume.bind(native) ?? noop,
-  end: native?.end.bind(native) ?? noop,
-  endAll: native?.endAll.bind(native) ?? noop,
+  isSupported: native?.isSupported?.bind(native) ?? noopBool,
+  diagnose: native?.diagnose?.bind(native) ?? noopDiagnose,
+  start: native?.start?.bind(native) ?? noopReturn,
+  pause: native?.pause?.bind(native) ?? noop,
+  resume: native?.resume?.bind(native) ?? noop,
+  end: native?.end?.bind(native) ?? noop,
+  endAll: native?.endAll?.bind(native) ?? noop,
 };
