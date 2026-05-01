@@ -279,35 +279,13 @@ export default function CookingModeScreen() {
         if (liveActivityRef.current.active) {
           CookingLiveActivity.end();
         }
-        // 진단 alert는 dev 빌드에서만 — release 사용자에게 매번 뜨면 안 됨.
         CookingLiveActivity.start(recipe.title, currentStep + 1, steps.length, remaining)
-          .then(async (activityId) => {
+          .then((activityId) => {
             if (activityId) {
               liveActivityRef.current = { active: true, step: currentStep };
-              if (__DEV__) {
-                Alert.alert('LA 진단', `시작 성공\nID: ${String(activityId).slice(0, 16)}...\nremaining: ${remaining}s`);
-              }
-            } else if (__DEV__) {
-              const d = await CookingLiveActivity.diagnose().catch(() => null);
-              const lines = d
-                ? [
-                    `iOS: ${d.iosVersion}`,
-                    `areActivitiesEnabled: ${d.areActivitiesEnabled}`,
-                    `isLowPowerMode: ${d.isLowPowerMode}`,
-                    d.frequentPushesEnabled !== undefined ? `frequentPushes: ${d.frequentPushesEnabled}` : null,
-                  ].filter(Boolean).join('\n')
-                : '(diagnose 호출 실패)';
-              Alert.alert('LA 진단', `null 반환\n\n${lines}\n\nremaining: ${remaining}s`);
             }
           })
-          .catch((err) => {
-            if (__DEV__) {
-              Alert.alert(
-                'LA 진단',
-                `request() throw\n${err?.code ? `code: ${err.code}\n` : ''}msg: ${err?.message || String(err)}`
-              );
-            }
-          });
+          .catch(() => {});
       }
     } else if (liveActivityRef.current.active && onSameStep) {
       CookingLiveActivity.pause(remaining);
