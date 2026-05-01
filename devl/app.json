@@ -1,16 +1,22 @@
 {
   "expo": {
+    "owner": "dongyeopwoo1",
     "name": "요잘알",
-    "slug": "rn-firebase-test",
-    "version": "1.0.0",
+    "slug": "cookmate-yojalal",
+    "version": "1.1.0",
     "orientation": "portrait",
-    "icon": "./assets/appIcon-padded.png",
+    "icon": "./assets/appIcon.png",
     "userInterfaceStyle": "light",
+    "androidStatusBar": {
+      "barStyle": "dark-content",
+      "backgroundColor": "#FFFFFF",
+      "translucent": false
+    },
     "scheme": "yojalal",
     "splash": {
-      "image": "./assets/appIcon-padded.png",
+      "backgroundColor": "#ffffff",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "image": "./assets/icons/splash.png"
     },
     "plugins": [
       "expo-router",
@@ -22,7 +28,7 @@
         "@react-native-seoul/kakao-login",
         {
           "kakaoAppKey": "4e6d0defa8992e8a7c49029d2f95ffb6",
-          "kotlinVersion": "2.0.21"
+          "kotlinVersion": "2.1.20"
         }
       ],
       [
@@ -34,14 +40,25 @@
         }
       ],
       "./plugins/withFirebaseFix",
+      "./plugins/withKakaoSDKVersion",
+      "./plugins/withFixedDensity",
+      "./plugins/withActivityConfigChanges",
+      "@bacons/apple-targets",
       [
         "expo-notifications",
         {
-          "icon": "./assets/appIcon-padded.png",
+          "icon": "./assets/appIcon-android.png",
           "color": "#0B9A61"
         }
       ],
+      "expo-apple-authentication",
       "expo-speech-recognition",
+      [
+        "expo-tracking-transparency",
+        {
+          "userTrackingPermission": "광고를 최적화하기 위해 광고 식별자를 사용합니다."
+        }
+      ],
       [
         "react-native-google-mobile-ads",
         {
@@ -52,26 +69,74 @@
     ],
     "ios": {
       "supportsTablet": true,
+      "buildNumber": "7",
       "bundleIdentifier": "com.dyw.cookmate",
+      "appleTeamId": "3KFNM7FFCJ",
       "googleServicesFile": "./firebase/GoogleService-Info.plist",
+      "associatedDomains": [
+        "applinks:devl-backend-879574205436.asia-northeast3.run.app"
+      ],
       "infoPlist": {
+        "CFBundleDevelopmentRegion": "ko_KR",
+        "CFBundleLocalizations": ["ko", "en"],
         "ITSAppUsesNonExemptEncryption": false,
+        "NSSupportsLiveActivities": true,
+        "NSSupportsLiveActivitiesFrequentUpdates": true,
         "CFBundleURLTypes": [
           {
             "CFBundleURLSchemes": [
               "com.googleusercontent.apps.879574205436-shfbj46e97a9n89fa133ggqtkgob25ec"
             ]
           }
+        ],
+        "NSSpeechRecognitionUsageDescription": "음성으로 레시피를 검색하기 위해 음성 인식을 사용합니다.",
+        "NSMicrophoneUsageDescription": "음성으로 레시피를 검색하기 위해 마이크를 사용합니다.",
+        "NSUserTrackingUsageDescription": "광고를 최적화하기 위해 광고 식별자를 사용합니다.",
+        "NSPhotoLibraryUsageDescription": "레시피·후기·문의에 사진을 첨부하기 위해 사진 라이브러리에 접근합니다.",
+        "NSPhotoLibraryAddUsageDescription": "쿠킹 결과 이미지를 사진 앱에 저장하기 위해 사진 라이브러리에 접근합니다.",
+        "NSCameraUsageDescription": "레시피·후기·문의에 사진을 첨부하기 위해 카메라를 사용합니다.",
+        "LSApplicationQueriesSchemes": [
+          "kakaokompassauth",
+          "kakaolink",
+          "kakaoplus",
+          "kakaotalk",
+          "kakaokompassauth",
+          "kakaolink",
+          "kakaoplus",
+          "kakaotalk"
         ]
       }
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/appIcon-padded.png",
+        "foregroundImage": "./assets/appIcon-android.png",
         "backgroundColor": "#ffffff"
       },
+      "softwareKeyboardLayoutMode": "pan",
       "package": "com.dyw.cookmate",
-      "googleServicesFile": "./google-services.json"
+      "googleServicesFile": "./google-services.json",
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ],
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "autoVerify": true,
+          "data": [
+            {
+              "scheme": "https",
+              "host": "devl-backend-879574205436.asia-northeast3.run.app",
+              "pathPrefix": "/recipe"
+            },
+            {
+              "scheme": "https",
+              "host": "devl-backend-879574205436.asia-northeast3.run.app",
+              "pathPrefix": "/profile"
+            }
+          ],
+          "category": ["BROWSABLE", "DEFAULT"]
+        }
+      ]
     },
     "web": {
       "favicon": "./assets/appIcon-padded.png"
@@ -79,8 +144,18 @@
     "extra": {
       "router": {},
       "eas": {
-        "projectId": "33929827-c46e-4676-989b-bda684d08b31"
+        "projectId": "1e73a06b-3fc3-410c-846c-3ea3d422957c"
+      },
+      "revenueCat": {
+        "iosKey": "appl_bPWUgdATxCcGdBiryEdBwMPSlVe",
+        "androidKey": "goog_oRCEoopEdqaEdBcItinxPEeuwDp"
       }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/1e73a06b-3fc3-410c-846c-3ea3d422957c"
     }
   }
 }

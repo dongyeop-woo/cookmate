@@ -1,0 +1,7 @@
+{
+  "name": "cooking-live-activity",
+  "version": "0.0.1",
+  "description": "iOS Live Activity bridge for cooking timer",
+  "main": "index.ts",
+  "private": true
+}

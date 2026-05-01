@@ -1,6 +1,9 @@
 node_modules/
 android/
 ios/
+# 단, modules/<name>/ios 안의 네이티브 소스는 EAS 빌드에 반드시 포함되어야 하므로 unignore
+!modules/*/ios/
+!modules/*/ios/**
 .expo/
 dist/
 *.jks
@@ -12,3 +15,10 @@ dist/
 web-build/
 .env
 cookingbasedyw-firebase-adminsdk-fbsvc-b11f8d8de0.json
+cookingbasedyw-d37cc782696c.json
+# Google Cloud / Firebase service account keys
+*-iam-*.json
+*service-account*.json
+
+# 생성된 레시피 이미지 (Firebase Storage 업로드 후 로컬 사본은 무시)
+images/
