@@ -133,6 +133,46 @@ export async function fetchTopUsers(limit = 20): Promise<UserProfile[]> {
   }
 }
 
+/** 레시피 웹 조회수 — Cloudflare 캐시 짧게 (15초). */
+export async function fetchRecipeViewCount(id: string): Promise<number> {
+  try {
+    const res = await fetch(`${API_BASE}/api/web/recipe-view/${encodeURIComponent(id)}`, {
+      next: { revalidate: 15 },
+    });
+    if (!res.ok) return 0;
+    const data = await res.json();
+    return typeof data.count === 'number' ? data.count : 0;
+  } catch {
+    return 0;
+  }
+}
+
+/** 조회수 상위 N개 — {id, count} 리스트. */
+export async function fetchTopViewed(limit = 5): Promise<{ id: string; count: number }[]> {
+  try {
+    return await get<{ id: string; count: number }[]>(`/api/web/top-viewed?limit=${limit}`, {
+      next: { revalidate: 60 }, // 1분 캐시
+    });
+  } catch {
+    return [];
+  }
+}
+
+/** 조회수 TOP 레시피 — id로 레시피 정보를 함께 반환. */
+export async function fetchTopViewedRecipes(limit = 5): Promise<(Recipe & { viewCount: number })[]> {
+  const top = await fetchTopViewed(limit);
+  if (top.length === 0) return [];
+  const all = await fetchAllRecipes();
+  const byId = new Map(all.map((r) => [r.id, r]));
+  return top
+    .map((t) => {
+      const r = byId.get(t.id);
+      if (!r) return null;
+      return { ...r, viewCount: t.count };
+    })
+    .filter((r): r is Recipe & { viewCount: number } => r !== null);
+}
+
 /** 작성자 닉네임 → 프로필 이미지 URL 맵. 카드 렌더링용. */
 export async function fetchAuthorImageMap(): Promise<Record<string, string>> {
   const users = await fetchTopUsers(50);

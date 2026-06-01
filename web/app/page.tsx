@@ -4,18 +4,18 @@ import BestCard from './BestCard';
 import SmallCard from './SmallCard';
 import Hscroll from './Hscroll';
 import Sidebar from './Sidebar';
-import { CATEGORIES, fetchHomeSections, fetchTopUsers, fetchAuthorImageMap } from '@/lib/api';
+import { CATEGORIES, fetchHomeSections, fetchTopUsers, fetchAuthorImageMap, fetchTopViewedRecipes } from '@/lib/api';
 
 export const revalidate = 300;
 
 export default async function HomePage() {
-  const [sections, authorImages, topUsers] = await Promise.all([
+  const [sections, authorImages, topUsers, topViewed] = await Promise.all([
     fetchHomeSections(),
     fetchAuthorImageMap(),
     fetchTopUsers(8),
+    fetchTopViewedRecipes(5),
   ]);
   const { best, recommended, quick, snack, weekly } = sections;
-  const todayPick = recommended.slice(0, 5);
   const popular = best.slice(0, 5);
 
   return (
@@ -66,7 +66,7 @@ export default async function HomePage() {
           )}
         </main>
 
-        <Sidebar todayPick={todayPick} popular={popular} topUsers={topUsers} authorImages={authorImages} />
+        <Sidebar topViewed={topViewed} popular={popular} topUsers={topUsers} authorImages={authorImages} />
       </div>
       <Footer />
     </>

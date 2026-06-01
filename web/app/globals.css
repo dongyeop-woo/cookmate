@@ -326,6 +326,8 @@ img { display: block; }
 .detail .stat-row .star { color: #FFB800; }
 .detail .stat-row .heart { color: #FF4D67; }
 .detail .stat-row .rating-count { color: #9E9E9E; font-size: 13px; }
+.detail .stat-row .stat-views { display: inline-flex; align-items: center; gap: 4px; color: #888; }
+.detail .stat-row .stat-views svg { display: block; }
 .detail .author {
   display: flex; align-items: center; gap: 8px;
   padding: 12px 0;

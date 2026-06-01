@@ -4,7 +4,7 @@ import Topbar from '../../Topbar';
 import Footer from '../../Footer';
 import ChefAvatar from '../../ChefAvatar';
 import RecipeViewTracker from '../../RecipeViewTracker';
-import { fetchRecipe, fetchAllRecipes, fetchAuthorImageMap, Recipe, formatTime, diffColor } from '@/lib/api';
+import { fetchRecipe, fetchAuthorImageMap, fetchRecipeViewCount, Recipe, formatTime, diffColor } from '@/lib/api';
 
 export const runtime = 'edge';
 export const revalidate = 300;
@@ -70,9 +70,10 @@ function jsonLd(r: Recipe, id: string) {
 }
 
 export default async function RecipePage({ params }: Props) {
-  const [r, authorImages] = await Promise.all([
+  const [r, authorImages, viewCount] = await Promise.all([
     fetchRecipe(params.id),
     fetchAuthorImageMap(),
+    fetchRecipeViewCount(params.id),
   ]);
   if (!r) notFound();
 
@@ -95,6 +96,13 @@ export default async function RecipePage({ params }: Props) {
             {' '}<span className="rating-count">({(r.reviewCount ?? 0) > 99 ? '99+' : r.reviewCount ?? 0})</span>
           </span>
           <span><span className="heart">♥</span> {r.likes ?? 0}</span>
+          <span className="stat-views">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+            {viewCount.toLocaleString()}
+          </span>
         </div>
 
         <div className="author">

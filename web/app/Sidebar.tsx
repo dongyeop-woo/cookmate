@@ -6,7 +6,7 @@ import { Recipe, UserProfile, CATEGORIES, formatTime } from '@/lib/api';
 const FALLBACK = '/img/app-icon.png';
 
 type Props = {
-  todayPick: Recipe[];
+  topViewed: (Recipe & { viewCount: number })[];
   popular: Recipe[];
   topUsers?: UserProfile[];
   authorImages?: Record<string, string>;
@@ -16,7 +16,7 @@ type Props = {
  * 데스크톱 우측 사이드바.
  * 박스: 로그인 / 앱 다운로드 / 오늘의 추천 / Top 셰프 / 카테고리 / 인기 TOP 5
  */
-export default function Sidebar({ todayPick, popular, topUsers = [], authorImages = {} }: Props) {
+export default function Sidebar({ topViewed, popular, topUsers = [], authorImages = {} }: Props) {
   return (
     <aside className="sidebar">
       {/* 앱 설치 프로모 박스 */}
@@ -31,22 +31,25 @@ export default function Sidebar({ todayPick, popular, topUsers = [], authorImage
         <AppDownloadModal className="side-promo-btn">앱 다운로드</AppDownloadModal>
       </div>
 
-      {/* 오늘의 추천 */}
-      {todayPick.length > 0 && (
+      {/* 조회수 TOP 5 */}
+      {topViewed.length > 0 && (
         <div className="side-box">
-          <div className="side-header"><h3 className="side-title">오늘의 추천</h3></div>
+          <div className="side-header">
+            <h3 className="side-title">조회수 TOP 5</h3>
+            <span className="side-badge">🔥</span>
+          </div>
           <ul className="side-list">
-            {todayPick.slice(0, 5).map((r, i) => (
+            {topViewed.slice(0, 5).map((r, i) => (
               <li key={r.id}>
                 <a className="side-item" href={`/recipe/${r.id}`}>
-                  <span className="side-rank">{i + 1}</span>
+                  <span className={`side-rank ${i < 3 ? 'side-rank-hot' : ''}`}>{i + 1}</span>
                   <img className="side-thumb" src={r.image || FALLBACK} alt={r.title} loading="lazy" />
                   <div className="side-item-body">
                     <div className="side-item-title">{r.title}</div>
                     <div className="side-item-meta">
-                      <span>⏱ {formatTime(r.time)}분</span>
+                      <span>👁 {r.viewCount.toLocaleString()}</span>
                       <span className="side-sep">·</span>
-                      <span className="side-heart">♥ {r.likes ?? 0}</span>
+                      <span>⏱ {formatTime(r.time)}분</span>
                     </div>
                   </div>
                 </a>

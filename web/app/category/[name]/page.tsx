@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Topbar from '../../Topbar';
 import Footer from '../../Footer';
 import RecipeCard from '../../RecipeCard';
-import { CATEGORIES, fetchRecipesByCategory } from '@/lib/api';
+import { CATEGORIES, fetchRecipesByCategory, fetchAuthorImageMap } from '@/lib/api';
 
 // Cloudflare Pages 가 한글 URL 정적 페이지 못 찾는 이슈 → Edge runtime 으로 동적 렌더링.
 export const runtime = 'edge';
@@ -25,8 +25,14 @@ export default async function CategoryPage({ params }: Props) {
   const cat = CATEGORIES.find((c) => c.name === name);
   const iconFile = cat?.icon ?? 'app-icon.png';
 
-  let recipes = [];
-  try { recipes = await fetchRecipesByCategory(name); } catch {}
+  let recipes: Awaited<ReturnType<typeof fetchRecipesByCategory>> = [];
+  let authorImages: Record<string, string> = {};
+  try {
+    [recipes, authorImages] = await Promise.all([
+      fetchRecipesByCategory(name),
+      fetchAuthorImageMap(),
+    ]);
+  } catch {}
 
   return (
     <>
@@ -41,7 +47,7 @@ export default async function CategoryPage({ params }: Props) {
         <section className="section">
           {recipes.length > 0 ? (
             <div className="recipe-grid">
-              {recipes.map((r) => <RecipeCard key={r.id} r={r} />)}
+              {recipes.map((r) => <RecipeCard key={r.id} r={r} authorImage={r.author ? authorImages[r.author] : undefined} />)}
             </div>
           ) : (
             <div className="empty">이 카테고리엔 아직 레시피가 없어요.</div>

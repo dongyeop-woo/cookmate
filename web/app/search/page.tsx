@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Topbar from '../Topbar';
 import Footer from '../Footer';
 import RecipeCard from '../RecipeCard';
-import { fetchAllRecipes } from '@/lib/api';
+import { fetchAllRecipes, fetchAuthorImageMap } from '@/lib/api';
 
 // Cloudflare Pages 는 동적 라우트가 Edge Runtime 사용해야 함.
 export const runtime = 'edge';
@@ -19,8 +19,14 @@ export default async function SearchPage({ searchParams }: Props) {
   const params = await searchParams;
   const q = (params.q ?? '').trim().toLowerCase();
 
-  let all = [];
-  try { all = await fetchAllRecipes(); } catch {}
+  let all: Awaited<ReturnType<typeof fetchAllRecipes>> = [];
+  let authorImages: Record<string, string> = {};
+  try {
+    [all, authorImages] = await Promise.all([
+      fetchAllRecipes(),
+      fetchAuthorImageMap(),
+    ]);
+  } catch {}
 
   const results = q
     ? all.filter((r) => {
@@ -47,7 +53,7 @@ export default async function SearchPage({ searchParams }: Props) {
             </div>
             {results.length > 0 ? (
               <div className="recipe-grid">
-                {results.map((r) => <RecipeCard key={r.id} r={r} />)}
+                {results.map((r) => <RecipeCard key={r.id} r={r} authorImage={r.author ? authorImages[r.author] : undefined} />)}
               </div>
             ) : (
               <div className="empty">검색 결과가 없어요.<br />다른 키워드로 시도해보세요.</div>
