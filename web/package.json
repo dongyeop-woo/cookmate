@@ -13,7 +13,8 @@
     "firebase": "^12.14.0",
     "next": "^15.3.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-qr-code": "^2.0.21"
   },
   "devDependencies": {
     "@cloudflare/next-on-pages": "^1.13.0",

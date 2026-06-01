@@ -407,6 +407,76 @@ img { display: block; }
 .footer { padding: 20px 20px 24px; text-align: center; font-size: 11px; color: #BDBDBD; line-height: 1.6; }
 .footer a { color: #888; }
 
+/* ===== App Download Modal ===== */
+.app-modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 1000;
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+  animation: appModalFade 0.2s ease;
+}
+@keyframes appModalFade { from { opacity: 0; } to { opacity: 1; } }
+.app-modal {
+  position: relative;
+  background: #FFFFFF;
+  border-radius: 18px;
+  padding: 32px 28px 28px;
+  max-width: 360px; width: 100%;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  animation: appModalRise 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes appModalRise { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.app-modal-close {
+  position: absolute; top: 12px; right: 12px;
+  width: 28px; height: 28px; border-radius: 50%;
+  border: none; background: transparent;
+  color: #888; font-size: 22px; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+  line-height: 1; padding: 0;
+}
+.app-modal-close:hover { background: #F5F6F7; color: #1A1A1A; }
+.app-modal-logo { width: 56px; height: 56px; margin: 0 auto 12px; display: block; }
+.app-modal-title { font-size: 20px; font-weight: 800; letter-spacing: -0.3px; margin-bottom: 4px; }
+.app-modal-sub { font-size: 13px; color: #888; margin-bottom: 22px; }
+.app-modal-qr {
+  display: inline-block;
+  padding: 14px;
+  background: #FFFFFF;
+  border: 2px solid #0B9A61;
+  border-radius: 14px;
+  margin-bottom: 18px;
+}
+.app-modal-divider {
+  position: relative;
+  text-align: center;
+  font-size: 12px; color: #BDBDBD;
+  margin: 0 0 14px;
+}
+.app-modal-divider::before,
+.app-modal-divider::after {
+  content: ''; position: absolute; top: 50%;
+  width: calc(50% - 30px); height: 1px;
+  background: #EEEEEE;
+}
+.app-modal-divider::before { left: 0; }
+.app-modal-divider::after { right: 0; }
+.app-modal-stores { display: flex; gap: 8px; }
+.app-modal-store-btn {
+  flex: 1;
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 6px;
+  padding: 11px;
+  background: #1A1A1A; color: #FFFFFF;
+  border-radius: 10px;
+  font-size: 13.5px; font-weight: 700;
+  text-decoration: none;
+}
+.app-modal-store-btn:hover { background: #000000; }
+.app-modal-store-btn-android { background: #FFFFFF; color: #1A1A1A; border: 1px solid #E5E5E5; }
+.app-modal-store-btn-android:hover { background: #F5F6F7; }
+
 /* ===== Auth Pages (로그인/회원가입) ===== */
 .auth-wrap { display: flex; justify-content: center; padding: 40px 20px; }
 .auth-card {

@@ -1,6 +1,6 @@
-import OpenAppButton from './OpenAppButton';
 import SidebarLogin from './SidebarLogin';
 import ChefAvatar from './ChefAvatar';
+import AppDownloadModal from './AppDownloadModal';
 import { Recipe, UserProfile, CATEGORIES, formatTime } from '@/lib/api';
 
 const FALLBACK = '/img/app-icon.png';
@@ -31,7 +31,7 @@ export default function Sidebar({ todayPick, popular, topUsers = [], authorImage
             <div className="side-promo-sub">음성 모드 · 자동 타이머 · AI 추천</div>
           </div>
         </div>
-        <OpenAppButton path="" className="side-promo-btn">앱 다운로드</OpenAppButton>
+        <AppDownloadModal className="side-promo-btn">앱 다운로드</AppDownloadModal>
       </div>
 
       {/* 오늘의 추천 */}
