@@ -4,12 +4,9 @@ import Footer from '../../Footer';
 import RecipeCard from '../../RecipeCard';
 import { CATEGORIES, fetchRecipesByCategory } from '@/lib/api';
 
+// Cloudflare Pages 가 한글 URL 정적 페이지 못 찾는 이슈 → Edge runtime 으로 동적 렌더링.
+export const runtime = 'edge';
 export const revalidate = 300;
-
-// 빌드 시점에 알려진 카테고리만 정적 생성. 알 수 없는 카테고리는 런타임에서도 거부.
-export function generateStaticParams() {
-  return CATEGORIES.map((c) => ({ name: c.name }));
-}
 
 type Props = { params: { name: string } };
 

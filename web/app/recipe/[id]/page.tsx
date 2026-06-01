@@ -6,17 +6,8 @@ import ChefAvatar from '../../ChefAvatar';
 import RecipeViewTracker from '../../RecipeViewTracker';
 import { fetchRecipe, fetchAllRecipes, fetchAuthorImageMap, Recipe, formatTime, diffColor } from '@/lib/api';
 
+export const runtime = 'edge';
 export const revalidate = 300;
-
-// 빌드 시 모든 레시피 ID를 정적 생성. 누락된 ID는 런타임에 dynamic SSR로 채워짐.
-export async function generateStaticParams() {
-  try {
-    const all = await fetchAllRecipes();
-    return all.filter((r) => !!r.id).map((r) => ({ id: r.id }));
-  } catch {
-    return [];
-  }
-}
 
 type Props = { params: { id: string } };
 
