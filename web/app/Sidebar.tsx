@@ -27,7 +27,7 @@ export default function Sidebar({ todayPick, popular, topUsers = [], authorImage
         <div className="side-promo">
           <img src="/img/appIcon-padded.png" alt="요잘알" className="side-promo-icon" />
           <div className="side-promo-text">
-            <div className="side-promo-title">요잘알 앱에서<br />더 편하게</div>
+            <div className="side-promo-title">요잘알 앱에서 더 편하게</div>
             <div className="side-promo-sub">음성 모드 · 자동 타이머 · AI 추천</div>
           </div>
         </div>

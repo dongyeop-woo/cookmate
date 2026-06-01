@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Topbar from '../../Topbar';
 import Footer from '../../Footer';
-import CtaBanner from '../../CtaBanner';
 import { fetchRecipe, fetchAllRecipes, Recipe, formatTime, diffColor } from '@/lib/api';
 
 export const revalidate = 300;
@@ -177,7 +176,6 @@ export default async function RecipePage({ params }: Props) {
       </main>
 
       <Footer />
-      <CtaBanner sub="단계별 자동 타이머 · AI 메뉴 추천" path={`recipe/${r.id}`} />
 
       <script
         type="application/ld+json"

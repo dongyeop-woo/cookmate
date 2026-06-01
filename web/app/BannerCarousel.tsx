@@ -1,11 +1,11 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import OpenAppButton from './OpenAppButton';
+import Link from 'next/link';
 
-// 웹에서는 요잘알 리뷰 이벤트 배너만 노출. 다른 이벤트는 앱 내에서만.
+// 웹에서는 요잘알 리뷰 이벤트 배너만 노출. 클릭 시 이벤트 상세 페이지로 이동.
 const BANNERS = [
-  { image: '/img/test.png', path: 'event-review' },
+  { image: '/img/test.png', href: '/event-review' },
 ];
 
 const INTERVAL = 5000;
@@ -25,7 +25,6 @@ export default function BannerCarousel() {
     if (slide) el.scrollTo({ left: slide.offsetLeft - 14, behavior: 'smooth' });
   };
 
-  // 자동 전환
   useEffect(() => {
     const t = setInterval(() => {
       setIdx((i) => {
@@ -37,7 +36,6 @@ export default function BannerCarousel() {
     return () => clearInterval(t);
   }, []);
 
-  // 사용자 스크롤(스와이프)에 따른 활성 점 동기화
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -60,9 +58,9 @@ export default function BannerCarousel() {
     <div className="banner-wrap">
       <div className="banner-viewport" ref={ref}>
         {BANNERS.map((b, i) => (
-          <OpenAppButton key={i} path={b.path} className="banner-slide">
+          <Link key={i} href={b.href} className="banner-slide">
             <img src={b.image} alt="" className="banner-img" loading={i === 0 ? 'eager' : 'lazy'} />
-          </OpenAppButton>
+          </Link>
         ))}
       </div>
       {multi && (

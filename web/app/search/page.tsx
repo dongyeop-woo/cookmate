@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import Topbar from '../Topbar';
 import Footer from '../Footer';
-import CtaBanner from '../CtaBanner';
 import RecipeCard from '../RecipeCard';
 import { fetchAllRecipes } from '@/lib/api';
 
@@ -59,7 +58,6 @@ export default async function SearchPage({ searchParams }: Props) {
         )}
       </main>
       <Footer />
-      <CtaBanner sub="검색이 더 편리한 앱에서 만나요" />
     </>
   );
 }

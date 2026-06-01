@@ -1,6 +1,5 @@
 import Topbar from './Topbar';
 import Footer from './Footer';
-import CtaBanner from './CtaBanner';
 import BestCard from './BestCard';
 import SmallCard from './SmallCard';
 import Hscroll from './Hscroll';
@@ -73,7 +72,6 @@ export default async function HomePage() {
         <Sidebar todayPick={todayPick} popular={popular} topUsers={topUsers} authorImages={authorImages} />
       </div>
       <Footer />
-      <CtaBanner />
     </>
   );
 }

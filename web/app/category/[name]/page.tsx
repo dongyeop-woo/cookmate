@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import Topbar from '../../Topbar';
 import Footer from '../../Footer';
-import CtaBanner from '../../CtaBanner';
 import RecipeCard from '../../RecipeCard';
 import { CATEGORIES, fetchRecipesByCategory } from '@/lib/api';
 
@@ -53,7 +52,6 @@ export default async function CategoryPage({ params }: Props) {
         </section>
       </main>
       <Footer />
-      <CtaBanner sub="단계별 자동 타이머 · 손 없이 요리" />
     </>
   );
 }
