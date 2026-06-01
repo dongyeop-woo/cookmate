@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { CATEGORIES, fetchAllRecipes } from '@/lib/api';
 
+export const runtime = 'edge';
 export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

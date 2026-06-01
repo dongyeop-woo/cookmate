@@ -6,6 +6,7 @@ import Hscroll from './Hscroll';
 import Sidebar from './Sidebar';
 import { CATEGORIES, fetchHomeSections, fetchTopUsers, fetchAuthorImageMap, fetchTopViewedRecipes } from '@/lib/api';
 
+export const runtime = 'edge';
 export const revalidate = 300;
 
 export default async function HomePage() {
