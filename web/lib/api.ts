@@ -1,9 +1,12 @@
 /**
  * Cloud Run 백엔드 API 클라이언트.
- * 빌드 시점(Next.js SSR/SSG)에는 직접 호출, 런타임 클라이언트는 브라우저에서 호출.
+ * Edge runtime 에서 yojalal.com 으로 fetch 하면 워커 서브리퀘스트 루프로
+ * 깨지기 때문에 서버 사이드에선 Cloud Run 을 직접 호출.
+ * 브라우저(클라이언트)에서는 CORS 통과한 yojalal.com 으로 호출.
  */
-export const API_BASE = process.env.NEXT_PUBLIC_API_BASE
-  || 'https://yojalal.com';
+const CLOUD_RUN_BASE = 'https://devl-backend-879574205436.asia-northeast3.run.app';
+const PUBLIC_BASE = process.env.NEXT_PUBLIC_API_BASE || 'https://yojalal.com';
+export const API_BASE = typeof window === 'undefined' ? CLOUD_RUN_BASE : PUBLIC_BASE;
 
 export const STORE_URL = {
   ios: 'https://apps.apple.com/kr/app/%EC%9A%94%EC%9E%98%EC%95%8C/id6761661890',
