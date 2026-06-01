@@ -8,10 +8,16 @@ import { CATEGORIES, fetchRecipesByCategory, fetchAuthorImageMap } from '@/lib/a
 export const runtime = 'edge';
 export const revalidate = 300;
 
-type Props = { params: { name: string } };
+type Props = { params: Promise<{ name: string }> };
+
+/** 이미 디코딩됐을 수 있는 한글 URL 안전 처리. */
+function safeDecode(s: string): string {
+  try { return decodeURIComponent(s); } catch { return s; }
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const name = decodeURIComponent(params.name);
+  const { name: raw } = await params;
+  const name = safeDecode(raw);
   return {
     title: `${name} 레시피`,
     description: `${name} 카테고리의 레시피 모음 — 요잘알에서 단계별로 쉽게 만들어보세요.`,
@@ -21,14 +27,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function CategoryPage({ params }: Props) {
-  const name = decodeURIComponent(params.name);
+  const { name: raw } = await params;
+  const name = safeDecode(raw);
   const cat = CATEGORIES.find((c) => c.name === name);
   const iconFile = cat?.icon ?? 'app-icon.png';
 
   let recipes: Awaited<ReturnType<typeof fetchRecipesByCategory>> = [];
   let authorImages: Record<string, string> = {};
-  try { recipes = await fetchRecipesByCategory(name); } catch {}
-  try { authorImages = await fetchAuthorImageMap(); } catch {}
+  try { recipes = await fetchRecipesByCategory(name); } catch (e) { console.warn('category recipes fail:', e); }
+  try { authorImages = await fetchAuthorImageMap(); } catch (e) { console.warn('author images fail:', e); }
 
   return (
     <>

@@ -9,10 +9,11 @@ import { fetchRecipe, fetchAuthorImageMap, fetchRecipeViewCount, Recipe, formatT
 export const runtime = 'edge';
 export const revalidate = 300;
 
-type Props = { params: { id: string } };
+type Props = { params: Promise<{ id: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const r = await fetchRecipe(params.id);
+  const { id } = await params;
+  const r = await fetchRecipe(id);
   if (!r) return { title: '레시피를 찾을 수 없습니다', robots: { index: false } };
   const desc =
     r.description?.replace(/<[^>]+>/g, '').slice(0, 150) ??
@@ -20,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${r.title} 레시피`,
     description: desc,
-    alternates: { canonical: `https://yojalal.com/recipe/${params.id}` },
+    alternates: { canonical: `https://yojalal.com/recipe/${id}` },
     openGraph: {
       title: `${r.title} — 요잘알`,
       description: desc,
@@ -70,12 +71,13 @@ function jsonLd(r: Recipe, id: string) {
 }
 
 export default async function RecipePage({ params }: Props) {
-  const r = await fetchRecipe(params.id);
+  const { id } = await params;
+  const r = await fetchRecipe(id);
   if (!r) notFound();
   let authorImages: Record<string, string> = {};
   let viewCount = 0;
   try { authorImages = await fetchAuthorImageMap(); } catch {}
-  try { viewCount = await fetchRecipeViewCount(params.id); } catch {}
+  try { viewCount = await fetchRecipeViewCount(id); } catch {}
 
   const heroImg = r.image && r.image.length > 0 ? r.image : '/img/app-icon.png';
   const authorImage = r.author ? authorImages[r.author] : undefined;
@@ -84,7 +86,7 @@ export default async function RecipePage({ params }: Props) {
 
   return (
     <>
-      <RecipeViewTracker id={params.id} />
+      <RecipeViewTracker id={id} />
       <Topbar />
       <img className="hero-img" src={heroImg} alt={r.title} />
       <main className="detail">
@@ -187,7 +189,7 @@ export default async function RecipePage({ params }: Props) {
 
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd(r, params.id)) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd(r, id)) }}
       />
     </>
   );
