@@ -1,47 +1,38 @@
 /**
  * yojalal-proxy Cloudflare Worker — 정적/동적 라우팅 분기.
  *
- * 정적 페이지 (Cloudflare Pages 가 처리):
- *   /, /category/*, /recipe/*, /img/*, /_next/*, /sitemap.xml, /robots.txt(선택)
+ * 기본: 모든 요청을 Cloudflare Pages (Next.js 사이트) 로 보냄.
+ * 예외: 아래 CLOUDRUN_PATHS 에 매치되는 경로만 Cloud Run 백엔드로.
  *
- * 동적 API + 레거시 redirect (Cloud Run 백엔드):
- *   /api/*, /privacy, /terms, /support, /about, /yojalal (랜딩),
- *   /app-ads.txt, /.well-known/*, /profile/*
- *
- * 사용:
- *   1. Cloudflare 대시보드 → yojalal-proxy 워커 → Edit code
- *   2. 아래 코드 전체로 교체
- *   3. Save and Deploy
- *
- * Cloudflare Pages 프로젝트는 yojalal.pages.dev 형태의 기본 도메인을 가짐.
- * Custom domain 으로 yojalal.com 직접 연결할 수도 있지만,
- * worker로 분기하는 게 점진적 마이그레이션에 유연함.
+ * 이렇게 하면 Next.js 에 새 페이지 추가할 때 워커를 안 건드려도 자동 라우팅됨.
  */
 
 const CLOUD_RUN = 'devl-backend-879574205436.asia-northeast3.run.app';
-const PAGES_ORIGIN = 'yojalal.pages.dev'; // Cloudflare Pages 프로젝트 기본 도메인
+const PAGES_ORIGIN = 'yojalal.pages.dev';
 const PUBLIC_HOST = 'yojalal.com';
 
-// Pages 가 서빙하는 경로 (정규식)
-const PAGES_PATHS = [
-  /^\/$/,
-  /^\/category(\/|$)/,
-  /^\/recipe(\/|$)/,
-  /^\/img(\/|$)/,
-  /^\/_next(\/|$)/,
-  /^\/sitemap\.xml$/,
-  /^\/favicon\.ico$/,
-  /^\/manifest\.json$/,
+// Cloud Run 으로 가야 하는 경로 (이외는 모두 Pages)
+const CLOUDRUN_PATHS = [
+  /^\/api\//,
+  /^\/privacy$/,
+  /^\/terms$/,
+  /^\/support$/,
+  /^\/about$/,
+  /^\/yojalal$/,
+  /^\/profile\//,
+  /^\/app-ads\.txt$/,
+  /^\/robots\.txt$/,
+  /^\/\.well-known\//,
 ];
 
-function shouldGoToPages(pathname) {
-  return PAGES_PATHS.some((re) => re.test(pathname));
+function shouldGoToCloudRun(pathname) {
+  return CLOUDRUN_PATHS.some((re) => re.test(pathname));
 }
 
 export default {
   async fetch(request) {
     const url = new URL(request.url);
-    const target = shouldGoToPages(url.pathname) ? PAGES_ORIGIN : CLOUD_RUN;
+    const target = shouldGoToCloudRun(url.pathname) ? CLOUD_RUN : PAGES_ORIGIN;
 
     const proxyUrl = new URL(request.url);
     proxyUrl.hostname = target;
@@ -63,7 +54,6 @@ export default {
 
     const response = await fetch(proxied);
 
-    // Cloud Run에서 Location 헤더로 redirect 보낼 때 호스트 갈아끼움.
     if (response.status >= 300 && response.status < 400) {
       const loc = response.headers.get('Location');
       if (loc) {

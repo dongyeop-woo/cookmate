@@ -1,16 +1,16 @@
 import OpenAppButton from './OpenAppButton';
 
 /**
- * 앱 홈 헤더 그대로 옮김: 로고 아이콘 + 그라데이션 검색바 + 알림(앱 열기 fallback).
- * 검색바는 앱의 검색 화면이 있어야 동작하므로 웹에선 앱 열기로 fallback.
+ * 앱 홈 헤더: outline 로고 + 그라데이션 검색바 + 알림 (Ionicons notifications-outline).
+ * 검색바 클릭 → /search 페이지 이동.
  */
 export default function Topbar() {
   return (
     <header className="topbar">
-      <a className="topbar-logo" href="/">
-        <img src="/img/app-icon.png" alt="요잘알" />
+      <a className="topbar-logo" href="/" aria-label="요잘알 홈">
+        <img src="/img/appIcon-padded.png" alt="요잘알" />
       </a>
-      <OpenAppButton path="search" className="topbar-search">
+      <a className="topbar-search" href="/search" aria-label="레시피 검색">
         <span className="search-grad-wrap">
           <span className="search-inner">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -20,8 +20,13 @@ export default function Topbar() {
             <span className="search-placeholder">레시피 검색</span>
           </span>
         </span>
+      </a>
+      <OpenAppButton path="" className="topbar-bell" aria-label="알림">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
+          <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+        </svg>
       </OpenAppButton>
-      <OpenAppButton path="" className="topbar-bell">🔔</OpenAppButton>
     </header>
   );
 }

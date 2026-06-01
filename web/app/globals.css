@@ -9,7 +9,11 @@ body { background: #FFFFFF; padding-bottom: 80px; }
 a { color: inherit; text-decoration: none; }
 img { display: block; }
 
+/* 모바일 기본: 560px 컬럼 / 데스크톱: 1100px 와이드 레이아웃 */
 .page { max-width: 560px; margin: 0 auto; background: #FFFFFF; min-height: 100vh; }
+@media (min-width: 900px) {
+  .page { max-width: 1100px; }
+}
 
 /* ===== Topbar (앱 header — paddingHorizontal 20, height 56) ===== */
 .topbar {
@@ -18,8 +22,8 @@ img { display: block; }
   background: #FFFFFF;
   position: sticky; top: 0; z-index: 10;
 }
-.topbar-logo { flex-shrink: 0; }
-.topbar-logo img { width: 40px; height: 40px; border-radius: 10px; }
+.topbar-logo { flex-shrink: 0; display: inline-flex; align-items: center; }
+.topbar-logo img { width: 44px; height: 44px; display: block; }
 .topbar-search { flex: 1; min-width: 0; }
 .search-grad-wrap {
   display: block; padding: 1.5px;
@@ -35,7 +39,65 @@ img { display: block; }
 .topbar-bell {
   flex-shrink: 0; width: 32px; height: 32px;
   display: inline-flex; align-items: center; justify-content: center;
-  font-size: 20px; background: transparent;
+  background: transparent;
+}
+.topbar-bell svg { display: block; }
+
+/* ===== Banner Carousel (앱 StackAdCard 동일 톤) ===== */
+.banner-wrap {
+  position: relative; overflow: hidden;
+  margin: 6px 16px 14px;
+  border-radius: 14px;
+}
+.banner-track {
+  display: flex;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.banner-slide {
+  flex: 0 0 100%;
+  position: relative; display: block;
+  border-radius: 14px; overflow: hidden;
+}
+.banner-img {
+  width: 100%; aspect-ratio: 16/7;
+  object-fit: cover; display: block;
+  background: #f0f0f0;
+}
+.banner-overlay {
+  position: absolute; left: 16px; right: 16px; bottom: 14px;
+  color: #fff;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+}
+.banner-title { font-size: 16px; font-weight: 800; margin-bottom: 2px; letter-spacing: -0.2px; }
+.banner-sub { font-size: 12px; opacity: 0.95; }
+.banner-dots {
+  display: flex; gap: 5px; justify-content: center;
+  margin-top: 8px;
+}
+.banner-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #DDD;
+  transition: background 0.3s, width 0.3s;
+}
+.banner-dot.active { background: #0B9A61; width: 18px; border-radius: 3px; }
+
+/* ===== Search Page ===== */
+.search-form { padding: 12px 20px 8px; }
+.search-inner-input { padding: 0 8px 0 14px; gap: 6px; }
+.search-input {
+  flex: 1; min-width: 0;
+  border: none; outline: none;
+  font-size: 15px; background: transparent;
+  height: 100%; color: #1A1A1A;
+  font-family: inherit;
+}
+.search-input::placeholder { color: #6B6B6B; font-size: 14px; }
+.search-clear {
+  flex-shrink: 0; width: 24px; height: 24px;
+  border-radius: 50%; border: none;
+  background: #F0F0F0; color: #666;
+  font-size: 16px; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
 }
 
 /* ===== Section header (앱 sectionHeader: paddingHorizontal 20, marginBottom 12, marginTop 8) ===== */
@@ -87,15 +149,37 @@ img { display: block; }
   font-weight: 700; font-size: 16px;
 }
 
-/* ===== Best Card (앱: 190x180, dark bg + image fill + gradient overlay) ===== */
+/* ===== Hscroll wrapper (가로 스크롤 + 데스크톱용 좌우 화살표) ===== */
+.hscroll-wrap { position: relative; }
 .hscroll {
   display: flex; gap: 12px;
   overflow-x: auto; overflow-y: hidden;
   padding: 0 16px 12px;
   scroll-snap-type: x proximity;
   scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
 }
 .hscroll::-webkit-scrollbar { display: none; }
+
+/* 화살표 버튼 — 모바일에서는 숨김 */
+.hscroll-btn {
+  display: none;
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 40px; height: 40px; border-radius: 50%;
+  border: none; background: rgba(255,255,255,0.95);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+  color: #1A1A1A; font-size: 22px; font-weight: 700;
+  cursor: pointer; z-index: 5;
+  align-items: center; justify-content: center;
+  line-height: 1;
+}
+.hscroll-btn-prev { left: 4px; }
+.hscroll-btn-next { right: 4px; }
+.hscroll-btn:hover { background: #FFFFFF; transform: translateY(-50%) scale(1.05); }
+.hscroll-btn:active { transform: translateY(-50%) scale(0.95); }
+@media (min-width: 900px) {
+  .hscroll-btn { display: inline-flex; }
+}
 .best-card {
   flex-shrink: 0; position: relative;
   width: 190px; height: 180px;
@@ -281,3 +365,76 @@ img { display: block; }
 /* ===== Footer ===== */
 .footer { padding: 20px 20px 24px; text-align: center; font-size: 11px; color: #BDBDBD; line-height: 1.6; }
 .footer a { color: #888; }
+
+/* ============================================================
+ * Desktop layout (>= 900px) — 모바일 톤은 유지하되 화면 너비 활용
+ * ============================================================ */
+@media (min-width: 900px) {
+  body { padding-bottom: 100px; }
+
+  .topbar { padding: 14px 32px; height: 76px; }
+  .topbar-logo img { width: 44px; height: 44px; }
+  .search-grad-wrap { height: 44px; }
+  .search-placeholder { font-size: 15px; }
+
+  /* 카테고리 — 한 줄 10개 */
+  .cat-grid { grid-template-columns: repeat(10, 1fr); padding: 16px 32px 24px; gap: 4px; }
+  .cat-icon { width: 64px; height: 64px; border-radius: 18px; }
+  .cat-icon img { border-radius: 18px; }
+  .cat-label { font-size: 14px; }
+
+  /* 배너 — 와이드 비율 */
+  .banner-wrap { margin: 12px 32px 24px; border-radius: 18px; }
+  .banner-img { aspect-ratio: 21/7; }
+  .banner-title { font-size: 22px; }
+  .banner-sub { font-size: 14px; }
+  .banner-overlay { left: 28px; right: 28px; bottom: 22px; }
+
+  /* 섹션 헤더 */
+  .section-header { padding: 16px 32px 16px; }
+  .section-title { font-size: 22px; }
+
+  /* 가로 스크롤 섹션 — 패딩만 키우고 같은 카드 크기 유지 (카드가 자연스럽게 더 보임) */
+  .hscroll { padding: 0 32px 16px; gap: 16px; }
+
+  /* 베스트 카드 살짝 키움 */
+  .best-card { width: 240px; height: 220px; }
+  .best-title { font-size: 16px; }
+  .best-rating, .best-meta { font-size: 12px; }
+
+  /* 작은 카드 살짝 키움 */
+  .sm-card { width: 180px; }
+  .sm-name { font-size: 16px; }
+  .sm-meta { font-size: 12px; }
+
+  /* 그리드(카테고리·검색 페이지) — 4열 */
+  .recipe-grid { grid-template-columns: repeat(4, 1fr); padding: 0 32px 24px; gap: 24px 18px; }
+
+  /* 카테고리 hero */
+  .cat-hero { padding: 24px 32px 28px; }
+  .cat-hero-icon { width: 76px; height: 76px; border-radius: 22px; }
+  .cat-hero-title { font-size: 28px; }
+  .cat-hero-sub { font-size: 14px; }
+
+  /* 레시피 상세 */
+  .detail { padding: 28px 32px 40px; max-width: 760px; margin: 0 auto; }
+  .detail .title { font-size: 28px; }
+  .hero-img { max-height: 480px; }
+
+  /* 검색 폼 */
+  .search-form { padding: 20px 32px 12px; max-width: 720px; margin: 0 auto; }
+  .search-form .search-grad-wrap { height: 48px; }
+  .search-input, .search-placeholder { font-size: 16px; }
+
+  /* 푸터 + CTA 배너 */
+  .footer { padding: 32px 32px 40px; font-size: 12px; }
+  .cta-banner-inner { max-width: 1100px; }
+  .cta-msg b { font-size: 15px; }
+  .cta-msg span { font-size: 12px; }
+  .cta-btn { padding: 12px 22px; font-size: 14px; }
+}
+
+/* 아주 넓은 화면(>= 1400px) — 그리드 5열 */
+@media (min-width: 1400px) {
+  .recipe-grid { grid-template-columns: repeat(5, 1fr); }
+}

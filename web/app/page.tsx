@@ -3,7 +3,7 @@ import Footer from './Footer';
 import CtaBanner from './CtaBanner';
 import BestCard from './BestCard';
 import SmallCard from './SmallCard';
-import AiCard from './AiCard';
+import Hscroll from './Hscroll';
 import { CATEGORIES, fetchHomeSections } from '@/lib/api';
 
 export const revalidate = 300; // 5분 ISR
@@ -27,16 +27,13 @@ export default async function HomePage() {
           ))}
         </div>
 
-        {/* AI 추천 */}
-        <AiCard />
-
         {/* 베스트 레시피 */}
         {best.length > 0 && (
           <>
             <div className="section-header"><h2 className="section-title">베스트 레시피</h2></div>
-            <div className="hscroll">
+            <Hscroll>
               {best.map((r) => <BestCard key={r.id} r={r} />)}
-            </div>
+            </Hscroll>
           </>
         )}
 
@@ -44,9 +41,9 @@ export default async function HomePage() {
         {recommended.length > 0 && (
           <>
             <div className="section-header"><h2 className="section-title">추천 레시피</h2></div>
-            <div className="hscroll">
+            <Hscroll>
               {recommended.map((r) => <SmallCard key={r.id} r={r} />)}
-            </div>
+            </Hscroll>
           </>
         )}
 
@@ -54,9 +51,9 @@ export default async function HomePage() {
         {quick.length > 0 && (
           <>
             <div className="section-header"><h2 className="section-title">초스피드 요리</h2></div>
-            <div className="hscroll">
+            <Hscroll>
               {quick.map((r) => <SmallCard key={r.id} r={r} />)}
-            </div>
+            </Hscroll>
           </>
         )}
 
@@ -64,9 +61,9 @@ export default async function HomePage() {
         {snack.length > 0 && (
           <>
             <div className="section-header"><h2 className="section-title">인기 간식</h2></div>
-            <div className="hscroll">
+            <Hscroll>
               {snack.map((r) => <SmallCard key={r.id} r={r} />)}
-            </div>
+            </Hscroll>
           </>
         )}
 
@@ -74,9 +71,9 @@ export default async function HomePage() {
         {weekly.length > 0 && (
           <>
             <div className="section-header"><h2 className="section-title">이번 주 레시피</h2></div>
-            <div className="hscroll">
+            <Hscroll>
               {weekly.map((r) => <SmallCard key={r.id} r={r} />)}
-            </div>
+            </Hscroll>
           </>
         )}
       </main>
