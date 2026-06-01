@@ -6,6 +6,8 @@ import RecipeCard from '../RecipeCard';
 import SearchBox from './SearchBox';
 import { fetchAllRecipes } from '@/lib/api';
 
+// Cloudflare Pages 는 동적 라우트가 Edge Runtime 사용해야 함.
+export const runtime = 'edge';
 export const revalidate = 300;
 
 export const metadata: Metadata = {
