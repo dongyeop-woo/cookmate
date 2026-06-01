@@ -2,7 +2,10 @@
 # Next.js (App Router) 가 Node.js API 일부에 의존하기 때문에 필수.
 # 이 파일이 있으면 대시보드에서 따로 설정할 필요 없음.
 
+# Cloudflare Pages 설정은 대시보드에서 관리.
+# 이 파일을 strict 모드로 활성화하면 모든 dynamic route 가 edge runtime
+# 이어야 빌드가 통과되는데, 그러면 sitemap/홈 등이 깨져 빌드 실패함.
+# 따라서 invalid 상태로 두어 Pages 가 무시하게 함 (대시보드 설정 사용).
 name = "yojalal"
 compatibility_date = "2025-01-01"
 compatibility_flags = ["nodejs_compat"]
-pages_build_output_dir = ".vercel/output/static"
