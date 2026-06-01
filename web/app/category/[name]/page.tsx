@@ -34,8 +34,13 @@ export default async function CategoryPage({ params }: Props) {
 
   let recipes: Awaited<ReturnType<typeof fetchRecipesByCategory>> = [];
   let authorImages: Record<string, string> = {};
-  try { recipes = await fetchRecipesByCategory(name); } catch (e) { console.warn('category recipes fail:', e); }
-  try { authorImages = await fetchAuthorImageMap(); } catch (e) { console.warn('author images fail:', e); }
+  let debugError = '';
+  try { recipes = await fetchRecipesByCategory(name); } catch (e) {
+    debugError += `[recipes] ${e instanceof Error ? e.message + '\n' + (e.stack ?? '') : String(e)}\n`;
+  }
+  try { authorImages = await fetchAuthorImageMap(); } catch (e) {
+    debugError += `[authors] ${e instanceof Error ? e.message + '\n' + (e.stack ?? '') : String(e)}\n`;
+  }
 
   return (
     <>
@@ -45,6 +50,11 @@ export default async function CategoryPage({ params }: Props) {
           <div className="cat-hero-icon"><img src={`/img/${iconFile}`} alt={name} /></div>
           <h1 className="cat-hero-title">{name}</h1>
           <p className="cat-hero-sub">총 {recipes.length}개 레시피</p>
+          {debugError && (
+            <pre style={{ background: '#fee', color: '#900', padding: 12, fontSize: 12, whiteSpace: 'pre-wrap', textAlign: 'left' }}>
+              {debugError}
+            </pre>
+          )}
         </section>
 
         <section className="section">
