@@ -46,9 +46,9 @@ export type Recipe = {
 type FetchOpts = { next?: { revalidate?: number } };
 
 async function get<T>(path: string, opts: FetchOpts = {}): Promise<T> {
-  const res = await fetch(`${API_BASE}${path}`, {
-    next: opts.next ?? { revalidate: 300 },
-  });
+  // Edge runtime 에선 next.revalidate 캐시 어댑터가 Cloudflare KV 미설정 시
+  // 폭발하므로 cache: 'no-store' 로 우회. 캐시는 Cloudflare 가 알아서 함.
+  const res = await fetch(`${API_BASE}${path}`, { cache: 'no-store' });
   if (!res.ok) throw new Error(`API ${path} → ${res.status}`);
   return res.json();
 }
@@ -140,7 +140,7 @@ export async function fetchTopUsers(limit = 20): Promise<UserProfile[]> {
 export async function fetchRecipeViewCount(id: string): Promise<number> {
   try {
     const res = await fetch(`${API_BASE}/api/web/recipe-view/${encodeURIComponent(id)}`, {
-      next: { revalidate: 15 },
+      cache: 'no-store',
     });
     if (!res.ok) return 0;
     const data = await res.json();
@@ -153,9 +153,7 @@ export async function fetchRecipeViewCount(id: string): Promise<number> {
 /** 조회수 상위 N개 — {id, count} 리스트. */
 export async function fetchTopViewed(limit = 5): Promise<{ id: string; count: number }[]> {
   try {
-    return await get<{ id: string; count: number }[]>(`/api/web/top-viewed?limit=${limit}`, {
-      next: { revalidate: 60 }, // 1분 캐시
-    });
+    return await get<{ id: string; count: number }[]>(`/api/web/top-viewed?limit=${limit}`);
   } catch {
     return [];
   }
