@@ -27,12 +27,8 @@ export default async function CategoryPage({ params }: Props) {
 
   let recipes: Awaited<ReturnType<typeof fetchRecipesByCategory>> = [];
   let authorImages: Record<string, string> = {};
-  try {
-    [recipes, authorImages] = await Promise.all([
-      fetchRecipesByCategory(name),
-      fetchAuthorImageMap(),
-    ]);
-  } catch {}
+  try { recipes = await fetchRecipesByCategory(name); } catch {}
+  try { authorImages = await fetchAuthorImageMap(); } catch {}
 
   return (
     <>

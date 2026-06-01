@@ -70,12 +70,12 @@ function jsonLd(r: Recipe, id: string) {
 }
 
 export default async function RecipePage({ params }: Props) {
-  const [r, authorImages, viewCount] = await Promise.all([
-    fetchRecipe(params.id),
-    fetchAuthorImageMap(),
-    fetchRecipeViewCount(params.id),
-  ]);
+  const r = await fetchRecipe(params.id);
   if (!r) notFound();
+  let authorImages: Record<string, string> = {};
+  let viewCount = 0;
+  try { authorImages = await fetchAuthorImageMap(); } catch {}
+  try { viewCount = await fetchRecipeViewCount(params.id); } catch {}
 
   const heroImg = r.image && r.image.length > 0 ? r.image : '/img/app-icon.png';
   const authorImage = r.author ? authorImages[r.author] : undefined;

@@ -21,12 +21,8 @@ export default async function SearchPage({ searchParams }: Props) {
 
   let all: Awaited<ReturnType<typeof fetchAllRecipes>> = [];
   let authorImages: Record<string, string> = {};
-  try {
-    [all, authorImages] = await Promise.all([
-      fetchAllRecipes(),
-      fetchAuthorImageMap(),
-    ]);
-  } catch {}
+  try { all = await fetchAllRecipes(); } catch {}
+  try { authorImages = await fetchAuthorImageMap(); } catch {}
 
   const results = q
     ? all.filter((r) => {
