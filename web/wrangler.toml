@@ -1,0 +1,13 @@
+# Cloudflare Pages 설정 — nodejs_compat 호환성 플래그.
+# Next.js (App Router) 가 Node.js API 일부에 의존하기 때문에 필수.
+# 이 파일이 있으면 대시보드에서 따로 설정할 필요 없음.
+
+name = "yojalal"
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+[env.production]
+compatibility_flags = ["nodejs_compat"]
+
+[env.preview]
+compatibility_flags = ["nodejs_compat"]
