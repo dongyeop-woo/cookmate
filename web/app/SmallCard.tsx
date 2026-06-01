@@ -4,10 +4,10 @@ import { Recipe, diffColor } from '@/lib/api';
 const FALLBACK = '/img/app-icon.png';
 
 /**
- * 그리드 셀로 쓰는 레시피 카드 — SmallCard 와 동일 구조.
- * 카테고리 페이지 등 2열 그리드에서 사용.
+ * 작은 레시피 카드 — 앱의 SmallRecipeCard 동일 디자인 (가로 스크롤용).
+ * 정사각 이미지 + 제목 1줄 + ★평점·♥좋아요·작성자 + 난이도·시간·칼로리
  */
-export default function RecipeCard({ r }: { r: Recipe }) {
+export default function SmallCard({ r }: { r: Recipe }) {
   const img = r.image && r.image.length > 0 ? r.image : FALLBACK;
   const rating = r.reviewAvgRating ?? r.rating ?? 0;
   return (

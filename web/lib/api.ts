@@ -30,6 +30,8 @@ export type Recipe = {
   servings?: string | number;
   rating?: number;
   likes?: number;
+  reviewAvgRating?: number;
+  reviewCount?: number;
   image?: string;
   category?: string;
   description?: string;
@@ -42,7 +44,6 @@ type FetchOpts = { next?: { revalidate?: number } };
 
 async function get<T>(path: string, opts: FetchOpts = {}): Promise<T> {
   const res = await fetch(`${API_BASE}${path}`, {
-    // 기본 5분 캐시 — Cloudflare/Next 모두 활용. 작성/수정 빈도 낮은 레시피용.
     next: opts.next ?? { revalidate: 300 },
   });
   if (!res.ok) throw new Error(`API ${path} → ${res.status}`);
@@ -65,11 +66,51 @@ export async function fetchRecipesByCategory(category: string): Promise<Recipe[]
   return get(`/api/recipes/category/${encodeURIComponent(category)}`);
 }
 
-export async function fetchPopularRecipes(limit = 12): Promise<Recipe[]> {
-  const all = await fetchAllRecipes();
-  return [...all]
+/** 데일리/위클리 셔플용 시드 — 앱과 동일하게 일/주 단위로 결정적 셔플. */
+function daySeed(): number {
+  const d = new Date();
+  return d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
+}
+function weekSeed(): number {
+  const d = new Date();
+  const start = new Date(d.getFullYear(), 0, 1);
+  const days = Math.floor((d.getTime() - start.getTime()) / 86400000);
+  return d.getFullYear() * 100 + Math.floor(days / 7);
+}
+function seededShuffle<T>(arr: T[], seed: number): T[] {
+  const out = [...arr];
+  let s = seed;
+  for (let i = out.length - 1; i > 0; i--) {
+    s = (s * 9301 + 49297) % 233280;
+    const j = Math.floor((s / 233280) * (i + 1));
+    [out[i], out[j]] = [out[j], out[i]];
+  }
+  return out;
+}
+
+/** 앱의 home sections 와 동일 알고리즘으로 묶어서 반환. */
+export async function fetchHomeSections() {
+  let recipes: Recipe[] = [];
+  try { recipes = await fetchAllRecipes(); } catch {}
+
+  const best = [...recipes]
     .sort((a, b) => (b.likes ?? 0) - (a.likes ?? 0))
-    .slice(0, limit);
+    .slice(0, 10);
+
+  const recommended = seededShuffle(recipes, daySeed()).slice(0, 8);
+
+  const quick = [...recipes]
+    .filter((r) => r.time <= 15)
+    .sort((a, b) => a.time - b.time)
+    .slice(0, 8);
+
+  const snack = recipes
+    .filter((r) => r.category === '간식' || r.category === '디저트')
+    .slice(0, 8);
+
+  const weekly = seededShuffle(recipes, weekSeed()).slice(0, 8);
+
+  return { recipes, best, recommended, quick, snack, weekly };
 }
 
 export type CategoryDef = { name: string; icon: string };
