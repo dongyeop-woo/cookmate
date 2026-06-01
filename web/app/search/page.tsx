@@ -3,7 +3,6 @@ import Topbar from '../Topbar';
 import Footer from '../Footer';
 import CtaBanner from '../CtaBanner';
 import RecipeCard from '../RecipeCard';
-import SearchBox from './SearchBox';
 import { fetchAllRecipes } from '@/lib/api';
 
 // Cloudflare Pages 는 동적 라우트가 Edge Runtime 사용해야 함.
@@ -42,7 +41,6 @@ export default async function SearchPage({ searchParams }: Props) {
     <>
       <Topbar />
       <main>
-        <SearchBox initialQuery={q} />
         {q ? (
           <>
             <div className="section-header">
@@ -57,7 +55,7 @@ export default async function SearchPage({ searchParams }: Props) {
             )}
           </>
         ) : (
-          <div className="empty">레시피 이름, 재료, 카테고리로 검색해보세요.</div>
+          <div className="empty">위 검색창에 레시피 이름, 재료, 카테고리를 입력해보세요.</div>
         )}
       </main>
       <Footer />

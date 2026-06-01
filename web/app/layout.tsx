@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { AuthProvider } from './AuthProvider';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://yojalal.com'),
@@ -21,7 +22,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ko">
       <body>
-        <div className="page">{children}</div>
+        <AuthProvider>
+          <div className="page">{children}</div>
+        </AuthProvider>
       </body>
     </html>
   );

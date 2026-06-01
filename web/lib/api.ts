@@ -113,6 +113,52 @@ export async function fetchHomeSections() {
   return { recipes, best, recommended, quick, snack, weekly };
 }
 
+export type UserProfile = {
+  uid?: string;
+  nickname?: string;
+  profileImage?: string;
+  bio?: string;
+  followers?: string[];
+  recipeCount?: number;
+  totalLikes?: number;
+  role?: string;
+  gender?: string;
+};
+
+export async function fetchTopUsers(limit = 20): Promise<UserProfile[]> {
+  try {
+    return await get<UserProfile[]>(`/api/users/top?limit=${limit}`);
+  } catch {
+    return [];
+  }
+}
+
+/** 작성자 닉네임 → 프로필 이미지 URL 맵. 카드 렌더링용. */
+export async function fetchAuthorImageMap(): Promise<Record<string, string>> {
+  const users = await fetchTopUsers(50);
+  const map: Record<string, string> = {};
+  for (const u of users) {
+    if (!u.nickname) continue;
+    const img = resolveProfileImage(u.profileImage, u.gender);
+    if (img) map[u.nickname] = img;
+  }
+  return map;
+}
+
+/**
+ * 프로필 이미지 URL 해석 — http URL이면 그대로,
+ * 그 외(default / null / undefined)는 성별 기반 기본 아바타로 폴백.
+ * 앱의 isRemoteProfileImage + 기본 girl.png/man.png 로직을 그대로 옮김.
+ */
+export function resolveProfileImage(profileImage?: string, gender?: string): string {
+  if (profileImage && profileImage !== 'default' && profileImage.startsWith('http')) {
+    return profileImage;
+  }
+  if (gender === 'female') return '/img/girl.png';
+  if (gender === 'male') return '/img/man.png';
+  return '/img/logo-removebg-preview.png';
+}
+
 export type CategoryDef = { name: string; icon: string };
 
 /** 앱의 HOME_CATEGORIES 와 동일 순서. icon 은 /public/img/ 파일명. */

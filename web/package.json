@@ -10,6 +10,7 @@
     "pages:deploy": "npm run pages:build && npx wrangler pages deploy .vercel/output/static --project-name=yojalal"
   },
   "dependencies": {
+    "firebase": "^12.14.0",
     "next": "^15.3.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
