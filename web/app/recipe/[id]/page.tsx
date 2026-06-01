@@ -2,7 +2,9 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Topbar from '../../Topbar';
 import Footer from '../../Footer';
-import { fetchRecipe, fetchAllRecipes, Recipe, formatTime, diffColor } from '@/lib/api';
+import ChefAvatar from '../../ChefAvatar';
+import RecipeViewTracker from '../../RecipeViewTracker';
+import { fetchRecipe, fetchAllRecipes, fetchAuthorImageMap, Recipe, formatTime, diffColor } from '@/lib/api';
 
 export const revalidate = 300;
 
@@ -64,12 +66,12 @@ function jsonLd(r: Recipe, id: string) {
       text: s.description ?? '',
     })),
     url: `https://yojalal.com/recipe/${id}`,
-    ...(r.rating && r.rating > 0
+    ...((r.reviewAvgRating ?? r.rating ?? 0) > 0
       ? {
           aggregateRating: {
             '@type': 'AggregateRating',
-            ratingValue: r.rating.toFixed(1),
-            reviewCount: String(Math.max(1, r.likes ?? 0)),
+            ratingValue: (r.reviewAvgRating ?? r.rating ?? 0).toFixed(1),
+            reviewCount: String(Math.max(1, r.reviewCount ?? r.likes ?? 1)),
           },
         }
       : {}),
@@ -77,28 +79,35 @@ function jsonLd(r: Recipe, id: string) {
 }
 
 export default async function RecipePage({ params }: Props) {
-  const r = await fetchRecipe(params.id);
+  const [r, authorImages] = await Promise.all([
+    fetchRecipe(params.id),
+    fetchAuthorImageMap(),
+  ]);
   if (!r) notFound();
 
   const heroImg = r.image && r.image.length > 0 ? r.image : '/img/app-icon.png';
-  const authorInitial = (r.author ?? '?').charAt(0).toUpperCase();
+  const authorImage = r.author ? authorImages[r.author] : undefined;
   const ingredients = r.ingredients ?? [];
   const steps = r.steps ?? [];
 
   return (
     <>
+      <RecipeViewTracker id={params.id} />
       <Topbar />
       <img className="hero-img" src={heroImg} alt={r.title} />
       <main className="detail">
         <h1 className="title">{r.title}</h1>
 
         <div className="stat-row">
-          <span><span className="star">★</span> {(r.rating ?? 0).toFixed(1)}</span>
+          <span>
+            <span className="star">★</span> {(r.reviewAvgRating ?? r.rating ?? 0).toFixed(1)}
+            {' '}<span className="rating-count">({(r.reviewCount ?? 0) > 99 ? '99+' : r.reviewCount ?? 0})</span>
+          </span>
           <span><span className="heart">♥</span> {r.likes ?? 0}</span>
         </div>
 
         <div className="author">
-          <span className="avatar">{authorInitial}</span>
+          <ChefAvatar className="avatar avatar-img" profileImage={authorImage} alt={r.author ?? ''} />
           <span>{r.author ?? '요잘알'}</span>
         </div>
 

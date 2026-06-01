@@ -31,3 +31,6 @@ out/
 
 ### Firebase (절대 커밋하지 마세요) ###
 src/main/resources/firebase-service-account.json
+
+### 로컬 비밀 설정 (Solapi 등 API 키) ###
+src/main/resources/application-local.properties

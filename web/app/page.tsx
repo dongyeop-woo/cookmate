@@ -4,7 +4,6 @@ import BestCard from './BestCard';
 import SmallCard from './SmallCard';
 import Hscroll from './Hscroll';
 import Sidebar from './Sidebar';
-import BannerCarousel from './BannerCarousel';
 import { CATEGORIES, fetchHomeSections, fetchTopUsers, fetchAuthorImageMap } from '@/lib/api';
 
 export const revalidate = 300;
@@ -35,8 +34,6 @@ export default async function HomePage() {
               </a>
             ))}
           </div>
-
-          <BannerCarousel />
 
           {best.length > 0 && (
             <Hscroll title="베스트 레시피">

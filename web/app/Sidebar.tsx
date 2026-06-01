@@ -1,6 +1,6 @@
-import SidebarLogin from './SidebarLogin';
 import ChefAvatar from './ChefAvatar';
 import AppDownloadModal from './AppDownloadModal';
+import VisitorStatsBox from './VisitorStatsBox';
 import { Recipe, UserProfile, CATEGORIES, formatTime } from '@/lib/api';
 
 const FALLBACK = '/img/app-icon.png';
@@ -19,9 +19,6 @@ type Props = {
 export default function Sidebar({ todayPick, popular, topUsers = [], authorImages = {} }: Props) {
   return (
     <aside className="sidebar">
-      {/* 로그인 박스 (클라이언트 컴포넌트, auth state 반영) */}
-      <SidebarLogin />
-
       {/* 앱 설치 프로모 박스 */}
       <div className="side-box">
         <div className="side-promo">
@@ -129,6 +126,9 @@ export default function Sidebar({ todayPick, popular, topUsers = [], authorImage
           </ul>
         </div>
       )}
+
+      {/* 방문자 통계 (인기 TOP 5 아래) */}
+      <VisitorStatsBox />
     </aside>
   );
 }

@@ -26,12 +26,16 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
 
 	// Firebase Admin SDK
 	implementation 'com.google.firebase:firebase-admin:9.4.3'
 
-	// CoolSMS (Solapi)
-	implementation 'net.nurigo:sdk:4.3.0'
+	// Solapi (알림톡/SMS) SDK
+	implementation 'net.nurigo:sdk:4.3.1'
+
+	// 이미지 리사이즈 — 업로드 시 max 1200px로 줄여 저장 (무료, 추가 인프라 불필요)
+	implementation 'net.coobird:thumbnailator:0.4.20'
 
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'

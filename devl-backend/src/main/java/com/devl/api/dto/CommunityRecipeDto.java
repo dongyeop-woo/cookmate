@@ -20,6 +20,9 @@ public class CommunityRecipeDto {
     private String category;
     private int time;
     private String difficulty;
+    // 레거시 데이터는 int, 신규 데이터는 "3~4" 같은 String도 허용 (Object로 받음)
+    private Object servings;
+    private int calories;
     private String image;
     private List<IngredientDto> ingredients;
     private List<StepDto> steps;
@@ -27,6 +30,13 @@ public class CommunityRecipeDto {
     private List<RatingDto> ratings;
     private List<QuestionDto> questions;
     private int likes;
+    private String status;
+    private String rejectionReason;
+    private List<String> images;
+    private Integer reviewCount;
+    private String approvedAt;
+    private Double reviewAvgRating;
+    private List<String> tags;
 
     @Data
     @Builder
@@ -44,6 +54,8 @@ public class CommunityRecipeDto {
     public static class StepDto {
         private String description;
         private int time;
+        private String imageUrl; // 선택적 단계별 사진 URL (Firebase Storage)
+        private Boolean isAiImage; // true면 사진 위에 'AI 참고 이미지' 라벨 표시
     }
 
     @Data
