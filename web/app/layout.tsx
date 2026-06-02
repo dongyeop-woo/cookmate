@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   twitter: { card: 'summary_large_image' },
   icons: { icon: '/img/app-icon.png' },
   // iOS Safari Smart App Banner 는 자체 배너(AndroidAppBanner)와 중복되어 제거.
+  other: {
+    'naver-site-verification': 'f3ce9d08e93e4c40d2c94e866fce037a85f9b733',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
