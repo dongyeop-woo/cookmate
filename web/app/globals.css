@@ -17,7 +17,7 @@ img { display: block; }
 
 /* ===== Topbar (앱 header — paddingHorizontal 20, height 56) ===== */
 .visitor-row {
-  display: flex; justify-content: space-between; align-items: center;
+  display: flex; justify-content: flex-end; align-items: center; gap: 10px;
   padding: 20px 20px 0;
   background: #FFFFFF;
 }
@@ -484,12 +484,9 @@ img { display: block; }
 .catbar-item span {
   font-size: 13px; font-weight: 600; white-space: nowrap;
 }
-@media (max-width: 480px) {
-  .catbar { top: 70px; }
-  .catbar-inner { padding: 8px 10px; }
-  .catbar-item { min-width: 60px; padding: 6px 10px; }
-  .catbar-item img { width: 32px; height: 32px; }
-  .catbar-item span { font-size: 11.5px; }
+/* 모바일에선 홈의 cat-grid-mobile 그리드가 있으니 가로 줄은 PC 전용 */
+@media (max-width: 768px) {
+  .catbar { display: none; }
 }
 
 .kakao-cb {

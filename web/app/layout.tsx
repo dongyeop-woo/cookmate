@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   },
   twitter: { card: 'summary_large_image' },
   icons: { icon: '/img/app-icon.png' },
-  other: { 'apple-itunes-app': 'app-id=6761661890' },
+  // iOS Safari Smart App Banner 는 자체 배너(AndroidAppBanner)와 중복되어 제거.
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
