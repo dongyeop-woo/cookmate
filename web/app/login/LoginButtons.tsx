@@ -102,8 +102,11 @@ export default function LoginButtons() {
     }
     // v2 SDK 는 popup 미지원. authorization code grant (redirect) 만 가능.
     // 콜백 페이지에서 code → token 교환 후 Firebase Custom Token 으로 로그인.
+    // localhost 가 아니면 https 강제 (카카오 등록 URI 와 정확히 일치해야 함).
+    const isLocal = window.location.hostname === 'localhost' || /^\d{1,3}(\.\d{1,3}){3}$/.test(window.location.hostname);
+    const origin = isLocal ? window.location.origin : window.location.origin.replace(/^http:\/\//, 'https://');
     window.Kakao.Auth.authorize({
-      redirectUri: `${window.location.origin}/login/kakao-callback`,
+      redirectUri: `${origin}/login/kakao-callback`,
       scope: 'profile_nickname,account_email',
     });
   };

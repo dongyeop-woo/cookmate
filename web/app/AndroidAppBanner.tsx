@@ -20,7 +20,13 @@ export default function AndroidAppBanner() {
     if (typeof window === 'undefined' || typeof navigator === 'undefined') return;
     const ua = navigator.userAgent || '';
     const isAndroid = /Android/i.test(ua);
-    const isIOS = /iPad|iPhone|iPod/i.test(ua);
+    // iPadOS 13+ 는 기본 desktop 모드 UA 라 "iPad" 가 없음.
+    // Macintosh + 터치 지원 (maxTouchPoints>1) 으로 보조 감지.
+    const isIPadDesktopMode =
+      /Macintosh/i.test(ua) &&
+      typeof navigator.maxTouchPoints === 'number' &&
+      navigator.maxTouchPoints > 1;
+    const isIOS = /iPad|iPhone|iPod/i.test(ua) || isIPadDesktopMode;
     // in-app WebView 만 정확히 매칭 (일반 Chrome 잘못 거르지 않게)
     const isInApp = /;\s*wv\)/i.test(ua);
     if (isInApp) return;

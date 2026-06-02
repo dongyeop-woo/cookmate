@@ -34,13 +34,16 @@ export default function KakaoCallbackClient() {
     (async () => {
       try {
         // 1) code → access_token (카카오 토큰 엔드포인트, Client Secret OFF 가정)
+        // authorize 시 보낸 것과 정확히 동일한 redirect_uri 여야 함 (https 강제)
+        const isLocal = window.location.hostname === 'localhost' || /^\d{1,3}(\.\d{1,3}){3}$/.test(window.location.hostname);
+        const origin = isLocal ? window.location.origin : window.location.origin.replace(/^http:\/\//, 'https://');
         const tokenRes = await fetch('https://kauth.kakao.com/oauth/token', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: new URLSearchParams({
             grant_type: 'authorization_code',
             client_id: KAKAO_JS_KEY,
-            redirect_uri: `${window.location.origin}/login/kakao-callback`,
+            redirect_uri: `${origin}/login/kakao-callback`,
             code,
           }).toString(),
         });

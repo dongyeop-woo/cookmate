@@ -14,11 +14,12 @@ export default function MobileLoginButton() {
 
   if (firebaseUser && userProfile) {
     const img = resolveProfileImage(userProfile.profileImage, userProfile.gender);
+    const points = (userProfile.points ?? 0).toLocaleString();
     return (
-      <a className="mobile-login mobile-login-user" href="/profile" aria-label="내 프로필">
+      <span className="mobile-login mobile-login-user">
         <img src={img} alt="" />
-        <span>{userProfile.nickname ?? '회원'}</span>
-      </a>
+        <span>{userProfile.nickname ?? '회원'} · {points}P</span>
+      </span>
     );
   }
 
