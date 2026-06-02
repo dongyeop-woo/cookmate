@@ -37,13 +37,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 function jsonLd(r: Recipe, id: string) {
   const totalMin = Math.max(1, Math.round(r.time));
+  const recipeUrl = `https://yojalal.com/recipe/${id}`;
+  const fallbackImg = 'https://yojalal.com/img/app-icon.png';
+
+  const keywordList = [
+    ...(r.tags ?? []),
+    r.category,
+    r.difficulty,
+    r.author,
+  ].filter((v): v is string => !!v && v.trim().length > 0);
+
   return {
     '@context': 'https://schema.org/',
     '@type': 'Recipe',
     name: r.title,
-    image: r.image ? [r.image] : ['https://yojalal.com/img/app-icon.png'],
+    image: r.image ? [r.image] : [fallbackImg],
     author: { '@type': 'Person', name: r.author ?? '요잘알' },
     description: r.description?.replace(/<[^>]+>/g, '').slice(0, 200) ?? `${r.title} 레시피`,
+    keywords: keywordList.length > 0 ? keywordList.join(', ') : `${r.title}, 레시피, ${r.category ?? '한식'}`,
     recipeCategory: r.category ?? '한식',
     recipeCuisine: '한식',
     totalTime: `PT${totalMin}M`,
@@ -52,12 +63,19 @@ function jsonLd(r: Recipe, id: string) {
     recipeIngredient: (r.ingredients ?? []).map((i) =>
       `${i.name ?? ''} ${i.amount ?? ''}`.trim()
     ),
-    recipeInstructions: (r.steps ?? []).map((s, i) => ({
-      '@type': 'HowToStep',
-      position: s.step ?? i + 1,
-      text: s.description ?? '',
-    })),
-    url: `https://yojalal.com/recipe/${id}`,
+    recipeInstructions: (r.steps ?? []).map((s, i) => {
+      const pos = s.step ?? i + 1;
+      const stepImg = s.imageUrl && !s.imageUrl.startsWith('file://') ? s.imageUrl : fallbackImg;
+      return {
+        '@type': 'HowToStep',
+        position: pos,
+        name: `${pos}단계`,
+        text: s.description ?? '',
+        url: `${recipeUrl}#step-${pos}`,
+        image: stepImg,
+      };
+    }),
+    url: recipeUrl,
     ...((r.reviewAvgRating ?? r.rating ?? 0) > 0
       ? {
           aggregateRating: {
@@ -166,9 +184,10 @@ export default async function RecipePage({ params }: Props) {
               const t = (s.time ?? 0) >= 1
                 ? `${formatTime(s.time!)}분`
                 : Math.round((s.time ?? 0) * 60) + '초';
+              const pos = s.step ?? idx + 1;
               return (
-                <div key={idx} className="step">
-                  <div className="step-num">{s.step ?? idx + 1}</div>
+                <div key={idx} id={`step-${pos}`} className="step">
+                  <div className="step-num">{pos}</div>
                   <div className="step-body">
                     {s.imageUrl && !s.imageUrl.startsWith('file://') && (
                       <img className="step-photo" src={s.imageUrl} alt={`step ${idx + 1}`} loading="lazy" />
