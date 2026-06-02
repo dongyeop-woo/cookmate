@@ -365,6 +365,22 @@ img { display: block; }
 .detail .ingredient:last-child { border-bottom: none; }
 .detail .ingredient .name { color: #1A1A1A; font-weight: 600; }
 .detail .ingredient .amount { color: #777; font-weight: 500; }
+.detail .ingredient-right {
+  display: inline-flex; align-items: center; gap: 10px;
+}
+.detail .ingredient-buy {
+  display: inline-flex; align-items: center; gap: 3px;
+  background: #1BAE74; color: #fff;
+  font-size: 11px; font-weight: 700;
+  padding: 4px 8px; border-radius: 12px;
+  text-decoration: none; line-height: 1;
+  transition: background 0.15s;
+}
+.detail .ingredient-buy:hover { background: #0B9A61; }
+.detail .coupang-disclosure {
+  font-size: 10px; color: #9E9E9E; line-height: 1.4;
+  margin-top: 12px;
+}
 .detail .step { display: flex; gap: 14px; margin-bottom: 22px; }
 .detail .step-num {
   flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%;

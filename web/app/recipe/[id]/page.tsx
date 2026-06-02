@@ -166,12 +166,33 @@ export default async function RecipePage({ params }: Props) {
         <section className="section">
           <h2 className="section-title">재료</h2>
           {ingredients.length > 0 ? (
-            ingredients.map((i, idx) => (
-              <div key={idx} className="ingredient">
-                <span className="name">{i.name}</span>
-                <span className="amount">{i.amount}</span>
-              </div>
-            ))
+            <>
+              {ingredients.map((i, idx) => (
+                <div key={idx} className="ingredient">
+                  <span className="name">{i.name}</span>
+                  <span className="ingredient-right">
+                    <span className="amount">{i.amount}</span>
+                    <a
+                      className="ingredient-buy"
+                      href={`https://www.coupang.com/np/search?q=${encodeURIComponent(i.name ?? '')}&lptag=AF8701960`}
+                      target="_blank"
+                      rel="nofollow sponsored noopener"
+                      aria-label={`${i.name} 쿠팡에서 구매`}
+                    >
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                        <circle cx="9" cy="21" r="1" />
+                        <circle cx="20" cy="21" r="1" />
+                        <path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6" />
+                      </svg>
+                      구매
+                    </a>
+                  </span>
+                </div>
+              ))}
+              <p className="coupang-disclosure">
+                구매 버튼은 쿠팡파트너스 활동의 일환으로, 일정액의 수수료를 제공받습니다.
+              </p>
+            </>
           ) : (
             <div className="empty">재료 정보가 없습니다.</div>
           )}
