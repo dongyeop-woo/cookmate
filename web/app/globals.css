@@ -397,6 +397,50 @@ img { display: block; }
   transition: background 0.15s;
 }
 .detail .ingredient-buy:hover { background: #0B9A61; }
+/* ===== 검색창 아래 카테고리 가로 줄 ===== */
+.catbar {
+  background: #FFFFFF;
+  border-bottom: 1px solid #F0F0F0;
+  position: sticky; top: 78px; z-index: 9;
+}
+.catbar-inner {
+  display: flex; align-items: center;
+  justify-content: space-evenly;
+  gap: 4px;
+  padding: 8px 20px;
+  max-width: 1280px;
+  margin: 0 auto;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.catbar-inner::-webkit-scrollbar { display: none; }
+@media (max-width: 768px) {
+  .catbar-inner { justify-content: flex-start; }
+}
+.catbar-item {
+  flex-shrink: 0;
+  display: inline-flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 10px 14px;
+  text-decoration: none; color: #1A1A1A;
+  border-radius: 12px;
+  transition: background 0.15s;
+  min-width: 76px;
+}
+.catbar-item:hover { background: #F5F5F5; }
+.catbar-item img {
+  width: 42px; height: 42px; object-fit: contain;
+}
+.catbar-item span {
+  font-size: 13px; font-weight: 600; white-space: nowrap;
+}
+@media (max-width: 480px) {
+  .catbar { top: 70px; }
+  .catbar-inner { padding: 8px 10px; }
+  .catbar-item { min-width: 60px; padding: 6px 10px; }
+  .catbar-item img { width: 32px; height: 32px; }
+  .catbar-item span { font-size: 11.5px; }
+}
+
 .kakao-cb {
   display: flex; align-items: center; justify-content: center;
   min-height: 60vh; font-size: 14px; color: #666;

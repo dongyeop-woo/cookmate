@@ -1,7 +1,7 @@
 import ChefAvatar from './ChefAvatar';
 import AppDownloadModal from './AppDownloadModal';
 import SidebarLogin from './SidebarLogin';
-import { Recipe, UserProfile, CATEGORIES, formatTime } from '@/lib/api';
+import { Recipe, UserProfile, formatTime } from '@/lib/api';
 
 const FALLBACK = '/img/app-icon.png';
 
@@ -91,19 +91,6 @@ export default function Sidebar({ topViewed, popular, topUsers = [], authorImage
           </ul>
         </div>
       )}
-
-      {/* 카테고리 모음 */}
-      <div className="side-box">
-        <div className="side-header"><h3 className="side-title">카테고리</h3></div>
-        <div className="side-cat-grid">
-          {CATEGORIES.map((c) => (
-            <a key={c.name} className="side-cat-item" href={`/category/${encodeURIComponent(c.name)}`}>
-              <img src={`/img/${c.icon}`} alt={c.name} loading="lazy" />
-              <span>{c.name}</span>
-            </a>
-          ))}
-        </div>
-      </div>
 
       {/* 인기 TOP 5 */}
       {popular.length > 0 && (

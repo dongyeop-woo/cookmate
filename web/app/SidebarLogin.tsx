@@ -1,13 +1,42 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { useAuth } from './AuthProvider';
-import { resolveProfileImage } from '@/lib/api';
+import { API_BASE, resolveProfileImage } from '@/lib/api';
 
 /**
  * 사이드바 로그인 박스 — 로그인 상태면 프로필/로그아웃, 아니면 로그인/회원가입 버튼.
+ * 레시피 수는 앱 프로필 페이지와 동일 방식으로 클라이언트에서 계산
+ * (일반 레시피 author=nickname + 승인된 커뮤니티 레시피).
  */
 export default function SidebarLogin() {
   const { firebaseUser, userProfile, loading, logout } = useAuth();
+  const [computedRecipeCount, setComputedRecipeCount] = useState<number | null>(null);
+
+  useEffect(() => {
+    const nickname = userProfile?.nickname;
+    const uid = firebaseUser?.uid;
+    if (!nickname || !uid) {
+      setComputedRecipeCount(null);
+      return;
+    }
+    let cancelled = false;
+    (async () => {
+      try {
+        const [regResp, commResp] = await Promise.all([
+          fetch(`${API_BASE}/api/recipes`),
+          fetch(`${API_BASE}/api/community/my/${encodeURIComponent(uid)}`),
+        ]);
+        if (cancelled) return;
+        const allReg: any[] = regResp.ok ? await regResp.json() : [];
+        const myComm: any[] = commResp.ok ? await commResp.json() : [];
+        const myReg = allReg.filter((r) => r.author === nickname).length;
+        const myCommApproved = myComm.filter((r) => r.status === 'approved' || !r.status).length;
+        if (!cancelled) setComputedRecipeCount(myReg + myCommApproved);
+      } catch {}
+    })();
+    return () => { cancelled = true; };
+  }, [userProfile?.nickname, firebaseUser?.uid]);
 
   if (loading) {
     return (
@@ -31,7 +60,7 @@ export default function SidebarLogin() {
           <div className="side-login-text">
             <div className="side-login-title">{userProfile.nickname ?? '회원'}</div>
             <div className="side-login-sub">
-              레시피 {userProfile.recipeCount ?? 0} · ♥ {userProfile.totalLikes ?? 0} · {(userProfile.points ?? 0).toLocaleString()}P
+              레시피 {computedRecipeCount ?? userProfile.recipeCount ?? 0} · ♥ {userProfile.totalLikes ?? 0} · {(userProfile.points ?? 0).toLocaleString()}P
             </div>
           </div>
         </div>

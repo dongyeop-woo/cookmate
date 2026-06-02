@@ -1,9 +1,10 @@
 import { Suspense } from 'react';
 import TopbarSearch from './TopbarSearch';
 import VisitorStatsBox from './VisitorStatsBox';
+import CategoryBar from './CategoryBar';
 
 /**
- * 헤더: 방문자 띠 + (outline 로고 + 검색바).
+ * 헤더: 방문자(우측) + (로고 + 검색바) + 카테고리 가로 줄.
  */
 export default function Topbar() {
   return (
@@ -19,6 +20,7 @@ export default function Topbar() {
           <TopbarSearch />
         </Suspense>
       </header>
+      <CategoryBar />
     </>
   );
 }
