@@ -1,6 +1,5 @@
 import ChefAvatar from './ChefAvatar';
 import AppDownloadModal from './AppDownloadModal';
-import VisitorStatsBox from './VisitorStatsBox';
 import { Recipe, UserProfile, CATEGORIES, formatTime } from '@/lib/api';
 
 const FALLBACK = '/img/app-icon.png';
@@ -130,8 +129,6 @@ export default function Sidebar({ topViewed, popular, topUsers = [], authorImage
         </div>
       )}
 
-      {/* 방문자 통계 (인기 TOP 5 아래) */}
-      <VisitorStatsBox />
     </aside>
   );
 }

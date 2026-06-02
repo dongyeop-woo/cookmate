@@ -16,6 +16,19 @@ img { display: block; }
 }
 
 /* ===== Topbar (앱 header — paddingHorizontal 20, height 56) ===== */
+.visitor-bar {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 6px 20px;
+  background: #F0FAF5;
+  font-size: 12px; color: #1A1A1A;
+  border-bottom: 1px solid #E1F1E8;
+}
+.visitor-bar-item { color: #555; }
+.visitor-bar-item strong {
+  color: #0B9A61; font-weight: 700; margin: 0 2px;
+}
+.visitor-bar-sep { color: #C5D9CE; }
+
 .topbar {
   display: flex; align-items: center; gap: 10px;
   padding: 18px 20px 12px; height: 78px;
