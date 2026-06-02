@@ -8,7 +8,9 @@ import VisitorStatsBox from './VisitorStatsBox';
 export default function Topbar() {
   return (
     <>
-      <VisitorStatsBox variant="bar" />
+      <div className="visitor-row">
+        <VisitorStatsBox variant="bar" />
+      </div>
       <header className="topbar">
         <a className="topbar-logo" href="/" aria-label="요잘알 홈">
           <img src="/img/appIcon-padded.png" alt="요잘알" />

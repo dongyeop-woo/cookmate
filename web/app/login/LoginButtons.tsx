@@ -1,18 +1,60 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import {
+  GoogleAuthProvider,
+  OAuthProvider,
+  signInWithPopup,
+  signInWithCustomToken,
+} from 'firebase/auth';
 import { getFirebaseAuth } from '@/lib/firebase';
 import { API_BASE } from '@/lib/api';
 
-/**
- * 웹은 Google 로그인만 지원. Kakao/Apple 은 앱에서만.
- */
+declare global {
+  interface Window {
+    Kakao: any;
+  }
+}
+
+const KAKAO_JS_KEY = process.env.NEXT_PUBLIC_KAKAO_JS_KEY ?? '';
+
 export default function LoginButtons() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Kakao SDK 로드 (한 번만)
+  useEffect(() => {
+    if (!KAKAO_JS_KEY || typeof window === 'undefined') return;
+    if (window.Kakao?.isInitialized?.()) return;
+    if (document.getElementById('kakao-sdk')) return;
+    const script = document.createElement('script');
+    script.id = 'kakao-sdk';
+    script.src = 'https://t1.kakaocdn.net/kakao_js_sdk/2.7.4/kakao.min.js';
+    script.async = true;
+    script.onload = () => {
+      if (window.Kakao && !window.Kakao.isInitialized()) {
+        window.Kakao.init(KAKAO_JS_KEY);
+      }
+    };
+    document.head.appendChild(script);
+  }, []);
+
+  const routeAfterLogin = async (uid: string) => {
+    const token = await getFirebaseAuth().currentUser?.getIdToken();
+    const res = await fetch(`${API_BASE}/api/users/${encodeURIComponent(uid)}`, {
+      headers: token ? { Authorization: `Bearer ${token}` } : undefined,
+    });
+    if (res.ok) {
+      const profile = await res.json();
+      if (profile && !profile.withdrawnAt) {
+        router.replace('/');
+        return;
+      }
+    }
+    router.replace('/signup');
+  };
 
   const handleGoogle = async () => {
     if (loading) return;
@@ -22,23 +64,72 @@ export default function LoginButtons() {
       const provider = new GoogleAuthProvider();
       provider.setCustomParameters({ prompt: 'select_account' });
       const result = await signInWithPopup(getFirebaseAuth(), provider);
-      const token = await result.user.getIdToken();
-      const res = await fetch(`${API_BASE}/api/users/${encodeURIComponent(result.user.uid)}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      if (res.ok) {
-        const profile = await res.json();
-        if (profile && !profile.withdrawnAt) {
-          router.replace('/');
-          return;
-        }
-      }
-      router.replace('/signup');
+      await routeAfterLogin(result.user.uid);
     } catch (e: any) {
       console.warn('Google login failed:', e);
       if (e?.code !== 'auth/popup-closed-by-user') {
-        setError('로그인에 실패했어요. 잠시 후 다시 시도해주세요.');
+        setError('Google 로그인에 실패했어요. 잠시 후 다시 시도해주세요.');
       }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleApple = async () => {
+    if (loading) return;
+    setLoading(true);
+    setError(null);
+    try {
+      const provider = new OAuthProvider('apple.com');
+      provider.addScope('email');
+      provider.addScope('name');
+      const result = await signInWithPopup(getFirebaseAuth(), provider);
+      await routeAfterLogin(result.user.uid);
+    } catch (e: any) {
+      console.warn('Apple login failed:', e);
+      if (e?.code !== 'auth/popup-closed-by-user') {
+        setError('Apple 로그인에 실패했어요. 잠시 후 다시 시도해주세요.');
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleKakao = async () => {
+    if (loading) return;
+    if (typeof window === 'undefined' || !window.Kakao?.Auth) {
+      setError('Kakao SDK 로딩 중이에요. 잠시 후 다시 시도해주세요.');
+      return;
+    }
+    setLoading(true);
+    setError(null);
+    try {
+      const authResp: any = await new Promise((resolve, reject) => {
+        window.Kakao.Auth.login({
+          scope: 'profile_nickname,account_email',
+          success: resolve,
+          fail: reject,
+        });
+      });
+      const accessToken = authResp?.access_token;
+      if (!accessToken) throw new Error('No Kakao access token');
+
+      // 백엔드 → Firebase Custom Token 발급 (앱과 동일 엔드포인트)
+      const res = await fetch(`${API_BASE}/api/auth/kakao`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ accessToken }),
+      });
+      if (!res.ok) throw new Error(`/api/auth/kakao → ${res.status}`);
+      const data = await res.json();
+      const firebaseToken = data.firebaseToken;
+      if (!firebaseToken) throw new Error('No firebaseToken in response');
+
+      const cred = await signInWithCustomToken(getFirebaseAuth(), firebaseToken);
+      await routeAfterLogin(cred.user.uid);
+    } catch (e: any) {
+      console.warn('Kakao login failed:', e);
+      setError('카카오 로그인에 실패했어요. 잠시 후 다시 시도해주세요.');
     } finally {
       setLoading(false);
     }
@@ -46,6 +137,30 @@ export default function LoginButtons() {
 
   return (
     <div className="auth-icons">
+      <button
+        type="button"
+        className="auth-icon-btn auth-icon-kakao"
+        onClick={handleKakao}
+        disabled={loading}
+        aria-label="카카오로 로그인"
+      >
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="#191919">
+          <path d="M12 3C6.48 3 2 6.58 2 11c0 2.86 1.91 5.36 4.78 6.78l-.97 3.55c-.09.32.26.58.55.4l4.26-2.81c.46.05.92.08 1.38.08 5.52 0 10-3.58 10-8s-4.48-8-10-8z" />
+        </svg>
+      </button>
+
+      <button
+        type="button"
+        className="auth-icon-btn auth-icon-apple"
+        onClick={handleApple}
+        disabled={loading}
+        aria-label="Apple로 로그인"
+      >
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="#000000">
+          <path d="M17.05 12.04c-.02-2.59 2.12-3.83 2.21-3.89-1.21-1.76-3.08-2-3.75-2.03-1.59-.16-3.11.93-3.92.93-.81 0-2.07-.91-3.4-.89-1.75.03-3.36 1.01-4.26 2.57-1.82 3.15-.46 7.81 1.31 10.36.86 1.25 1.89 2.65 3.24 2.6 1.3-.05 1.79-.84 3.36-.84s2.02.84 3.4.81c1.4-.02 2.29-1.27 3.15-2.52 1-1.45 1.41-2.85 1.43-2.92-.03-.01-2.74-1.05-2.77-4.18zM14.55 4.39c.72-.87 1.2-2.09 1.07-3.3-1.04.04-2.29.69-3.03 1.56-.66.77-1.24 2-1.08 3.19 1.16.09 2.34-.59 3.04-1.45z" />
+        </svg>
+      </button>
+
       <button
         type="button"
         className="auth-icon-btn auth-icon-google"

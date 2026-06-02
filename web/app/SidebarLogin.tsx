@@ -31,7 +31,7 @@ export default function SidebarLogin() {
           <div className="side-login-text">
             <div className="side-login-title">{userProfile.nickname ?? '회원'}</div>
             <div className="side-login-sub">
-              레시피 {userProfile.recipeCount ?? 0} · ♥ {userProfile.totalLikes ?? 0}
+              레시피 {userProfile.recipeCount ?? 0} · ♥ {userProfile.totalLikes ?? 0} · {(userProfile.points ?? 0).toLocaleString()}P
             </div>
           </div>
         </div>

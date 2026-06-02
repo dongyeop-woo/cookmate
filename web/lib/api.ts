@@ -124,6 +124,7 @@ export type UserProfile = {
   followers?: string[];
   recipeCount?: number;
   totalLikes?: number;
+  points?: number;
   role?: string;
   gender?: string;
 };

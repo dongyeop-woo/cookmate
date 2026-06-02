@@ -1,5 +1,6 @@
 import ChefAvatar from './ChefAvatar';
 import AppDownloadModal from './AppDownloadModal';
+import SidebarLogin from './SidebarLogin';
 import { Recipe, UserProfile, CATEGORIES, formatTime } from '@/lib/api';
 
 const FALLBACK = '/img/app-icon.png';
@@ -18,6 +19,9 @@ type Props = {
 export default function Sidebar({ topViewed, popular, topUsers = [], authorImages = {} }: Props) {
   return (
     <aside className="sidebar">
+      {/* 로그인 박스 (auth state 반영) */}
+      <SidebarLogin />
+
       {/* 앱 설치 프로모 박스 */}
       <div className="side-box">
         <div className="side-promo">
@@ -63,7 +67,7 @@ export default function Sidebar({ topViewed, popular, topUsers = [], authorImage
         <div className="side-box">
           <div className="side-header"><h3 className="side-title">Top 셰프</h3></div>
           <ul className="side-chef-list">
-            {topUsers.slice(0, 6).map((u) => (
+            {topUsers.slice(0, 4).map((u) => (
               <li key={u.uid ?? u.nickname}>
                 <div className="side-chef side-chef-static">
                   <ChefAvatar
