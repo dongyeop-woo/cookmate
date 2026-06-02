@@ -6,7 +6,6 @@ import {
   GoogleAuthProvider,
   OAuthProvider,
   signInWithPopup,
-  signInWithCustomToken,
 } from 'firebase/auth';
 import { getFirebaseAuth } from '@/lib/firebase';
 import { API_BASE } from '@/lib/api';
@@ -95,44 +94,18 @@ export default function LoginButtons() {
     }
   };
 
-  const handleKakao = async () => {
+  const handleKakao = () => {
     if (loading) return;
     if (typeof window === 'undefined' || !window.Kakao?.Auth) {
       setError('Kakao SDK 로딩 중이에요. 잠시 후 다시 시도해주세요.');
       return;
     }
-    setLoading(true);
-    setError(null);
-    try {
-      const authResp: any = await new Promise((resolve, reject) => {
-        window.Kakao.Auth.login({
-          scope: 'profile_nickname,account_email',
-          success: resolve,
-          fail: reject,
-        });
-      });
-      const accessToken = authResp?.access_token;
-      if (!accessToken) throw new Error('No Kakao access token');
-
-      // 백엔드 → Firebase Custom Token 발급 (앱과 동일 엔드포인트)
-      const res = await fetch(`${API_BASE}/api/auth/kakao`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ accessToken }),
-      });
-      if (!res.ok) throw new Error(`/api/auth/kakao → ${res.status}`);
-      const data = await res.json();
-      const firebaseToken = data.firebaseToken;
-      if (!firebaseToken) throw new Error('No firebaseToken in response');
-
-      const cred = await signInWithCustomToken(getFirebaseAuth(), firebaseToken);
-      await routeAfterLogin(cred.user.uid);
-    } catch (e: any) {
-      console.warn('Kakao login failed:', e);
-      setError('카카오 로그인에 실패했어요. 잠시 후 다시 시도해주세요.');
-    } finally {
-      setLoading(false);
-    }
+    // v2 SDK 는 popup 미지원. authorization code grant (redirect) 만 가능.
+    // 콜백 페이지에서 code → token 교환 후 Firebase Custom Token 으로 로그인.
+    window.Kakao.Auth.authorize({
+      redirectUri: `${window.location.origin}/login/kakao-callback`,
+      scope: 'profile_nickname,account_email',
+    });
   };
 
   return (

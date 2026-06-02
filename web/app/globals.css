@@ -397,6 +397,12 @@ img { display: block; }
   transition: background 0.15s;
 }
 .detail .ingredient-buy:hover { background: #0B9A61; }
+.kakao-cb {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 60vh; font-size: 14px; color: #666;
+}
+.kakao-cb-err { color: #E74C3C; font-weight: 600; }
+
 .detail .coupang-disclosure {
   font-size: 10px; color: #9E9E9E; line-height: 1.4;
   margin-top: 12px;
