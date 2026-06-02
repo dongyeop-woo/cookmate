@@ -17,9 +17,29 @@ img { display: block; }
 
 /* ===== Topbar (앱 header — paddingHorizontal 20, height 56) ===== */
 .visitor-row {
-  display: flex; justify-content: flex-end;
+  display: flex; justify-content: space-between; align-items: center;
   padding: 20px 20px 0;
   background: #FFFFFF;
+}
+.mobile-login {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 700; color: #0B9A61;
+  text-decoration: none; white-space: nowrap;
+}
+.mobile-login-user img {
+  width: 22px; height: 22px; border-radius: 50%;
+  object-fit: cover;
+}
+.mobile-login-user span {
+  color: #1A1A1A; font-weight: 700;
+  max-width: 100px; overflow: hidden; text-overflow: ellipsis;
+}
+.mobile-login-skeleton {
+  width: 50px; height: 16px;
+  background: #F0F0F0; border-radius: 4px;
+}
+@media (min-width: 769px) {
+  .mobile-login { display: none; }
 }
 .visitor-bar {
   display: inline-flex; align-items: center; gap: 6px;
@@ -397,6 +417,37 @@ img { display: block; }
   transition: background 0.15s;
 }
 .detail .ingredient-buy:hover { background: #0B9A61; }
+/* ===== 안드로이드 앱 다운로드 배너 (iOS Smart App Banner 흉내) ===== */
+.aab {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 10px;
+  background: #F2F2F2;
+  border-bottom: 1px solid #E0E0E0;
+  font-size: 13px;
+}
+.aab-close {
+  flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 24px; height: 24px;
+  background: transparent; border: 0; cursor: pointer;
+  padding: 0;
+}
+.aab-icon {
+  flex-shrink: 0;
+  width: 40px; height: 40px;
+  border-radius: 9px;
+  object-fit: cover;
+}
+.aab-text { flex: 1; min-width: 0; }
+.aab-title { font-weight: 700; color: #1A1A1A; }
+.aab-sub { font-size: 11px; color: #888; }
+.aab-open {
+  flex-shrink: 0;
+  background: transparent; border: 0;
+  color: #0B9A61; font-weight: 700; font-size: 14px;
+  padding: 6px 10px; cursor: pointer;
+}
+
 /* ===== 검색창 아래 카테고리 가로 줄 ===== */
 .catbar {
   background: #FFFFFF;
