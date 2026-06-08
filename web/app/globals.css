@@ -518,15 +518,6 @@ img { display: block; }
 }
 .kakao-cb-err { color: #E74C3C; font-weight: 600; }
 
-.coupang-banner {
-  display: flex; justify-content: center;
-  margin: 18px 0;
-}
-.coupang-banner iframe {
-  display: block;
-  border: 0;
-  max-width: 100%;
-}
 .adfit-banner {
   display: flex; justify-content: center;
   margin: 18px 0;

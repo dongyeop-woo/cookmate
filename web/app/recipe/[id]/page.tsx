@@ -4,7 +4,6 @@ import Topbar from '../../Topbar';
 import Footer from '../../Footer';
 import ChefAvatar from '../../ChefAvatar';
 import RecipeViewTracker from '../../RecipeViewTracker';
-import CoupangBanner from '../../CoupangBanner';
 import AdFitBanner from '../../AdFitBanner';
 import { fetchRecipe, fetchAuthorImageMap, fetchRecipeViewCount, Recipe, formatTime, diffColor } from '@/lib/api';
 
@@ -200,7 +199,7 @@ export default async function RecipePage({ params }: Props) {
           )}
         </section>
 
-        <CoupangBanner />
+        <AdFitBanner />
 
         <section className="section">
           <h2 className="section-title">조리 순서</h2>
@@ -227,8 +226,6 @@ export default async function RecipePage({ params }: Props) {
             <div className="empty">조리 순서 정보가 없습니다.</div>
           )}
         </section>
-
-        <AdFitBanner />
       </main>
 
       <Footer />
