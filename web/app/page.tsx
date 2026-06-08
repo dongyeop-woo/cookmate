@@ -10,7 +10,7 @@ export const runtime = 'edge';
 export const revalidate = 300;
 
 export default async function HomePage() {
-  const [sections, authorImages, topUsers, topViewed] = await Promise.all([
+  const [sections, authorImages, topUsersRaw, topViewed] = await Promise.all([
     fetchHomeSections(),
     fetchAuthorImageMap(),
     fetchTopUsers(8),
@@ -18,6 +18,21 @@ export default async function HomePage() {
   ]);
   const { best, recommended, quick, snack, weekly } = sections;
   const popular = best.slice(0, 5);
+
+  // admin 작성자는 백엔드 recipeCount 가 0 인 채로 있어서
+  // 일반 레시피 author 매칭 카운트와 최댓값으로 보정.
+  const recipeCountByAuthor = new Map<string, number>();
+  for (const r of sections.recipes) {
+    if (!r.author) continue;
+    recipeCountByAuthor.set(r.author, (recipeCountByAuthor.get(r.author) ?? 0) + 1);
+  }
+  const topUsers = topUsersRaw.map((u) => ({
+    ...u,
+    recipeCount: Math.max(
+      u.recipeCount ?? 0,
+      u.nickname ? (recipeCountByAuthor.get(u.nickname) ?? 0) : 0,
+    ),
+  }));
 
   return (
     <>
