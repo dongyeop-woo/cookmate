@@ -26,7 +26,7 @@ const NOTICES = [
   '이벤트 참여 시 작성해주신 리뷰는 요잘알 마케팅 활용 목적으로 사용될 수 있으며, 이벤트 응모 시 이에 동의한 것으로 간주합니다.',
   '이벤트 응모 시 오기재 된 정보 및 휴대폰 설정으로 인한 경품 미제공은 당사가 책임지지 않습니다.',
   '이벤트 참여 시 욕설, 비방, 부적절하거나 타인에게 피해를 줄 수 있는 내용이 담겨 있는 리뷰는 사전 안내 없이 삭제 조치될 수 있습니다.',
-  '당첨자 발표: 2026.07.07 앱 공지사항',
+  '당첨자 발표: 2026.07.13 앱 공지사항',
 ];
 
 const PRIVACY = [
@@ -50,7 +50,7 @@ export default function EventReviewPage() {
             요잘알이<br />요리 재료 쏜다!
           </h1>
           <p className="event-subtitle">감사의 마음을 담아, 푸짐한 경품을 드려요</p>
-          <div className="event-period-badge">26.05.01 (금) ~ 26.06.30 (화)</div>
+          <div className="event-period-badge">26.06.08 (월) ~ 26.07.10 (금)</div>
         </section>
 
         {/* 인트로 */}
@@ -70,7 +70,7 @@ export default function EventReviewPage() {
         <section className="event-card">
           <div className="event-badge">📅 이벤트 기간</div>
           <div className="event-card-label">참여 기간</div>
-          <div className="event-card-value">26.05.01 (금) ~ 26.06.30 (화)</div>
+          <div className="event-card-value">26.06.08 (월) ~ 26.07.10 (금)</div>
         </section>
 
         {/* 참여 대상 */}
