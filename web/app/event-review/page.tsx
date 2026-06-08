@@ -14,9 +14,9 @@ export const metadata: Metadata = {
 };
 
 const PRIZES = [
-  { rank: '1등', bg: '#FFD700', name: '신세계 상품권 5만원', count: '1명' },
-  { rank: '2등', bg: '#C0C0C0', name: '신세계 상품권 1만원', count: '5명' },
-  { rank: '3등', bg: '#CD7F32', name: '요잘알 포인트 1,000P', count: '100명' },
+  { rank: '1등', bg: '#FFD700', name: '신세계 상품권 5만원', count: '2명' },
+  { rank: '2등', bg: '#C0C0C0', name: '신세계 상품권 1만원', count: '10명' },
+  { rank: '3등', bg: '#CD7F32', name: '요잘알 포인트 1,000P', count: '90명' },
 ];
 
 const NOTICES = [
@@ -45,7 +45,7 @@ export default function EventReviewPage() {
         {/* 타이틀 섹션 */}
         <section className="event-title-section">
           <div className="event-label">[이벤트] 요잘알 앱 리뷰 이벤트</div>
-          <div className="event-date">26.05.01</div>
+          <div className="event-date">26.06.08</div>
           <h1 className="event-title">
             요잘알이<br />요리 재료 쏜다!
           </h1>
