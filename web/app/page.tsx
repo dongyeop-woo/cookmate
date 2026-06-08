@@ -4,6 +4,8 @@ import BestCard from './BestCard';
 import SmallCard from './SmallCard';
 import Hscroll from './Hscroll';
 import Sidebar from './Sidebar';
+import CoupangBanner from './CoupangBanner';
+import AdFitBanner from './AdFitBanner';
 import { CATEGORIES, fetchHomeSections, fetchTopUsers, fetchAuthorImageMap, fetchTopViewedRecipes } from '@/lib/api';
 
 export const runtime = 'edge';
@@ -57,6 +59,8 @@ export default async function HomePage() {
             </Hscroll>
           )}
 
+          <CoupangBanner />
+
           {recommended.length > 0 && (
             <Hscroll title="추천 레시피">
               {recommended.map((r) => <SmallCard key={r.id} r={r} authorImage={r.author ? authorImages[r.author] : undefined} />)}
@@ -68,6 +72,8 @@ export default async function HomePage() {
               {quick.map((r) => <SmallCard key={r.id} r={r} authorImage={r.author ? authorImages[r.author] : undefined} />)}
             </Hscroll>
           )}
+
+          <AdFitBanner />
 
           {snack.length > 0 && (
             <Hscroll title="인기 간식">
