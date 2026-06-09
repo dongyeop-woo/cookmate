@@ -2,8 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-const PC_ID = 'DAN-PxPrfiRVWpmBh8R1';
-const MOBILE_ID = 'DAN-WIst3CCypa8GIv85';
+const PC_ID = 'DAN-RYfbmFO3NhCyDegS';
+const MOBILE_ID = 'DAN-e3rUCOmWP0UpZfcL';
 
 /**
  * 카카오 AdFit 디스플레이 배너.
