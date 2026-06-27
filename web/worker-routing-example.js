@@ -22,7 +22,8 @@ const CLOUDRUN_PATHS = [
   /^\/profile\//,
   /^\/app-ads\.txt$/,
   /^\/robots\.txt$/,
-  /^\/\.well-known\//,
+  // .well-known 은 Pages 가 처리 — assetlinks.json (Android App Links),
+  // apple-app-site-association (iOS Universal Links) 등 모두 web/public 에 호스팅
 ];
 
 function shouldGoToCloudRun(pathname) {

@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.dyw.cookmate",
+      "sha256_cert_fingerprints": [
+        "E5:B6:D1:AA:73:7D:C4:19:47:CE:B6:82:26:6C:6F:B0:CF:E2:95:4E:6A:03:E3:CB:EA:2D:7A:74:EF:A2:94:48"
+      ]
+    }
+  }
+]
