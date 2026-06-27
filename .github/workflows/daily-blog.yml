@@ -1,0 +1,51 @@
+name: 매일 블로그 자동 발행
+
+on:
+  schedule:
+    # 매일 00:00 UTC = 09:00 KST
+    - cron: '0 0 * * *'
+  workflow_dispatch: # 수동 실행 가능 (Actions 탭에서 "Run workflow")
+
+permissions:
+  contents: write
+
+jobs:
+  generate-and-publish:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+
+    steps:
+      - name: 체크아웃
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 1
+
+      - name: Node 셋업
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 의존성 설치
+        run: npm ci --no-audit --no-fund
+
+      - name: 블로그 글 생성 (Claude API)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/gen-blog-post.mjs
+
+      - name: 변경사항 커밋 + 푸시
+        run: |
+          cd ..
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add web/content/blog/ web/lib/blog-index.ts
+          if git diff --staged --quiet; then
+            echo "변경사항 없음 (스크립트가 글 생성 못한 듯)"
+            exit 1
+          fi
+          DATE=$(date -u +%Y-%m-%d)
+          git commit -m "blog: 자동 발행 ${DATE}"
+          git push

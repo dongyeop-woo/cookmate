@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "firebase": "^12.14.0",
+    "gray-matter": "^4.0.3",
+    "marked": "^18.0.5",
     "next": "^15.3.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
