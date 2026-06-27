@@ -109,32 +109,51 @@ function buildPrompt(date, keyword, recentSlugs, recipes) {
   const recipesBlock = recipeContextBlock(recipes);
   const firstImage = recipes[0]?.image ?? 'https://yojalal.com/img/app-icon.png';
 
-  return `당신은 한국의 인기 요리 매거진 "요잘알 매거진(yojalal.com/blog)"의 시니어 에디터입니다.
-오늘(${dateStr}) 발행할 블로그 글 한 편을 작성하세요.
+  return `당신은 한국 인기 요리 매거진 "요잘알 매거진"의 시니어 에디터입니다.
+오늘(${dateStr}) 발행할 **쇼츠 스타일 큐레이션** 블로그 글을 작성하세요.
 
-# 핵심 주제 키워드
+# 가장 중요 — 쇼츠/SNS 시대 스타일
+- 사용자는 긴 글 안 읽어요. **스크롤하면서 이미지+한 줄 코멘트** 위주로 봅니다.
+- 텍스트는 최소화, **레시피 카드(이미지) 다수**가 핵심.
+- 한 단락은 **1~2줄**. 절대 4줄 넘기지 마세요.
+- 본문 총 글자 수는 **500~900자 사이** (frontmatter 제외).
+
+# 키워드
 "${keyword}"
 
-# 활용 가능한 요잘알 실제 레시피 (본문에 자연스럽게 2~4개 인용 권장)
+# 활용 가능한 요잘알 레시피 (8개 중 4~6개를 본문에 카드로 박으세요)
 ${recipesBlock}
 
-# 작성 요구사항
-1. **톤**: 가이드/정보 제공형. "...해보세요", "...할 수 있습니다" 톤. 친근하지만 신뢰감 있게.
-2. **분량**: 1800~2500자.
-3. **글 구조** (반드시):
-   - YAML frontmatter (가장 먼저)
-   - "## 들어가며" — 왜 이 주제가 지금 시기에 의미 있는지
-   - "## " 헤더 3~5개로 본문 분할 — 각 섹션 3~5 단락
-   - **본문 중간중간 (최소 2~4회) "추천 레시피" 카드 마크업 삽입** (아래 형식 그대로)
-   - "## 마치며" — 결론 + 요잘알 앱/사이트 자연스러운 안내
-4. **SEO**: 제목·description에 키워드 분포. tags 4~6개 (한글).
-5. **고유성**: 기존 글과 중복 X. 최근 글 slug:
-   ${recentSlugs.slice(0, 10).join(', ') || '(없음)'}
+# 글 구조 (반드시 이 틀로)
+\`\`\`
+---
+[frontmatter — 아래 형식]
+---
 
-# 레시피 카드 마크업 (가장 중요 — 본문 중간중간 반드시 삽입)
-위 "활용 가능한 레시피" 중 글 흐름에 자연스러운 것 2~4개를 골라
-다음 HTML 형식으로 본문에 그대로 박으세요 (Markdown 안에 HTML 사용 OK):
+## 들어가며
 
+(2~3줄 짧은 도입. 왜 지금 이 주제가 필요한지.)
+
+## 1. [메뉴 이름]
+
+[레시피 카드 HTML]
+
+**핵심 팁**: (1~2줄, 굵게 처리한 짧은 포인트)
+
+## 2. [메뉴 이름]
+
+[레시피 카드 HTML]
+
+**핵심 팁**: (1~2줄)
+
+... (총 4~6개 메뉴 반복)
+
+## 마치며
+
+(2~3줄. 요잘알 앱 자연스러운 안내.)
+\`\`\`
+
+# 레시피 카드 마크업 (이거만 정확히 따르면 됨)
 <a class="blog-recipe-card" href="LINK">
   <img src="IMAGE_URL" alt="TITLE">
   <div class="blog-recipe-card-body">
@@ -144,13 +163,12 @@ ${recipesBlock}
   </div>
 </a>
 
-LINK/IMAGE_URL/TITLE/TIME/DIFFICULTY/KCAL/DESC 자리에 위 레시피 목록의
-실제 값을 그대로 채우세요. 카드는 단락과 단락 사이에 배치하세요.
+위 8개 레시피의 LINK/IMAGE_URL/TITLE/TIME/DIFFICULTY/KCAL/DESC 값을 그대로 사용.
 
-# frontmatter 형식 (반드시)
+# frontmatter (반드시 이 형식)
 ---
-title: 글 제목 (한글)
-description: 150자 이내 한 줄 설명
+title: 글 제목 (15자 내외, 키워드 + 숫자 강조 예: "여름 5분 면 BEST 5")
+description: 100자 이내 한 줄 설명
 date: ${dateStr}
 slug: short-english-slug-with-hyphens
 tags:
@@ -161,11 +179,18 @@ tags:
 image: ${firstImage}
 ---
 
-- slug 는 반드시 영문+숫자+하이픈만. 30자 이내.
-- image 는 위 frontmatter 예시처럼 실제 레시피 이미지 URL 그대로 사용 (앱 아이콘 사용 금지)
-- 다른 설명·코드블록 X. 바로 frontmatter 부터 시작.
+# 절대 하지 말 것
+- 한 단락 4줄 이상 X
+- 들어가며 섹션 3줄 이상 X
+- "왜 이게 좋은가" 같은 설명 길게 X
+- 영양·역사·문화 설명 X (사용자 안 읽어요)
+- 총 글자 900자 초과 X
+- 코드블록·다른 설명 X. 바로 frontmatter 부터 시작.
 
-지금 작성 시작:`;
+# 기존 글 중복 방지
+최근 글 slug: ${recentSlugs.slice(0, 10).join(', ') || '(없음)'}
+
+지금 바로 작성 시작:`;
 }
 
 async function callClaude(prompt) {
@@ -204,6 +229,19 @@ function extractFrontmatter(markdown) {
     return mm ? mm[1].trim().replace(/^["']|["']$/g, '') : null;
   };
   return { title: getField('title'), slug: getField('slug'), date: getField('date'), image: getField('image') };
+}
+
+/** AI 가 카드 안 image URL 을 잘못 적는 환각 방지 — recipe id 로 정확한 URL 재주입. */
+function fixRecipeCardImages(markdown, recipes) {
+  const byId = new Map(recipes.map((r) => [String(r.id), r.image]));
+  return markdown.replace(
+    /(<a class="blog-recipe-card" href="https:\/\/yojalal\.com\/recipe\/(\d+)">\s*\n\s*<img src=")[^"]+(")/g,
+    (_full, head, id, tail) => {
+      const correctImage = byId.get(id);
+      if (!correctImage) return `${head}${_full.match(/<img src="([^"]+)"/)?.[1] ?? ''}${tail}`;
+      return `${head}${correctImage}${tail}`;
+    },
+  );
 }
 
 /** frontmatter 에 image 누락 시 첫 추천 레시피 이미지로 보강. */
@@ -258,7 +296,9 @@ async function main() {
   }
 
   // image 누락 시 첫 추천 레시피 이미지로 보강 (목록 카드에 필수)
-  const markdown = meta.image ? rawMarkdown : ensureImageInFrontmatter(rawMarkdown, recipes[0]?.image);
+  let markdown = meta.image ? rawMarkdown : ensureImageInFrontmatter(rawMarkdown, recipes[0]?.image);
+  // 카드 안 image URL 환각 교정
+  markdown = fixRecipeCardImages(markdown, recipes);
 
   const dateStr = today.toISOString().slice(0, 10);
   // 파일명: date prefix + slug (sort + 중복 방지)
