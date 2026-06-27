@@ -9,6 +9,5 @@ export type BlogIndexEntry = {
 };
 
 export const BLOG_INDEX: BlogIndexEntry[] = [
-  { slug: '2026-06-27-simple-vegan-easy-start', date: '2026-06-27' },
-  { slug: '2026-06-27-summer-airfryer-meals', date: '2026-06-27' },
+  { slug: '2026-06-27-summer-cold-noodle-recipes', date: '2026-06-27' },
 ];
