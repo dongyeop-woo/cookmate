@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { AuthProvider } from './AuthProvider';
 import VisitTracker from './VisitTracker';
+import GoogleAnalytics from './GoogleAnalytics';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://yojalal.com'),
@@ -34,6 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <AuthProvider>
+          <GoogleAnalytics />
           <VisitTracker />
           <div className="page">{children}</div>
         </AuthProvider>
