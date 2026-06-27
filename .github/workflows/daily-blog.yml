@@ -1,10 +1,12 @@
 name: 매일 블로그 자동 발행
 
 on:
-  schedule:
-    # 매일 00:00 UTC = 09:00 KST
-    - cron: '0 0 * * *'
-  workflow_dispatch: # 수동 실행 가능 (Actions 탭에서 "Run workflow")
+  # 자동 cron 일시 비활성화 — 운영자가 직접 작업 중인 동안엔 채팅 안에서
+  # 글 작성 후 푸시 (Claude API 비용 0). 자동화 부활하려면 아래 schedule
+  # 블록 주석 해제만 하면 됨.
+  # schedule:
+  #   - cron: '0 0 * * *' # 매일 00:00 UTC = 09:00 KST
+  workflow_dispatch: # 수동 실행 (Actions 탭에서 "Run workflow")
 
 permissions:
   contents: write

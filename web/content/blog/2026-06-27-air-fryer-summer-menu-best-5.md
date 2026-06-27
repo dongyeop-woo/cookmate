@@ -18,6 +18,8 @@ image: https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorag
 
 ## 1. 계란 오므라이스
 
+케첩 볶음밥 위에 부드러운 계란을 덮은 일식 한 그릇. 아이부터 어른까지 호불호 없는 안전한 메뉴라 여름 점심·저녁 어디든 잘 어울려요.
+
 <a class="blog-recipe-card" href="https://yojalal.com/recipe/133">
   <img src="https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1777107022974_296cd43a.jpg?alt=media" alt="계란 오므라이스">
   <div class="blog-recipe-card-body">
@@ -27,9 +29,11 @@ image: https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorag
   </div>
 </a>
 
-**핵심 팁**: 에어프라이어에 볶음밥을 3분만 돌리면 겉이 살짝 바삭해져서 식감이 업그레이드돼요!
+**핵심 팁**: 볶음밥을 에어프라이어 3분만 돌리면 겉이 살짝 바삭해져서 식감이 한층 살아나요.
 
 ## 2. 클럽 샌드위치
+
+빵·고기·채소·치즈를 3층으로 쌓는 호텔 브런치 메뉴. 칼슘·단백질·탄수화물이 한 끼에 다 들어가서 든든하고, 가스불 없이 끝나서 여름에 특히 좋아요.
 
 <a class="blog-recipe-card" href="https://yojalal.com/recipe/189">
   <img src="https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1777569718758_d2cd692a.jpg?alt=media&token=27286931-d92e-41dc-93a2-4e81728c94f3" alt="클럽 샌드위치">
@@ -40,9 +44,11 @@ image: https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorag
   </div>
 </a>
 
-**핵심 팁**: 식빵을 에어프라이어 180°C에서 3분 구우면 카페 비주얼 완성!
+**핵심 팁**: 식빵을 에어프라이어 180°C에서 3분 굽기. 그 한 단계로 카페 비주얼이 나와요.
 
 ## 3. 카레라이스
+
+은은하게 매콤한 향신료가 입맛을 살려주는 일본식 카레. 더위에 입맛 떨어진 날 한 그릇 비우면 땀이 살짝 나면서 오히려 개운해져요.
 
 <a class="blog-recipe-card" href="https://yojalal.com/recipe/117">
   <img src="https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1777111961986_e7f72769.jpg?alt=media" alt="카레라이스">
@@ -53,9 +59,11 @@ image: https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorag
   </div>
 </a>
 
-**핵심 팁**: 감자·당근을 에어프라이어로 먼저 익히면 냄비 조리 시간이 반으로 줄어요.
+**핵심 팁**: 감자·당근을 에어프라이어로 먼저 익히면 냄비 조리 시간이 절반으로 줄어요.
 
 ## 4. 오징어볶음
+
+쫄깃한 오징어에 매콤달콤한 양념이 코팅된 한국식 매운맛 한 접시. 단백질 360kcal로 가볍고, 맥주나 소주 안주로 옮겨가도 잘 어울려요.
 
 <a class="blog-recipe-card" href="https://yojalal.com/recipe/115">
   <img src="https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1777112290506_9c4ce067.jpg?alt=media" alt="오징어볶음">
@@ -66,9 +74,11 @@ image: https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorag
   </div>
 </a>
 
-**핵심 팁**: 양념 재운 오징어를 에어프라이어에 넣으면 기름 없이도 짭조름하게 완성돼요!
+**핵심 팁**: 양념 재운 오징어를 에어프라이어에 넣으면 기름 없이도 짭조름하게 익어요.
 
 ## 5. 푸짐한 비빔밥
+
+오색 나물과 고추장이 한 그릇에 모이는 한식 대표 메뉴. 채소를 한 번에 챙길 수 있어 영양 균형도 좋고, 냉장고에 남은 반찬을 그대로 올려도 어울려요.
 
 <a class="blog-recipe-card" href="https://yojalal.com/recipe/70">
   <img src="https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1776962825966.jpg?alt=media" alt="푸짐한 비빔밥">
