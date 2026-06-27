@@ -507,6 +507,21 @@ img { display: block; }
 .catbar-item span {
   font-size: 13px; font-weight: 600; white-space: nowrap;
 }
+.catbar-magazine-icon {
+  width: 42px; height: 42px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: #F0FAF5;
+  border-radius: 12px;
+  color: #0B9A61;
+}
+.catbar-item-magazine:hover .catbar-magazine-icon { background: #E1F1E8; }
+
+/* 홈 모바일 카테고리 그리드의 매거진 아이콘 */
+.cat-icon-magazine {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: #F0FAF5;
+  color: #0B9A61;
+}
 /* 모바일에선 홈의 cat-grid-mobile 그리드가 있으니 가로 줄은 PC 전용 */
 @media (max-width: 768px) {
   .catbar { display: none; }
