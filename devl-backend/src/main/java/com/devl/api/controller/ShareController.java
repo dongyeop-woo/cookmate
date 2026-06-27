@@ -634,10 +634,9 @@ public class ShareController {
     /**
      * Android App Links 검증.
      * 여러 인증서 fingerprint를 배열로 등록 가능.
-     *  - 기존 값 FA:C6:17:...  : dev/preview 빌드
-     *  - E5:B6:D1:AA:...        : EAS production 빌드 (eas credentials 기준)
-     *  - (추후) Google Play App Signing 값: 첫 Play 업로드 후 Play Console
-     *    → 앱 무결성 → 앱 서명 → SHA-256 복사해서 추가.
+     *  - FA:C6:17:...     : dev/preview 빌드
+     *  - E5:B6:D1:AA:...  : EAS production 업로드 키 (eas credentials 기준)
+     *  - DA:F8:E2:DA:...  : Google Play App Signing 키 (실제 배포되는 앱 서명)
      */
     @GetMapping(value = "/.well-known/assetlinks.json", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> assetLinks() {
@@ -649,7 +648,8 @@ public class ShareController {
                     "package_name": "com.dyw.cookmate",
                     "sha256_cert_fingerprints": [
                       "FA:C6:17:45:DC:09:03:78:6F:B9:ED:E6:2A:96:2B:39:9F:73:48:F0:BB:6F:89:9B:83:32:66:75:91:03:3B:9C",
-                      "E5:B6:D1:AA:73:7D:C4:19:47:CE:B6:82:26:6C:6F:B0:CF:E2:95:4E:6A:03:E3:CB:EA:2D:7A:74:EF:A2:94:48"
+                      "E5:B6:D1:AA:73:7D:C4:19:47:CE:B6:82:26:6C:6F:B0:CF:E2:95:4E:6A:03:E3:CB:EA:2D:7A:74:EF:A2:94:48",
+                      "DA:F8:E2:DA:2F:BC:10:08:D5:9C:0A:C6:8D:36:C4:97:D3:A8:F2:CD:77:94:83:E4:A3:70:58:84:DF:6A:B2:EC"
                     ]
                   }
                 }]
