@@ -42,13 +42,21 @@ export function loadPost(slug: string): BlogPost | null {
   const { data, content } = matter(raw);
   const bodyHtml = marked.parse(content, { async: false }) as string;
   const bodyText = content.replace(/[#*`_>\-\[\]\(\)!]/g, '').replace(/\s+/g, ' ').trim();
+  // gray-matter 가 YAML date 를 Date 객체로 자동 파싱하므로 항상 string 으로 강제 변환.
+  const dateRaw = data.date;
+  const dateStr =
+    dateRaw instanceof Date
+      ? dateRaw.toISOString().slice(0, 10)
+      : typeof dateRaw === 'string'
+      ? dateRaw.slice(0, 10)
+      : new Date().toISOString().slice(0, 10);
   return {
     slug,
-    title: data.title ?? slug,
-    description: data.description ?? bodyText.slice(0, 150),
-    date: data.date ?? new Date().toISOString().slice(0, 10),
-    tags: Array.isArray(data.tags) ? data.tags : [],
-    image: data.image,
+    title: String(data.title ?? slug),
+    description: String(data.description ?? bodyText.slice(0, 150)),
+    date: dateStr,
+    tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
+    image: data.image ? String(data.image) : undefined,
     bodyHtml,
     bodyText,
   };
