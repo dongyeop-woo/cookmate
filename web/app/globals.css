@@ -1347,3 +1347,17 @@ img { display: block; }
   margin-top: 10px;
   font-style: italic;
 }
+
+/* 블로그 조회수 */
+.blog-post-views {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 12.5px; color: #888;
+}
+.blog-post-views svg { color: #999; }
+.blog-card-date {
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.blog-card-views {
+  display: inline-flex; align-items: center; gap: 3px;
+  font-size: 11px; color: #999;
+}

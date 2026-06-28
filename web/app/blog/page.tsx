@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Topbar from '../Topbar';
 import Footer from '../Footer';
+import BlogListViews from '../BlogListViews';
 import { getAllPosts } from '@/lib/blog';
 
 export const dynamic = 'force-static';
@@ -39,7 +40,10 @@ export default function BlogIndexPage() {
                       </div>
                     )}
                     <div className="blog-card-body">
-                      <div className="blog-card-date">{p.date}</div>
+                      <div className="blog-card-date">
+                        <span>{p.date}</span>
+                        <BlogListViews slug={p.slug} />
+                      </div>
                       <h2 className="blog-card-title">{p.title}</h2>
                       <p className="blog-card-desc">{p.description}</p>
                       {p.tags.length > 0 && (

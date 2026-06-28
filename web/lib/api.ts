@@ -137,6 +137,29 @@ export async function fetchTopUsers(limit = 20): Promise<UserProfile[]> {
   }
 }
 
+/** 블로그 글 조회수 — slug 기준. */
+export async function fetchBlogViewCount(slug: string): Promise<number> {
+  try {
+    const res = await fetch(`${API_BASE}/api/web/blog-view/${encodeURIComponent(slug)}`, {
+      cache: 'no-store',
+    });
+    if (!res.ok) return 0;
+    const data = await res.json();
+    return typeof data.count === 'number' ? data.count : 0;
+  } catch {
+    return 0;
+  }
+}
+
+/** 전체 블로그 글 조회수 맵 — 목록 페이지에서 한 번에. */
+export async function fetchAllBlogViews(): Promise<Record<string, number>> {
+  try {
+    return await get<Record<string, number>>('/api/web/blog-views');
+  } catch {
+    return {};
+  }
+}
+
 /** 레시피 웹 조회수 — Cloudflare 캐시 짧게 (15초). */
 export async function fetchRecipeViewCount(id: string): Promise<number> {
   try {

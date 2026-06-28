@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Topbar from '../../Topbar';
 import Footer from '../../Footer';
+import BlogViewTracker from '../../BlogViewTracker';
+import BlogViewCount from '../../BlogViewCount';
 import { getAllSlugs, loadPost } from '@/lib/blog';
 
 export const dynamic = 'force-static';
@@ -73,11 +75,13 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <>
+      <BlogViewTracker slug={slug} />
       <Topbar />
       {post.image && <img className="hero-img" src={post.image} alt={post.title} />}
       <main className="detail blog-detail">
         <div className="blog-post-meta">
           <span>{post.date}</span>
+          <BlogViewCount slug={slug} />
           {post.tags.length > 0 && (
             <span className="blog-post-tags">
               {post.tags.map((t) => <span key={t} className="blog-post-tag">#{t}</span>)}

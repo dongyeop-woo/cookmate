@@ -37,6 +37,7 @@ public class WebAnalyticsController {
 
     private static final String STATS_COLLECTION = "web_stats";
     private static final String RECIPE_VIEWS_COLLECTION = "web_recipe_views";
+    private static final String BLOG_VIEWS_COLLECTION = "web_blog_views";
     private static final ZoneId KST = ZoneId.of("Asia/Seoul");
 
     /** 페이지뷰 기록 — 일자별 + 누적. */
@@ -85,6 +86,65 @@ public class WebAnalyticsController {
             throws ExecutionException, InterruptedException {
         long count = readCount(RECIPE_VIEWS_COLLECTION, id);
         return ResponseEntity.ok(Map.of("id", id, "count", count));
+    }
+
+    /** 블로그 글 조회수 기록. (slug 단위) */
+    @PostMapping("/blog-view/{slug}")
+    public ResponseEntity<Void> trackBlogView(@PathVariable String slug) {
+        if (slug == null || slug.isBlank()) return ResponseEntity.ok().build();
+        try {
+            Map<String, Object> update = new HashMap<>();
+            update.put("count", FieldValue.increment(1));
+            update.put("lastViewed", Instant.now().toString());
+            firestore.collection(BLOG_VIEWS_COLLECTION).document(slug)
+                    .set(update, SetOptions.merge()).get();
+        } catch (Exception e) {
+            log.warn("trackBlogView 실패 slug={}: {}", slug, e.getMessage());
+        }
+        return ResponseEntity.ok().build();
+    }
+
+    /** 단일 블로그 글 조회수. */
+    @GetMapping("/blog-view/{slug}")
+    public ResponseEntity<Map<String, Object>> getBlogViewCount(@PathVariable String slug)
+            throws ExecutionException, InterruptedException {
+        long count = readCount(BLOG_VIEWS_COLLECTION, slug);
+        return ResponseEntity.ok(Map.of("slug", slug, "count", count));
+    }
+
+    /** 모든 블로그 글 조회수 한 번에 — {slug: count} 맵. 목록 페이지에서 N+1 방지. */
+    @GetMapping("/blog-views")
+    public ResponseEntity<Map<String, Long>> getAllBlogViews()
+            throws ExecutionException, InterruptedException {
+        var snap = firestore.collection(BLOG_VIEWS_COLLECTION).get().get();
+        Map<String, Long> result = new HashMap<>();
+        for (var d : snap.getDocuments()) {
+            Long c = d.getLong("count");
+            result.put(d.getId(), c == null ? 0L : c);
+        }
+        return ResponseEntity.ok(result);
+    }
+
+    /** 조회수 상위 N개 — {id, count} 리스트. limit 기본 5, 최대 50. */
+    @GetMapping("/top-viewed")
+    public ResponseEntity<java.util.List<Map<String, Object>>> getTopViewed(
+            @RequestParam(defaultValue = "5") int limit
+    ) throws ExecutionException, InterruptedException {
+        int safeLimit = Math.max(1, Math.min(50, limit));
+        var snap = firestore.collection(RECIPE_VIEWS_COLLECTION)
+                .orderBy("count", com.google.cloud.firestore.Query.Direction.DESCENDING)
+                .limit(safeLimit)
+                .get().get();
+        var result = snap.getDocuments().stream()
+                .map(d -> {
+                    Map<String, Object> m = new HashMap<>();
+                    m.put("id", d.getId());
+                    Long c = d.getLong("count");
+                    m.put("count", c == null ? 0L : c);
+                    return m;
+                })
+                .toList();
+        return ResponseEntity.ok(result);
     }
 
     private long readCount(String collection, String docId) throws ExecutionException, InterruptedException {
