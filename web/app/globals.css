@@ -389,6 +389,29 @@ img { display: block; }
 .detail .stat-row .star { color: #FFB800; }
 .detail .stat-row .heart { color: #FF4D67; }
 .detail .stat-row .rating-count { color: #9E9E9E; font-size: 13px; }
+.detail .stat-row .like-btn {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: none; border: 0; padding: 0;
+  font: inherit; color: inherit;
+  cursor: pointer; -webkit-tap-highlight-color: transparent;
+}
+.detail .stat-row .like-btn svg {
+  display: block; color: #C9CDD2;
+  transition: color 0.15s, transform 0.15s;
+}
+.detail .stat-row .like-btn.liked svg { color: #FF4D67; }
+.detail .stat-row .like-btn:active svg { transform: scale(1.2); }
+.detail .stat-row .like-btn:disabled { opacity: 0.55; cursor: default; }
+.detail .stat-row .like-notice {
+  flex-basis: 100%;
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: -8px; font-size: 12.5px; color: #666;
+}
+.detail .stat-row .like-notice a { color: #0B9A61; font-weight: 700; }
+.detail .stat-row .like-notice-x {
+  background: none; border: 0; padding: 0 2px;
+  color: #BDBDBD; font-size: 15px; line-height: 1; cursor: pointer;
+}
 .detail .stat-row .stat-views { display: inline-flex; align-items: center; gap: 4px; color: #888; }
 .detail .stat-row .stat-views svg { display: block; }
 .detail .author {
@@ -586,6 +609,11 @@ img { display: block; }
   flex-shrink: 0;
 }
 .cta-btn:active { background: #088450; }
+.cta-banner-spacer { height: calc(72px + env(safe-area-inset-bottom)); }
+/* PC(>=900px)는 사이드바 앱 다운로드 박스가 대신하고, 딥링크도 안 먹으므로 숨김 */
+@media (min-width: 900px) {
+  .cta-banner, .cta-banner-spacer { display: none; }
+}
 
 /* ===== Footer ===== */
 .footer { padding: 20px 20px 24px; text-align: center; font-size: 11px; color: #BDBDBD; line-height: 1.6; }

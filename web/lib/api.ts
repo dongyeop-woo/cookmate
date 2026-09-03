@@ -124,9 +124,12 @@ export type UserProfile = {
   followers?: string[];
   recipeCount?: number;
   totalLikes?: number;
+  likedRecipes?: string[];
   points?: number;
   role?: string;
   gender?: string;
+  /** 탈퇴 시각 (soft-delete). 재가입 시 null 로 클리어됨. */
+  withdrawnAt?: string | null;
 };
 
 export async function fetchTopUsers(limit = 20): Promise<UserProfile[]> {

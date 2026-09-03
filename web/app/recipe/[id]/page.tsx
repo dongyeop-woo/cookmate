@@ -5,6 +5,8 @@ import Footer from '../../Footer';
 import ChefAvatar from '../../ChefAvatar';
 import RecipeViewTracker from '../../RecipeViewTracker';
 import AdFitBanner from '../../AdFitBanner';
+import LikeButton from '../../LikeButton';
+import CtaBanner from '../../CtaBanner';
 import { fetchRecipe, fetchAuthorImageMap, fetchRecipeViewCount, Recipe, formatTime, diffColor } from '@/lib/api';
 
 export const runtime = 'edge';
@@ -116,7 +118,7 @@ export default async function RecipePage({ params }: Props) {
             <span className="star">★</span> {(r.reviewAvgRating ?? r.rating ?? 0).toFixed(1)}
             {' '}<span className="rating-count">({(r.reviewCount ?? 0) > 99 ? '99+' : r.reviewCount ?? 0})</span>
           </span>
-          <span><span className="heart">♥</span> {r.likes ?? 0}</span>
+          <LikeButton recipeId={id} initialLikes={r.likes ?? 0} />
           <span className="stat-views">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
               <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
@@ -229,6 +231,12 @@ export default async function RecipePage({ params }: Props) {
       </main>
 
       <Footer />
+
+      <CtaBanner
+        title={`${r.title}, 앱에서 만들기`}
+        sub="단계별 자동 타이머 · 음성 모드"
+        path={`recipe/${id}`}
+      />
 
       <script
         type="application/ld+json"
