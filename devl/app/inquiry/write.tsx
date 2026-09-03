@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRouter, useLocalSearchParams } from 'expo-router';
+import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import { useAuth } from '../_layout';
@@ -21,38 +21,14 @@ import { createInquiry, uploadRecipeImage } from '../../services/api';
 
 const CATEGORIES = ['일반', '계정', '결제', '신고', '제안', '기타'];
 
-// 이벤트 응모 모드일 때 미리 채워둘 값. 사용자는 인증 사진만 첨부하고 제출만 누르면 됨.
-const EVENT_REVIEW_PREFILL = {
-  category: '기타',
-  title: '[이벤트] 앱 리뷰 인증',
-  content: '요잘알 앱 리뷰 이벤트에 응모합니다.',
-};
-
 export default function InquiryWriteScreen() {
   const router = useRouter();
-  const params = useLocalSearchParams<{ mode?: string }>();
-  const isEventMode = params.mode === 'event';
   const { firebaseUser, userProfile } = useAuth();
-  const [category, setCategory] = useState(isEventMode ? EVENT_REVIEW_PREFILL.category : '일반');
-  // 이벤트 모드: 진입 시점 닉네임 있으면 같이 prefill — 응모자 식별용.
-  const [title, setTitle] = useState(() => {
-    if (!isEventMode) return '';
-    const nick = userProfile?.nickname;
-    return nick ? `${EVENT_REVIEW_PREFILL.title} - ${nick}` : EVENT_REVIEW_PREFILL.title;
-  });
-  const [content, setContent] = useState(isEventMode ? EVENT_REVIEW_PREFILL.content : '');
+  const [category, setCategory] = useState('일반');
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
   const [images, setImages] = useState<string[]>([]);
   const [submitting, setSubmitting] = useState(false);
-
-  // 닉네임이 늦게 로드될 수 있어 — 사용자가 제목을 손대지 않은 경우만 보강.
-  useEffect(() => {
-    if (!isEventMode) return;
-    const nick = userProfile?.nickname;
-    if (!nick) return;
-    if (title === EVENT_REVIEW_PREFILL.title) {
-      setTitle(`${EVENT_REVIEW_PREFILL.title} - ${nick}`);
-    }
-  }, [isEventMode, userProfile?.nickname, title]);
 
   const pickImage = async () => {
     if (images.length >= 2) {
@@ -88,11 +64,6 @@ export default function InquiryWriteScreen() {
       Alert.alert('문의 내용', '문의 내용은 5자 이상 작성해주세요.');
       return;
     }
-    if (isEventMode && images.length === 0) {
-      Alert.alert('인증 사진 필요', '스토어 리뷰 캡처 사진을 1장 이상 첨부해주세요.');
-      return;
-    }
-
     setSubmitting(true);
     try {
       let uploadedImages: string[] = [];
@@ -126,7 +97,7 @@ export default function InquiryWriteScreen() {
         <TouchableOpacity style={styles.backBtn} onPress={() => router.back()}>
           <Ionicons name="chevron-back" size={24} color="#1A1A1A" />
         </TouchableOpacity>
-        <Text style={styles.headerTitle}>{isEventMode ? '이벤트 응모' : '문의 작성'}</Text>
+        <Text style={styles.headerTitle}>문의 작성</Text>
         <View style={styles.backBtn} />
       </View>
 
@@ -138,15 +109,6 @@ export default function InquiryWriteScreen() {
           contentContainerStyle={{ padding: 20, paddingBottom: Platform.OS === 'android' ? 80 : 40 }}
           keyboardShouldPersistTaps="handled"
         >
-          {isEventMode && (
-            <View style={styles.eventBanner}>
-              <Ionicons name="gift-outline" size={18} color="#07704A" />
-              <Text style={styles.eventBannerText}>
-                스토어 리뷰 캡처를 첨부해 주시면{"\n"}이벤트 응모가 완료됩니다.
-              </Text>
-            </View>
-          )}
-
           <Text style={styles.label}>분류</Text>
           <View style={styles.categoryRow}>
             {CATEGORIES.map((c) => (
@@ -186,9 +148,9 @@ export default function InquiryWriteScreen() {
           <Text style={styles.charCount}>{content.length} / 1000</Text>
 
           <Text style={[styles.label, { marginTop: 16 }]}>
-            {isEventMode ? '리뷰 캡처' : '이미지 첨부'}{' '}
-            <Text style={{ color: isEventMode ? '#FF3B30' : '#999', fontWeight: '400', fontSize: 12 }}>
-              {isEventMode ? '(필수, 최대 2장)' : '(선택, 최대 2장)'}
+            이미지 첨부{' '}
+            <Text style={{ color: '#999', fontWeight: '400', fontSize: 12 }}>
+              (선택, 최대 2장)
             </Text>
           </Text>
           <View style={styles.imageRow}>
@@ -235,23 +197,6 @@ export default function InquiryWriteScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#FFFFFF' },
-  eventBanner: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 10,
-    backgroundColor: '#E8F5EF',
-    borderRadius: 10,
-    paddingHorizontal: 14,
-    paddingVertical: 12,
-    marginBottom: 18,
-  },
-  eventBannerText: {
-    flex: 1,
-    color: '#07704A',
-    fontSize: 13,
-    lineHeight: 18,
-    fontWeight: '600',
-  },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
