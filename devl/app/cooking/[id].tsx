@@ -11,11 +11,12 @@ import {
   Platform,
   Vibration,
   Linking,
+  AppState,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Image } from 'expo-image';
 import * as Notifications from 'expo-notifications';
-import { markRecipeCooked, trackCookingStep } from '../../services/api';
+import { markRecipeCooked, trackCookingStep, completeChallenge } from '../../services/api';
 
 // 알림 핸들러는 services/notifications.ts에서 전역 설정 — 여기서 덮어쓰지 않음.
 // 타이머 종료 ping은 data.type='cookingTimerPing'으로 마킹되어 글로벌 핸들러가 배너만 숨김.
@@ -186,6 +187,11 @@ export default function CookingModeScreen() {
   const [adLoaded, setAdLoaded] = useState(false);
 
   useEffect(() => {
+    // interstitial은 모듈-레벨 싱글톤이라, 이전 쿠킹 화면에서 이미 다음 광고를 로드해뒀을 수 있음.
+    // 이 경우 새 LOADED 리스너는 이벤트를 못 받으므로 마운트 시점에 loaded 상태를 직접 확인.
+    if ((interstitial as any).loaded) {
+      setAdLoaded(true);
+    }
     const loadListener = interstitial.addAdEventListener(AdEventType.LOADED, () => setAdLoaded(true));
     const closeListener = interstitial.addAdEventListener(AdEventType.CLOSED, () => {
       setAdLoaded(false);
@@ -196,9 +202,13 @@ export default function CookingModeScreen() {
       console.warn('Interstitial ad error:', err);
       setAdLoaded(false);
       try { interstitial.load(); } catch {}
-      if (completeModalRef.current) router.back();
+      // 종료 중에 광고가 에러나면 그냥 뒤로 가서 막히지 않게.
+      if (exitInProgressRef.current) router.back();
     });
-    interstitial.load();
+    // 이미 로드되어 있으면 다시 load() 부르지 않음 (no-op 이긴 하지만 명시적으로 가드)
+    if (!(interstitial as any).loaded) {
+      interstitial.load();
+    }
     return () => { loadListener(); closeListener(); errorListener(); };
   }, []);
   const [currentStep, setCurrentStep] = useState(0);
@@ -219,6 +229,8 @@ export default function CookingModeScreen() {
   const isVoiceModeRef = useRef(isVoiceMode);
   const completeModalRef = useRef(false);
   const isMountedRef = useRef(true);
+  // 종료 중복 호출 방지 (광고가 두 번 뜨거나 router.back이 두 번 호출되는 것 차단)
+  const exitInProgressRef = useRef(false);
   const lastCommandTimeRef = useRef(0);
   const bestKoreanVoiceRef = useRef<string | undefined>(undefined);
   // 명시적 abort 시 재시작 방지 — true일 때만 end/error 이벤트에서 자동 재시작
@@ -230,6 +242,9 @@ export default function CookingModeScreen() {
   // 타이머 상태를 result 이벤트 핸들러(클로저)에서 읽기 위한 ref
   const isRunningRef = useRef(false);
   const hasTimerRef = useRef(false);
+  // 음성 모드로 방문한 단계 — 3개 모이면 일일 과제 완료 (세션당 1회 보고)
+  const voiceStepsRef = useRef<Set<number>>(new Set());
+  const listenReportedRef = useRef(false);
   // speakStep 내부 setTimeout 체인을 단계 전환 시 취소하기 위한 ref들
   const speakSequenceTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const speakGenerationRef = useRef(0);
@@ -263,9 +278,35 @@ export default function CookingModeScreen() {
   useEffect(() => { timeLeftRef.current = timeLeft; }, [timeLeft]);
   const liveActivityRef = useRef<{ active: boolean; step: number }>({ active: false, step: -1 });
 
-  // isRunning / currentStep 변화에만 반응 — start/resume/pause 트리거.
+  // 타이머 절대 시각(wall-clock) — 백그라운드에서 JS setInterval이 멈춰도
+  // 포그라운드 복귀 시 이 값으로 timeLeft를 정확히 보정한다.
+  // null이면 타이머 정지/일시정지 상태.
+  const timerEndAtRef = useRef<number | null>(null);
   useEffect(() => {
-    if (Platform.OS !== 'ios' || !recipe || !step) return;
+    if (isRunning && timeLeftRef.current > 0) {
+      timerEndAtRef.current = Date.now() + timeLeftRef.current * 1000;
+    } else {
+      timerEndAtRef.current = null;
+    }
+  }, [isRunning, currentStep]);
+
+  // 앱 포그라운드 복귀 시 wall-clock으로 timeLeft 강제 보정.
+  // 백그라운드 동안 JS가 멈췄던 시간을 이 시점에 한 번에 따라잡는다.
+  useEffect(() => {
+    const sub = AppState.addEventListener('change', (state) => {
+      if (state !== 'active') return;
+      const endAt = timerEndAtRef.current;
+      if (!endAt || !isRunningRef.current) return;
+      const remaining = Math.max(0, Math.ceil((endAt - Date.now()) / 1000));
+      setTimeLeft(remaining);
+    });
+    return () => sub.remove();
+  }, []);
+
+  // isRunning / currentStep 변화에만 반응 — start/resume/pause 트리거.
+  // iOS: ActivityKit 기반 Live Activity. Android: Notification + Chronometer 기반.
+  useEffect(() => {
+    if (!recipe || !step) return;
     if (step.time <= 0) return;
 
     const onSameStep = liveActivityRef.current.step === currentStep;
@@ -292,9 +333,8 @@ export default function CookingModeScreen() {
     }
   }, [isRunning, currentStep, recipe, steps.length, step]);
 
-  // 타이머 0 도달 시 활동 종료 (TTS 알림과 별개로 위젯만 정리)
+  // 타이머 0 도달 시 활동 종료 (TTS 알림과 별개로 위젯/알림만 정리)
   useEffect(() => {
-    if (Platform.OS !== 'ios') return;
     if (timeLeft === 0 && liveActivityRef.current.active) {
       CookingLiveActivity.end();
       liveActivityRef.current = { active: false, step: -1 };
@@ -303,18 +343,17 @@ export default function CookingModeScreen() {
 
   // 단계가 바뀌어 타이머 없는 단계로 가면 활동 종료
   useEffect(() => {
-    if (Platform.OS !== 'ios') return;
     if (step && step.time <= 0 && liveActivityRef.current.active) {
       CookingLiveActivity.end();
       liveActivityRef.current = { active: false, step: -1 };
     }
   }, [step, currentStep]);
 
-  // Live Activity 권한 미부여 시 1회 안내 (쿠킹 모드 진입 후 첫 타이머 step 도달 시)
+  // 백그라운드 타이머 권한 미부여 시 1회 안내 (쿠킹 모드 진입 후 첫 타이머 step 도달 시).
+  // iOS: Live Activities, Android: 알림 권한.
   // AsyncStorage로 영구 dismissed 플래그 저장 — 한 번 안내 후 다신 안 띄움.
   const liveActivityWarnedRef = useRef(false);
   useEffect(() => {
-    if (Platform.OS !== 'ios') return;
     if (!step || step.time <= 0) return;
     if (liveActivityWarnedRef.current) return;
     liveActivityWarnedRef.current = true;
@@ -326,9 +365,14 @@ export default function CookingModeScreen() {
         if (dismissed === '1') return;
         const supported = await CookingLiveActivity.isSupported();
         if (supported) return;
+        const isIOS = Platform.OS === 'ios';
+        const title = isIOS ? '잠금화면 타이머 사용 불가' : '백그라운드 타이머 사용 불가';
+        const message = isIOS
+          ? '잠금화면과 다이나믹 아일랜드에 타이머를 표시하려면 Live Activities를 켜주세요.\n\n설정 → 요잘알 → Live Activities 활성화'
+          : '백그라운드에서도 타이머가 보이도록 알림 권한을 켜주세요.\n\n설정 → 요잘알 → 알림 허용';
         Alert.alert(
-          '잠금화면 타이머 사용 불가',
-          '잠금화면과 다이나믹 아일랜드에 타이머를 표시하려면 Live Activities를 켜주세요.\n\n설정 → 요잘알 → Live Activities 활성화',
+          title,
+          message,
           [
             {
               text: '나중에',
@@ -349,11 +393,10 @@ export default function CookingModeScreen() {
   }, [step]);
 
   // 화면 언마운트 시 활동 강제 종료 (요리 완료/뒤로가기/앱 종료 안전망)
+  // iOS: Live Activity 종료, Android: chronometer 알림 취소.
   useEffect(() => {
     return () => {
-      if (Platform.OS === 'ios') {
-        CookingLiveActivity.endAll();
-      }
+      CookingLiveActivity.endAll();
     };
   }, []);
 
@@ -477,7 +520,8 @@ export default function CookingModeScreen() {
       if (s[cur]) {
         stopListening();
         Speech.stop();
-        speakStep(`${toSinoKorean(cur + 1)}단계. ${s[cur].description}`, false, 0);
+        // 레시피 텍스트는 읽지 않고, 타이머가 있으면 타이머 안내만 재생
+        speakStep(s[cur].description, s[cur].time > 0, s[cur].time);
       }
     }
   });
@@ -507,7 +551,14 @@ export default function CookingModeScreen() {
         granted = result.granted;
       }
       if (!granted) {
-        Alert.alert('권한 필요', '음성 인식을 위해 마이크 권한이 필요합니다.\n설정 → 요잘알 → 마이크에서 허용해주세요.');
+        Alert.alert(
+          '마이크 권한 필요',
+          '음성 명령을 사용하려면 마이크 권한이 필요합니다.\n설정에서 직접 허용해주세요.',
+          [
+            { text: '취소', style: 'cancel' },
+            { text: '설정 열기', onPress: () => Linking.openSettings() },
+          ],
+        );
         shouldRestartListeningRef.current = false;
         return;
       }
@@ -515,7 +566,7 @@ export default function CookingModeScreen() {
       ExpoSpeechRecognitionModule.start({
         lang: 'ko-KR',
         interimResults: true,
-        continuous: false, // false가 Android/iOS 둘 다 안정적
+        continuous: true, // 요리 중엔 마이크가 끊기지 않게 연속 인식 모드
         contextualStrings: ['다음', '이전', '다음으로', '이전으로', '넘어가', '뒤로', '끝', '완료', '타이머 시작', '타이머 정지', '시작', '정지', '멈춰'],
         androidIntentOptions: {
           EXTRA_LANGUAGE_MODEL: 'web_search',
@@ -546,6 +597,58 @@ export default function CookingModeScreen() {
     isListeningRef.current = false;
     setIsListening(false);
   }, []);
+
+  /**
+   * 쿠킹 모드 종료 통합 함수 — X버튼/닫기/뒤로가기/완성 후 닫기 모든 종료 경로에서 호출.
+   *  - 프리미엄: 광고 없이 바로 뒤로
+   *  - 일반: 전면 광고 표시 후 (CLOSED 리스너에서) 뒤로. 로딩 중이면 최대 3초 대기.
+   *  - 중복 호출 방지: exitInProgressRef로 가드.
+   */
+  const exitCooking = useCallback(() => {
+    if (exitInProgressRef.current) return;
+    exitInProgressRef.current = true;
+
+    // 모달이 떠있으면 같이 닫기 + 오디오 정리
+    if (completeModalRef.current) setCompleteModalVisible(false);
+    shouldRestartListeningRef.current = false;
+    try { stopListening(); } catch {}
+    try { Speech.stop(); } catch {}
+    isSpeakingRef.current = false;
+
+    const SHOW_DELAY = Platform.OS === 'ios' ? 700 : 300;
+
+    if (isPremium) {
+      router.back();
+      return;
+    }
+
+    const tryShowAd = () => {
+      try {
+        interstitial.show();
+      } catch (e) {
+        console.warn('Ad show failed:', e);
+        router.back();
+      }
+    };
+
+    if (adLoaded) {
+      setTimeout(tryShowAd, SHOW_DELAY);
+      return;
+    }
+
+    // 광고 로딩 중 → 최대 3초 대기 후 표시, 시간 초과 시 그냥 뒤로가기
+    let resolved = false;
+    const finish = (showAd: boolean) => {
+      if (resolved) return;
+      resolved = true;
+      cleanup();
+      clearTimeout(timeoutId);
+      if (showAd) setTimeout(tryShowAd, SHOW_DELAY);
+      else router.back();
+    };
+    const cleanup = interstitial.addAdEventListener(AdEventType.LOADED, () => finish(true));
+    const timeoutId = setTimeout(() => finish(false), 3000);
+  }, [isPremium, adLoaded, stopListening]);
 
   // Start/stop listening based on voice mode
   useEffect(() => {
@@ -606,9 +709,8 @@ export default function CookingModeScreen() {
     });
   }, [scheduleRestart]);
 
-  const speakStep = useCallback((description: string, hasTimer: boolean, timerMins: number) => {
-    stopListening();
-    Speech.stop();
+  // 레시피 텍스트는 음성으로 읽지 않음. 타이머가 있는 단계만 타이머 안내 + 자동 시작.
+  const speakStep = useCallback((_description: string, hasTimer: boolean, timerMins: number) => {
     // 이전 speakStep 시퀀스의 모든 대기중 setTimeout 취소 + 세대 증가
     speakSequenceTimersRef.current.forEach(clearTimeout);
     speakSequenceTimersRef.current = [];
@@ -624,38 +726,45 @@ export default function CookingModeScreen() {
       speakSequenceTimersRef.current.push(t);
     };
 
+    if (!hasTimer) {
+      // 타이머 없는 단계 → 음성 안내 X, 기존 listening 흐름 그대로 유지.
+      // 마이크가 아직 켜져있지 않으면(예: 음성모드 첫 진입) 시작만 트리거.
+      if (
+        isVoiceModeRef.current &&
+        !completeModalRef.current &&
+        !isListeningRef.current &&
+        !isSpeakingRef.current
+      ) {
+        shouldRestartListeningRef.current = true;
+        scheduleRestart(600);
+      }
+      return;
+    }
+
+    // 타이머 있는 단계 → 듣기 중지 → 타이머 안내 → 자동 시작 → 듣기 재개
+    stopListening();
+    Speech.stop();
     isSpeakingRef.current = true;
     setIsSpeaking(true);
 
     schedule(() => {
-      if (hasTimer) {
-        // 단계 설명 → 타이머 안내 → 타이머 자동 시작 → 듣기 재개
-        speakText(description, () => {
-          if (isStale()) return;
-          schedule(() => {
-            const totalSec = Math.round(timerMins * 60);
-            const mm = Math.floor(totalSec / 60);
-            const ss = totalSec % 60;
-            const parts: string[] = [];
-            if (mm > 0) parts.push(`${toSinoKorean(mm)}분`);
-            if (ss > 0) parts.push(`${toSinoKorean(ss)}초`);
-            const timeStr = parts.length ? parts.join(' ') : '0초';
-            speakText(`${timeStr} 타이머를 시작합니다.`, () => {
-              if (isStale()) return;
-              isSpeakingRef.current = false;
-              setIsSpeaking(false);
-              setIsRunning(true); // 타이머 자동 시작
-              if (isVoiceModeRef.current && !completeModalRef.current) {
-                shouldRestartListeningRef.current = true;
-                scheduleRestart(Platform.OS === 'ios' ? 1000 : 400);
-              }
-            });
-          }, 300);
-        });
-      } else {
-        // 타이머 없는 단계 → 설명 후 바로 듣기 재개
-        speakText(description);
-      }
+      const totalSec = Math.round(timerMins * 60);
+      const mm = Math.floor(totalSec / 60);
+      const ss = totalSec % 60;
+      const parts: string[] = [];
+      if (mm > 0) parts.push(`${toSinoKorean(mm)}분`);
+      if (ss > 0) parts.push(`${toSinoKorean(ss)}초`);
+      const timeStr = parts.length ? parts.join(' ') : '0초';
+      speakText(`${timeStr} 타이머를 시작합니다.`, () => {
+        if (isStale()) return;
+        isSpeakingRef.current = false;
+        setIsSpeaking(false);
+        setIsRunning(true); // 타이머 자동 시작
+        if (isVoiceModeRef.current && !completeModalRef.current) {
+          shouldRestartListeningRef.current = true;
+          scheduleRestart(Platform.OS === 'ios' ? 1000 : 400);
+        }
+      });
     }, 200);
   }, [speakText, stopListening, scheduleRestart]);
 
@@ -670,6 +779,19 @@ export default function CookingModeScreen() {
     }
     return () => { Speech.stop(); isSpeakingRef.current = false; setIsSpeaking(false); };
   }, [currentStep, isVoiceMode, step?.description]);
+
+  // 음성 모드로 3단계 이상 진행하면 "음성모드로 요리하기" 일일 과제 완료.
+  // 위 speak 이펙트에 deps 를 더하면 재낭독이 생기므로 이펙트를 분리했다.
+  useEffect(() => {
+    if (!isVoiceMode || listenReportedRef.current) return;
+    const uid = firebaseUser?.uid;
+    if (!uid) return;
+    voiceStepsRef.current.add(currentStep);
+    if (voiceStepsRef.current.size >= 3) {
+      listenReportedRef.current = true;
+      completeChallenge(uid, 'listen');
+    }
+  }, [currentStep, isVoiceMode, firebaseUser?.uid]);
 
   useEffect(() => {
     if (step) {
@@ -749,7 +871,7 @@ export default function CookingModeScreen() {
     <SafeAreaView style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <TouchableOpacity style={styles.closeButton} onPress={() => router.back()}>
+        <TouchableOpacity style={styles.closeButton} onPress={exitCooking}>
           <Ionicons name="close" size={24} color="#1A1A1A" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>{recipe.title}</Text>
@@ -772,29 +894,20 @@ export default function CookingModeScreen() {
 
       {/* Voice Pill (음성 모드 상태) */}
       {isVoiceMode && (
-        <>
-          <View style={styles.voicePillRow}>
-            <View style={styles.voicePill}>
-              <View style={[styles.voiceDot, isSpeaking && styles.voiceDotActive, isListening && styles.voiceDotListening]} />
-              <Text style={styles.voicePillText}>
-                {isSpeaking ? '읽는 중' : isListening ? '듣는 중' : '음성 모드'}
-              </Text>
-            </View>
-            <TouchableOpacity
-              style={styles.replayButton}
-              onPress={() => step && speakStep(`${toSinoKorean(currentStep + 1)}단계. ${step.description}`, false, 0)}
-            >
-              <Text style={styles.replayText}>다시 듣기</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.voiceHintRowTop}>
-            <Text style={styles.voiceHintText}>
-              {hasTimer
-                ? '"다음" · "이전" · "끝" · "다시 듣기" · "타이머 시작" · "정지"'
-                : '"다음" · "이전" · "끝" · "다시 듣기"'}
+        <View style={styles.voicePillRow}>
+          <View style={styles.voicePill}>
+            <View style={[styles.voiceDot, isSpeaking ? styles.voiceDotActive : styles.voiceDotListening]} />
+            <Text style={styles.voicePillText}>
+              {isSpeaking ? '읽는 중' : '듣는 중'}
             </Text>
           </View>
-        </>
+          <TouchableOpacity
+            style={styles.replayButton}
+            onPress={() => step && speakStep(step.description, step.time > 0, step.time)}
+          >
+            <Text style={styles.replayText}>다시 듣기</Text>
+          </TouchableOpacity>
+        </View>
       )}
 
       {/* Step Photo (단계별 사진이 있을 때만 표시) */}
@@ -878,6 +991,16 @@ export default function CookingModeScreen() {
       </View>
 
       {/* Navigation — bottom padding은 safeAreaInsets 기반 (SE같은 홈버튼 기기는 0) */}
+      {isVoiceMode && (
+        <View style={styles.voiceHintRowBottom}>
+          <Text style={styles.voiceHintLabel}>이렇게 말해보세요</Text>
+          <Text style={styles.voiceHintText}>
+            {hasTimer
+              ? '"다음" · "이전" · "끝" · "다시 듣기" · "타이머 시작" · "정지"'
+              : '"다음" · "이전" · "끝" · "다시 듣기"'}
+          </Text>
+        </View>
+      )}
       <View style={[styles.navRow, { paddingBottom: Math.max(insets.bottom, 12) }]}>
         <TouchableOpacity
           style={[styles.navButton, currentStep === 0 && styles.navButtonDisabled]}
@@ -1001,10 +1124,7 @@ export default function CookingModeScreen() {
         visible={completeModalVisible}
         transparent
         animationType="fade"
-        onRequestClose={() => {
-          setCompleteModalVisible(false);
-          router.back();
-        }}
+        onRequestClose={exitCooking}
       >
         <View style={styles.completeOverlay}>
           <View style={styles.completeContent}>
@@ -1019,14 +1139,11 @@ export default function CookingModeScreen() {
 
             <TouchableOpacity
               style={[styles.completeLikeBtn, liked && styles.completeLikeBtnActive]}
-              onPress={async () => {
+              onPress={() => {
                 if (!liked && firebaseUser?.uid && recipe?.id) {
                   setLiked(true);
-                  try {
-                    await likeRecipeUser(firebaseUser.uid, recipe.id);
-                  } catch (e) {
-                    // ignore
-                  }
+                  // fire-and-forget — await로 묶지 않아야 직후의 닫기 광고 흐름과 간섭 없음.
+                  likeRecipeUser(firebaseUser.uid, recipe.id).catch(() => {});
                 }
               }}
             >
@@ -1038,46 +1155,7 @@ export default function CookingModeScreen() {
 
             <TouchableOpacity
               style={styles.completeCloseBtn}
-              onPress={() => {
-                setCompleteModalVisible(false);
-                // 오디오 세션 충돌 방지: 음성 인식/TTS 확실히 정지
-                shouldRestartListeningRef.current = false;
-                try { stopListening(); } catch {}
-                try { Speech.stop(); } catch {}
-                isSpeakingRef.current = false;
-                // 모달 dismiss 애니메이션 완료 + iOS 오디오 세션 해제 시간 확보 (iOS는 600ms+ 필요)
-                const SHOW_DELAY = Platform.OS === 'ios' ? 700 : 300;
-                if (isPremium) {
-                  router.back();
-                } else if (adLoaded) {
-                  setTimeout(() => {
-                    try {
-                      interstitial.show();
-                    } catch (e) {
-                      console.warn('Ad show failed:', e);
-                      router.back();
-                    }
-                  }, SHOW_DELAY);
-                } else {
-                  // 광고 로딩 중 — 최대 3초 대기 후 표시, 시간 초과 시 그냥 뒤로가기
-                  let resolved = false;
-                  const finish = (showAd: boolean) => {
-                    if (resolved) return;
-                    resolved = true;
-                    cleanup();
-                    clearTimeout(timeoutId);
-                    if (showAd) {
-                      setTimeout(() => {
-                        try { interstitial.show(); } catch { router.back(); }
-                      }, SHOW_DELAY);
-                    } else {
-                      router.back();
-                    }
-                  };
-                  const cleanup = interstitial.addAdEventListener(AdEventType.LOADED, () => finish(true));
-                  const timeoutId = setTimeout(() => finish(false), 3000);
-                }
-              }}
+              onPress={exitCooking}
             >
               <Text style={styles.completeCloseText}>닫기</Text>
             </TouchableOpacity>
@@ -1510,9 +1588,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingBottom: 4,
   },
+  voiceHintRowBottom: {
+    alignItems: 'center',
+    paddingBottom: 8,
+    paddingHorizontal: 20,
+  },
+  voiceHintLabel: {
+    fontSize: 13,
+    fontWeight: '700',
+    color: '#1BAE74',
+    marginBottom: 5,
+    letterSpacing: 0.2,
+  },
   voiceHintText: {
-    fontSize: 12,
-    color: '#BDBDBD',
+    fontSize: 14,
+    color: '#8A8A8A',
   },
   completeOverlay: {
     flex: 1,
