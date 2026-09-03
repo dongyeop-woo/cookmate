@@ -9,6 +9,7 @@ import {
 } from 'firebase/auth';
 import { getFirebaseAuth } from '@/lib/firebase';
 import { API_BASE } from '@/lib/api';
+import { takePostLoginRedirect } from '@/lib/post-login';
 
 declare global {
   interface Window {
@@ -48,7 +49,8 @@ export default function LoginButtons() {
     if (res.ok) {
       const profile = await res.json();
       if (profile && !profile.withdrawnAt) {
-        router.replace('/');
+        // 좋아요 등에서 로그인을 유도했다면 보던 페이지로, 아니면 홈
+        router.replace(takePostLoginRedirect());
         return;
       }
     }

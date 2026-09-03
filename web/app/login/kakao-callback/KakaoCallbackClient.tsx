@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { signInWithCustomToken } from 'firebase/auth';
 import { getFirebaseAuth } from '@/lib/firebase';
 import { API_BASE } from '@/lib/api';
+import { takePostLoginRedirect } from '@/lib/post-login';
 
 const KAKAO_JS_KEY = process.env.NEXT_PUBLIC_KAKAO_JS_KEY ?? '';
 
@@ -75,7 +76,8 @@ export default function KakaoCallbackClient() {
         if (profRes.ok) {
           const profile = await profRes.json();
           if (profile && !profile.withdrawnAt) {
-            router.replace('/');
+            // 좋아요 등에서 로그인을 유도했다면 보던 페이지로, 아니면 홈
+            router.replace(takePostLoginRedirect());
             return;
           }
         }
