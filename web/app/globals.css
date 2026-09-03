@@ -49,6 +49,14 @@ img { display: block; }
   font-size: 12px; font-weight: 700; color: #0B9A61;
   text-decoration: none; white-space: nowrap;
 }
+/* 로그인 상태 — 눌러서 로그아웃 메뉴를 여는 버튼 */
+.mobile-login-wrap { position: relative; }
+.mobile-login-user {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: none; border: 0; padding: 0;
+  font: inherit; cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
 .mobile-login-user img {
   width: 22px; height: 22px; border-radius: 50%;
   object-fit: cover;
@@ -56,7 +64,30 @@ img { display: block; }
 .mobile-login-user span {
   color: #1A1A1A; font-weight: 700;
   max-width: 100px; overflow: hidden; text-overflow: ellipsis;
+  white-space: nowrap;
 }
+.mobile-login-caret {
+  color: #9E9E9E; flex-shrink: 0;
+  transition: transform 0.15s;
+}
+.mobile-login-caret.open { transform: rotate(180deg); }
+.mobile-login-menu {
+  /* 칩 오른쪽 끝에 맞춰 왼쪽으로 펼침 — 좁은 화면에서 화면 밖으로 안 나가게 */
+  position: absolute; top: calc(100% + 8px); right: 0;
+  min-width: 120px;
+  background: #FFFFFF; border: 1px solid #EEEEEE;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  padding: 4px; z-index: 900;
+}
+.mobile-login-menu button {
+  display: block; width: 100%;
+  padding: 10px 12px; border: 0; border-radius: 7px;
+  background: none; text-align: left;
+  font-size: 13px; font-weight: 700; font-family: inherit; color: #1A1A1A;
+  cursor: pointer; white-space: nowrap;
+}
+.mobile-login-menu button:active { background: #F5F6F7; }
 .mobile-login-skeleton {
   width: 50px; height: 16px;
   background: #F0F0F0; border-radius: 4px;
@@ -395,23 +426,37 @@ img { display: block; }
   font: inherit; color: inherit;
   cursor: pointer; -webkit-tap-highlight-color: transparent;
 }
+/* 미선택도 빨간 외곽선 — 기존 ♥ 의 시각적 무게를 유지하고 누를 수 있음을 드러냄 */
 .detail .stat-row .like-btn svg {
-  display: block; color: #C9CDD2;
-  transition: color 0.15s, transform 0.15s;
+  display: block; color: #FF4D67;
+  transition: transform 0.15s;
 }
-.detail .stat-row .like-btn.liked svg { color: #FF4D67; }
 .detail .stat-row .like-btn:active svg { transform: scale(1.2); }
 .detail .stat-row .like-btn:disabled { opacity: 0.55; cursor: default; }
-.detail .stat-row .like-notice {
-  flex-basis: 100%;
-  display: inline-flex; align-items: center; gap: 6px;
-  margin-top: -8px; font-size: 12.5px; color: #666;
+
+/* 비로그인 좋아요 → 로그인 유도 모달 (틀은 .app-modal 재사용) */
+.like-modal-icon {
+  width: 56px; height: 56px; margin: 0 auto 14px;
+  border-radius: 50%; background: #FFF0F2; color: #FF4D67;
+  display: flex; align-items: center; justify-content: center;
 }
-.detail .stat-row .like-notice a { color: #0B9A61; font-weight: 700; }
-.detail .stat-row .like-notice-x {
-  background: none; border: 0; padding: 0 2px;
-  color: #BDBDBD; font-size: 15px; line-height: 1; cursor: pointer;
+.like-modal-btn {
+  display: block; width: 100%;
+  padding: 13px 0; border: 0; border-radius: 12px;
+  background: #0B9A61; color: #FFFFFF;
+  font-size: 15px; font-weight: 700; font-family: inherit;
+  cursor: pointer; transition: background 0.15s;
 }
+.like-modal-btn:hover { background: #0A8B57; }
+.like-modal-btn:active { background: #088450; }
+.like-modal-later {
+  display: block; width: 100%;
+  margin-top: 8px; padding: 10px 0;
+  background: none; border: 0;
+  color: #999; font-size: 13.5px; font-family: inherit;
+  cursor: pointer;
+}
+.like-modal-later:hover { color: #666; }
 .detail .stat-row .stat-views { display: inline-flex; align-items: center; gap: 4px; color: #888; }
 .detail .stat-row .stat-views svg { display: block; }
 .detail .author {
