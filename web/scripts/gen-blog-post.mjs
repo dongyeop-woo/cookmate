@@ -64,10 +64,25 @@ function getCurrentSeason(date) {
   return 'winter';
 }
 
-async function getRecentSlugs() {
+/** 최근 글 {slug, title} — 중복 방지 + 내부 링크 앵커 텍스트용. 최신순. */
+async function getRecentPosts(limit = 6) {
   try {
-    const files = await fs.readdir(CONTENT_DIR);
-    return files.filter((f) => f.endsWith('.md')).map((f) => f.replace(/\.md$/, ''));
+    const files = (await fs.readdir(CONTENT_DIR))
+      .filter((f) => f.endsWith('.md'))
+      .sort()
+      .reverse()
+      .slice(0, limit);
+    return Promise.all(
+      files.map(async (f) => {
+        const slug = f.replace(/\.md$/, '');
+        let title = slug;
+        try {
+          const raw = await fs.readFile(path.join(CONTENT_DIR, f), 'utf-8');
+          title = raw.match(/^title:\s*(.+)$/m)?.[1].trim().replace(/^["']|["']$/g, '') ?? slug;
+        } catch {}
+        return { slug, title };
+      }),
+    );
   } catch {
     return [];
   }
@@ -104,10 +119,11 @@ function recipeContextBlock(recipes) {
     .join('\n');
 }
 
-function buildPrompt(date, keyword, recentSlugs, recipes) {
+function buildPrompt(date, keyword, recentPosts, recipes) {
   const dateStr = date.toISOString().slice(0, 10);
   const recipesBlock = recipeContextBlock(recipes);
   const firstImage = recipes[0]?.image ?? 'https://yojalal.com/img/app-icon.png';
+  const linkTarget = recentPosts[0];
 
   return `당신은 한국 인기 요리 매거진 "요잘알 매거진"의 시니어 에디터입니다.
 오늘(${dateStr}) 발행할 **쇼츠 스타일 큐레이션** 블로그 글을 작성하세요.
@@ -116,13 +132,39 @@ function buildPrompt(date, keyword, recentSlugs, recipes) {
 - 사용자는 긴 글 안 읽어요. **스크롤하면서 이미지+짧은 텍스트** 위주로 봅니다.
 - 텍스트는 최소화, **레시피 카드(이미지) 다수**가 핵심.
 - 한 단락은 **1~2줄**. 절대 4줄 넘기지 마세요.
-- 본문 총 글자 수는 **800~1100자 사이** (frontmatter 제외).
+- 본문 총 글자 수는 **500~900자 사이** (frontmatter 제외). 짧을수록 좋습니다.
 
 # 키워드
 "${keyword}"
 
 # 활용 가능한 요잘알 레시피 (8개 중 4~6개를 본문에 카드로 박으세요)
 ${recipesBlock}
+
+# 메뉴 배열 순서
+조리 시간이 **짧은 것부터 긴 것 순서**로 배열하세요.
+독자가 "평일 아침엔 앞쪽, 주말엔 뒤쪽"으로 바로 고를 수 있게 됩니다.
+
+# 본문 설명과 카드 설명의 역할 분리 (중요)
+같은 말을 두 번 쓰지 마세요. 역할이 다릅니다.
+- **본문 단락** = "왜 지금 이걸" — 제철·날씨·상황·조리 시간 맥락
+- **카드 desc** = "이게 뭔지" — 레시피 원본 설명 그대로
+
+나쁜 예 (본문이 카드 설명을 반복):
+  본문: "겉바속촉 황금빛 후라이드 치킨. 치킨의 클래식!"
+  카드: "겉바속촉 황금빛 후라이드 치킨. 치킨의 클래식!"
+
+좋은 예 (본문이 맥락을 더함):
+  본문: "무가 제철로 들어가는 때라 지금이 가장 답니다. 감기 기운 있을 때 속이 편해요."
+  카드: "담백하고 시원한 소고기 뭇국. 숙취에도, 감기에도 최고의 국물!"
+
+# 계절 맥락은 오늘(${dateStr}) 기준으로
+레시피 원본 설명에 적힌 계절 표현을 **그대로 옮기지 마세요**.
+예: 7월 글에 "봄 인기 안주"라고 쓰면 안 됩니다. 오늘 날짜에 맞게 다시 쓰세요.
+
+# 핵심 팁은 조리 원리로
+레시피 설명을 요약하지 말고, **실제로 결과가 달라지는 한 가지 동작**을 쓰세요.
+좋은 예: "처음 끓어오른 물은 버리고 새 물로 다시 시작하세요. 잡내가 확실히 잡힙니다."
+나쁜 예: "정성껏 끓이면 맛있어요."
 
 # 글 구조 (반드시 이 틀로)
 \`\`\`
@@ -154,7 +196,9 @@ ${recipesBlock}
 
 ## 마치며
 
-(2~3줄. 요잘알 앱 자연스러운 안내.)
+(2~3줄. 상황별로 몇 번을 고르면 되는지 한 줄 + 요잘알 앱 안내.)
+
+(마지막 줄: 아래 "내부 링크" 지시대로 이전 글 링크 1개)
 \`\`\`
 
 # 레시피 카드 마크업 (이거만 정확히 따르면 됨)
@@ -183,16 +227,26 @@ tags:
 image: ${firstImage}
 ---
 
+# 내부 링크 (마지막 줄에 1개)
+글 맨 끝에 이전 매거진 글로 가는 링크를 한 줄 넣으세요. 검색 유입과 체류시간에 도움이 됩니다.
+${
+  linkTarget
+    ? `형식: [${linkTarget.title}](/blog/${linkTarget.slug})
+앞에 자연스러운 연결 문장을 한 마디 붙이세요. 예: "지난 주 메뉴가 궁금하시면 ○○도 함께 보세요."`
+    : '(이전 글이 없으니 이번엔 생략)'
+}
+
 # 절대 하지 말 것
 - 한 단락 4줄 이상 X
 - 들어가며 섹션 3줄 이상 X
 - "왜 이게 좋은가" 같은 설명 길게 X
 - 영양·역사·문화 설명 X (사용자 안 읽어요)
 - 총 글자 900자 초과 X
+- 이모지 X (제목·본문·마치며 전부)
 - 코드블록·다른 설명 X. 바로 frontmatter 부터 시작.
 
-# 기존 글 중복 방지
-최근 글 slug: ${recentSlugs.slice(0, 10).join(', ') || '(없음)'}
+# 기존 글 중복 방지 (최근 글 — 소재가 겹치면 다른 각도로)
+${recentPosts.map((p) => `- ${p.title} (${p.slug})`).join('\n') || '(없음)'}
 
 지금 바로 작성 시작:`;
 }
@@ -209,7 +263,7 @@ async function callClaude(prompt) {
       'anthropic-version': '2023-06-01',
     },
     body: JSON.stringify({
-      model: 'claude-sonnet-4-6',
+      model: 'claude-sonnet-5',
       max_tokens: 4096,
       messages: [{ role: 'user', content: prompt }],
     }),
@@ -285,12 +339,12 @@ async function main() {
   const picked = keywords[Math.floor(Math.random() * keywords.length)];
   const keyword = picked.kw;
   const cats = picked.cats;
-  const recentSlugs = await getRecentSlugs();
+  const recentPosts = await getRecentPosts();
   const recipes = await fetchRecipesByCategories(cats);
 
   console.log(`[gen-blog] 시작 — 날짜=${today.toISOString().slice(0, 10)} 계절=${season} 키워드="${keyword}" 매칭레시피=${recipes.length}개`);
 
-  const prompt = buildPrompt(today, keyword, recentSlugs, recipes);
+  const prompt = buildPrompt(today, keyword, recentPosts, recipes);
   const rawMarkdown = await callClaude(prompt);
 
   const meta = extractFrontmatter(rawMarkdown);

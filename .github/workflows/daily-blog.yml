@@ -1,11 +1,11 @@
 name: 매일 블로그 자동 발행
 
 on:
-  # 자동 cron 일시 비활성화 — 운영자가 직접 작업 중인 동안엔 채팅 안에서
-  # 글 작성 후 푸시 (Claude API 비용 0). 자동화 부활하려면 아래 schedule
-  # 블록 주석 해제만 하면 됨.
-  # schedule:
-  #   - cron: '0 0 * * *' # 매일 00:00 UTC = 09:00 KST
+  # 매일 자동 발행. 2026-07-04 ~ 09-04 두 달 공백을 겪고 재개.
+  # 수동 운영은 "말해야 돌아가는" 구조라 결국 끊김 — 비용(약 52원/편)보다
+  # 공백의 손해가 훨씬 컸음.
+  schedule:
+    - cron: '0 0 * * *' # 매일 00:00 UTC = 09:00 KST
   workflow_dispatch: # 수동 실행 (Actions 탭에서 "Run workflow")
 
 permissions:
