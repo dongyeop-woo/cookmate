@@ -31,9 +31,14 @@ public class AttendanceService {
     private static final int BONUS_POINTS = 40;
     private static final ZoneId KST = ZoneId.of("Asia/Seoul");
 
-    /** 기본 포인트 = 3 + streak (day 1=4P, day 3=6P, day 7=10P) */
+    /**
+     * 기본 포인트 없음.
+     * 예전엔 홈 진입만으로 3+streak P 를 줬는데, 아무 행동도 유도하지 못하면서
+     * 기프티콘 원가만 늘렸다. 지금은 일일 도전과제를 완료해야 연속이 이어지고,
+     * 포인트는 7일 연속 보너스에서만 나간다.
+     */
     private int calculateBase(int streak) {
-        return 3 + streak;
+        return 0;
     }
 
     private int calculateBonus(int streak) {
@@ -107,20 +112,22 @@ public class AttendanceService {
             throw new IllegalArgumentException("오늘 이미 출석체크를 완료했습니다.");
         }
 
-        // 포인트 지급
-        firestore.collection(USERS).document(uid)
-                .update("points", FieldValue.increment(total)).get();
+        // 보너스가 붙는 날(7일마다)에만 지급 — 그 외에는 0P 이라 내역을 남기지 않는다.
+        // 0P 짜리 적립 내역이 쌓이면 포인트 내역 화면이 의미 없는 줄로 채워진다.
+        if (total > 0) {
+            firestore.collection(USERS).document(uid)
+                    .update("points", FieldValue.increment(total)).get();
 
-        // 포인트 내역 기록
-        PointHistoryDto history = PointHistoryDto.builder()
-                .uid(uid)
-                .type("earn")
-                .amount(total)
-                .title("출석체크")
-                .description(newStreak + "일째 출석" + (bonus > 0 ? " + " + BONUS_EVERY_N_DAYS + "일 연속 보너스" : ""))
-                .build();
-        pointHistoryService.create(history);
-        log.info("출석 포인트 {}P 지급: uid={}, streak={}", total, uid, newStreak);
+            PointHistoryDto history = PointHistoryDto.builder()
+                    .uid(uid)
+                    .type("earn")
+                    .amount(total)
+                    .title(BONUS_EVERY_N_DAYS + "일 연속 달성")
+                    .description(newStreak + "일 연속 도전과제 완료 보너스")
+                    .build();
+            pointHistoryService.create(history);
+            log.info("연속 보너스 {}P 지급: uid={}, streak={}", total, uid, newStreak);
+        }
 
         // 첫 출석체크 보너스 200P 지급
         try {

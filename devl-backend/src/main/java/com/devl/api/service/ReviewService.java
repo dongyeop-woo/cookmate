@@ -24,6 +24,7 @@ public class ReviewService {
     private final NotificationService notificationService;
     private final PointHistoryService pointHistoryService;
     private final CookingHistoryService cookingHistoryService;
+    private final ChallengeService challengeService;
 
     private static final String COLLECTION = "reviews";
     private static final String USERS = "users";
@@ -135,7 +136,14 @@ public class ReviewService {
             log.info("후기 포인트 {}P 지급: uid={}, recipeId={}", points, dto.getUid(), dto.getRecipeId());
         }
 
-        // 6) 레시피 작성자에게 알림
+        // 6) 일일 도전과제 "후기 남기기" 완료 — 실패해도 후기 등록 자체는 성공시킨다
+        try {
+            challengeService.complete(dto.getUid(), "review");
+        } catch (Exception e) {
+            log.warn("후기 도전과제 반영 실패: uid={}, error={}", dto.getUid(), e.getMessage());
+        }
+
+        // 7) 레시피 작성자에게 알림
         notifyRecipeAuthor(dto);
 
         return dto;
