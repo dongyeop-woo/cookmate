@@ -264,7 +264,11 @@ async function callClaude(prompt) {
     },
     body: JSON.stringify({
       model: 'claude-sonnet-5',
-      max_tokens: 4096,
+      max_tokens: 8192,
+      // Sonnet 5 는 thinking 이 기본 ON 이라 content[0] 이 thinking 블록이 된다.
+      // 이 작업은 정해진 틀을 채우는 일이라 추론이 필요 없고, 켜두면 max_tokens 를
+      // thinking 과 나눠 쓰느라 글이 잘릴 수 있어 끈다.
+      thinking: { type: 'disabled' },
       messages: [{ role: 'user', content: prompt }],
     }),
   });
@@ -274,7 +278,18 @@ async function callClaude(prompt) {
     throw new Error(`Claude API ${res.status}: ${errText}`);
   }
   const data = await res.json();
-  return data.content[0].text.trim();
+
+  // content 에는 text 외 블록(thinking 등)이 섞일 수 있다. 인덱스로 찍지 말 것.
+  const textBlock = data.content?.find((b) => b.type === 'text');
+  if (!textBlock?.text) {
+    const kinds = (data.content ?? []).map((b) => b.type).join(', ') || '(없음)';
+    throw new Error(`Claude 응답에 text 블록이 없음 — stop_reason=${data.stop_reason}, 블록=[${kinds}]`);
+  }
+  if (data.stop_reason === 'max_tokens') {
+    console.warn('[gen-blog] max_tokens 도달 — 글이 중간에 잘렸을 수 있습니다.');
+  }
+  console.log(`[gen-blog] 응답 수신 — 입력 ${data.usage?.input_tokens}토큰 / 출력 ${data.usage?.output_tokens}토큰`);
+  return textBlock.text.trim();
 }
 
 function extractFrontmatter(markdown) {

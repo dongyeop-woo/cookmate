@@ -10,6 +10,7 @@ on:
 
 permissions:
   contents: write
+  issues: write # 실패 시 이슈 생성
 
 jobs:
   generate-and-publish:
@@ -51,3 +52,39 @@ jobs:
           DATE=$(date -u +%Y-%m-%d)
           git commit -m "blog: 자동 발행 ${DATE}"
           git push
+
+      # 메일만으로는 놓친다 — 2026-09-04~19 사이 16회 연속 실패를 아무도 못 봤음.
+      # 이슈는 레포에 남고 해결 전까지 사라지지 않는다.
+      - name: 실패 시 이슈 생성
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const today = new Date().toISOString().slice(0, 10);
+            const url = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const title = `매거진 자동 발행 실패 — ${today}`;
+            const { data: open } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo,
+              state: 'open', labels: 'blog-automation',
+            });
+            if (open.length > 0) {
+              // 이미 열린 실패 이슈가 있으면 댓글만 — 매일 새 이슈가 쌓이지 않게
+              await github.rest.issues.createComment({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: open[0].number,
+                body: `${today} 실행도 실패했습니다. [로그](${url})`,
+              });
+              return;
+            }
+            await github.rest.issues.create({
+              owner: context.repo.owner, repo: context.repo.repo,
+              title,
+              body: [
+                '매일 블로그 자동 발행이 실패했습니다.',
+                '',
+                `- [실행 로그](${url})`,
+                '- 실패가 이어지는 동안 이 이슈에 댓글이 쌓입니다.',
+                '- 고친 뒤 이 이슈를 닫아주세요 (닫아야 다음 실패 때 새 이슈가 열립니다).',
+              ].join('\n'),
+              labels: ['blog-automation'],
+            });
