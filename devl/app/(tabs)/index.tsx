@@ -865,6 +865,12 @@ export default function HomeScreen() {
     if (item.type === 'header') {
       return (
         <>
+          {/* 오늘의 도전 띠 — 검색창 바로 아래. 로그인 상태에서만. 본체는 /challenges */}
+          <DailyChallengeBar
+            data={challenges}
+            onPress={() => router.push('/challenges' as any)}
+          />
+
           {/* 배너 슬라이더 */}
           <StackAdCard router={router} />
           {/* Categories */}
@@ -882,12 +888,6 @@ export default function HomeScreen() {
               </TouchableOpacity>
             ))}
           </View>
-
-          {/* 오늘의 도전 띠 — 로그인 상태에서만. 본체는 /challenges */}
-          <DailyChallengeBar
-            data={challenges}
-            onPress={() => router.push('/challenges' as any)}
-          />
 
           {/* AI 추천 진입 카드 — 탭하면 AI 셰프 화면으로 이동, 입력은 거기서 처리 */}
           <AiRecommendCard onPress={() => router.push('/ai-recommend' as any)} />

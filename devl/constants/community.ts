@@ -9,9 +9,11 @@ export interface CommunityRecipe {
   category: string;
   time: number;
   difficulty: string;
+  servings?: string | number;
+  calories?: number;
   image: string;
   ingredients: { name: string; amount: string }[];
-  steps: { description: string; time: number }[];
+  steps: { description: string; time: number; imageUrl?: string; isAiImage?: boolean }[];
   createdAt: string;
   ratings: { userId: string; score: number }[];
   questions: {
@@ -23,6 +25,11 @@ export interface CommunityRecipe {
     answerAt?: string;
   }[];
   likes: number;
+  status?: 'pending' | 'approved' | 'rejected';
+  rejectionReason?: string;
+  images?: string[];
+  comments?: any[];
+  tags?: string[];
 }
 
 const STORAGE_KEY = '@community_recipes';

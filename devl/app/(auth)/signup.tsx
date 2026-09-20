@@ -16,6 +16,8 @@ import {
   ActionSheetIOS,
 } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+import * as Application from 'expo-application';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { useFocusEffect } from '@react-navigation/native';
@@ -24,18 +26,37 @@ import { updateProfile } from 'firebase/auth';
 import { authInstance } from '../../firebase';
 import { useAuth } from '../_layout';
 import { createUser, checkNicknameAvailable } from '../../services/api';
+import { savePendingSignup, finalizeSignup } from '../../services/signupFlow';
+import { Ionicons } from '@expo/vector-icons';
 
 const STEPS = [
   { key: 'terms', title: '이용약관' },
   { key: 'nickname', title: '프로필 설정' },
+  { key: 'fridge', title: '냉장고' },
 ] as const;
 
 const TERMS = [
   { id: 'all', label: '전체 동의', required: false, isAll: true },
+  { id: 'age14', label: '[필수] 만 14세 이상입니다', required: true },
   { id: 'service', label: '[필수] 서비스 이용약관 동의', required: true },
   { id: 'privacy', label: '[필수] 개인정보 처리방침 동의', required: true },
-  { id: 'marketing', label: '[선택] 마케팅 정보 수신 동의', required: false },
+  { id: 'alimtalk', label: '[필수] 거래 알림톡 수신 동의 (기프티콘 발송 등)', required: true },
+  { id: 'marketing', label: '[선택] 마케팅 알림톡·푸시 수신 동의', required: false },
 ];
+
+function FridgeFeatureRow({ icon, title, desc }: { icon: any; title: string; desc: string }) {
+  return (
+    <View style={styles.fridgeFeatureRow}>
+      <View style={styles.fridgeFeatureIcon}>
+        <Ionicons name={icon} size={18} color="#1A1A1A" />
+      </View>
+      <View style={{ flex: 1 }}>
+        <Text style={styles.fridgeFeatureTitle}>{title}</Text>
+        <Text style={styles.fridgeFeatureDesc}>{desc}</Text>
+      </View>
+    </View>
+  );
+}
 
 export default function SignupScreen() {
   const router = useRouter();
@@ -48,7 +69,7 @@ export default function SignupScreen() {
   // Step 1: Nickname, Bio, Gender & Profile Photo
   const [nickname, setNickname] = useState('');
   const [bio, setBio] = useState('');
-  const [gender, setGender] = useState<'male' | 'female' | ''>('male');
+  const [gender, setGender] = useState<'male' | 'female' | ''>('');
   const [profileImage, setProfileImage] = useState<string | null>(null);
   const [signupLoading, setSignupLoading] = useState(false);
   const [nicknameStatus, setNicknameStatus] = useState<'idle' | 'checking' | 'available' | 'taken'>('idle');
@@ -143,44 +164,61 @@ export default function SignupScreen() {
     }
   };
 
-  const handleComplete = async () => {
+  const handleComplete = async (opts?: { goToFridge?: boolean }) => {
     if (!firebaseUser) {
       Alert.alert('오류', '로그인 정보가 없습니다. 다시 시도해주세요.');
       router.replace('/(auth)/welcome');
       return;
     }
-    setSignupLoading(true);
-    const finalNickname = nickname.trim() || firebaseUser.displayName || '요리사';
-    try {
-      await updateProfile(firebaseUser, { displayName: finalNickname });
-      const defaultAvatar = gender === 'male'
-        ? Image.resolveAssetSource(require('../../assets/man.png')).uri
-        : gender === 'female'
-          ? Image.resolveAssetSource(require('../../assets/girl.png')).uri
-          : '';
-      let finalProfileImage: string;
-      if (profileImage && profileImage !== 'default') {
-        finalProfileImage = profileImage;
-      } else if (profileImage === 'default') {
-        finalProfileImage = defaultAvatar;
-      } else {
-        finalProfileImage = firebaseUser.photoURL || defaultAvatar;
+    const providerOriginalName = firebaseUser.providerData?.[0]?.displayName || '';
+    const socialFallback = providerOriginalName || firebaseUser.displayName || '';
+    const trimmedNickname = nickname.trim();
+    if (!trimmedNickname && !socialFallback) {
+      Alert.alert('닉네임 필요', '앱에서 사용할 닉네임을 입력해주세요.');
+      setStep(1);
+      return;
+    }
+
+    // "재료 등록하기" 경로 — 계정 생성은 냉장고 "완료" 버튼에서 수행
+    if (opts?.goToFridge) {
+      try {
+        await savePendingSignup(firebaseUser.uid, {
+          nickname: trimmedNickname,
+          bio: bio.trim(),
+          gender,
+          profileImage,
+          agreedTerms: !!agreedTerms.service,
+          agreedPrivacy: !!agreedTerms.privacy,
+          agreedAlimtalk: !!agreedTerms.alimtalk,
+          agreedMarketing: !!agreedTerms.marketing,
+        });
+        router.replace({ pathname: '/my-fridge', params: { onboarding: '1' } });
+      } catch (e: any) {
+        Alert.alert('오류', e?.message || '임시 저장에 실패했습니다.');
       }
-      const profile = await createUser({
-        uid: firebaseUser.uid,
-        email: firebaseUser.email || '',
-        nickname: finalNickname,
-        phone: '',
-        profileImage: finalProfileImage,
+      return;
+    }
+
+    // "건너뛰기" — 즉시 계정 생성 + 홈으로
+    setSignupLoading(true);
+    try {
+      const profile = await finalizeSignup(firebaseUser, {
+        nickname: trimmedNickname,
         bio: bio.trim(),
         gender,
+        profileImage,
+        agreedTerms: !!agreedTerms.service,
+        agreedPrivacy: !!agreedTerms.privacy,
+        agreedAlimtalk: !!agreedTerms.alimtalk,
+        agreedMarketing: !!agreedTerms.marketing,
       });
       setUserProfile(profile);
       setIsLoggedIn(true);
       router.replace('/(tabs)');
     } catch (error: any) {
       console.error('Signup error:', error);
-      Alert.alert('가입 실패', '프로필 생성에 실패했습니다. 다시 시도해주세요.');
+      const msg = error?.message || '프로필 생성에 실패했습니다. 다시 시도해주세요.';
+      Alert.alert('가입 실패', msg);
     } finally {
       setSignupLoading(false);
     }
@@ -189,7 +227,15 @@ export default function SignupScreen() {
   const canProceed = () => {
     switch (step) {
       case 0: return allTermsAgreed;
-      case 1: return gender !== '' && nicknameStatus !== 'taken';
+      case 1: {
+        // 소셜 계정에서 이름을 제공하지 않은 경우(예: Apple '가리기')엔 닉네임 필수
+        const providerName = firebaseUser?.providerData?.[0]?.displayName || '';
+        const socialName = providerName || firebaseUser?.displayName || '';
+        const needsNickname = !socialName;
+        const nicknameFilled = needsNickname ? nickname.trim().length >= 2 : true;
+        return nicknameStatus !== 'taken' && nicknameFilled;
+      }
+      case 2: return true;
       default: return false;
     }
   };
@@ -197,28 +243,52 @@ export default function SignupScreen() {
   const handleNext = () => {
     if (step < STEPS.length - 1) {
       setStep(step + 1);
-    } else {
-      handleComplete();
     }
   };
 
+  // 반응형 step indicator — 각 step을 column(dot 위, label 아래)으로 배치.
+  // 폰트가 커져도 label이 dot 아래에서 wrap만 되어 가로 overflow 방지.
+  // 라인은 dot 좌우에서 column 폭만큼 채우는 구조.
   const renderStepIndicator = () => (
     <View style={styles.stepRow}>
-      {STEPS.map((s, i) => (
-        <View key={s.key} style={styles.stepItem}>
-          <View style={[
-            styles.stepDot,
-            i <= step && styles.stepDotActive,
-            i < step && styles.stepDotDone,
-          ]}>
-            <Text style={[styles.stepDotText, i <= step && styles.stepDotTextActive]}>
-              {i < step ? '✓' : i + 1}
+      {STEPS.map((s, i) => {
+        const isActive = i <= step;
+        const isDone = i < step;
+        return (
+          <View key={s.key} style={styles.stepCol}>
+            <View style={styles.stepDotRow}>
+              {/* 왼쪽 line: 첫 번째 step 제외 */}
+              {i > 0 ? (
+                <View style={[styles.stepLine, isActive && styles.stepLineActive]} />
+              ) : (
+                <View style={styles.stepLineSpacer} />
+              )}
+              <View style={[
+                styles.stepDot,
+                isActive && styles.stepDotActive,
+                isDone && styles.stepDotDone,
+              ]}>
+                <Text style={[styles.stepDotText, isActive && styles.stepDotTextActive]}>
+                  {isDone ? '✓' : i + 1}
+                </Text>
+              </View>
+              {/* 오른쪽 line: 마지막 step 제외 */}
+              {i < STEPS.length - 1 ? (
+                <View style={[styles.stepLine, i < step && styles.stepLineActive]} />
+              ) : (
+                <View style={styles.stepLineSpacer} />
+              )}
+            </View>
+            <Text
+              style={[styles.stepLabel, isActive && styles.stepLabelActive]}
+              numberOfLines={2}
+              ellipsizeMode="tail"
+            >
+              {s.title}
             </Text>
           </View>
-          <Text style={[styles.stepLabel, i <= step && styles.stepLabelActive]}>{s.title}</Text>
-          {i < STEPS.length - 1 && <View style={[styles.stepLine, i < step && styles.stepLineActive]} />}
-        </View>
-      ))}
+        );
+      })}
     </View>
   );
 
@@ -241,7 +311,7 @@ export default function SignupScreen() {
                 onPress={() => toggleTerm(term.id)}
               >
                 <View style={[styles.checkbox, checked && styles.checkboxActive]}>
-                  {checked && <Text style={styles.checkmark}>✓</Text>}
+                  {checked && <Ionicons name="checkmark" size={16} color="#FFFFFF" />}
                 </View>
                 <Text style={[styles.termText, isAll && styles.termTextAll]}>{term.label}</Text>
                 {(term.id === 'service' || term.id === 'privacy') && (
@@ -264,15 +334,18 @@ export default function SignupScreen() {
     </View>
   );
 
-  const socialName = firebaseUser?.displayName || '';
-  const socialPhoto = firebaseUser?.photoURL || '';
+  // providerData는 소셜 프로바이더가 준 원본 정보. displayName은 앱에서 닉네임 설정 시
+  // updateProfile()로 덮어써서 이전 닉네임이 남을 수 있으니 providerData를 우선.
+  const providerName = firebaseUser?.providerData?.[0]?.displayName || '';
+  const providerPhoto = firebaseUser?.providerData?.[0]?.photoURL || '';
+  const socialName = providerName || firebaseUser?.displayName || '';
+  const socialPhoto = providerPhoto || firebaseUser?.photoURL || '';
 
   const getAvatarSource = () => {
     if (profileImage && profileImage !== 'default') return { uri: profileImage };
     if (profileImage !== 'default' && socialPhoto) return { uri: socialPhoto };
-    if (gender === 'male') return require('../../assets/man.png');
     if (gender === 'female') return require('../../assets/girl.png');
-    return null;
+    return require('../../assets/man.png');
   };
 
   const renderNickname = () => (
@@ -289,15 +362,17 @@ export default function SignupScreen() {
           </View>
         )}
         <TouchableOpacity style={styles.avatarEditBadge} onPress={showPhotoOptions} activeOpacity={0.7} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
-          <Text style={styles.avatarEditText}>✎</Text>
+          <Ionicons name="pencil" size={14} color="#FFFFFF" />
         </TouchableOpacity>
       </View>
 
       <View style={styles.inputGroup}>
-        <Text style={styles.inputLabel}>닉네임</Text>
+        <Text style={styles.inputLabel}>
+          닉네임 {!socialName && <Text style={styles.requiredMark}>*</Text>}
+        </Text>
         <TextInput
           style={[styles.inputSingle, nicknameStatus === 'taken' && styles.inputError]}
-          placeholder={socialName ? `${socialName} (미입력 시 자동 설정)` : '닉네임을 입력하세요'}
+          placeholder={socialName ? `${socialName} (미입력 시 자동 설정)` : '2자 이상 입력해주세요'}
           placeholderTextColor="#BDBDBD"
           value={nickname}
           onChangeText={handleNicknameChange}
@@ -316,28 +391,30 @@ export default function SignupScreen() {
         )}
         {socialName ? (
           <Text style={styles.nicknameHint}>입력하지 않으면 소셜 계정 이름({socialName})으로 설정됩니다</Text>
-        ) : null}
+        ) : (
+          <Text style={styles.nicknameHint}>앱에서 사용할 닉네임을 2자 이상 입력해주세요</Text>
+        )}
       </View>
 
       <View style={styles.inputGroup}>
-        <Text style={styles.inputLabel}>성별</Text>
+        <Text style={styles.inputLabel}>성별 <Text style={styles.optionalBadge}>(선택)</Text></Text>
         <View style={styles.genderRow}>
           <TouchableOpacity
             style={[styles.genderBtn, gender === 'male' && styles.genderBtnActive]}
-            onPress={() => setGender('male')}
+            onPress={() => setGender(gender === 'male' ? '' : 'male')}
             activeOpacity={0.8}
           >
             <Text style={[styles.genderBtnText, gender === 'male' && styles.genderBtnTextActive]}>남자</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.genderBtn, gender === 'female' && styles.genderBtnActive]}
-            onPress={() => setGender('female')}
+            onPress={() => setGender(gender === 'female' ? '' : 'female')}
             activeOpacity={0.8}
           >
             <Text style={[styles.genderBtnText, gender === 'female' && styles.genderBtnTextActive]}>여자</Text>
           </TouchableOpacity>
         </View>
-        <Text style={styles.genderNotice}>가입 후 성별은 변경할 수 없습니다</Text>
+        <Text style={styles.genderNotice}>기본 프로필 이미지 표시에만 사용됩니다. 선택하지 않아도 가입할 수 있어요.</Text>
       </View>
 
       <View style={styles.inputGroup}>
@@ -352,12 +429,50 @@ export default function SignupScreen() {
         />
         <Text style={styles.charCount}>{bio.length}/40</Text>
       </View>
+
+    </View>
+  );
+
+  const renderFridge = () => (
+    <View>
+      <Text style={styles.sectionTitle}>냉장고를 채워볼까요?</Text>
+      <Text style={styles.sectionSubtitle}>
+        보관 중인 재료와 유효기간을 관리하고, 재료 기반 레시피를 추천받아 보세요
+      </Text>
+
+      <View style={styles.fridgeHero}>
+        <View style={styles.fridgeHeroIcon}>
+          <Ionicons name="nutrition" size={34} color="#E53935" />
+        </View>
+        <Text style={styles.fridgeHeroTitle}>유효기간 관리가 쉬워져요</Text>
+        <Text style={styles.fridgeHeroSub}>
+          임박한 재료는 알림으로 알려드리고,{'\n'}
+          남은 재료로 만들 수 있는 레시피를 추천합니다
+        </Text>
+      </View>
+
+      <View style={styles.fridgeFeatureList}>
+        <FridgeFeatureRow
+          icon="search-outline"
+          title="HACCP 식품 검색"
+          desc="제품명만 입력하면 정식 식품 정보를 불러와요"
+        />
+        <FridgeFeatureRow
+          icon="notifications-outline"
+          title="유효기간 알림"
+          desc="3일 전, 1일 전, 당일 알림이 자동으로 발송돼요"
+        />
+        <FridgeFeatureRow
+          icon="sparkles-outline"
+          title="재료 기반 레시피"
+          desc="남은 재료로 만들 수 있는 요리를 추천받아요"
+        />
+      </View>
     </View>
   );
 
   return (
     <SafeAreaView style={styles.container}>
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <KeyboardAvoidingView
           style={{ flex: 1 }}
           behavior={Platform.OS === 'ios' ? 'padding' : undefined}
@@ -370,7 +485,7 @@ export default function SignupScreen() {
                 else router.replace('/(auth)/welcome');
               }}
             >
-              <Text style={styles.backIcon}>←</Text>
+              <Ionicons name="chevron-back" size={24} color="#1A1A1A" />
             </TouchableOpacity>
             <Text style={styles.headerTitle}>회원가입</Text>
             <View style={{ width: 42 }} />
@@ -382,30 +497,50 @@ export default function SignupScreen() {
             style={styles.scrollContent}
             showsVerticalScrollIndicator={false}
             keyboardShouldPersistTaps="handled"
+            keyboardDismissMode="on-drag"
           >
             {step === 0 && renderTerms()}
             {step === 1 && renderNickname()}
+            {step === 2 && renderFridge()}
             <View style={{ height: 100 }} />
           </ScrollView>
 
           <View style={styles.bottomSection}>
-            <TouchableOpacity
-              style={[styles.nextButton, (!canProceed() || signupLoading) && styles.nextButtonDisabled]}
-              onPress={handleNext}
-              disabled={!canProceed() || signupLoading}
-              activeOpacity={0.85}
-            >
-              {signupLoading ? (
-                <ActivityIndicator color="#FFFFFF" />
-              ) : (
-                <Text style={styles.nextButtonText}>
-                  {step < STEPS.length - 1 ? '다음' : '시작하기'}
-                </Text>
-              )}
-            </TouchableOpacity>
+            {step < 2 ? (
+              <TouchableOpacity
+                style={[styles.nextButton, (!canProceed() || signupLoading) && styles.nextButtonDisabled]}
+                onPress={handleNext}
+                disabled={!canProceed() || signupLoading}
+                activeOpacity={0.85}
+              >
+                <Text style={styles.nextButtonText}>다음</Text>
+              </TouchableOpacity>
+            ) : (
+              <View style={styles.finalButtonRow}>
+                <TouchableOpacity
+                  style={[styles.skipButton, signupLoading && { opacity: 0.5 }]}
+                  onPress={() => handleComplete({ goToFridge: false })}
+                  disabled={signupLoading}
+                  activeOpacity={0.85}
+                >
+                  <Text style={styles.skipButtonText}>건너뛰기</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={[styles.nextButton, { flex: 1 }, signupLoading && styles.nextButtonDisabled]}
+                  onPress={() => handleComplete({ goToFridge: true })}
+                  disabled={signupLoading}
+                  activeOpacity={0.85}
+                >
+                  {signupLoading ? (
+                    <ActivityIndicator color="#FFFFFF" />
+                  ) : (
+                    <Text style={styles.nextButtonText}>재료 등록하기</Text>
+                  )}
+                </TouchableOpacity>
+              </View>
+            )}
           </View>
         </KeyboardAvoidingView>
-      </TouchableWithoutFeedback>
     </SafeAreaView>
   );
 }
@@ -439,33 +574,42 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: '#1A1A1A',
   },
+  // 반응형 step indicator — 각 step이 column으로 화면을 1/3 씩 차지.
+  // dot+양옆 line 은 윗 row에서 가로로 늘어나고, label은 아래에서 wrap 가능.
+  // 폰트 확대 시에도 가로 overflow 발생 안 함.
   stepRow: {
     flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 40,
-    paddingVertical: 20,
+    alignItems: 'flex-start',
+    paddingHorizontal: 12,
+    paddingVertical: 16,
   },
-  stepItem: {
+  stepCol: {
+    flex: 1,
+    alignItems: 'center',
+    minWidth: 0,
+  },
+  stepDotRow: {
     flexDirection: 'row',
     alignItems: 'center',
+    width: '100%',
   },
   stepDot: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
+    width: 28,
+    height: 28,
+    borderRadius: 14,
     backgroundColor: '#F0F0F0',
     justifyContent: 'center',
     alignItems: 'center',
+    flexShrink: 0,
   },
   stepDotActive: {
-    backgroundColor: '#0B9A61',
+    backgroundColor: '#1BAE74',
   },
   stepDotDone: {
-    backgroundColor: '#A8E6CF',
+    backgroundColor: '#E5E5EA',
   },
   stepDotText: {
-    fontSize: 13,
+    fontSize: 12,
     fontWeight: '700',
     color: '#BDBDBD',
   },
@@ -473,23 +617,29 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
   },
   stepLabel: {
-    fontSize: 12,
+    fontSize: 11,
     color: '#BDBDBD',
-    marginLeft: 6,
     fontWeight: '500',
+    marginTop: 6,
+    textAlign: 'center',
+    paddingHorizontal: 2,
   },
   stepLabelActive: {
-    color: '#0B9A61',
+    color: '#1A1A1A',
     fontWeight: '600',
   },
   stepLine: {
-    width: 24,
+    flex: 1,
     height: 2,
     backgroundColor: '#F0F0F0',
-    marginHorizontal: 8,
   },
   stepLineActive: {
-    backgroundColor: '#A8E6CF',
+    backgroundColor: '#1BAE74',
+  },
+  // 첫/마지막 column에서 dot 양옆 정렬 유지용 빈 공간
+  stepLineSpacer: {
+    flex: 1,
+    height: 2,
   },
   scrollContent: {
     flex: 1,
@@ -530,10 +680,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 12,
+    flexShrink: 0,
   },
   checkboxActive: {
-    backgroundColor: '#0B9A61',
-    borderColor: '#0B9A61',
+    backgroundColor: '#1BAE74',
+    borderColor: '#1BAE74',
   },
   checkmark: {
     fontSize: 14,
@@ -577,6 +728,8 @@ const styles = StyleSheet.create({
     height: 52,
     fontSize: 15,
     color: '#1A1A1A',
+    borderWidth: 1,
+    borderColor: 'transparent',
   },
   charCount: {
     fontSize: 12,
@@ -584,9 +737,13 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     marginTop: 6,
   },
+  requiredMark: {
+    color: '#FF3B30',
+    fontWeight: '800',
+  },
   nicknameHint: {
     fontSize: 12,
-    color: '#0B9A61',
+    color: '#1A1A1A',
     marginTop: 4,
   },
   nicknameError: {
@@ -596,7 +753,7 @@ const styles = StyleSheet.create({
   },
   nicknameAvailable: {
     fontSize: 12,
-    color: '#0B9A61',
+    color: '#1A1A1A',
     marginTop: 4,
   },
   nicknameChecking: {
@@ -626,8 +783,8 @@ const styles = StyleSheet.create({
     borderColor: 'transparent',
   },
   genderBtnActive: {
-    backgroundColor: '#E8F5E9',
-    borderColor: '#0B9A61',
+    backgroundColor: '#F5F5F7',
+    borderColor: '#1A1A1A',
   },
   genderBtnText: {
     fontSize: 15,
@@ -635,7 +792,7 @@ const styles = StyleSheet.create({
     color: '#9E9E9E',
   },
   genderBtnTextActive: {
-    color: '#0B9A61',
+    color: '#1A1A1A',
   },
   genderNotice: {
     fontSize: 12,
@@ -669,17 +826,15 @@ const styles = StyleSheet.create({
   },
   avatarEditBadge: {
     position: 'absolute',
-    bottom: 0,
+    bottom: 2,
     right: '50%',
-    marginRight: -48,
-    backgroundColor: '#FFFFFF',
+    marginRight: -50,
+    backgroundColor: '#1A1A1A',
     borderRadius: 12,
-    width: 24,
-    height: 24,
+    width: 26,
+    height: 26,
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#E0E0E0',
   },
   avatarEditText: {
     fontSize: 12,
@@ -691,7 +846,7 @@ const styles = StyleSheet.create({
     paddingTop: 8,
   },
   nextButton: {
-    backgroundColor: '#0B9A61',
+    backgroundColor: '#1BAE74',
     borderRadius: 16,
     paddingVertical: 17,
     alignItems: 'center',
@@ -703,5 +858,84 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: '700',
     color: '#FFFFFF',
+  },
+
+  // 최종 단계 버튼 (건너뛰기 + 재료 등록)
+  finalButtonRow: {
+    flexDirection: 'row',
+    gap: 10,
+  },
+  skipButton: {
+    paddingHorizontal: 20,
+    paddingVertical: 17,
+    borderRadius: 16,
+    backgroundColor: '#F5F5F7',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  skipButtonText: {
+    fontSize: 15,
+    fontWeight: '700',
+    color: '#5A5A5F',
+  },
+
+  // 냉장고 단계
+  fridgeHero: {
+    alignItems: 'center',
+    marginTop: 20,
+    marginBottom: 24,
+    paddingVertical: 28,
+    paddingHorizontal: 20,
+    borderRadius: 20,
+    backgroundColor: '#F5F5F7',
+  },
+  fridgeHeroIcon: {
+    width: 64,
+    height: 64,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 14,
+  },
+  fridgeHeroTitle: {
+    fontSize: 16,
+    fontWeight: '800',
+    color: '#1A1A1A',
+    marginBottom: 6,
+  },
+  fridgeHeroSub: {
+    fontSize: 13,
+    color: '#5A5A5F',
+    textAlign: 'center',
+    lineHeight: 19,
+  },
+
+  fridgeFeatureList: {
+    gap: 12,
+  },
+  fridgeFeatureRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    paddingVertical: 14,
+    paddingHorizontal: 14,
+    borderRadius: 14,
+    backgroundColor: '#FAFAFA',
+  },
+  fridgeFeatureIcon: {
+    width: 36,
+    height: 36,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  fridgeFeatureTitle: {
+    fontSize: 14,
+    fontWeight: '800',
+    color: '#1A1A1A',
+    marginBottom: 3,
+  },
+  fridgeFeatureDesc: {
+    fontSize: 12,
+    color: '#5A5A5F',
+    lineHeight: 17,
   },
 });

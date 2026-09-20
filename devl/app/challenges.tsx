@@ -10,6 +10,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { useFocusEffect } from '@react-navigation/native';
+import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { useAuth } from './_layout';
 import { fetchTodayChallenges, type ChallengeToday, type ChallengeTask } from '../services/api';
@@ -74,21 +75,32 @@ export default function ChallengesScreen() {
         </View>
       ) : (
         <ScrollView contentContainerStyle={styles.body}>
-          {/* 연속 현황 */}
-          <View style={styles.streakCard}>
-            <Text style={styles.streakEmoji}>🔥</Text>
-            <Text style={styles.streakDays}>{streak}일 연속</Text>
-            <Text style={styles.streakSub}>
-              {nextBonusIn === 0
-                ? `오늘 완료하면 +${BONUS_POINTS}P!`
-                : `${nextBonusIn}일 더 채우면 +${BONUS_POINTS}P`}
-            </Text>
-            <View style={styles.dotsRow}>
-              {Array.from({ length: BONUS_EVERY }).map((_, i) => (
-                <View key={i} style={[styles.weekDot, i < filled && styles.weekDotOn]} />
-              ))}
-            </View>
-          </View>
+          {/* 연속 현황 — 홈 카드와 같은 그라데이션 테두리 문법 */}
+          <LinearGradient
+            colors={['#A8E8C4', '#5FB896']}
+            start={{ x: 0, y: 0.5 }}
+            end={{ x: 1, y: 0.5 }}
+            style={styles.streakBorder}
+          >
+            <LinearGradient
+              colors={['#FFFFFF', '#F2FBF6']}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={styles.streakCard}
+            >
+              <Text style={styles.streakDays}>{streak}일 연속</Text>
+              <Text style={styles.streakSub}>
+                {nextBonusIn === 0
+                  ? `오늘 완료하면 +${BONUS_POINTS}P!`
+                  : `${nextBonusIn}일 더 채우면 +${BONUS_POINTS}P`}
+              </Text>
+              <View style={styles.dotsRow}>
+                {Array.from({ length: BONUS_EVERY }).map((_, i) => (
+                  <View key={i} style={[styles.weekDot, i < filled && styles.weekDotOn]} />
+                ))}
+              </View>
+            </LinearGradient>
+          </LinearGradient>
 
           <Text style={styles.sectionTitle}>
             오늘의 과제{'  '}
@@ -167,21 +179,28 @@ const styles = StyleSheet.create({
   loginBtnText: { color: '#FFFFFF', fontWeight: '700', fontSize: 14 },
   body: { padding: 20, paddingBottom: 40 },
 
+  // 홈 냉장고 배너와 동일한 그림자·반경 규격
+  streakBorder: {
+    borderRadius: 19,
+    padding: 1,
+    marginBottom: 26,
+    shadowColor: '#000',
+    shadowOpacity: 0.08,
+    shadowRadius: 10,
+    shadowOffset: { width: 0, height: 3 },
+    elevation: 3,
+  },
   streakCard: {
     alignItems: 'center',
     paddingVertical: 24,
     borderRadius: 18,
-    backgroundColor: '#FFF8F3',
-    borderWidth: 1,
-    borderColor: '#FFE6D5',
-    marginBottom: 26,
+    overflow: 'hidden',
   },
-  streakEmoji: { fontSize: 32 },
-  streakDays: { fontSize: 22, fontWeight: '800', color: '#1A1A1A', marginTop: 6 },
-  streakSub: { fontSize: 13, color: '#E8590C', fontWeight: '600', marginTop: 4 },
+  streakDays: { fontSize: 24, fontWeight: '800', color: '#1A1A1A' },
+  streakSub: { fontSize: 13, color: '#0B9A61', fontWeight: '600', marginTop: 4 },
   dotsRow: { flexDirection: 'row', gap: 7, marginTop: 16 },
-  weekDot: { width: 9, height: 9, borderRadius: 5, backgroundColor: '#F0DFD3' },
-  weekDotOn: { backgroundColor: '#FF922B' },
+  weekDot: { width: 9, height: 9, borderRadius: 5, backgroundColor: '#DDEDE4' },
+  weekDotOn: { backgroundColor: '#1BAE74' },
 
   sectionTitle: { fontSize: 16, fontWeight: '800', color: '#1A1A1A' },
   sectionCount: { fontSize: 14, color: '#1BAE74', fontWeight: '700' },
@@ -192,12 +211,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 12,
     padding: 14,
-    borderRadius: 14,
-    borderWidth: 1,
-    borderColor: '#EFEFEF',
+    borderRadius: 18,
+    backgroundColor: '#FFFFFF',
     marginBottom: 10,
+    shadowColor: '#000',
+    shadowOpacity: 0.06,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 2,
   },
-  taskCardDone: { backgroundColor: '#F7FCF9', borderColor: '#DCF0E6' },
+  taskCardDone: {
+    backgroundColor: '#F7FCF9',
+    shadowOpacity: 0,
+    elevation: 0,
+  },
   taskIcon: {
     width: 38, height: 38, borderRadius: 19,
     alignItems: 'center', justifyContent: 'center',

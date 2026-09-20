@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { authInstance } from '../../firebase';
 import { fetchUserByPhone } from '../../services/api';
@@ -89,7 +90,7 @@ export default function FindAccountScreen() {
           {/* Header */}
           <View style={styles.header}>
             <TouchableOpacity style={styles.backBtn} onPress={() => router.back()}>
-              <Text style={styles.backIcon}>←</Text>
+              <Ionicons name="chevron-back" size={24} color="#1A1A1A" />
             </TouchableOpacity>
             <Text style={styles.headerTitle}>회원 찾기</Text>
             <View style={{ width: 42 }} />
@@ -325,7 +326,7 @@ const styles = StyleSheet.create({
     color: '#1A1A1A',
   },
   inlineBtn: {
-    backgroundColor: '#0B9A61',
+    backgroundColor: '#1BAE74',
     borderRadius: 14,
     paddingHorizontal: 16,
     height: 52,
@@ -343,7 +344,7 @@ const styles = StyleSheet.create({
 
   // Buttons
   actionButton: {
-    backgroundColor: '#0B9A61',
+    backgroundColor: '#1BAE74',
     borderRadius: 16,
     paddingVertical: 17,
     alignItems: 'center',
@@ -394,7 +395,7 @@ const styles = StyleSheet.create({
   resultEmail: {
     fontSize: 20,
     fontWeight: '800',
-    color: '#0B9A61',
+    color: '#1A1A1A',
     marginBottom: 28,
   },
 
@@ -406,7 +407,7 @@ const styles = StyleSheet.create({
   },
   successHint: {
     fontSize: 12,
-    color: '#0B9A61',
+    color: '#1A1A1A',
     marginTop: 6,
   },
 });

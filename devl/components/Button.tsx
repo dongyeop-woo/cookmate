@@ -7,7 +7,7 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({ title, onPress }) => {
-  const scaleValue = new Animated.Value(1);
+  const scaleValue = React.useRef(new Animated.Value(1)).current;
 
   const onPressIn = () => {
     Animated.spring(scaleValue, {

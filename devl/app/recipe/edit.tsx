@@ -7,21 +7,22 @@ import {
   TextInput,
   StyleSheet,
   Alert,
-  Image,
   KeyboardAvoidingView,
   Platform,
   Dimensions,
   ActivityIndicator,
 } from 'react-native';
+import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import * as ImagePicker from 'expo-image-picker';
-import { fetchRecipeById, updateRecipe } from '../../services/api';
+import { fetchRecipeById, updateRecipe, uploadRecipeImage } from '../../services/api';
 import type { Recipe } from '../../constants/recipes';
 import { useAuth } from '../_layout';
+import { Ionicons } from '@expo/vector-icons';
 
 const { width } = Dimensions.get('window');
-const CATEGORIES = ['아침', '점심', '저녁', '디저트', '간식', '음료'];
+const CATEGORIES = ['아침', '점심', '저녁', '디저트', '간식', '음료', '야식', '분식', '한식', '양식'];
 const DIFFICULTIES = ['쉬움', '보통', '어려움'];
 
 export default function EditRecipeScreen() {
@@ -29,6 +30,7 @@ export default function EditRecipeScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const { firebaseUser } = useAuth();
 
+  const { userProfile } = useAuth();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [title, setTitle] = useState('');
@@ -38,9 +40,10 @@ export default function EditRecipeScreen() {
   const [time, setTime] = useState('');
   const [timeSeconds, setTimeSeconds] = useState('');
   const [calories, setCalories] = useState('');
+  const [servings, setServings] = useState('');
   const [imageUri, setImageUri] = useState('');
   const [ingredients, setIngredients] = useState([{ name: '', amount: '' }]);
-  const [steps, setSteps] = useState([{ description: '', time: '', timeSeconds: '' }]);
+  const [steps, setSteps] = useState<{ description: string; time: string; timeSeconds: string; imageUrl?: string; isAiImage?: boolean }[]>([{ description: '', time: '', timeSeconds: '', imageUrl: '', isAiImage: false }]);
   const [originalRecipe, setOriginalRecipe] = useState<Recipe | null>(null);
 
   useEffect(() => {
@@ -53,15 +56,27 @@ export default function EditRecipeScreen() {
         setDescription(recipe.description || '');
         setCategory(recipe.category);
         setDifficulty(recipe.difficulty);
-        setTime(String(Math.floor(recipe.time / 60)));
-        setTimeSeconds(String(recipe.time % 60));
+        // 저장된 값은 분 단위(소수 포함 가능) → 분/초로 분리해서 입력 칸에 세팅
+        const totalSec = Math.round((recipe.time || 0) * 60);
+        setTime(String(Math.floor(totalSec / 60)));
+        setTimeSeconds(String(totalSec % 60));
         setCalories(String(recipe.calories || 0));
+        setServings(recipe.servings ? String(recipe.servings) : '');
         setImageUri(recipe.image || '');
         if (recipe.ingredients?.length) {
           setIngredients(recipe.ingredients.map(i => ({ name: i.name, amount: i.amount })));
         }
         if (recipe.steps?.length) {
-          setSteps(recipe.steps.map(s => ({ description: s.description, time: String(Math.floor((s.time || 0) / 60)), timeSeconds: String((s.time || 0) % 60) })));
+          setSteps(recipe.steps.map(s => {
+            const sec = Math.round((s.time || 0) * 60);
+            return {
+              description: s.description,
+              time: String(Math.floor(sec / 60)),
+              timeSeconds: String(sec % 60),
+              imageUrl: s.imageUrl || '',
+              isAiImage: !!(s as any).isAiImage,
+            };
+          }));
         }
       } catch (e) {
         Alert.alert('오류', '레시피를 불러올 수 없습니다.', [
@@ -98,7 +113,30 @@ export default function EditRecipeScreen() {
     setIngredients(updated);
   };
 
-  const addStep = () => setSteps([...steps, { description: '', time: '', timeSeconds: '' }]);
+  const addStep = () => {
+    if (steps.length >= 15) {
+      Alert.alert('단계 제한', '레시피 단계는 최대 15개까지 추가할 수 있어요.');
+      return;
+    }
+    setSteps([...steps, { description: '', time: '', timeSeconds: '', imageUrl: '', isAiImage: false }]);
+  };
+
+  const pickStepImage = async (idx: number) => {
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (status !== 'granted') {
+      Alert.alert('권한 필요', '사진 라이브러리 접근 권한이 필요합니다.');
+      return;
+    }
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ['images'],
+      quality: 0.7,
+    });
+    if (!result.canceled && result.assets.length > 0) {
+      const updated = [...steps];
+      updated[idx] = { ...updated[idx], imageUrl: result.assets[0].uri };
+      setSteps(updated);
+    }
+  };
   const removeStep = (idx: number) => {
     if (steps.length > 1) setSteps(steps.filter((_, i) => i !== idx));
   };
@@ -118,6 +156,30 @@ export default function EditRecipeScreen() {
     if (validSteps.length === 0) return Alert.alert('알림', '조리 단계를 최소 1개 입력해주세요');
 
     setSaving(true);
+    const totalMinutes = (parseInt(time) || 0) + Math.round((parseInt(timeSeconds) || 0) / 60);
+
+    // 메인/단계별 로컬 사진은 Firebase Storage로 업로드 후 URL 확보.
+    // 실패 시 로컬 file:// URI를 저장하면 다른 기기에서 열었을 때 깨지므로 중단.
+    const uploaderUid = (originalRecipe as any)?.authorUid || 'admin';
+    let uploadedMainImage = imageUri;
+    let uploadedStepImages: string[] = [];
+    try {
+      if (imageUri && !imageUri.startsWith('http')) {
+        uploadedMainImage = await uploadRecipeImage(uploaderUid, imageUri);
+      }
+      uploadedStepImages = await Promise.all(
+        validSteps.map(async (s) => {
+          if (!s.imageUrl) return '';
+          if (s.imageUrl.startsWith('http')) return s.imageUrl;
+          return await uploadRecipeImage(uploaderUid, s.imageUrl);
+        })
+      );
+    } catch {
+      Alert.alert('사진 업로드 실패', '사진 업로드 중 오류가 발생했어요. 잠시 후 다시 시도해주세요.');
+      setSaving(false);
+      return;
+    }
+
     try {
       await updateRecipe(id, {
         ...originalRecipe,
@@ -125,14 +187,17 @@ export default function EditRecipeScreen() {
         description: description.trim(),
         category,
         difficulty,
-        time: (parseInt(time) || 0) * 60 + (parseInt(timeSeconds) || 0),
+        time: totalMinutes,
         calories: parseInt(calories) || 0,
-        image: imageUri,
+        servings: servings.trim() || '1',
+        image: uploadedMainImage,
         ingredients: validIngredients.map(i => ({ name: i.name.trim(), amount: i.amount.trim(), icon: '' })),
         steps: validSteps.map((s, idx) => ({
           step: idx + 1,
           description: s.description.trim(),
-          time: (parseFloat(s.time) || 0) * 60 + (parseFloat(s.timeSeconds) || 0),
+          time: (parseFloat(s.time) || 0) + (parseFloat(s.timeSeconds) || 0) / 60,
+          imageUrl: uploadedStepImages[idx] || undefined,
+          isAiImage: !!s.isAiImage,
         })),
       });
       Alert.alert('완료', '레시피가 수정되었어요!', [
@@ -148,13 +213,19 @@ export default function EditRecipeScreen() {
   if (loading) {
     return (
       <SafeAreaView style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}>
-        <ActivityIndicator size="large" color="#0B9A61" />
+        <ActivityIndicator size="large" color="#1A1A1A" />
       </SafeAreaView>
     );
   }
 
   return (
     <View style={styles.container}>
+      {/* 스크롤과 무관하게 항상 보이는 뒤로가기 — 레시피 상세 페이지 패턴 */}
+      <SafeAreaView style={styles.imageOverlay} pointerEvents="box-none">
+        <TouchableOpacity style={styles.overlayBtn} onPress={() => router.back()}>
+          <Ionicons name="chevron-back" size={22} color="#1A1A1A" />
+        </TouchableOpacity>
+      </SafeAreaView>
       <KeyboardAvoidingView
         style={{ flex: 1 }}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
@@ -163,18 +234,13 @@ export default function EditRecipeScreen() {
           {/* Hero Image */}
           <TouchableOpacity style={styles.imageContainer} onPress={pickImage} activeOpacity={0.85}>
             {imageUri ? (
-              <Image source={{ uri: imageUri }} style={styles.heroImage} />
+              <Image source={{ uri: imageUri }} style={styles.heroImage} cachePolicy="disk" />
             ) : (
               <View style={styles.heroPlaceholder}>
                 <Text style={styles.placeholderIcon}>📷</Text>
                 <Text style={styles.placeholderText}>사진을 변경하려면 탭하세요</Text>
               </View>
             )}
-            <SafeAreaView style={styles.imageOverlay}>
-              <TouchableOpacity style={styles.overlayBtn} onPress={() => router.back()}>
-                <Text style={styles.overlayBtnIcon}>←</Text>
-              </TouchableOpacity>
-            </SafeAreaView>
           </TouchableOpacity>
 
           {/* Content */}
@@ -185,12 +251,22 @@ export default function EditRecipeScreen() {
               placeholderTextColor="#BDBDBD"
               value={title}
               onChangeText={setTitle}
+              maxLength={20}
             />
+
+            {/* Author Row */}
+            <View style={styles.authorRow}>
+              {userProfile?.profileImage && userProfile.profileImage !== 'default' && userProfile.profileImage.startsWith('http') ? (
+                <Image source={{ uri: userProfile.profileImage }} style={styles.authorAvatar} cachePolicy="disk" />
+              ) : (
+                <Image source={userProfile?.gender === 'female' ? require('../../assets/girl.png') : require('../../assets/man.png')} style={styles.authorAvatar as any} />
+              )}
+              <Text style={styles.author}>{userProfile?.nickname || '닉네임'}</Text>
+            </View>
 
             {/* Info Row */}
             <View style={styles.infoRow}>
-              <View style={styles.infoItem}>
-                <Text style={styles.infoIcon}>◷</Text>
+              <View style={[styles.infoItem, { flex: 1.5 }]}>
                 <TextInput
                   style={styles.infoInput}
                   placeholder="0"
@@ -199,7 +275,7 @@ export default function EditRecipeScreen() {
                   onChangeText={setTime}
                   keyboardType="numeric"
                 />
-                <Text style={styles.infoUnit}>분</Text>
+                <Text style={styles.infoUnit}> 분</Text>
                 <TextInput
                   style={[styles.infoInput, { marginLeft: 4 }]}
                   placeholder="0"
@@ -208,7 +284,7 @@ export default function EditRecipeScreen() {
                   onChangeText={setTimeSeconds}
                   keyboardType="numeric"
                 />
-                <Text style={styles.infoUnit}>초</Text>
+                <Text style={styles.infoUnit}> 초</Text>
               </View>
               <View style={styles.infoDivider} />
               <TouchableOpacity
@@ -218,12 +294,10 @@ export default function EditRecipeScreen() {
                   setDifficulty(DIFFICULTIES[(idx + 1) % DIFFICULTIES.length]);
                 }}
               >
-                <Text style={styles.infoIcon}>◈</Text>
-                <Text style={styles.infoText}>{difficulty}</Text>
+                <Text style={[styles.infoText, { color: difficulty === '쉬움' ? '#1BAE74' : difficulty === '어려움' ? '#E74C3C' : '#F5A623' }]}>{difficulty}</Text>
               </TouchableOpacity>
               <View style={styles.infoDivider} />
               <View style={styles.infoItem}>
-                <Text style={styles.infoIcon}>♨</Text>
                 <TextInput
                   style={styles.infoInput}
                   placeholder="0"
@@ -232,12 +306,29 @@ export default function EditRecipeScreen() {
                   onChangeText={setCalories}
                   keyboardType="numeric"
                 />
-                <Text style={styles.infoUnit}>cal</Text>
+                <Text style={styles.infoUnit}> cal</Text>
+              </View>
+              <View style={styles.infoDivider} />
+              <View style={styles.infoItem}>
+                <TextInput
+                  style={styles.infoInput}
+                  placeholder="1"
+                  placeholderTextColor="#BDBDBD"
+                  value={servings}
+                  onChangeText={setServings}
+                  maxLength={7}
+                />
+                <Text style={styles.infoUnit}> 인분</Text>
               </View>
             </View>
 
             {/* Category */}
-            <View style={styles.chipRow}>
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              style={styles.chipRow}
+              contentContainerStyle={styles.chipRowContent}
+            >
               {CATEGORIES.map((c) => (
                 <TouchableOpacity
                   key={c}
@@ -247,7 +338,7 @@ export default function EditRecipeScreen() {
                   <Text style={[styles.chipText, category === c && styles.chipTextActive]}>{c}</Text>
                 </TouchableOpacity>
               ))}
-            </View>
+            </ScrollView>
 
             {/* Description */}
             <View style={styles.section}>
@@ -315,6 +406,16 @@ export default function EditRecipeScreen() {
                     <Text style={styles.stepNumberText}>{idx + 1}</Text>
                   </View>
                   <View style={styles.stepContent}>
+                    {s.imageUrl ? (
+                      <TouchableOpacity onPress={() => pickStepImage(idx)} activeOpacity={0.7}>
+                        <Image source={{ uri: s.imageUrl }} style={styles.stepThumb} cachePolicy="disk" />
+                      </TouchableOpacity>
+                    ) : (
+                      <TouchableOpacity style={styles.stepAddImageBtn} onPress={() => pickStepImage(idx)}>
+                        <Ionicons name="camera-outline" size={16} color="#999" />
+                        <Text style={styles.stepAddImageText}>사진 추가</Text>
+                      </TouchableOpacity>
+                    )}
                     <TextInput
                       style={styles.stepDescInput}
                       placeholder={`${idx + 1}단계를 설명해주세요`}
@@ -324,9 +425,9 @@ export default function EditRecipeScreen() {
                       multiline
                     />
                     <View style={styles.stepTimeRow}>
-                      <Text style={styles.stepTimeIcon}>◷</Text>
+                      <Ionicons name="time-outline" size={14} color="#1A1A1A" />
                       <TextInput
-                        style={styles.stepTimeInput}
+                        style={[styles.stepTimeInput, { marginLeft: 4 }]}
                         placeholder="0"
                         placeholderTextColor="#BDBDBD"
                         value={s.time}
@@ -343,6 +444,20 @@ export default function EditRecipeScreen() {
                         keyboardType="numeric"
                       />
                       <Text style={styles.stepTimeUnit}>초</Text>
+                      <TouchableOpacity
+                        style={styles.stepAiCheckRow}
+                        activeOpacity={0.7}
+                        onPress={() => {
+                          const updated = [...steps];
+                          updated[idx] = { ...updated[idx], isAiImage: !updated[idx].isAiImage };
+                          setSteps(updated);
+                        }}
+                      >
+                        <View style={[styles.aiCheckbox, s.isAiImage && styles.aiCheckboxOn]}>
+                          {s.isAiImage && <Ionicons name="checkmark" size={11} color="#FFFFFF" />}
+                        </View>
+                        <Text style={styles.stepAiCheckLabel}>AI 사진</Text>
+                      </TouchableOpacity>
                     </View>
                   </View>
                 </TouchableOpacity>
@@ -377,18 +492,22 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     width: '100%',
-    height: width * 0.85,
+    height: width * 0.95,
     position: 'relative',
   },
   heroImage: {
     width: width,
-    height: width * 0.85,
+    height: width * 0.95,
     resizeMode: 'cover',
+    borderBottomLeftRadius: 32,
+    borderBottomRightRadius: 32,
   },
   heroPlaceholder: {
     width: '100%',
     height: '100%',
     backgroundColor: '#F5F5F5',
+    borderBottomLeftRadius: 32,
+    borderBottomRightRadius: 32,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -406,6 +525,7 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
+    zIndex: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: 20,
@@ -415,14 +535,9 @@ const styles = StyleSheet.create({
     width: 42,
     height: 42,
     borderRadius: 21,
-    backgroundColor: 'rgba(255,255,255,0.92)',
+    backgroundColor: 'rgba(255,255,255,0.7)',
     justifyContent: 'center',
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
   },
   overlayBtnIcon: {
     fontSize: 20,
@@ -430,14 +545,34 @@ const styles = StyleSheet.create({
   },
   content: {
     paddingHorizontal: 24,
-    paddingTop: 24,
+    paddingTop: 12,
   },
   titleInput: {
     fontSize: 24,
     fontWeight: '800',
     color: '#1A1A1A',
     letterSpacing: -0.3,
-    paddingVertical: 0,
+    height: 52,
+    lineHeight: 32,
+    paddingTop: Platform.OS === 'ios' ? 10 : 0,
+    paddingBottom: 0,
+    textAlignVertical: 'center',
+  },
+  authorRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginTop: 8,
+  },
+  authorAvatar: {
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+  },
+  author: {
+    fontSize: 14,
+    color: '#666',
+    fontWeight: '500',
   },
   infoRow: {
     flexDirection: 'row',
@@ -445,7 +580,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 16,
     paddingVertical: 14,
-    paddingHorizontal: 8,
+    paddingHorizontal: 4,
     backgroundColor: '#FAFAFA',
     borderRadius: 16,
   },
@@ -454,50 +589,81 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  infoIcon: {
-    fontSize: 16,
-    color: '#0B9A61',
-    marginRight: 4,
+    overflow: 'hidden',
   },
   infoText: {
-    fontSize: 13,
-    color: '#444',
-    fontWeight: '600',
+    fontSize: 14,
+    color: '#1A1A1A',
+    fontWeight: '700',
+    flexShrink: 1,
   },
   infoInput: {
-    fontSize: 13,
-    color: '#444',
-    fontWeight: '600',
+    fontSize: 14,
+    color: '#1A1A1A',
+    fontWeight: '700',
     paddingVertical: 0,
-    minWidth: 20,
+    paddingHorizontal: 0,
+    minWidth: 14,
     textAlign: 'center',
   },
   infoUnit: {
     fontSize: 13,
-    color: '#444',
-    fontWeight: '600',
-    marginLeft: 2,
+    color: '#9E9E9E',
+    fontWeight: '500',
+    marginLeft: 1,
   },
   infoDivider: {
     width: 1,
-    height: 20,
+    height: 18,
     backgroundColor: '#E0E0E0',
+    marginHorizontal: 4,
   },
-  chipRow: {
+  stepAiCheckRow: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 8,
+    alignItems: 'center',
+    marginLeft: 'auto',
+    gap: 5,
+  },
+  stepAiCheckLabel: {
+    fontSize: 11,
+    fontWeight: '600',
+    color: '#1A1A1A',
+  },
+  aiCheckbox: {
+    width: 16,
+    height: 16,
+    borderRadius: 4,
+    borderWidth: 1.5,
+    borderColor: '#BDBDBD',
+    backgroundColor: '#FFFFFF',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  aiCheckboxOn: {
+    backgroundColor: '#1A1A1A',
+    borderColor: '#1A1A1A',
+  },
+  // content의 paddingHorizontal: 24를 negate하여 화면 끝까지 스크롤 영역 확장.
+  chipRow: {
+    flexGrow: 0,
+    flexShrink: 0,
     marginBottom: 8,
+    marginHorizontal: -24,
+  },
+  chipRowContent: {
+    gap: 6,
+    paddingHorizontal: 24,
+    alignItems: 'center',
   },
   chip: {
-    paddingHorizontal: 14,
-    paddingVertical: 7,
+    paddingVertical: 8,
+    paddingHorizontal: 16,
     borderRadius: 20,
     backgroundColor: '#F5F5F5',
+    alignItems: 'center',
   },
   chipActive: {
-    backgroundColor: '#0B9A61',
+    backgroundColor: '#1BAE74',
   },
   chipText: {
     fontSize: 13,
@@ -534,12 +700,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 14,
-    backgroundColor: '#E8F5EF',
+    backgroundColor: '#1BAE74',
     marginBottom: 16,
   },
   addBtnText: {
     fontSize: 13,
-    color: '#0B9A61',
+    color: '#FFFFFF',
     fontWeight: '700',
   },
   ingredientRow: {
@@ -552,73 +718,102 @@ const styles = StyleSheet.create({
   },
   ingredientNameInput: {
     flex: 1,
-    fontSize: 15,
+    fontSize: 16,
     color: '#1A1A1A',
+    fontWeight: '500',
     paddingVertical: 0,
   },
   ingredientAmountInput: {
-    fontSize: 14,
-    color: '#0B9A61',
+    fontSize: 15,
+    color: '#9E9E9E',
     fontWeight: '600',
     textAlign: 'right',
     minWidth: 60,
     paddingVertical: 0,
   },
   hintText: {
-    fontSize: 11,
-    color: '#BDBDBD',
-    marginTop: 8,
+    fontSize: 12,
+    color: '#CDCDCD',
     textAlign: 'center',
+    marginTop: 10,
   },
   stepRow: {
     flexDirection: 'row',
-    marginBottom: 16,
+    alignItems: 'flex-start',
+    marginBottom: 18,
   },
   stepNumberCircle: {
-    width: 28,
-    height: 28,
-    borderRadius: 14,
-    backgroundColor: '#0B9A61',
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    backgroundColor: '#1BAE74',
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 12,
-    marginTop: 2,
+    marginRight: 14,
+    marginTop: 14,
   },
   stepNumberText: {
     fontSize: 14,
-    fontWeight: '700',
+    fontWeight: 'bold',
     color: '#FFFFFF',
   },
   stepContent: {
     flex: 1,
+    backgroundColor: '#F9F9F9',
+    borderRadius: 14,
+    paddingHorizontal: 16,
+    paddingVertical: 14,
   },
   stepDescInput: {
     fontSize: 15,
     color: '#1A1A1A',
     lineHeight: 22,
+    minHeight: 22,
     paddingVertical: 0,
+  },
+  stepThumb: {
+    width: '100%',
+    aspectRatio: 16 / 10,
+    borderRadius: 10,
+    marginBottom: 10,
+    backgroundColor: '#F0F0F0',
+  },
+  stepAddImageBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 6,
+    paddingVertical: 10,
+    marginBottom: 10,
+    borderWidth: 1,
+    borderStyle: 'dashed',
+    borderColor: '#D0D0D0',
+    borderRadius: 8,
+    backgroundColor: '#FFFFFF',
+  },
+  stepAddImageText: {
+    fontSize: 13,
+    color: '#999',
+    fontWeight: '500',
   },
   stepTimeRow: {
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 8,
   },
-  stepTimeIcon: {
-    fontSize: 14,
-    color: '#0B9A61',
-    marginRight: 4,
-  },
   stepTimeInput: {
     fontSize: 13,
-    color: '#666',
+    color: '#1A1A1A',
+    fontWeight: '600',
     paddingVertical: 0,
-    minWidth: 20,
+    minWidth: 16,
     textAlign: 'center',
   },
   stepTimeUnit: {
     fontSize: 13,
-    color: '#666',
-    marginLeft: 2,
+    color: '#1A1A1A',
+    fontWeight: '600',
+    marginLeft: 1,
   },
   bottomBar: {
     paddingHorizontal: 24,
@@ -628,10 +823,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
   },
   ctaButton: {
-    backgroundColor: '#0B9A61',
-    borderRadius: 16,
+    backgroundColor: '#1BAE74',
+    borderRadius: 18,
     paddingVertical: 16,
+    justifyContent: 'center',
     alignItems: 'center',
+    shadowColor: '#1A1A1A',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.3,
+    shadowRadius: 12,
+    elevation: 8,
   },
   ctaText: {
     fontSize: 17,

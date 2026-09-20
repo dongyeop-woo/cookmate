@@ -9,10 +9,20 @@
       "distribution": "internal"
     },
     "preview": {
-      "distribution": "internal"
+      "distribution": "internal",
+      "channel": "preview",
+      "ios": {
+        "enterpriseProvisioning": "adhoc"
+      }
+    },
+    "testflight": {
+      "distribution": "store",
+      "channel": "production",
+      "autoIncrement": true
     },
     "production": {
-      "autoIncrement": true
+      "autoIncrement": true,
+      "channel": "production"
     },
     "development-simulator": {
       "developmentClient": true,

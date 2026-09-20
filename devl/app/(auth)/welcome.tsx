@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   View,
   Text,
@@ -6,10 +6,10 @@ import {
   StyleSheet,
   TouchableOpacity,
   Platform,
-  Animated,
   Alert,
   ActivityIndicator,
-  useWindowDimensions,
+  Animated,
+  Easing,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
@@ -18,7 +18,11 @@ import { GoogleSignin, isSuccessResponse } from '@react-native-google-signin/goo
 import * as KakaoLogin from '@react-native-seoul/kakao-login';
 import { GoogleAuthProvider, signInWithCredential, signInWithCustomToken } from 'firebase/auth';
 import { authInstance } from '../../firebase';
+import { FontAwesome } from '@expo/vector-icons';
+import * as AppleAuthentication from 'expo-apple-authentication';
+import { OAuthProvider, signInWithCredential as firebaseSignInWithCredential } from 'firebase/auth';
 import { fetchUser, exchangeKakaoToken } from '../../services/api';
+import { saveSocialEmail } from '../../services/signupFlow';
 
 GoogleSignin.configure({
   webClientId: '879574205436-39lmp1t64f1mb7je6bh7va6lvqa01r14.apps.googleusercontent.com',
@@ -29,84 +33,33 @@ export default function WelcomeScreen() {
   const router = useRouter();
   const { setIsLoggedIn, setUserProfile } = useAuth();
   const [loading, setLoading] = useState(false);
-  const { width } = useWindowDimensions();
-  const isSmall = width < 500;
-  const heroFontSize = isSmall ? Math.min(width * 0.115, 48) : 58;
-  const heroGap = isSmall ? 50 : 90;
-  const pad1 = isSmall ? width * 0.06 : 50;
-  const pad2 = isSmall ? width * 0.28 : 240;
-  const pad3 = isSmall ? width * 0.1 : 90;
-  const badgeSize = isSmall ? 50 : 66;
-  const emojiSize = isSmall ? 42 : 56;
-  const topPad = isSmall ? '45%' : '28%';
-
-  const line1Anim = useRef(new Animated.Value(0)).current;
-  const line2Anim = useRef(new Animated.Value(0)).current;
-  const line3Anim = useRef(new Animated.Value(0)).current;
-  const line1Scale = useRef(new Animated.Value(0.3)).current;
-  const line2Scale = useRef(new Animated.Value(0.3)).current;
-  const line3Scale = useRef(new Animated.Value(0.3)).current;
-  const line1Float = useRef(new Animated.Value(0)).current;
-  const line2Float = useRef(new Animated.Value(0)).current;
-  const line3Float = useRef(new Animated.Value(0)).current;
+  const floatAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    const bounceIn = (opacity: Animated.Value, scale: Animated.Value, delay: number) =>
-      Animated.parallel([
-        Animated.timing(opacity, {
-          toValue: 1,
-          duration: 400,
-          delay,
+    const loop = Animated.loop(
+      Animated.sequence([
+        Animated.timing(floatAnim, {
+          toValue: -10,
+          duration: 1600,
+          easing: Easing.inOut(Easing.sin),
           useNativeDriver: true,
         }),
-        Animated.sequence([
-          Animated.timing(scale, {
-            toValue: 1.08,
-            duration: 300,
-            delay,
-            useNativeDriver: true,
-          }),
-          Animated.spring(scale, {
-            toValue: 1,
-            friction: 4,
-            tension: 200,
-            useNativeDriver: true,
-          }),
-        ]),
-      ]);
-
-    const float = (anim: Animated.Value, delay: number) => {
-      const loop = () => {
-        Animated.sequence([
-          Animated.timing(anim, {
-            toValue: -5,
-            duration: 1200,
-            useNativeDriver: true,
-          }),
-          Animated.timing(anim, {
-            toValue: 5,
-            duration: 1200,
-            useNativeDriver: true,
-          }),
-        ]).start(() => loop());
-      };
-      setTimeout(loop, delay + 600);
-    };
-
-    Animated.stagger(0, [
-      bounceIn(line1Anim, line1Scale, 200),
-      bounceIn(line2Anim, line2Scale, 500),
-      bounceIn(line3Anim, line3Scale, 800),
-    ]).start();
-
-    float(line1Float, 200);
-    float(line2Float, 600);
-    float(line3Float, 1000);
+        Animated.timing(floatAnim, {
+          toValue: 0,
+          duration: 1600,
+          easing: Easing.inOut(Easing.sin),
+          useNativeDriver: true,
+        }),
+      ])
+    );
+    loop.start();
+    return () => loop.stop();
   }, []);
 
   const handleAuthResult = async (uid: string) => {
     const profile = await fetchUser(uid);
-    if (profile) {
+    // 탈퇴한 유저(soft-delete)는 신규 유저처럼 회원가입 플로우로 보냄
+    if (profile && !profile.withdrawnAt) {
       setUserProfile(profile);
       setIsLoggedIn(true);
       router.replace('/(tabs)');
@@ -130,7 +83,6 @@ export default function WelcomeScreen() {
       }
     } catch (error: any) {
       if (error.code !== '12501' && error.code !== 'SIGN_IN_CANCELLED') {
-        console.error('Google login error:', error);
         Alert.alert('로그인 실패', 'Google 로그인에 실패했습니다.');
       }
     } finally {
@@ -149,11 +101,40 @@ export default function WelcomeScreen() {
         return;
       }
       const cred = await signInWithCustomToken(authInstance, result.firebaseToken);
+      // 카카오는 Custom Token 로그인이라 firebaseUser.email이 비어있다.
+      // 신규 가입 시 finalizeSignup에서 사용할 수 있도록 카카오 이메일을 잠시 보관.
+      if (result.email) {
+        await saveSocialEmail(cred.user.uid, result.email);
+      }
       await handleAuthResult(cred.user.uid);
     } catch (error: any) {
       if (error.message !== 'user cancelled login') {
-        console.error('Kakao login error:', error);
         Alert.alert('로그인 실패', '카카오 로그인에 실패했습니다.');
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleAppleLogin = async () => {
+    if (loading) return;
+    setLoading(true);
+    try {
+      const response = await AppleAuthentication.signInAsync({
+        requestedScopes: [
+          AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+          AppleAuthentication.AppleAuthenticationScope.EMAIL,
+        ],
+      });
+      const { identityToken } = response;
+      if (!identityToken) throw new Error('No identity token');
+      const provider = new OAuthProvider('apple.com');
+      const credential = provider.credential({ idToken: identityToken });
+      const cred = await firebaseSignInWithCredential(authInstance, credential);
+      await handleAuthResult(cred.user.uid);
+    } catch (error: any) {
+      if (error.code !== 'ERR_CANCELED') {
+        Alert.alert('로그인 실패', 'Apple 로그인에 실패했습니다.');
       }
     } finally {
       setLoading(false);
@@ -162,53 +143,30 @@ export default function WelcomeScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={[styles.content, { paddingTop: topPad }]}>
-        <View style={[styles.heroSection, { gap: heroGap }]}>
-          <Animated.View style={[styles.heroLine, { paddingLeft: pad1, opacity: line1Anim, transform: [{ scale: line1Scale }, { translateY: line1Float }] }]}>
-            <Text style={[styles.heroText, { fontSize: heroFontSize }]}>쉽고 맛있게</Text>
-            <View style={[styles.iconBadge, { width: badgeSize, height: badgeSize }]}>
-              <Image
-                source={require('../../assets/icon.png')}
-                style={styles.iconImage}
-              />
-            </View>
-          </Animated.View>
-
-          <Animated.View style={[styles.heroLine, { paddingLeft: pad2, opacity: line2Anim, transform: [{ scale: line2Scale }, { translateY: line2Float }] }]}>
-            <Text style={[styles.iconEmoji2, { fontSize: emojiSize }]}>🍳</Text>
-            <Text style={[styles.heroText, { fontSize: heroFontSize }]} numberOfLines={1}>따라하는</Text>
-          </Animated.View>
-
-          <Animated.View style={[styles.heroLine, { paddingLeft: pad3, opacity: line3Anim, transform: [{ scale: line3Scale }, { translateY: line3Float }] }]}>
-            <Text style={[styles.heroText, { fontSize: heroFontSize }]}>오늘의 레시피</Text>
-          </Animated.View>
-        </View>
+      {/* 로고 영역 — 화면 상단 40% 지점에 중앙 배치 */}
+      <View style={styles.center}>
+        <Animated.View style={[styles.appIconWrapper, { transform: [{ translateY: floatAnim }] }]}>
+          <Image source={require('../../assets/icon.png')} style={styles.appIcon} />
+        </Animated.View>
+        <Text style={styles.appName}>오늘 뭐 해먹지?</Text>
+        <Text style={styles.tagline}>쉽고 맛있게 따라하는 오늘의 레시피</Text>
       </View>
 
-      <View style={styles.bottomSection}>
-        {loading && (
-          <ActivityIndicator size="small" color="#0B9A61" style={{ marginBottom: 12 }} />
-        )}
-
-        <TouchableOpacity
-          style={styles.googleBtn}
-          onPress={handleGoogleLogin}
-          activeOpacity={0.85}
-          disabled={loading}
-        >
-          <Image source={require('../../assets/icons/google.png')} style={styles.btnIcon} />
-          <Text style={styles.googleBtnText}>Google로 계속하기</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.kakaoBtn}
-          onPress={handleKakaoLogin}
-          activeOpacity={0.85}
-          disabled={loading}
-        >
-          <Image source={require('../../assets/icons/kakao.png')} style={styles.btnIcon} />
-          <Text style={styles.kakaoBtnText}>카카오로 계속하기</Text>
-        </TouchableOpacity>
+      {/* 하단 고정 소셜 로그인 */}
+      <View style={styles.bottom}>
+        <View style={styles.socialRow}>
+          <TouchableOpacity style={styles.googleBtn} onPress={handleGoogleLogin} activeOpacity={0.75} disabled={loading}>
+            {loading ? <ActivityIndicator size="small" color="#999" /> : <Image source={require('../../assets/icons/google.png')} style={styles.socialIcon} />}
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.kakaoBtn} onPress={handleKakaoLogin} activeOpacity={0.75} disabled={loading}>
+            {loading ? <ActivityIndicator size="small" color="#191919" /> : <Image source={require('../../assets/icons/kakao.png')} style={styles.socialIcon} />}
+          </TouchableOpacity>
+          {Platform.OS === 'ios' && (
+            <TouchableOpacity style={styles.appleBtn} onPress={handleAppleLogin} activeOpacity={0.75} disabled={loading}>
+              {loading ? <ActivityIndicator size="small" color="#1A1A1A" /> : <FontAwesome name="apple" size={26} color="#1A1A1A" />}
+            </TouchableOpacity>
+          )}
+        </View>
 
         <View style={styles.termsRow}>
           <Text style={styles.termsText}>계속 진행 시 </Text>
@@ -231,85 +189,79 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFFFFF',
   },
-  content: {
+
+  // 로고: 화면 상단부 중앙 (flex로 공간 차지, 살짝 위쪽에 중심)
+  center: {
     flex: 1,
-    justifyContent: 'flex-start',
-    paddingHorizontal: 44,
-    paddingTop: '35%',
-  },
-  heroSection: {
-    gap: 90, // overridden by inline style
-  },
-  heroLine: {
-    flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
+    gap: 12,
+    paddingTop: '20%',
   },
-  heroText: {
-    fontSize: 58, // overridden by inline style
+  appIconWrapper: {
+    marginBottom: 4,
+  },
+  appIcon: {
+    width: 110,
+    height: 110,
+  },
+  appName: {
+    fontSize: 32,
     fontWeight: '900',
     color: '#1A1A1A',
-    letterSpacing: -1.2,
+    letterSpacing: -0.5,
   },
-  iconBadge: {
-    width: 66, // overridden by inline style
-    height: 66, // overridden by inline style
-    borderRadius: 20,
-    borderWidth: 1.5,
-    borderColor: '#E0E0E0',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginLeft: 14,
+  tagline: {
+    fontSize: 15,
+    color: '#999',
+    fontWeight: '500',
   },
-  iconImage: {
-    width: 38,
-    height: 38,
-    resizeMode: 'contain',
+
+  // 하단 고정
+  bottom: {
+    paddingHorizontal: 32,
+    paddingBottom: Platform.OS === 'ios' ? 76 : 98,
   },
-  iconEmoji2: {
-    fontSize: 56, // overridden by inline style
-    marginRight: 10,
-    color: '#0B9A61',
-  },
-  bottomSection: {
-    paddingHorizontal: 28,
-    paddingBottom: Platform.OS === 'ios' ? 20 : 32,
-  },
-  googleBtn: {
+  socialRow: {
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#FFFFFF',
-    borderWidth: 1,
-    borderColor: '#DADCE0',
-    borderRadius: 14,
-    paddingVertical: 16,
-    marginBottom: 12,
-  },
-  btnIcon: {
-    width: 24,
-    height: 24,
-    marginRight: 10,
-    resizeMode: 'contain',
-  },
-  googleBtnText: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#1A1A1A',
-  },
-  kakaoBtn: {
-    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#FEE500',
-    borderRadius: 14,
-    paddingVertical: 16,
+    gap: 16,
     marginBottom: 20,
   },
-  kakaoBtnText: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#191919',
+  googleBtn: {
+    width: 64,
+    height: 64,
+    borderRadius: 32,
+    backgroundColor: '#F2F2F2',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
+  kakaoBtn: {
+    width: 64,
+    height: 64,
+    borderRadius: 32,
+    backgroundColor: '#FEE500',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  appleBtn: {
+    width: 64,
+    height: 64,
+    borderRadius: 32,
+    backgroundColor: '#FFFFFF',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#E0E0E0',
+  },
+  socialIcon: {
+    width: 28,
+    height: 28,
+    resizeMode: 'contain',
+  },
+
+  // 약관
   termsRow: {
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -318,12 +270,11 @@ const styles = StyleSheet.create({
   },
   termsText: {
     fontSize: 12,
-    color: '#9E9E9E',
+    color: '#BDBDBD',
   },
   termsLink: {
     fontSize: 12,
-    color: '#0B9A61',
-    fontWeight: '600',
+    color: '#BDBDBD',
     textDecorationLine: 'underline',
   },
 });

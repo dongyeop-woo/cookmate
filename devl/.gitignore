@@ -22,3 +22,10 @@ cookingbasedyw-d37cc782696c.json
 
 # 생성된 레시피 이미지 (Firebase Storage 업로드 후 로컬 사본은 무시)
 images/
+
+# macOS
+.DS_Store
+
+# Python 가상환경 (레시피 스크립트용, 커밋 대상 아님)
+venv/
+.python-version

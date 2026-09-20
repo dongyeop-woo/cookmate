@@ -1,48 +1,55 @@
-import React, { useState, useMemo, useEffect, useCallback } from 'react';
+import React, { useState, useMemo, useEffect, useCallback, useRef } from 'react';
 import {
   View,
   Text,
   ScrollView,
   TouchableOpacity,
-  Image,
   StyleSheet,
   Dimensions,
   Platform,
   ActivityIndicator,
+  TextInput,
+  FlatList,
 } from 'react-native';
+import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { useFocusEffect } from '@react-navigation/native';
 import { fetchRecipes, fetchCategories } from '../services/api';
 import type { Recipe, Category } from '../constants/recipes';
+import { Ionicons } from '@expo/vector-icons';
 
 const { width } = Dimensions.get('window');
 const PIXEL_RATIO = Math.ceil(Dimensions.get('window').scale);
 
-const hiResImage = (uri: string, w = 800) => {
+const hiResImage = (uri: string, w = 400) => {
   if (uri && uri.includes('unsplash.com')) {
-    return uri.replace(/[?&]w=\d+/, `?w=${w * PIXEL_RATIO}`);
+    return uri.replace(/[?&]w=\d+/, `?w=${w}`);
   }
   return uri;
 };
 
 const categoryIcons: Record<string, any> = {
-  '아침': require('../assets/icons/breakfast.png'),
-  '점심': require('../assets/icons/2.png'),
-  '저녁': require('../assets/icons/3.png'),
-  '디저트': require('../assets/icons/4.png'),
-  '간식': require('../assets/icons/5.png'),
-  '음료': require('../assets/icons/6.png'),
+  '아침': require('../assets/icons/categories/breakfast.png'),
+  '점심': require('../assets/icons/categories/lunch.png'),
+  '저녁': require('../assets/icons/categories/dinner.png'),
+  '디저트': require('../assets/icons/categories/dessert.png'),
+  '간식': require('../assets/icons/categories/snack.png'),
+  '음료': require('../assets/icons/categories/drink.png'),
+  '야식': require('../assets/icons/categories/midnight.png'),
+  '분식': require('../assets/icons/categories/street-food.png'),
+  '한식': require('../assets/icons/categories/korean.png'),
+  '양식': require('../assets/icons/categories/western.png'),
 };
 
 type SortType = '추천순' | '평점순' | '시간순';
 type FilterType = 'best' | 'recommended' | 'quick' | 'snack' | 'weekly' | undefined;
 
 const filterTitles: Record<string, string> = {
-  best: '🏆 베스트 레시피',
+  best: '베스트 레시피',
   recommended: '추천 레시피',
-  quick: '⚡ 초스피드 요리',
-  snack: '🍰 인기 간식',
+  quick: '초스피드 요리',
+  snack: '인기 간식',
   weekly: '이번 주 레시피',
 };
 
@@ -56,29 +63,21 @@ export default function CategoryScreen() {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const [r, c] = await Promise.all([fetchRecipes(), fetchCategories()]);
-        setRecipes(r);
-        setCategories(c);
-      } catch (e) {
-        console.warn('API 로드 실패:', e);
-      } finally {
-        setLoading(false);
-      }
-    })();
-  }, []);
+  const [search, setSearch] = useState('');
+  const [showSearch, setShowSearch] = useState(false);
+  const searchInputRef = useRef<TextInput>(null);
 
   useFocusEffect(
     useCallback(() => {
       (async () => {
         try {
-          const r = await fetchRecipes();
+          const [r, c] = await Promise.all([fetchRecipes(), fetchCategories()]);
           setRecipes(r);
+          setCategories(c);
         } catch (e) {
           console.warn('API 로드 실패:', e);
+        } finally {
+          setLoading(false);
         }
       })();
     }, [])
@@ -126,23 +125,81 @@ export default function CategoryScreen() {
           break;
       }
     }
+    if (search.trim()) {
+      const q = search.trim().toLowerCase();
+      list = list.filter(r =>
+        r.title.toLowerCase().includes(q) ||
+        r.author.toLowerCase().includes(q) ||
+        r.ingredients?.some(ing => ing.name.toLowerCase().includes(q))
+      );
+    }
+
     return list;
-  }, [selectedCategory, sortType, filter, recipes]);
+  }, [selectedCategory, sortType, filter, recipes, search]);
 
   const categoryTabs = [{ id: '0', name: '전체' }, ...categories];
+
+  const renderRecipeItem = useCallback(({ item: recipe }: { item: Recipe }) => (
+    <TouchableOpacity
+      style={styles.recipeCard}
+      onPress={() => router.push(`/recipe/${recipe.id}`)}
+      activeOpacity={0.85}
+    >
+      <Image source={{ uri: hiResImage(recipe.image) }} style={styles.recipeImage} cachePolicy="disk" recyclingKey={recipe.id} contentFit="cover" />
+      <View style={styles.recipeInfo}>
+        <Text style={styles.recipeTitle} numberOfLines={1}>{recipe.title}</Text>
+        <Text style={styles.recipeAuthor}>By {recipe.author}</Text>
+        <View style={styles.recipeMeta}>
+          <Text style={styles.recipeRating}><Ionicons name="heart" size={13} color="#FF6B6B" /> {recipe.likes ?? 0}</Text>
+          <Text style={styles.recipeDot}>·</Text>
+          <Text style={styles.recipeTime}><Ionicons name="time-outline" size={13} color="#666" /> {recipe.time}분</Text>
+          <Text style={styles.recipeDot}>·</Text>
+          <Text style={[styles.recipeDifficulty, { color: recipe.difficulty === '쉬움' ? '#1BAE74' : recipe.difficulty === '어려움' ? '#E74C3C' : '#F5A623', fontWeight: '700' }]}>{recipe.difficulty}</Text>
+        </View>
+        <View style={styles.tagRow}>
+          <View style={styles.tag}>
+            <Text style={styles.tagText}>{recipe.category}</Text>
+          </View>
+          <View style={styles.tag}>
+            <Text style={styles.tagText}>{recipe.calories}kcal</Text>
+          </View>
+        </View>
+      </View>
+    </TouchableOpacity>
+  ), [router]);
 
   return (
     <SafeAreaView style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
-          <Text style={styles.backIcon}>←</Text>
+        <TouchableOpacity onPress={() => { if (showSearch) { setShowSearch(false); setSearch(''); } else { router.back(); } }} style={styles.backButton}>
+          <Ionicons name="chevron-back" size={24} color="#1A1A1A" />
         </TouchableOpacity>
-        <Text style={styles.headerTitle}>
-          {filter ? filterTitles[filter] : selectedCategory === '전체' ? '전체 레시피' : selectedCategory}
-        </Text>
-        <TouchableOpacity onPress={() => router.push('/search')} style={styles.searchButton}>
-          <Text style={styles.searchIcon}>⌕</Text>
+        {showSearch ? (
+          <View style={styles.headerSearchBar}>
+            <Ionicons name="search" size={18} color="#9E9E9E" style={{ marginRight: 6 }} />
+            <TextInput
+              ref={searchInputRef}
+              style={styles.headerSearchInput}
+              placeholder="레시피 검색"
+              placeholderTextColor="#9E9E9E"
+              value={search}
+              onChangeText={setSearch}
+              autoFocus
+            />
+            {search.length > 0 && (
+              <TouchableOpacity onPress={() => setSearch('')}>
+                <Ionicons name="close-circle" size={18} color="#9E9E9E" />
+              </TouchableOpacity>
+            )}
+          </View>
+        ) : (
+          <Text style={styles.headerTitle}>
+            {filter ? filterTitles[filter] : selectedCategory === '전체' ? '전체 레시피' : selectedCategory}
+          </Text>
+        )}
+        <TouchableOpacity onPress={() => { setShowSearch(!showSearch); if (!showSearch) setTimeout(() => searchInputRef.current?.focus(), 100); }} style={styles.searchButton}>
+          <Ionicons name={showSearch ? "close" : "search"} size={22} color="#1A1A1A" />
         </TouchableOpacity>
       </View>
 
@@ -226,43 +283,18 @@ export default function CategoryScreen() {
       )}
 
       {/* Recipe List */}
-      <ScrollView
+      <FlatList
+        data={filteredRecipes}
+        keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.listContainer}
-      >
-        {filteredRecipes.map((recipe) => (
-          <TouchableOpacity
-            key={recipe.id}
-            style={styles.recipeCard}
-            onPress={() => router.push(`/recipe/${recipe.id}`)}
-            activeOpacity={0.85}
-          >
-            <Image source={{ uri: hiResImage(recipe.image) }} style={styles.recipeImage} />
-            <View style={styles.recipeInfo}>
-              <Text style={styles.recipeTitle} numberOfLines={1}>{recipe.title}</Text>
-              <Text style={styles.recipeAuthor}>By {recipe.author}</Text>
-              <View style={styles.recipeMeta}>
-                <Text style={styles.recipeRating}>♥ {recipe.likes ?? 0}</Text>
-                <Text style={styles.recipeDot}>·</Text>
-                <Text style={styles.recipeTime}>☆ {recipe.bookmarks ?? 0}</Text>
-                <Text style={styles.recipeDot}>·</Text>
-                <Text style={styles.recipeTime}>◷ {recipe.time}분</Text>
-                <Text style={styles.recipeDot}>·</Text>
-                <Text style={styles.recipeDifficulty}>{recipe.difficulty}</Text>
-              </View>
-              <View style={styles.tagRow}>
-                <View style={styles.tag}>
-                  <Text style={styles.tagText}>{recipe.category}</Text>
-                </View>
-                <View style={styles.tag}>
-                  <Text style={styles.tagText}>{recipe.calories}kcal</Text>
-                </View>
-              </View>
-            </View>
-          </TouchableOpacity>
-        ))}
-        <View style={{ height: 40 }} />
-      </ScrollView>
+        removeClippedSubviews={Platform.OS === 'android'}
+        initialNumToRender={6}
+        maxToRenderPerBatch={4}
+        windowSize={5}
+        renderItem={renderRecipeItem}
+        ListFooterComponent={<View style={{ height: 40 }} />}
+      />
     </SafeAreaView>
   );
 }
@@ -301,6 +333,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  headerSearchBar: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#F5F5F5',
+    borderRadius: 10,
+    paddingHorizontal: 10,
+    height: 36,
+    marginHorizontal: 4,
+  },
+  headerSearchInput: {
+    flex: 1,
+    fontSize: 15,
+    color: '#1A1A1A',
+    paddingVertical: 0,
+  },
   searchIcon: {
     fontSize: 26,
     color: '#1A1A1A',
@@ -322,7 +370,7 @@ const styles = StyleSheet.create({
     borderBottomColor: 'transparent',
   },
   tabActive: {
-    borderBottomColor: '#0B9A61',
+    borderBottomColor: '#1A1A1A',
   },
   tabText: {
     fontSize: 15,
@@ -428,7 +476,7 @@ const styles = StyleSheet.create({
     color: '#666',
   },
   sortMenuTextActive: {
-    color: '#0B9A61',
+    color: '#1A1A1A',
     fontWeight: '600',
   },
 
@@ -439,7 +487,7 @@ const styles = StyleSheet.create({
   recipeCard: {
     flexDirection: 'row',
     backgroundColor: '#FFFFFF',
-    borderRadius: 16,
+    borderRadius: 8,
     marginBottom: 14,
     overflow: 'hidden',
     borderWidth: 1,
@@ -452,7 +500,7 @@ const styles = StyleSheet.create({
   },
   recipeImage: {
     width: 120,
-    height: 120,
+    alignSelf: 'stretch',
   },
   recipeInfo: {
     flex: 1,
@@ -473,6 +521,8 @@ const styles = StyleSheet.create({
   recipeMeta: {
     flexDirection: 'row',
     alignItems: 'center',
+    flexWrap: 'wrap',
+    gap: 2,
     marginBottom: 8,
   },
   recipeRating: {

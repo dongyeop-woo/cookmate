@@ -1,4 +1,4 @@
-﻿import React, { useState, useCallback, useRef } from 'react';
+﻿import React, { useState, useCallback, useRef, useMemo, useEffect } from 'react';
 import {
   View,
   Text,
@@ -6,38 +6,49 @@ import {
   TouchableOpacity,
   ScrollView,
   Dimensions,
-  Image,
   TextInput,
   Platform,
   Alert,
-  Share,
   ActionSheetIOS,
   ActivityIndicator,
   Modal,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
+  FlatList,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { Image } from 'expo-image';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useFocusEffect } from 'expo-router';
 import * as ImagePicker from 'expo-image-picker';
-import { fetchCommunityRecipes, fetchRecipes, fetchUser, fetchRecipeById, updateUser, checkNicknameAvailable, uploadProfileImage } from '../../services/api';
+import ImageCropPicker from 'react-native-image-crop-picker';
+import { fetchCommunityRecipes, fetchRecipes, fetchUser, fetchRecipesByIds, updateUser, checkNicknameAvailable, uploadProfileImage, fetchTopUsers, followUser, unfollowUser } from '../../services/api';
+import type { UserProfile as UserProfileType } from '../../services/api';
 import type { CommunityRecipe } from '../../constants/community';
 import type { Recipe } from '../../constants/recipes';
-import { useRouter } from 'expo-router';
+import { useRouter, useLocalSearchParams } from 'expo-router';
 import { useAuth } from '../_layout';
+import { Ionicons } from '@expo/vector-icons';
+import KakaoShareLink from 'react-native-kakao-share-link';
 
 const { width } = Dimensions.get('window');
 const GRID_GAP = 2;
 const GRID_COLS = 3;
-const GRID_SIZE = (width - GRID_GAP * (GRID_COLS - 1)) / GRID_COLS;
+const GRID_SIZE = Math.floor((width - GRID_GAP * (GRID_COLS - 1)) / GRID_COLS);
 
 export default function ProfileScreen() {
   const router = useRouter();
+  const params = useLocalSearchParams<{ tab?: string; _t?: string }>();
+  const insets = useSafeAreaInsets();
   const { userProfile, setUserProfile, firebaseUser } = useAuth();
-  const [myRecipes, setMyRecipes] = useState<{ id: string; image: string; type: 'recipe' | 'community' }[]>([]);
+  const [myRecipes, setMyRecipes] = useState<{ id: string; image: string; type: 'recipe' | 'community'; createdAt?: string }[]>([]);
   const [savedRecipes, setSavedRecipes] = useState<Recipe[]>([]);
   const [activeTab, setActiveTab] = useState<'grid' | 'saved'>('grid');
+
+  useEffect(() => {
+    if (params.tab === 'saved') setActiveTab('saved');
+    else if (params.tab === 'grid') setActiveTab('grid');
+  }, [params.tab, params._t]);
   const [isEditing, setIsEditing] = useState(false);
   const [editingField, setEditingField] = useState<'none' | 'nickname' | 'bio'>('none');
   const [editNickname, setEditNickname] = useState('');
@@ -47,38 +58,70 @@ export default function ProfileScreen() {
   const [saving, setSaving] = useState(false);
   const [nicknameStatus, setNicknameStatus] = useState<'idle' | 'checking' | 'available' | 'taken'>('idle');
   const nicknameTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [followListVisible, setFollowListVisible] = useState(false);
+  const [followListType, setFollowListType] = useState<'followers' | 'following'>('followers');
+  const [followListData, setFollowListData] = useState<UserProfileType[]>([]);
+  const [followListLoading, setFollowListLoading] = useState(false);
+  const [followSearch, setFollowSearch] = useState('');
 
+  // 재진입 throttle — 30초 이내 재포커스는 fetch 스킵 (체감 렉 제거).
+  // 변동 가능성 있는 액션(좋아요, 글 작성 등) 후에는 lastFetchRef.current = 0 으로 강제 리프레시 가능.
+  const lastFetchRef = useRef(0);
+  const FETCH_THROTTLE_MS = 30_000;
   useFocusEffect(
     useCallback(() => {
       (async () => {
+        const now = Date.now();
+        if (lastFetchRef.current > 0 && now - lastFetchRef.current < FETCH_THROTTLE_MS) {
+          return;
+        }
+        lastFetchRef.current = now;
         try {
           const authorName = userProfile?.nickname || firebaseUser?.displayName || '';
-          const [communityList, allRecipes] = await Promise.all([
+          // 3개 fetch 모두 병렬 — fetchUser를 community/recipes 와 동시에 (기존엔 직렬)
+          const [communityList, allRecipes, fresh] = await Promise.all([
             fetchCommunityRecipes(),
             fetchRecipes(),
+            firebaseUser ? fetchUser(firebaseUser.uid) : Promise.resolve(null),
           ]);
           const myUid = firebaseUser?.uid || '';
           const myCommunity = communityList
-            .filter(r => (r.authorUid && r.authorUid === myUid) || r.author === authorName)
-            .map(r => ({ id: r.id, image: r.image, type: 'community' as const }));
+            // 승인된 레시피만 프로필 목록에 표시 (pending/rejected는 '내 활동'에서 확인)
+            .filter(r => ((r.authorUid && r.authorUid === myUid) || r.author === authorName) && r.status === 'approved')
+            .map(r => ({ id: r.id, image: r.image, type: 'community' as const, createdAt: (r as any).createdAt }));
           const myRegular = authorName
-            ? allRecipes.filter(r => r.author === authorName).map(r => ({ id: r.id, image: r.image, type: 'recipe' as const }))
+            ? allRecipes.filter(r => r.author === authorName).map(r => ({ id: r.id, image: r.image, type: 'recipe' as const, createdAt: (r as any).createdAt }))
             : [];
-          setMyRecipes([...myRegular, ...myCommunity]);
-          // Refresh user profile
-          if (firebaseUser) {
-            const fresh = await fetchUser(firebaseUser.uid);
-            if (fresh) {
-              setUserProfile(fresh);
-              // Load bookmarked recipes
-              if (fresh.bookmarkedRecipes?.length) {
-                const bookmarked = await Promise.all(
-                  fresh.bookmarkedRecipes.map(id => fetchRecipeById(id).catch(() => null))
-                );
-                setSavedRecipes(bookmarked.filter((r): r is Recipe => r !== null));
-              } else {
+          // 최신 작성순 정렬 (createdAt 내림차순)
+          const combined = [...myRegular, ...myCommunity].sort((a, b) => {
+            const A = a.createdAt || '';
+            const B = b.createdAt || '';
+            return B.localeCompare(A);
+          });
+          setMyRecipes(combined);
+          // 그리드 이미지 prefetch — 첫 진입 시 디스크 캐시 워밍 (백그라운드)
+          try {
+            const urls = combined.slice(0, 20).map(r => r.image).filter(Boolean) as string[];
+            if (urls.length) Image.prefetch(urls, 'disk');
+          } catch {}
+          // Refresh user profile (이미 위에서 병렬로 받음)
+          if (fresh) {
+            setUserProfile(fresh);
+            // 북마크한 레시피 일괄 조회 — N+1(20 reads) 대신 배치 쿼리(2~4 reads)로 비용 절감
+            if (fresh.likedRecipes?.length) {
+              try {
+                const bookmarked = await fetchRecipesByIds(fresh.likedRecipes.slice(0, 20));
+                setSavedRecipes(bookmarked);
+                // 북마크 그리드도 prefetch
+                try {
+                  const burls = bookmarked.slice(0, 20).map(r => r.image).filter(Boolean) as string[];
+                  if (burls.length) Image.prefetch(burls, 'disk');
+                } catch {}
+              } catch {
                 setSavedRecipes([]);
               }
+            } else {
+              setSavedRecipes([]);
             }
           }
         } catch (e) {
@@ -90,18 +133,88 @@ export default function ProfileScreen() {
 
   const totalLikes = userProfile?.totalLikes ?? 0;
 
+  const followReqIdRef = useRef(0);
+  const loadFollowList = useCallback(async (type: 'followers' | 'following') => {
+    const reqId = ++followReqIdRef.current;
+    const uids = type === 'followers' ? (userProfile?.followers ?? []) : (userProfile?.following ?? []);
+    if (uids.length === 0) {
+      if (followReqIdRef.current === reqId) {
+        setFollowListData([]);
+        setFollowListLoading(false);
+      }
+      return;
+    }
+    setFollowListLoading(true);
+    setFollowListData([]);
+    try {
+      const users = await Promise.all(uids.map(uid => fetchUser(uid)));
+      if (followReqIdRef.current !== reqId) return;
+      setFollowListData(users.filter(Boolean) as UserProfileType[]);
+    } catch {
+      if (followReqIdRef.current === reqId) setFollowListData([]);
+    } finally {
+      if (followReqIdRef.current === reqId) setFollowListLoading(false);
+    }
+  }, [userProfile?.followers, userProfile?.following]);
+
+  useEffect(() => {
+    if (followListVisible) loadFollowList(followListType);
+  }, [followListType, followListVisible, loadFollowList]);
+
+  const openFollowList = (type: 'followers' | 'following') => {
+    setFollowListType(type);
+    setFollowSearch('');
+    setFollowListVisible(true);
+  };
+
+  const formatCount = (n: number) => {
+    if (n >= 100000000) return (n / 100000000).toFixed(1).replace(/\.0$/, '') + '억';
+    if (n >= 10000) return (n / 10000).toFixed(1).replace(/\.0$/, '') + '만';
+    if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, '') + '천';
+    return String(n);
+  };
+
   const handleShareProfile = async () => {
     const nickname = userProfile?.nickname || firebaseUser?.displayName || '요리사';
     const uid = firebaseUser?.uid || '';
-    const recipeCount = myRecipes.length;
-    const profileLink = `yojalal://profile/${uid}`;
-    const message = `[요잘알] ${nickname}님의 프로필\n레시피 ${recipeCount}개 | 좋아요 ${totalLikes}개\n\n${profileLink}`;
+    const profileImage = userProfile?.profileImage && userProfile.profileImage !== 'default' && userProfile.profileImage.startsWith('http')
+      ? userProfile.profileImage
+      : 'https://yojalal.com/img/default-profile.png';
+    const webUrl = `https://yojalal.com/profile/${uid}`;
+
+    shareViaKakao(nickname, profileImage, webUrl);
+  };
+
+  const shareViaKakao = async (nickname: string, profileImage: string, webUrl: string) => {
+    const uid = firebaseUser?.uid || '';
+    const execParams = [
+      { key: 'type', value: 'profile' },
+      { key: 'uid', value: uid },
+    ];
+    const link = {
+      webUrl,
+      mobileWebUrl: webUrl,
+      iosExecutionParams: execParams,
+      androidExecutionParams: execParams,
+    };
     try {
-      await Share.share({ message });
+      await KakaoShareLink.sendFeed({
+        content: {
+          title: `${nickname}님의 요리 레시피를 구경해보세요!`,
+          imageUrl: profileImage,
+          link,
+          description: '다양한 레시피와 조리 방법을 유저들과 공유해보세요.',
+        },
+        buttons: [
+          { title: '프로필 보기', link },
+        ],
+      });
     } catch (e) {
-      console.warn('공유 실패:', e);
+      console.warn('카카오 공유 실패:', e);
+      Alert.alert('공유 실패', '카카오톡이 설치되어 있는지 확인해주세요.');
     }
   };
+
 
   const startEditing = () => {
     setEditNickname(userProfile?.nickname || firebaseUser?.displayName || '');
@@ -164,14 +277,22 @@ export default function ProfileScreen() {
       Alert.alert('권한 필요', '갤러리 접근 권한이 필요합니다.');
       return;
     }
-    const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ['images'],
-      allowsEditing: true,
-      aspect: [1, 1],
-      quality: 0.7,
-    });
-    if (!result.canceled && result.assets[0]) {
-      setEditProfileImage(result.assets[0].uri);
+    try {
+      const result = await ImageCropPicker.openPicker({
+        width: 400,
+        height: 400,
+        cropping: true,
+        cropperCircleOverlay: true,
+        compressImageQuality: 0.7,
+        mediaType: 'photo',
+      });
+      if (result.path) {
+        setEditProfileImage(result.path);
+      }
+    } catch (e: any) {
+      if (e?.code !== 'E_PICKER_CANCELLED') {
+        Alert.alert('오류', '이미지를 불러올 수 없습니다.');
+      }
     }
   };
 
@@ -216,12 +337,20 @@ export default function ProfileScreen() {
       if (editProfileImage !== null) {
         if (editProfileImage === 'default') {
           data.profileImage = 'default';
-        } else if (editProfileImage.startsWith('file://') || editProfileImage.startsWith('content://')) {
-          // Upload via backend API
-          const downloadURL = await uploadProfileImage(firebaseUser.uid, editProfileImage);
-          data.profileImage = downloadURL;
-        } else {
+        } else if (editProfileImage.startsWith('http://') || editProfileImage.startsWith('https://')) {
+          // 이미 원격 URL인 경우 그대로
           data.profileImage = editProfileImage;
+        } else {
+          // 로컬 경로 — image-crop-picker는 iOS에서 file:// 없이 /var/... 경로 반환하므로 보정
+          const uri = (editProfileImage.startsWith('file://') || editProfileImage.startsWith('content://'))
+            ? editProfileImage
+            : `file://${editProfileImage}`;
+          console.log('[profile] 업로드 시작 URI:', uri);
+          const downloadURL = await uploadProfileImage(firebaseUser.uid, uri);
+          console.log('[profile] 업로드 성공 URL:', downloadURL);
+          // 파일명이 uid 기반이라 URL이 동일 → 이미지 캐시 무력화 위해 버스터 추가
+          const separator = downloadURL.includes('?') ? '&' : '?';
+          data.profileImage = `${downloadURL}${separator}t=${Date.now()}`;
         }
       }
       if (Object.keys(data).length > 0) {
@@ -240,8 +369,13 @@ export default function ProfileScreen() {
   const rawProfileImage = isEditing && editProfileImage !== null
     ? editProfileImage
     : userProfile?.profileImage || null;
-  const isValidImageUri = (uri?: string | null) => !!uri && uri !== 'default' && (uri.startsWith('https://') || uri.startsWith('http://') || uri.startsWith('file://') || uri.startsWith('content://'));
-  const isDefaultImage = !isValidImageUri(rawProfileImage);
+  const isValidImageUri = (uri?: string | null) => !!uri && uri !== 'default' && uri.trim() !== '' && (uri.startsWith('https://') || uri.startsWith('http://') || uri.startsWith('file://') || uri.startsWith('content://'));
+  const [avatarLoadFailed, setAvatarLoadFailed] = useState(false);
+  // URL이 바뀌면 이전 로드 실패 상태 리셋 (안 그러면 새 사진도 기본 이미지로 보임)
+  useEffect(() => {
+    setAvatarLoadFailed(false);
+  }, [rawProfileImage]);
+  const isDefaultImage = !isValidImageUri(rawProfileImage) || avatarLoadFailed;
   const defaultAvatarSource = userProfile?.gender === 'female'
     ? require('../../assets/girl.png')
     : require('../../assets/man.png');
@@ -254,60 +388,77 @@ export default function ProfileScreen() {
         <View style={styles.header}>
           <View />
           <TouchableOpacity onPress={() => router.push('/menu')}>
-            <Text style={styles.headerIcon}>☰</Text>
+            <Ionicons name="menu" size={24} color="#1A1A1A" />
           </TouchableOpacity>
         </View>
 
         {/* Profile Info */}
         <View style={styles.profileSection}>
-          <View style={styles.avatarWrapper}>
-            <View style={[styles.avatar, userProfile?.role === 'admin' && styles.avatarAdmin]}>
-              {isDefaultImage ? (
-                <Image source={defaultAvatarSource} style={{ width: 80, height: 80, borderRadius: 40 }} />
-              ) : (
-                <Image source={{ uri: rawProfileImage! }} style={{ width: 80, height: 80, borderRadius: 40 }} />
+          <View style={styles.profileTopRow}>
+            <View style={styles.avatarWrapper}>
+              <View style={[styles.avatar, (userProfile as any)?.isPremium && userProfile?.role !== 'admin' && styles.avatarPremium, userProfile?.role === 'admin' && styles.avatarAdmin]}>
+                {isDefaultImage ? (
+                  <Image source={defaultAvatarSource} style={{ width: 80, height: 80, borderRadius: 40 }} contentFit="cover" />
+                ) : (
+                  <Image
+                    key={rawProfileImage}
+                    source={{ uri: rawProfileImage! }}
+                    style={{ width: 80, height: 80, borderRadius: 40 }}
+                    contentFit="cover"
+                    cachePolicy="disk"
+                    recyclingKey={`my-avatar-${rawProfileImage}`}
+                    priority="high"
+                    onError={() => setAvatarLoadFailed(true)}
+                  />
+                )}
+              </View>
+              {isEditing && (
+                <TouchableOpacity style={styles.editPencil} onPress={showEditPhotoOptions} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
+                  <Ionicons name="pencil" size={14} color="#FFFFFF" />
+                </TouchableOpacity>
               )}
             </View>
-            {isEditing && (
-              <TouchableOpacity style={styles.editPencil} onPress={showEditPhotoOptions} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
-                <Text style={styles.editPencilText}>✎</Text>
-              </TouchableOpacity>
-            )}
-          </View>
-          <View style={styles.statsRow}>
-            <View style={styles.statItem}>
-              <Text style={styles.statNumber}>{myRecipes.length}</Text>
-              <Text style={styles.statLabel}>게시물</Text>
+            <View style={styles.statsSection}>
+              <View style={styles.nameAndStats}>
+                <View style={styles.bioNameRow}>
+                  <Text style={styles.bioName}>{isEditing ? editNickname : (userProfile?.nickname || firebaseUser?.displayName || '요리사님')}</Text>
+                  {isEditing && (
+                    <TouchableOpacity onPress={() => openFieldModal('nickname')} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
+                      <Ionicons name="pencil" size={14} color="#666666" />
+                    </TouchableOpacity>
+                  )}
+                </View>
+                <View style={styles.statsRow}>
+                  <View style={styles.statItem}>
+                    <Text style={styles.statNumber}>{formatCount(myRecipes.length)}</Text>
+                    <Text style={styles.statLabel}>게시물</Text>
+                  </View>
+                  <TouchableOpacity style={styles.statItem} onPress={() => openFollowList('followers')}>
+                    <Text style={styles.statNumber}>{formatCount(userProfile?.followers?.length ?? 0)}</Text>
+                    <Text style={styles.statLabel}>팔로워</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.statItem} onPress={() => openFollowList('following')}>
+                    <Text style={styles.statNumber}>{formatCount(userProfile?.following?.length ?? 0)}</Text>
+                    <Text style={styles.statLabel}>팔로잉</Text>
+                  </TouchableOpacity>
+                  <View style={styles.statItem}>
+                    <Text style={styles.statNumber}>{formatCount(totalLikes)}</Text>
+                    <Text style={styles.statLabel}>좋아요</Text>
+                  </View>
+                </View>
+              </View>
             </View>
-            <View style={styles.statItem}>
-              <Text style={styles.statNumber}>{userProfile?.followers?.length ?? 0}</Text>
-              <Text style={styles.statLabel}>팔로워</Text>
-            </View>
-            <View style={styles.statItem}>
-              <Text style={styles.statNumber}>{userProfile?.following?.length ?? 0}</Text>
-              <Text style={styles.statLabel}>팔로잉</Text>
-            </View>
-            <View style={styles.statItem}>
-              <Text style={styles.statNumber}>{totalLikes}</Text>
-              <Text style={styles.statLabel}>좋아요</Text>
-            </View>
           </View>
-          <View style={styles.bioNameRow}>
-            <Text style={styles.bioName}>{isEditing ? editNickname : (userProfile?.nickname || firebaseUser?.displayName || '요리사님')} 👨‍🍳</Text>
-            {isEditing && (
-              <TouchableOpacity onPress={() => openFieldModal('nickname')} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
-                <Text style={styles.fieldPencil}>✎</Text>
-              </TouchableOpacity>
-            )}
-          </View>
-          <View style={styles.bioTextRow}>
-            <Text style={styles.bioText}>{isEditing ? (editBio || '한줄소개를 입력하세요') : (userProfile?.bio || '맛있는 요리를 만들어 봐요!')}</Text>
-            {isEditing && (
-              <TouchableOpacity onPress={() => openFieldModal('bio')} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
-                <Text style={styles.fieldPencil}>✎</Text>
-              </TouchableOpacity>
-            )}
-          </View>
+          {(isEditing || userProfile?.bio) ? (
+            <View style={styles.bioTextRow}>
+              <Text style={styles.bioText}>{isEditing ? (editBio || '한줄소개를 입력하세요') : userProfile?.bio}</Text>
+              {isEditing && (
+                <TouchableOpacity onPress={() => openFieldModal('bio')} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
+                  <Ionicons name="pencil" size={14} color="#666666" />
+                </TouchableOpacity>
+              )}
+            </View>
+          ) : null}
         </View>
 
         {/* Action Buttons */}
@@ -347,43 +498,75 @@ export default function ProfileScreen() {
             style={[styles.tab, activeTab === 'grid' && styles.tabActive]}
             onPress={() => setActiveTab('grid')}
           >
-            <Text style={[styles.tabIcon, activeTab === 'grid' && styles.tabIconActive]}>▦</Text>
+            <Text style={[styles.tabIcon, activeTab === 'grid' && styles.tabIconActive]}><Ionicons name="grid-outline" size={20} color={activeTab === 'grid' ? '#1A1A1A' : '#BDBDBD'} /></Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.tab, activeTab === 'saved' && styles.tabActive]}
             onPress={() => setActiveTab('saved')}
           >
-            <Text style={[styles.tabIcon, activeTab === 'saved' && styles.tabIconActive]}>☆</Text>
+            <Text style={[styles.tabIcon, activeTab === 'saved' && styles.tabIconActive]}><Ionicons name="heart-outline" size={20} color={activeTab === 'saved' ? '#1A1A1A' : '#BDBDBD'} /></Text>
           </TouchableOpacity>
         </View>
 
         {/* Grid Content */}
         {activeTab === 'grid' ? (
-          <View style={styles.grid}>
-            {myRecipes.map((recipe) => (
-              <TouchableOpacity
-                key={`${recipe.type}-${recipe.id}`}
-                style={styles.gridItem}
-                activeOpacity={0.8}
-                onPress={() => {
-                  router.push(recipe.type === 'community' ? `/recipe/${recipe.id}?type=community` : `/recipe/${recipe.id}`);
-                }}
-              >
-                {recipe.image ? (
-                  <Image source={{ uri: recipe.image }} style={styles.gridImage} />
-                ) : (
-                  <View style={[styles.gridImage, styles.gridPlaceholder]}>
-                    <Text style={styles.gridPlaceholderText}>🍳</Text>
-                  </View>
-                )}
+          myRecipes.length > 0 ? (
+            <FlatList
+              data={myRecipes}
+              keyExtractor={(item) => `${item.type}-${item.id}`}
+              numColumns={3}
+              scrollEnabled={false}
+              columnWrapperStyle={styles.gridRow}
+              removeClippedSubviews={Platform.OS === 'android'}
+              renderItem={({ item: recipe }) => (
+                <TouchableOpacity
+                  style={styles.gridItem}
+                  activeOpacity={0.8}
+                  onPress={() => {
+                    router.push(recipe.type === 'community' ? `/recipe/${recipe.id}?type=community` : `/recipe/${recipe.id}`);
+                  }}
+                >
+                  {recipe.image ? (
+                    <Image source={{ uri: recipe.image }} style={styles.gridImage} cachePolicy="disk" recyclingKey={`grid-${recipe.id}`} priority="high" />
+                  ) : (
+                    <View style={[styles.gridImage, styles.gridPlaceholder]}>
+                      <Text style={styles.gridPlaceholderText}>🍳</Text>
+                    </View>
+                  )}
+                </TouchableOpacity>
+              )}
+            />
+          ) : (
+            <View style={styles.emptyCardContainer}>
+              <TouchableOpacity style={styles.emptyCard} activeOpacity={0.8} onPress={() => router.push('/community/write')}>
+                <View style={[styles.emptyCardIconWrap, { backgroundColor: '#FFFFFF' }]}>
+                  <Ionicons name="create-outline" size={24} color="#1A1A1A" />
+                </View>
+                <Text style={styles.emptyCardTitle}>첫 레시피를 작성해보세요</Text>
+                <Text style={styles.emptyCardDesc}>나만의 요리 과정을 기록하고{'\n'}다른 사람들과 공유해보세요</Text>
+                <View style={styles.emptyCardBtn}>
+                  <Text style={styles.emptyCardBtnText}>레시피 작성하기</Text>
+                </View>
               </TouchableOpacity>
-            ))}
-          </View>
+              <View style={styles.emptyCard}>
+                <View style={[styles.emptyCardIconWrap, { backgroundColor: '#FFFFFF' }]}>
+                  <Ionicons name="people-outline" size={24} color="#1A1A1A" />
+                </View>
+                <Text style={styles.emptyCardTitle}>커뮤니티 둘러보기</Text>
+                <Text style={styles.emptyCardDesc}>다른 요리사들의 레시피를{'\n'}구경하고 영감을 얻어보세요</Text>
+              </View>
+            </View>
+          )
         ) : savedRecipes.length > 0 ? (
-          <View style={styles.grid}>
-            {savedRecipes.map((recipe) => (
+          <FlatList
+            data={savedRecipes}
+            keyExtractor={(item) => item.id}
+            numColumns={3}
+            scrollEnabled={false}
+            columnWrapperStyle={styles.gridRow}
+            removeClippedSubviews={Platform.OS === 'android'}
+            renderItem={({ item: recipe }) => (
               <TouchableOpacity
-                key={recipe.id}
                 style={styles.gridItem}
                 activeOpacity={0.8}
                 onPress={() => {
@@ -391,25 +574,180 @@ export default function ProfileScreen() {
                 }}
               >
                 {recipe.image ? (
-                  <Image source={{ uri: recipe.image }} style={styles.gridImage} />
+                  <Image source={{ uri: recipe.image }} style={styles.gridImage} cachePolicy="disk" recyclingKey={`saved-${recipe.id}`} priority="high" />
                 ) : (
                   <View style={[styles.gridImage, styles.gridPlaceholder]}>
                     <Text style={styles.gridPlaceholderText}>🍳</Text>
                   </View>
                 )}
               </TouchableOpacity>
-            ))}
-          </View>
+            )}
+          />
         ) : (
-          <View style={styles.savedEmpty}>
-            <Text style={styles.savedEmptyIcon}>☆</Text>
-            <Text style={styles.savedEmptyTitle}>저장한 레시피</Text>
-            <Text style={styles.savedEmptyDesc}>좋아하는 레시피를 저장해보세요</Text>
+          <View style={styles.emptyCardContainer}>
+            <View style={styles.emptyCard}>
+              <View style={[styles.emptyCardIconWrap, { backgroundColor: 'transparent' }]}>
+                <Ionicons name="heart-outline" size={24} color="#FF4D67" />
+              </View>
+              <Text style={styles.emptyCardTitle}>레시피에 좋아요 해보세요</Text>
+              <Text style={styles.emptyCardDesc}>마음에 드는 레시피에{'\n'}좋아요하고 모아보세요</Text>
+            </View>
+            <TouchableOpacity style={styles.emptyCard} activeOpacity={0.8} onPress={() => router.push('/(tabs)/recipe')}>
+              <View style={[styles.emptyCardIconWrap, { backgroundColor: '#FFFFFF' }]}>
+                <Ionicons name="search-outline" size={24} color="#1A1A1A" />
+              </View>
+              <Text style={styles.emptyCardTitle}>레시피 둘러보기</Text>
+              <Text style={styles.emptyCardDesc}>다양한 레시피를 탐색하고{'\n'}좋아하는 레시피를 찾아보세요</Text>
+              <View style={styles.emptyCardBtn}>
+                <Text style={styles.emptyCardBtnText}>둘러보기</Text>
+              </View>
+            </TouchableOpacity>
           </View>
         )}
 
-        <View style={{ height: 100 }} />
       </ScrollView>
+
+      {/* Follow List Modal */}
+      <Modal
+        visible={followListVisible}
+        transparent
+        animationType="slide"
+        statusBarTranslucent
+        onRequestClose={() => setFollowListVisible(false)}
+      >
+        <View style={[styles.followModalOverlay, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
+          <View style={styles.followModalContainer}>
+            <View style={styles.followModalHeader}>
+              <TouchableOpacity onPress={() => setFollowListVisible(false)}>
+                <Ionicons name="chevron-back" size={24} color="#1A1A1A" />
+              </TouchableOpacity>
+              <Text style={styles.followModalTitle}>
+                {userProfile?.nickname || '요리사'}
+              </Text>
+              <View style={{ width: 24 }} />
+            </View>
+
+            <View style={styles.followTabsRow}>
+              <TouchableOpacity
+                style={[styles.followTab, followListType === 'followers' && styles.followTabActive]}
+                onPress={() => { setFollowListType('followers'); setFollowSearch(''); }}
+              >
+                <Text style={[styles.followTabText, followListType === 'followers' && styles.followTabTextActive]}>
+                  {userProfile?.followers?.length ?? 0} 팔로워
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[styles.followTab, followListType === 'following' && styles.followTabActive]}
+                onPress={() => { setFollowListType('following'); setFollowSearch(''); }}
+              >
+                <Text style={[styles.followTabText, followListType === 'following' && styles.followTabTextActive]}>
+                  {userProfile?.following?.length ?? 0} 팔로잉
+                </Text>
+              </TouchableOpacity>
+            </View>
+
+            <View style={styles.followSearchBar}>
+              <Ionicons name="search" size={16} color="#9E9E9E" />
+              <TextInput
+                style={styles.followSearchInput}
+                placeholder="검색"
+                placeholderTextColor="#9E9E9E"
+                value={followSearch}
+                onChangeText={setFollowSearch}
+              />
+              {followSearch.length > 0 && (
+                <TouchableOpacity onPress={() => setFollowSearch('')}>
+                  <Ionicons name="close-circle" size={16} color="#BDBDBD" />
+                </TouchableOpacity>
+              )}
+            </View>
+
+            {(() => {
+              const q = followSearch.trim().toLowerCase();
+              const filtered = q ? followListData.filter(u => (u.nickname || '').toLowerCase().includes(q)) : followListData;
+              const trueCount = followListType === 'followers' ? (userProfile?.followers?.length ?? 0) : (userProfile?.following?.length ?? 0);
+              if (filtered.length === 0) {
+                if (q || trueCount === 0) {
+                  return (
+                    <View style={styles.followEmptyContainer}>
+                      <Ionicons name="people-outline" size={48} color="#E0E0E0" />
+                      <Text style={styles.followEmptyText}>
+                        {q ? '검색 결과가 없습니다' : (followListType === 'followers' ? '팔로워가 없습니다' : '팔로잉이 없습니다')}
+                      </Text>
+                    </View>
+                  );
+                }
+                return <View style={{ flex: 1 }} />;
+              }
+              return (
+                <FlatList
+                  data={filtered}
+                  keyExtractor={(item) => item.uid}
+                  extraData={userProfile?.following}
+                  renderItem={({ item }) => {
+                    const isMe = firebaseUser?.uid === item.uid;
+                    const iFollow = !!userProfile?.following?.includes(item.uid);
+                    return (
+                      <View style={styles.followUserRow}>
+                        <TouchableOpacity
+                          style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}
+                          activeOpacity={0.7}
+                          onPress={() => {
+                            setFollowListVisible(false);
+                            router.push(`/profile/${item.uid}`);
+                          }}
+                        >
+                          <View style={styles.followUserAvatar}>
+                            {item.profileImage && item.profileImage !== 'default' && item.profileImage.startsWith('http') ? (
+                              <Image source={{ uri: item.profileImage }} style={{ width: 44, height: 44, borderRadius: 22 }} contentFit="cover" cachePolicy="disk" recyclingKey={`my-follow-${item.uid}`} />
+                            ) : (
+                              <Image
+                                source={item.gender === 'female' ? require('../../assets/girl.png') : require('../../assets/man.png')}
+                                style={{ width: 44, height: 44, borderRadius: 22 }}
+                                contentFit="cover"
+                              />
+                            )}
+                          </View>
+                          <View style={{ flex: 1, marginLeft: 12 }}>
+                            <Text style={styles.followUserName}>{item.nickname || '요리사'}</Text>
+                            {item.bio ? <Text style={styles.followUserBio} numberOfLines={1}>{item.bio}</Text> : null}
+                          </View>
+                        </TouchableOpacity>
+                        {!isMe && firebaseUser?.uid && userProfile && (
+                          <TouchableOpacity
+                            style={[styles.followActionBtn, iFollow ? styles.followActionFollowing : styles.followActionFollow]}
+                            onPress={async () => {
+                              const wasFollowing = iFollow;
+                              setUserProfile({
+                                ...userProfile,
+                                following: wasFollowing
+                                  ? userProfile.following.filter(u => u !== item.uid)
+                                  : [...(userProfile.following ?? []), item.uid],
+                              });
+                              try {
+                                if (wasFollowing) await unfollowUser(firebaseUser.uid, item.uid);
+                                else await followUser(firebaseUser.uid, item.uid);
+                                const fresh = await fetchUser(firebaseUser.uid);
+                                if (fresh) setUserProfile(fresh);
+                              } catch {
+                                setUserProfile(userProfile);
+                              }
+                            }}
+                          >
+                            <Text style={[styles.followActionText, iFollow ? styles.followActionTextFollowing : styles.followActionTextFollow]}>
+                              {iFollow ? '팔로잉' : '팔로우'}
+                            </Text>
+                          </TouchableOpacity>
+                        )}
+                      </View>
+                    );
+                  }}
+                />
+              );
+            })()}
+          </View>
+        </View>
+      </Modal>
 
       {/* Field Edit Modal */}
       <Modal
@@ -486,8 +824,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 20,
-    paddingTop: 16,
-    paddingBottom: 4,
+    height: 56,
+    marginTop: 10,
   },
   headerUsername: {
     fontSize: 20,
@@ -501,59 +839,79 @@ const styles = StyleSheet.create({
   },
   // Profile Section
   profileSection: {
+    paddingHorizontal: 20,
+    paddingTop: 0,
+    paddingBottom: 10,
+    marginTop: -8,
+  },
+  profileTopRow: {
+    flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 10,
+    marginBottom: 10,
   },
   avatar: {
     width: 86,
     height: 86,
     borderRadius: 43,
-    backgroundColor: '#F0F0F0',
+    backgroundColor: 'transparent',
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#D0D0D0',
     marginBottom: 8,
+    overflow: 'hidden',
   },
   avatarAdmin: {
     borderWidth: 2.5,
     borderColor: '#0B9A61',
+    borderRadius: 43,
+    overflow: 'hidden',
+  },
+  avatarPremium: {
+    borderWidth: 2.5,
+    borderColor: '#C8A24E',
+    borderRadius: 43,
+    overflow: 'hidden',
   },
   avatarEmoji: {
     fontSize: 40,
   },
+  statsSection: {
+    flex: 1,
+    marginLeft: 16,
+    justifyContent: 'center',
+  },
+  nameAndStats: {
+    gap: 12,
+  },
   statsRow: {
     flexDirection: 'row',
-    justifyContent: 'center',
-    gap: 40,
+    justifyContent: 'space-between',
+    paddingRight: 16,
   },
   statItem: {
-    alignItems: 'center',
+    alignItems: 'flex-start',
   },
   statNumber: {
-    fontSize: 18,
-    fontWeight: '800',
+    fontSize: 15,
+    fontWeight: '700',
     color: '#1A1A1A',
+    lineHeight: 15,
   },
   statLabel: {
-    fontSize: 13,
-    color: '#666',
-    marginTop: 2,
+    fontSize: 11,
+    color: '#888',
+    marginTop: 1,
   },
   // Bio
   bioName: {
-    fontSize: 14,
+    fontSize: 15,
     fontWeight: '700',
     color: '#1A1A1A',
-    marginTop: 20,
-    marginBottom: 6,
-    textAlign: 'center',
+    lineHeight: 15,
   },
   bioText: {
     fontSize: 14,
     color: '#666',
     lineHeight: 20,
-    textAlign: 'center',
   },
   // Avatar wrapper for edit pencil positioning
   avatarWrapper: {
@@ -564,14 +922,12 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 16,
     right: -4,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#1A1A1A',
     borderRadius: 12,
     width: 24,
     height: 24,
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#E0E0E0',
   },
   editPencilText: {
     fontSize: 12,
@@ -580,8 +936,6 @@ const styles = StyleSheet.create({
   bioNameRow: {
     flexDirection: 'row',
     alignItems: 'baseline',
-    marginTop: 2,
-    marginBottom: 1,
     gap: 6,
   },
   bioTextRow: {
@@ -604,7 +958,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 20,
-    paddingTop: Platform.OS === 'ios' ? 70 : 40,
+    paddingTop: Platform.OS === 'ios' ? 70 : 54,
     paddingBottom: 16,
   },
   modalCenter: {
@@ -686,7 +1040,7 @@ const styles = StyleSheet.create({
   },
   actionBtnSave: {
     flex: 1,
-    backgroundColor: '#0B9A61',
+    backgroundColor: '#1BAE74',
     paddingVertical: 10,
     borderRadius: 10,
     alignItems: 'center',
@@ -739,9 +1093,13 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     gap: GRID_GAP,
   },
+  gridRow: {
+    gap: GRID_GAP,
+  },
   gridItem: {
     width: GRID_SIZE,
     height: GRID_SIZE,
+    marginBottom: GRID_GAP,
   },
   gridImage: {
     width: '100%',
@@ -756,24 +1114,188 @@ const styles = StyleSheet.create({
   gridPlaceholderText: {
     fontSize: 28,
   },
-  // Saved Empty
-  savedEmpty: {
-    alignItems: 'center',
-    paddingTop: 60,
+  // Empty Card
+  emptyCardContainer: {
+    flexDirection: 'row' as const,
+    paddingHorizontal: 16,
+    paddingTop: 20,
+    gap: 10,
   },
-  savedEmptyIcon: {
-    fontSize: 40,
-    color: '#BDBDBD',
-    marginBottom: 12,
+  emptyCard: {
+    flex: 1,
+    backgroundColor: '#F8F8F8',
+    borderRadius: 14,
+    padding: 18,
+    borderWidth: 1,
+    borderColor: '#F0F0F0',
   },
-  savedEmptyTitle: {
-    fontSize: 18,
-    fontWeight: '700',
+  emptyCardIconWrap: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: '#1BAE74',
+    justifyContent: 'center' as const,
+    alignItems: 'center' as const,
+    marginBottom: 14,
+  },
+  emptyCardTitle: {
+    fontSize: 14,
+    fontWeight: '700' as const,
     color: '#1A1A1A',
     marginBottom: 6,
   },
-  savedEmptyDesc: {
+  emptyCardDesc: {
+    fontSize: 12,
+    color: '#888',
+    lineHeight: 17,
+  },
+  emptyCardBtn: {
+    marginTop: 16,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 8,
+    paddingVertical: 9,
+    alignItems: 'center' as const,
+    borderWidth: 1,
+    borderColor: '#E0E0E0',
+  },
+  emptyCardBtnText: {
+    fontSize: 13,
+    fontWeight: '600' as const,
+    color: '#1A1A1A',
+  },
+  // Follow List Modal
+  followModalOverlay: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+  },
+  followModalContainer: {
+    flex: 1,
+  },
+  followModalHeader: {
+    flexDirection: 'row' as const,
+    alignItems: 'center' as const,
+    justifyContent: 'space-between' as const,
+    paddingHorizontal: 20,
+    paddingTop: 16,
+    paddingBottom: 14,
+  },
+  followTabsRow: {
+    flexDirection: 'row' as const,
+    borderBottomWidth: 1,
+    borderBottomColor: '#F0F0F0',
+  },
+  followTab: {
+    flex: 1,
+    alignItems: 'center' as const,
+    paddingVertical: 12,
+    borderBottomWidth: 2,
+    borderBottomColor: 'transparent',
+  },
+  followTabActive: {
+    borderBottomColor: '#1A1A1A',
+  },
+  followTabText: {
+    fontSize: 14,
+    color: '#9E9E9E',
+    fontWeight: '600' as const,
+  },
+  followTabTextActive: {
+    color: '#1A1A1A',
+    fontWeight: '700' as const,
+  },
+  followSearchBar: {
+    flexDirection: 'row' as const,
+    alignItems: 'center' as const,
+    backgroundColor: '#F5F5F5',
+    borderRadius: 10,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    marginHorizontal: 16,
+    marginVertical: 12,
+    gap: 8,
+  },
+  followSearchInput: {
+    flex: 1,
+    fontSize: 14,
+    color: '#1A1A1A',
+    padding: 0,
+  },
+  followActionBtn: {
+    paddingHorizontal: 14,
+    paddingVertical: 7,
+    borderRadius: 8,
+    minWidth: 70,
+    alignItems: 'center' as const,
+  },
+  followActionFollow: {
+    backgroundColor: '#1BAE74',
+  },
+  followActionFollowing: {
+    backgroundColor: '#F0F0F0',
+  },
+  followActionText: {
+    fontSize: 13,
+    fontWeight: '700' as const,
+  },
+  followActionTextFollow: {
+    color: '#FFFFFF',
+  },
+  followActionTextFollowing: {
+    color: '#1A1A1A',
+  },
+  followModalTitle: {
+    fontSize: 17,
+    fontWeight: '700' as const,
+    color: '#1A1A1A',
+  },
+  followEmptyContainer: {
+    alignItems: 'center' as const,
+    paddingTop: 60,
+  },
+  followEmptyText: {
     fontSize: 14,
     color: '#999',
+    marginTop: 12,
+  },
+  followUserRow: {
+    flexDirection: 'row' as const,
+    alignItems: 'center' as const,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+  },
+  followUserAvatar: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    backgroundColor: '#F0F0F0',
+    overflow: 'hidden' as const,
+  },
+  followUserName: {
+    fontSize: 15,
+    fontWeight: '600' as const,
+    color: '#1A1A1A',
+  },
+  followUserBio: {
+    fontSize: 13,
+    color: '#888',
+    marginTop: 2,
+  },
+  followToggleBtn: {
+    paddingHorizontal: 14,
+    paddingVertical: 7,
+    borderRadius: 8,
+    backgroundColor: '#1A1A1A',
+    marginLeft: 8,
+  },
+  followToggleBtnOn: {
+    backgroundColor: '#F2F2F2',
+  },
+  followToggleBtnText: {
+    fontSize: 13,
+    fontWeight: '700',
+    color: '#FFFFFF',
+  },
+  followToggleBtnTextOn: {
+    color: '#1A1A1A',
   },
 });

@@ -1,0 +1,52 @@
+# EAS Build 업로드 제외 — 700MB → 수십 MB 수준으로 줄여 업로드 실패 방지.
+# .easignore 가 있으면 .gitignore 대신 이걸 사용함 (override).
+
+# Native 프로젝트 — EAS 서버가 prebuild로 재생성. 단, modules/*/ios/android는 보존 필요.
+android/
+ios/
+!modules/*/ios/
+!modules/*/ios/**
+!modules/*/android/
+!modules/*/android/**
+
+# 의존성 / 빌드 산출물
+node_modules/
+.expo/
+dist/
+web-build/
+build/
+
+# 옛 빌드 파일 (개발 중 잔존)
+*.apk
+*.aab
+*.ipa
+build-*.apk
+
+# Python venv (스크립트용, 빌드 무관)
+venv/
+__pycache__/
+*.pyc
+
+# 로컬 미디어
+images/
+
+# 보안 키
+.env
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*-iam-*.json
+*service-account*.json
+cookingbasedyw-firebase-adminsdk-*.json
+cookingbasedyw-d37cc782696c.json
+
+# 문서·데이터 (빌드에 불필요)
+docs/
+data/
+
+# 기타
+.git/
+.DS_Store
+*.log

@@ -1,8 +1,12 @@
-﻿[
+[
   { "id": "1", "name": "아침", "icon": "🥞", "color": "#0B9A61" },
   { "id": "2", "name": "점심", "icon": "🍱", "color": "#FF6B6B" },
   { "id": "3", "name": "저녁", "icon": "🍽️", "color": "#4ECDC4" },
   { "id": "4", "name": "디저트", "icon": "🍰", "color": "#FFE66D" },
   { "id": "5", "name": "간식", "icon": "🍿", "color": "#A8E6CF" },
-  { "id": "6", "name": "음료", "icon": "🥤", "color": "#DDA0DD" }
+  { "id": "6", "name": "음료", "icon": "🥤", "color": "#DDA0DD" },
+  { "id": "7", "name": "야식", "icon": "🍜", "color": "#FF7043" },
+  { "id": "8", "name": "분식", "icon": "🍢", "color": "#EF5350" },
+  { "id": "9", "name": "한식", "icon": "🍚", "color": "#8D6E63" },
+  { "id": "10", "name": "양식", "icon": "🍝", "color": "#FFC107" }
 ]

@@ -1,5 +1,5 @@
 import { initializeApp, getApps, getApp } from 'firebase/app';
-import { initializeAuth, getAuth, getReactNativePersistence } from 'firebase/auth';
+import { initializeAuth, getAuth, getReactNativePersistence, type Auth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -16,7 +16,7 @@ const firebaseConfig = {
 
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
 
-let authInstance;
+let authInstance: Auth;
 try {
   authInstance = initializeAuth(app, {
     persistence: getReactNativePersistence(AsyncStorage),
@@ -27,6 +27,7 @@ try {
 
 export { authInstance };
 export const db = getFirestore(app, 'cookmate');
+export const defaultDb = getFirestore(app);
 export const storage = getStorage(app);
 
 export default app;

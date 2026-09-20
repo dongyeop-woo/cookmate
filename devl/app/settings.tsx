@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
 import { useAuth } from './_layout';
 import {
   registerForPushNotifications,
@@ -71,7 +72,7 @@ export default function SettingsScreen() {
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <TouchableOpacity onPress={() => router.back()}>
-          <Text style={styles.backBtn}>←</Text>
+          <Ionicons name="chevron-back" size={24} color="#1A1A1A" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>설정</Text>
         <View style={{ width: 32 }} />
@@ -85,7 +86,7 @@ export default function SettingsScreen() {
             <Switch
               value={pushEnabled}
               onValueChange={handleTogglePush}
-              trackColor={{ false: '#E0E0E0', true: '#0B9A61' }}
+              trackColor={{ false: '#E0E0E0', true: '#1A1A1A' }}
               thumbColor="#fff"
             />
           </View>
@@ -93,7 +94,7 @@ export default function SettingsScreen() {
 
         <Text style={styles.sectionTitle}>계정</Text>
         <View style={styles.section}>
-          <View style={[styles.row, { borderBottomWidth: 0 }]}>
+          <View style={styles.row}>
             <Text style={styles.rowText}>계정 정보</Text>
             <Text style={styles.rowValue}>
               {(() => {
@@ -103,6 +104,14 @@ export default function SettingsScreen() {
               })()}
             </Text>
           </View>
+          <TouchableOpacity
+            style={[styles.row, { borderBottomWidth: 0 }]}
+            onPress={() => router.push('/blocked-users')}
+            activeOpacity={0.7}
+          >
+            <Text style={styles.rowText}>차단한 사용자</Text>
+            <Ionicons name="chevron-forward" size={18} color="#CCC" />
+          </TouchableOpacity>
         </View>
 
         <Text style={styles.sectionTitle}>정보</Text>

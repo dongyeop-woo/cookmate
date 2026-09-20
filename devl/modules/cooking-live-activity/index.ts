@@ -23,10 +23,17 @@ interface CookingLiveActivityNative {
   endAll(): Promise<void>;
 }
 
-// iOS 외 플랫폼/Expo Go에서는 모듈이 없을 수 있음 — no-op으로 안전 폴백.
-const native = Platform.OS === 'ios'
+// iOS: ActivityKit 기반 Live Activity. Android: Notification + Chronometer 기반.
+// 둘 다 동일한 API 표면을 제공해 JS 측 코드는 플랫폼 분기 불필요.
+// Expo Go나 native 미빌드 환경에서는 모듈이 없으므로 noop으로 안전 폴백.
+const native = (Platform.OS === 'ios' || Platform.OS === 'android')
   ? requireOptionalNativeModule<CookingLiveActivityNative>('CookingLiveActivity')
   : null;
+
+// 진단 로그 — 모듈이 native 측에 등록됐는지 확인. native=null이면 Kotlin 빌드 실패.
+if (__DEV__) {
+  console.log('[CookingLiveActivity] platform:', Platform.OS, 'native:', native ? 'LOADED' : 'NULL (noop fallback)');
+}
 
 const noop = async () => {};
 const noopReturn = async () => null;

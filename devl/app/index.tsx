@@ -8,7 +8,7 @@ export default function Index() {
   if (loading) {
     return (
       <View style={styles.loader}>
-        <ActivityIndicator size="large" color="#0B9A61" />
+        <ActivityIndicator size="large" color="#1A1A1A" />
       </View>
     );
   }

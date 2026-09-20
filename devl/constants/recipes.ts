@@ -8,15 +8,18 @@ export interface Recipe {
   time: number;
   difficulty: string;
   calories: number;
+  servings?: string | number;
   rating: number;
   likes: number;
-  bookmarks: number;
   image: string;
   category: string;
   description: string;
   ingredients: { name: string; amount: string; icon: string }[];
-  steps: { step: number; description: string; time: number }[];
+  steps: { step: number; description: string; time: number; imageUrl?: string; isAiImage?: boolean }[];
   comments?: { id: string; uid: string; nickname: string; text: string; createdAt: string; profileImage?: string }[];
+  reviewCount?: number;
+  reviewAvgRating?: number;
+  tags?: string[];
 }
 
 export interface Category {

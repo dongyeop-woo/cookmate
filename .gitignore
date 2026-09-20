@@ -1,0 +1,5 @@
+# macOS
+.DS_Store
+
+# 빌드 산출물
+web/tsconfig.tsbuildinfo

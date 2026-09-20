@@ -14,6 +14,38 @@
       },
       "oauth_client": [
         {
+          "client_id": "879574205436-3lrudt9oi128ftui29fv1s75e91ru4h0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dyw.cookmate",
+            "certificate_hash": "46afeafd3ffcb4d4b6f7969b531a092f40157b58"
+          }
+        },
+        {
+          "client_id": "879574205436-597qhk7b6btsmlo92fgcfiauppmfinli.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dyw.cookmate",
+            "certificate_hash": "a3bfb0e7b62b016eabd2197c45362c064fa12661"
+          }
+        },
+        {
+          "client_id": "879574205436-lj1uh8dlp0ihkbvh1v1bei2a9dbuftb9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dyw.cookmate",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "879574205436-ltla4ee5ddbdh7vmmmgh74fo0s1l9r4q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dyw.cookmate",
+            "certificate_hash": "5bbe91fc52ec2df6f0054dd569e8c5d2b62b5eba"
+          }
+        },
+        {
           "client_id": "879574205436-m8qr7cp242pp6hrolnm8su99thumpf1a.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -22,7 +54,7 @@
           }
         },
         {
-          "client_id": "879574205436-39lmp1t64f1mb7je6bh7va6lvqa01r14.apps.googleusercontent.com",
+          "client_id": "879574205436-4730qjbsbnau75spbpoduphkka57vjgb.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -37,6 +69,13 @@
             {
               "client_id": "879574205436-39lmp1t64f1mb7je6bh7va6lvqa01r14.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "879574205436-shfbj46e97a9n89fa133ggqtkgob25ec.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.dyw.cookmate"
+              }
             }
           ]
         }
