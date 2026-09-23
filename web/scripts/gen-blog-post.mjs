@@ -89,12 +89,19 @@ async function getRecentPosts(limit = 6) {
   }
 }
 
-async function fetchRecipesByCategories(cats) {
+async function fetchRecipesByCategories(cats, preferNewest = false) {
   try {
     const res = await fetch(RECIPE_API);
     if (!res.ok) return [];
     const all = await res.json();
     const filtered = all.filter((r) => r.category && cats.includes(r.category) && r.image);
+    if (preferNewest) {
+      // 명절 주간에는 그 시기에 맞춰 새로 올린 레시피를 먼저 쓴다.
+      // 랜덤으로 뽑으면 기존 레시피에 묻혀 정작 명절 메뉴가 빠진다.
+      return [...filtered]
+        .sort((a, b) => (Number(b.id) || 0) - (Number(a.id) || 0))
+        .slice(0, 8);
+    }
     // 셔플 + 상위 8개
     return filtered.sort(() => Math.random() - 0.5).slice(0, 8);
   } catch (e) {
@@ -368,6 +375,11 @@ const HOLIDAY_WINDOWS = [
 ];
 
 /** 오늘(KST)이 명절 주간이면 그 키워드 풀을, 아니면 계절 풀을 돌려준다. */
+function isHolidayWeek(date) {
+  const today = new Date(date.getTime() + 9 * 3600 * 1000).toISOString().slice(0, 10);
+  return HOLIDAY_WINDOWS.some((h) => today >= h.from && today <= h.to);
+}
+
 function keywordPool(date, season) {
   // Actions 는 UTC 로 돈다. 09:00 KST 발행이므로 KST 기준 날짜로 비교해야 한다.
   const today = new Date(date.getTime() + 9 * 3600 * 1000).toISOString().slice(0, 10);
@@ -388,7 +400,7 @@ async function main() {
   const keyword = picked.kw;
   const cats = picked.cats;
   const recentPosts = await getRecentPosts();
-  const recipes = await fetchRecipesByCategories(cats);
+  const recipes = await fetchRecipesByCategories(cats, isHolidayWeek(today));
 
   console.log(`[gen-blog] 시작 — 날짜=${today.toISOString().slice(0, 10)} 계절=${season} 키워드="${keyword}" 매칭레시피=${recipes.length}개`);
 

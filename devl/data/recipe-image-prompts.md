@@ -274,7 +274,7 @@
 
 > **가로형(landscape)으로 요청**하세요. 6장 전부 필요합니다.
 
-**Step 1.** Wide 16:9. Three-quarter angle of a block of tofu being pressed dry in a cotton cloth, crumbs falling into a white bowl on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+**Step 1.** Wide 16:9. Three-quarter angle of a block of tofu being squeezed dry by hand over a white ceramic bowl, crumbles falling in on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
 **Step 2.** Wide 16:9. Three-quarter angle of onion, carrot and scallion being finely diced on a wooden board, small colorful piles forming on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
