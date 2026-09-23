@@ -44,9 +44,13 @@ const bucket = admin.storage().bucket();
  * Firebase Storage에 이미지 업로드 후 다운로드 토큰 포함된 공개 URL 반환.
  * 기존 앱이 사용하는 패턴과 동일: recipeImages/admin_{timestamp}_{hex}.jpg
  */
-/** 업로드 상한 — 기존 레시피 이미지(약 136KB)와 자릿수를 맞추기 위한 기준. */
-const MAX_EDGE = 1100;
-const JPEG_QUALITY = 65;
+/**
+ * 업로드 상한. 1100 으로 잡았더니 4:5 인스타 카드(사진 영역 1080x730)와 앱
+ * 상세 화면에서 확대가 생겨 흐려졌다. 1600 이면 어디서도 원본 그대로 쓴다.
+ * 장당 약 215KB -> 400KB 로 늘지만 화질 손해가 더 크다.
+ */
+const MAX_EDGE = 1600;
+const JPEG_QUALITY = 72;
 
 /**
  * Flow 에서 받은 원본은 장당 2MB 가 넘는다. 그대로 올리면 기존 이미지의 20배가 되어
