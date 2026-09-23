@@ -1,0 +1,10 @@
+{
+  "title_max": 150,
+  "stroke_white": 8,
+  "stroke_black": 15,
+  "mascot_scale": 1.0,
+  "mascot_dy": 2,
+  "mascot_dx": 4,
+  "hue_shift": 0.055,
+  "mark_size": 152
+}

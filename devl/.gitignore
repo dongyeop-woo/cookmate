@@ -29,3 +29,18 @@ images/
 # Python 가상환경 (레시피 스크립트용, 커밋 대상 아님)
 venv/
 .python-version
+
+# 인스타 카드 생성물 — 장당 1MB 넘게 쌓인다
+out/
+scripts/__pycache__/
+
+# 배달의민족 주아체: 사용은 무료지만 폰트 파일 재배포는 금지.
+# 각자 https://www.woowahan.com/fonts 에서 받아 assets/fonts/BMJUA.otf 로 두세요.
+assets/fonts/
+
+# 카드 자산 원본(대용량). 가공 결과물만 커밋한다.
+assets/NewIcon.PNG
+assets/test2.jpg
+assets/deco-spoonandfork.png
+assets/mascot-cut.png
+assets/brand-mark-green.png
