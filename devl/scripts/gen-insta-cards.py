@@ -27,7 +27,7 @@ FONT = os.path.join(os.path.dirname(__file__), '..', 'assets', 'fonts', 'BMJUA.o
 FONT_BODY = '/System/Library/Fonts/AppleSDGothicNeo.ttc'
 # 레시피 본문용 손글씨체(메모멘트 꾸꾸). 굵기가 하나뿐이라 weight 는 무시된다.
 FONT_HAND = os.path.join(os.path.dirname(__file__), '..', 'assets', 'MemomentKkukkukk.ttf')
-W = H = 1080
+W, H = 1080, 1080          # --ratio 로 4:5(1080x1350) 전환
 
 # 앱에서 쓰는 브랜드 색 그대로
 GREEN      = (27, 174, 116)
@@ -240,7 +240,10 @@ def make_cover(hero_url, title, sub):
 
     # 제목 — 두 줄 안에 들어가는 최대 크기를 자동으로 찾는다.
     # 피드에서는 썸네일로 보이므로 최대한 크게 가는 편이 낫다.
-    max_w = W - 120
+    # 인스타 프로필 그리드는 세로 3:4 라서 1:1 이미지의 좌우 12.5%가 잘린다.
+    # 제목이 그리드에서 잘리면 무슨 글인지 알 수 없으므로 가운데 안전영역 안에 넣는다.
+    SAFE_W = int(W * 0.72)
+    max_w = SAFE_W
     manual = [t.strip() for t in title.split('|') if t.strip()]
     for size in range(int(STYLE['title_max']), 69, -4):
         f_title = font(size)
@@ -280,6 +283,7 @@ def make_cover(hero_url, title, sub):
         return strip.resize(size, Image.BILINEAR)
 
     def punch(pos, text, fnt, grad=None, fill=WHITE):
+        pos = (int(pos[0]), int(pos[1]))
         """바깥 흰 테두리 → 검정 테두리 → 글자 채움.
 
         grad 가 주어지면 글자 모양을 마스크로 써서 그라데이션을 입힌다.
@@ -303,7 +307,8 @@ def make_cover(hero_url, title, sub):
     mas_path = os.path.join(os.path.dirname(__file__), '..', 'assets', 'mascot-noline.png')
     if os.path.exists(mas_path):
         last = lines[-1]
-        ch_left = 60 + d.textlength(last[:-1], font=f_title)
+        last_w = d.textlength(last, font=f_title)
+        ch_left = (W - last_w) / 2 + d.textlength(last[:-1], font=f_title)
         ch_w = d.textlength(last[-1], font=f_title)
         mas = Image.open(mas_path).convert('RGBA')
         mw = int(ch_w * STYLE['mascot_scale'])                       # 마지막 글자 폭에 맞춘다
@@ -317,10 +322,11 @@ def make_cover(hero_url, title, sub):
         card.paste(mas, (px, py), mas)
 
     for i, ln in enumerate(lines):
-        punch((60, y), ln, f_title, grad=auto_grad[i % len(auto_grad)])
+        lw = d.textlength(ln, font=f_title)
+        punch(((W - lw) / 2, y), ln, f_title, grad=auto_grad[i % len(auto_grad)])
         y += lh
     if sub:
-        punch((64, y + 4), sub, font(54))
+        punch(((W - d.textlength(sub, font=font(54))) / 2, y + 4), sub, font(54))
         y += 62
 
     # 하단 바
@@ -443,14 +449,15 @@ def make_single(r, box_h=None, measure=False):
     d = ImageDraw.Draw(card)
 
     # 글을 먼저 배치해 보고 필요한 높이만큼만 패널을 깐다
-    f_ing, f_step = hand(30), hand(34)
+    S = H / 1080                               # 4:5 면 1.25배
+    f_ing, f_step = hand(round(30 * S)), hand(round(34 * S))
     ing = ', '.join(f"{g['name']} {g['amount']}" for g in (r.get('ingredients') or []))
     ing_lines = wrap(d, f'준비재료  {ing}', f_ing, W - 130)[:3]
     step_lines = [wrap(d, f"{n}. {condense(st['description'], r.get('ingredients'))}",
                        f_step, W - 130)[:2]
                   for n, st in enumerate(r.get('steps') or [], 1)]
 
-    tf = font(62)
+    tf = font(round(62 * S))
     tt = f"#{r['title'].replace(' ', '')}"
     while d.textlength(tt, font=tf) > W - 120 and tf.size > 40:
         tf = font(tf.size - 2)
@@ -458,8 +465,10 @@ def make_single(r, box_h=None, measure=False):
     head = int(tf.size * 0.62)
     # 재료 아래 여백(36)은 늘리되 패널 아래 여백(16)에서 상쇄해, 패널 높이와
     # 사진 크기는 그대로 두고 조리 단계만 아래로 내려간다.
+    LH_I, LH_S = round(34 * S), round(40 * S)
     need = min(int(H * 0.56),
-               head + len(ing_lines) * 34 + 36 + sum(len(g) * 40 + 8 for g in step_lines) + 16)
+               head + len(ing_lines) * LH_I + round(36 * S)
+               + sum(len(g) * LH_S + 8 for g in step_lines) + 16)
     if measure:
         return need
     box_h = box_h or need
@@ -499,12 +508,12 @@ def make_single(r, box_h=None, measure=False):
 
     px, py = 62, top + head
     for ln in ing_lines:
-        d.text((px, py), ln, font=f_ing, fill=(135, 135, 135)); py += 34
-    py += 34                                   # 재료 줄과 조리 단계 사이 여백
+        d.text((px, py), ln, font=f_ing, fill=(135, 135, 135)); py += LH_I
+    py += round(36 * S)                        # 재료 줄과 조리 단계 사이 여백
     for g in step_lines:
         for k, ln in enumerate(g):
             d.text((px + (0 if k == 0 else 24), py), ln, font=f_step, fill=INK)
-            py += 40
+            py += LH_S
         py += 8
     return card
 
@@ -592,7 +601,16 @@ def main():
     ap.add_argument('--layout', choices=['single', 'grid'], default='single',
                     help='single=레시피당 한 장(기본), grid=4칸 모음')
     ap.add_argument('--no-outro', action='store_true', help='마무리 팔로우 카드 생략')
+    ap.add_argument('--ratio', choices=['4:5', '1:1'], default='4:5',
+                    help='4:5(1080x1350, 기본) 는 피드 노출이 크고 프로필 그리드 잘림도 적다')
     a = ap.parse_args()
+
+    global H
+    if a.ratio == '4:5':
+        H = 1350
+    if a.layout == 'grid' and a.ratio != '1:1':
+        print('[insta] grid 레이아웃은 정사각 전용 — 1:1 로 진행합니다.')
+        H = 1080
 
     ids = [s.strip() for s in a.ids.split(',') if s.strip()]
     db = fetch_recipes()
