@@ -23,6 +23,8 @@ from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 API = 'https://yojalal.com/api/recipes'
 FONT = os.path.join(os.path.dirname(__file__), '..', 'assets', 'fonts', 'BMJUA.otf')
+# 카드 제목용. 주아체보다 획이 두꺼워 사진 위에서 더 눌러 담긴다.
+FONT_TITLE = os.path.join(os.path.dirname(__file__), '..', 'assets', 'Cafe24Ssurround-v2.0.otf')
 # 본문 보조용 — 주아체는 굵기가 하나뿐이라 작은 글씨에서 가독성이 떨어진다.
 FONT_BODY = '/System/Library/Fonts/AppleSDGothicNeo.ttc'
 # 레시피 본문용 손글씨체(메모멘트 꾸꾸). 굵기가 하나뿐이라 weight 는 무시된다.
@@ -64,7 +66,12 @@ def load_style():
 STYLE = load_style()
 
 def font(size, weight='regular'):
-    """제목·강조는 주아체. 주아체는 단일 굵기라 weight 는 무시된다."""
+    """제목·강조. 써라운드가 있으면 그걸 쓰고, 없으면 주아체로 떨어진다.
+
+    둘 다 단일 굵기라 weight 는 무시된다.
+    """
+    if os.path.exists(FONT_TITLE):
+        return ImageFont.truetype(FONT_TITLE, size)
     return ImageFont.truetype(FONT, size)
 
 def body(size, weight='regular'):
@@ -211,7 +218,7 @@ def rounded(size, radius, fill):
     return m.resize(size, Image.LANCZOS)
 
 # ── 커버 ────────────────────────────────────────────────
-def make_cover(hero_url, title, sub):
+def make_cover(hero_url, title, sub, style='calm'):
     card = Image.new('RGB', (W, H), WHITE)
     hero = fetch_image(hero_url)
     card.paste(cover_fit(hero, W, H), (0, 0))
@@ -244,10 +251,13 @@ def make_cover(hero_url, title, sub):
     # 제목이 그리드에서 잘리면 무슨 글인지 알 수 없으므로 가운데 안전영역 안에 넣는다.
     SAFE_W = int(W * 0.72)
     max_w = SAFE_W
+    if style == 'bold':
+        max_w = int(W * 0.80)
     manual = [t.strip() for t in title.split('|') if t.strip()]
-    for size in range(int(STYLE['title_max']), 69, -4):
+    top_size = 210 if style == 'bold' else int(STYLE['title_max'])
+    for size in range(top_size, 69, -4):
         f_title = font(size)
-        if len(manual) > 1:
+        if len(manual) > 1:   # noqa
             # '|' 로 줄바꿈을 직접 지정한 경우 — 가장 긴 줄이 들어가는 크기를 찾는다
             lines = manual
             if max(d.textlength(t, font=f_title) for t in lines) <= max_w:
@@ -257,8 +267,23 @@ def make_cover(hero_url, title, sub):
             if len(lines) <= 2:
                 break
     lines = lines[:3]
-    lh = int(size * 1.22)
-    y = H - 126 - len(lines) * lh - (62 if sub else 0)
+    lh = int(size * 1.18 if style == 'bold' else size * 1.22)
+    if style == 'bold':
+        # 화면 세로 정중앙에 큼직하게
+        y = int(H * 0.50) - len(lines) * lh // 2
+        for i, ln in enumerate(lines):
+            lw = d.textlength(ln, font=f_title)
+            bx0, by0 = (W - lw) / 2 - 46, y + lh * 0.08
+            blob = Image.new('RGBA', (int(lw) + 92, int(lh * 0.96)), (0, 0, 0, 0))
+            ImageDraw.Draw(blob).rounded_rectangle(
+                [0, 0, blob.width - 1, blob.height - 1],
+                radius=blob.height // 2, fill=GREEN_PALE + (205,))
+            blob = blob.filter(ImageFilter.GaussianBlur(3))
+            card.paste(blob, (int(bx0), int(by0)), blob)
+            y += lh
+        y = int(H * 0.50) - len(lines) * lh // 2
+    else:
+        y = H - 126 - len(lines) * lh - (62 if sub else 0)
     # 장식 수저·포크 — 제목 블록 양 끝에 맞춰 얹는다.
     # 제목 길이가 매번 달라지므로 실제 글자 폭을 재서 위치를 잡는다.
     def load_deco(name, h, angle):
@@ -601,6 +626,8 @@ def main():
     ap.add_argument('--layout', choices=['single', 'grid'], default='single',
                     help='single=레시피당 한 장(기본), grid=4칸 모음')
     ap.add_argument('--no-outro', action='store_true', help='마무리 팔로우 카드 생략')
+    ap.add_argument('--style', choices=['calm', 'bold'], default='calm',
+                    help="bold=제목을 크게 키우고 글자 뒤에 색 블롭. 피드에서 눈에 띄지만 사진은 덜 보인다")
     ap.add_argument('--ratio', choices=['4:5', '1:1'], default='4:5',
                     help='4:5(1080x1350, 기본) 는 피드 노출이 크고 프로필 그리드 잘림도 적다')
     a = ap.parse_args()
@@ -626,7 +653,7 @@ def main():
     outdir = os.path.join(a.out, slug)
     os.makedirs(outdir, exist_ok=True)
 
-    pages = [('01_cover.png', make_cover(picked[0]['image'], a.title, a.sub))]
+    pages = [('01_cover.png', make_cover(picked[0]['image'], a.title, a.sub, a.style))]
     if a.layout == 'single':
         uniform = max(single_box_h(r) for r in picked)   # 넘길 때 패널이 튀지 않게
         for r in picked:
