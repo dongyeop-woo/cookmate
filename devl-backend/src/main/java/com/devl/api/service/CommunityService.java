@@ -161,6 +161,16 @@ public class CommunityService {
 
     /** @deprecated adminUid, adminIp 전달하는 오버로드를 사용하세요 (관리자 레이트 리밋 + 감사 로그) */
     @Deprecated
+    /**
+     * 작성자가 직접 바꾸는 공개 범위. 관리자 승인 상태(status)와는 별개다.
+     * 비공개로 돌려도 승인 이력이나 포인트는 건드리지 않는다.
+     */
+    public void updateVisibility(String id, boolean isPublic)
+            throws ExecutionException, InterruptedException {
+        firestore.collection(COLLECTION).document(id)
+                .update("isPublic", isPublic).get();
+    }
+
     public void updateStatus(String id, String status, String rejectionReason)
             throws ExecutionException, InterruptedException {
         updateStatus(id, status, rejectionReason, null, null);

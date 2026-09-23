@@ -25,6 +25,8 @@ export interface CommunityRecipe {
     answerAt?: string;
   }[];
   likes: number;
+  /** 작성자가 고른 공개 범위. 값이 없으면(구 문서) 전체공개로 본다. */
+  isPublic?: boolean;
   status?: 'pending' | 'approved' | 'rejected';
   rejectionReason?: string;
   images?: string[];

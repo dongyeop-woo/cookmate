@@ -32,13 +32,14 @@ public class AttendanceService {
     private static final ZoneId KST = ZoneId.of("Asia/Seoul");
 
     /**
-     * 기본 포인트 없음.
-     * 예전엔 홈 진입만으로 3+streak P 를 줬는데, 아무 행동도 유도하지 못하면서
-     * 기프티콘 원가만 늘렸다. 지금은 일일 도전과제를 완료해야 연속이 이어지고,
-     * 포인트는 7일 연속 보너스에서만 나간다.
+     * 기본 포인트 = 3 + streak (day 1=4P, day 3=6P, day 7=10P).
+     *
+     * 2026-09 에 일일 도전과제로 바꾸면서 0 으로 막았다가 되돌렸다. 과제 방식은
+     * 홈에서 한 단계 더 들어가야 해서 재방문 유인이 약했다. streak 은 같은
+     * attendance 컬렉션을 계속 써 왔으므로 기존 회원의 연속 일수는 그대로 이어진다.
      */
     private int calculateBase(int streak) {
-        return 0;
+        return 3 + streak;
     }
 
     private int calculateBonus(int streak) {
@@ -112,8 +113,7 @@ public class AttendanceService {
             throw new IllegalArgumentException("오늘 이미 출석체크를 완료했습니다.");
         }
 
-        // 보너스가 붙는 날(7일마다)에만 지급 — 그 외에는 0P 이라 내역을 남기지 않는다.
-        // 0P 짜리 적립 내역이 쌓이면 포인트 내역 화면이 의미 없는 줄로 채워진다.
+        // 기본 포인트가 있으므로 total 은 항상 0보다 크다. 방어적으로만 감싼다.
         if (total > 0) {
             firestore.collection(USERS).document(uid)
                     .update("points", FieldValue.increment(total)).get();
@@ -122,11 +122,12 @@ public class AttendanceService {
                     .uid(uid)
                     .type("earn")
                     .amount(total)
-                    .title(BONUS_EVERY_N_DAYS + "일 연속 달성")
-                    .description(newStreak + "일 연속 도전과제 완료 보너스")
+                    .title("출석체크")
+                    .description(newStreak + "일째 출석"
+                            + (bonus > 0 ? " + " + BONUS_EVERY_N_DAYS + "일 연속 보너스" : ""))
                     .build();
             pointHistoryService.create(history);
-            log.info("연속 보너스 {}P 지급: uid={}, streak={}", total, uid, newStreak);
+            log.info("출석 포인트 {}P 지급: uid={}, streak={}", total, uid, newStreak);
         }
 
         // 첫 출석체크 보너스 200P 지급

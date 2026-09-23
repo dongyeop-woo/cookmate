@@ -271,6 +271,20 @@ export async function fetchCategories(): Promise<Category[]> {
 
 // ── Community ──
 
+/** 커뮤니티 레시피 공개 범위 변경. 작성자 본인 또는 관리자만 가능. */
+export async function updateCommunityRecipeVisibility(id: string, isPublic: boolean): Promise<void> {
+  const res = await authFetch(`${BASE_URL}/api/community/${encodeURIComponent(id)}/visibility`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ isPublic }),
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({ error: `API error: ${res.status}` }));
+    throw new Error(err.error || `API error: ${res.status}`);
+  }
+  invalidateCacheTag('community');
+}
+
 export async function fetchCommunityRecipes(adminAll = false): Promise<CommunityRecipe[]> {
   const cacheKey = adminAll ? 'community_all' : 'community';
   const cached = getCached<CommunityRecipe[]>(cacheKey);

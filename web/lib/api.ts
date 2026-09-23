@@ -41,6 +41,8 @@ export type Recipe = {
   ingredients?: Ingredient[];
   steps?: Step[];
   tags?: string[];
+  /** 등록 시각(ISO). 백엔드 RecipeDto 가 내려준다. 최신순 정렬에 쓴다. */
+  createdAt?: string;
 };
 
 type FetchOpts = { next?: { revalidate?: number } };
@@ -69,11 +71,7 @@ export async function fetchRecipesByCategory(category: string): Promise<Recipe[]
   return get(`/api/recipes/category/${encodeURIComponent(category)}`);
 }
 
-/** 데일리/위클리 셔플용 시드 — 앱과 동일하게 일/주 단위로 결정적 셔플. */
-function daySeed(): number {
-  const d = new Date();
-  return d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
-}
+/** 위클리 셔플용 시드 — 주 단위로 결정적 셔플. (데일리 시드는 추천이 최신순으로 바뀌며 불필요해짐) */
 function weekSeed(): number {
   const d = new Date();
   const start = new Date(d.getFullYear(), 0, 1);
@@ -92,6 +90,17 @@ function seededShuffle<T>(arr: T[], seed: number): T[] {
 }
 
 /** 앱의 home sections 와 동일 알고리즘으로 묶어서 반환. */
+/** 최신 등록순 비교자. createdAt 우선, 없으면 숫자 id 가 클수록 최신. 앱과 같은 규칙. */
+function newestFirst(a: Recipe, b: Recipe) {
+  const ta = Date.parse(a.createdAt ?? '');
+  const tb = Date.parse(b.createdAt ?? '');
+  const va = !Number.isNaN(ta);
+  const vb = !Number.isNaN(tb);
+  if (va && vb && ta !== tb) return tb - ta;
+  if (va !== vb) return va ? -1 : 1;
+  return (Number(b.id) || 0) - (Number(a.id) || 0);
+}
+
 export async function fetchHomeSections() {
   let recipes: Recipe[] = [];
   try { recipes = await fetchAllRecipes(); } catch {}
@@ -100,7 +109,8 @@ export async function fetchHomeSections() {
     .sort((a, b) => (b.likes ?? 0) - (a.likes ?? 0))
     .slice(0, 10);
 
-  const recommended = seededShuffle(recipes, daySeed()).slice(0, 8);
+  // 추천 = 최신 등록순 (앱과 동일)
+  const recommended = [...recipes].sort(newestFirst).slice(0, 8);
 
   const quick = [...recipes]
     .filter((r) => r.time <= 15)

@@ -17,8 +17,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AttendanceToast from '../../components/AttendanceModal';
 import WelcomeToast from '../../components/WelcomeModal';
-import DailyChallengeBar from '../../components/DailyChallengeBar';
-import { fetchTodayChallenges, completeChallenge, type ChallengeToday } from '../../services/api';
+import { checkAttendance } from '../../services/api';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { useFocusEffect } from '@react-navigation/native';
@@ -527,6 +526,17 @@ type SectionItem =
   | { type: 'weekly'; data: Recipe[] }
   | { type: 'banner' };
 
+/** 최신 등록순 비교자. createdAt 우선, 없으면 숫자 id 가 클수록 최신. */
+function newestFirst(a: Recipe, b: Recipe) {
+  const ta = Date.parse(a.createdAt ?? '');
+  const tb = Date.parse(b.createdAt ?? '');
+  const va = !Number.isNaN(ta);
+  const vb = !Number.isNaN(tb);
+  if (va && vb && ta !== tb) return tb - ta;
+  if (va !== vb) return va ? -1 : 1;          // createdAt 있는 쪽을 앞으로
+  return (Number(b.id) || 0) - (Number(a.id) || 0);
+}
+
 export default function HomeScreen() {
   mark('home:render-start');
   const [search, setSearch] = useState('');
@@ -573,7 +583,6 @@ export default function HomeScreen() {
     });
   }, [fridgeFlipAnim]);
   const [fridgeSettings, setFridgeSettings] = useState<FridgeSettings>(DEFAULT_SETTINGS);
-  const [challenges, setChallenges] = useState<ChallengeToday | null>(null);
   const [loading, setLoading] = useState(true);
   const [likedIds, setLikedIds] = useState<Set<string>>(new Set());
   const likePendingRef = useRef<Set<string>>(new Set());
@@ -587,6 +596,8 @@ export default function HomeScreen() {
   const [authorUids, setAuthorUids] = useState<Record<string, string>>({});
   const [topUsers, setTopUsers] = useState<UserProfile[]>([]);
   const [unreadCount, setUnreadCount] = useState(0);
+  // 같은 날 중복 호출 방지 (`uid:YYYY-MM-DD`)
+  const attendanceCheckedRef = useRef<string | null>(null);
   const [attendanceToast, setAttendanceToast] = useState<{
     visible: boolean;
     streak: number;
@@ -616,29 +627,37 @@ export default function HomeScreen() {
     return () => handle.cancel();
   }, [firebaseUser?.uid]);
 
-  // 오늘의 도전과제 로드.
-  // 예전엔 여기서 홈 진입만으로 출석 포인트를 지급했지만, 아무 행동도 유도하지
-  // 못하면서 원가만 늘어서 폐지했다. 이제 연속은 과제를 완료해야 이어진다.
-  // 첫 페인트 후로 미뤄 콜드 스타트 첫 화면 즉시성 확보.
-  const loadChallenges = useCallback(async () => {
+  // 출석체크 — 홈 진입 시 1회. 첫 페인트 후로 미뤄 콜드 스타트 즉시성 확보.
+  // streak 은 도전과제 시절과 같은 attendance 컬렉션을 쓰므로 기존 연속이 그대로 이어진다.
+  const runAttendanceCheck = useCallback(async () => {
     const uid = firebaseUser?.uid;
-    if (!uid) { setChallenges(null); return; }
+    if (!uid) return;
+    const today = new Date().toISOString().slice(0, 10);
+    // 같은 날 재진입에서 매번 호출하지 않도록 세션 내 가드
+    if (attendanceCheckedRef.current === `${uid}:${today}`) return;
+    attendanceCheckedRef.current = `${uid}:${today}`;
     try {
-      setChallenges(await fetchTodayChallenges(uid));
+      const res = await checkAttendance(uid);
+      setAttendanceToast({
+        visible: true,
+        streak: res.streak,
+        earnedPoints: res.awardedPoints,
+        bonusPoints: res.bonusPoints,
+      });
     } catch (e: any) {
-      console.warn('도전과제 로드 실패:', e?.message);
+      // "오늘 이미 출석체크를 완료했습니다" 는 정상 흐름이라 조용히 넘긴다.
+      // 그 외 실패는 다음 진입에 다시 시도할 수 있게 가드를 푼다.
+      if (!String(e?.message ?? '').includes('이미 출석')) {
+        attendanceCheckedRef.current = null;
+        console.warn('출석체크 실패:', e?.message);
+      }
     }
   }, [firebaseUser?.uid]);
 
   useEffect(() => {
-    const handle = InteractionManager.runAfterInteractions(loadChallenges);
+    const handle = InteractionManager.runAfterInteractions(runAttendanceCheck);
     return () => handle.cancel();
-  }, [loadChallenges]);
-
-  // 과제를 완료하고 홈으로 돌아왔을 때 띠를 최신화
-  useFocusEffect(
-    useCallback(() => { loadChallenges(); }, [loadChallenges])
-  );
+  }, [runAttendanceCheck]);
 
   const reloadAll = useCallback(async (force = false) => {
     // 30초 throttle — 다른 탭→홈 빠른 재진입에서 376KB 재다운로드 + 거대 리렌더 방지.
@@ -733,8 +752,6 @@ export default function HomeScreen() {
         await unlikeRecipeUser(uid, recipeId);
       } else {
         await likeRecipeUser(uid, recipeId);
-        // 좋아요 과제 — 취소는 완료로 치지 않는다
-        completeChallenge(uid, 'like').then(r => { if (r) setChallenges(r); });
       }
     } catch {
       setLikedIds(prev => {
@@ -769,7 +786,10 @@ export default function HomeScreen() {
   const daySeed = now.getFullYear() * 10000 + (now.getMonth() + 1) * 100 + now.getDate();
   const weekSeed = now.getFullYear() * 100 + Math.floor((now.getTime() - new Date(now.getFullYear(), 0, 1).getTime()) / (7 * 24 * 60 * 60 * 1000));
 
-  const recommendedRecipes = useMemo(() => timeSync('memo:recommendedRecipes', () => seededShuffle(recipes, daySeed).slice(0, 6)), [recipes, daySeed]);
+  // 추천 = 최신 등록순. createdAt 이 126건 전부 채워져 있어 이게 기준이고,
+  // 값이 없을 때만 숫자 id 로 넘어간다(공식 레시피는 id 를 늘려가며 추가한다).
+  const recommendedRecipes = useMemo(() => timeSync('memo:recommendedRecipes', () =>
+    [...recipes].sort(newestFirst).slice(0, 6)), [recipes]);
   const quickRecipes = useMemo(() => timeSync('memo:quickRecipes', () => [...recipes].filter(r => r.time <= 15).sort((a, b) => a.time - b.time).slice(0, 6)), [recipes]);
   const weeklyRecipes = useMemo(() => timeSync('memo:weeklyRecipes', () => seededShuffle(recipes, weekSeed).slice(0, 6)), [recipes, weekSeed]);
   const bestRecipes = useMemo(() => timeSync('memo:bestRecipes', () => [...recipes].sort((a, b) => (b.likes || 0) - (a.likes || 0)).slice(0, 10)), [recipes]);
@@ -865,12 +885,6 @@ export default function HomeScreen() {
     if (item.type === 'header') {
       return (
         <>
-          {/* 오늘의 도전 띠 — 검색창 바로 아래. 로그인 상태에서만. 본체는 /challenges */}
-          <DailyChallengeBar
-            data={challenges}
-            onPress={() => router.push('/challenges' as any)}
-          />
-
           {/* 배너 슬라이더 */}
           <StackAdCard router={router} />
           {/* Categories */}
@@ -1222,7 +1236,7 @@ export default function HomeScreen() {
         </ScrollView>
       </>
     );
-  }, [search, categoryIconSize, router, likedIds, toggleLike, authorImages, authorUids, urgentFridge, visibleFridge, fridgeStorageFilter, fridgeSettings, fridgeFlipAnim, handleToggleStorage, challenges]);
+  }, [search, categoryIconSize, router, likedIds, toggleLike, authorImages, authorUids, urgentFridge, visibleFridge, fridgeStorageFilter, fridgeSettings, fridgeFlipAnim, handleToggleStorage]);
 
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>

@@ -20,6 +20,8 @@ export interface Recipe {
   reviewCount?: number;
   reviewAvgRating?: number;
   tags?: string[];
+  /** 등록 시각(ISO). 백엔드 RecipeDto 가 내려준다. 최신순 정렬에 쓴다. */
+  createdAt?: string;
 }
 
 export interface Category {

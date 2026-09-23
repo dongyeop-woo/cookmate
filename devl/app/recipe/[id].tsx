@@ -20,7 +20,7 @@ import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Image } from 'expo-image';
 import { Image as RNImage } from 'react-native';
-import { fetchRecipeById, fetchRecipesByCategory, likeRecipeUser, unlikeRecipeUser, addRecipeComment, deleteRecipeComment, fetchUser, deleteRecipe, fetchCommunityRecipeById, updateCommunityRecipeApi, rateCommunityRecipe, likeCommunityRecipe, unlikeCommunityRecipe, createReport, fetchTopUsers, fetchReviewsByRecipe, addCommentReply, deleteCommentReply, completeChallenge, type Review } from '../../services/api';
+import { fetchRecipeById, fetchRecipesByCategory, likeRecipeUser, unlikeRecipeUser, addRecipeComment, deleteRecipeComment, fetchUser, deleteRecipe, fetchCommunityRecipeById, updateCommunityRecipeApi, rateCommunityRecipe, likeCommunityRecipe, unlikeCommunityRecipe, createReport, fetchTopUsers, fetchReviewsByRecipe, addCommentReply, deleteCommentReply, completeChallenge, updateCommunityRecipeVisibility, type Review } from '../../services/api';
 import { isRemoteProfileImage } from '../../services/profileImage';
 import type { Recipe } from '../../constants/recipes';
 import type { CommunityRecipe } from '../../constants/community';
@@ -331,6 +331,38 @@ export default function RecipeDetailScreen() {
     }
   };
 
+  // 공개 범위 전환. 커뮤니티 레시피(내가 올린 것)에만 의미가 있다.
+  // isPublic 이 없는 과거 문서는 전체공개로 취급하므로 기본값을 true 로 읽는다.
+  const isPublicRecipe = communityRecipe?.isPublic !== false;
+
+  const handleToggleVisibility = () => {
+    if (!communityRecipe) return;
+    const next = !isPublicRecipe;
+    setRecipeMenuVisible(false);
+    Alert.alert(
+      next ? '전체공개로 변경' : '나만보기로 변경',
+      next
+        ? '다른 사용자에게도 이 레시피가 보입니다.'
+        : '나에게만 보이고 목록·검색에서 사라집니다. 언제든 다시 공개할 수 있어요.',
+      [
+        { text: '취소', style: 'cancel' },
+        {
+          text: '확인',
+          onPress: async () => {
+            // 낙관적 반영 — 실패하면 되돌린다
+            setCommunityRecipe(prev => (prev ? { ...prev, isPublic: next } : prev));
+            try {
+              await updateCommunityRecipeVisibility(communityRecipe.id, next);
+            } catch (e: any) {
+              setCommunityRecipe(prev => (prev ? { ...prev, isPublic: !next } : prev));
+              Alert.alert('변경 실패', e?.message || '다시 시도해주세요.');
+            }
+          },
+        },
+      ],
+    );
+  };
+
   const handleDeleteRecipe = () => {
     Alert.alert('레시피 삭제', '정말 이 레시피를 삭제하시겠습니까?', [
       { text: '취소', style: 'cancel' },
@@ -635,6 +667,16 @@ export default function RecipeDetailScreen() {
                       <TouchableOpacity style={styles.actionSheetItem} onPress={handleEditRecipe}>
                         <Text style={styles.actionSheetItemText}>수정</Text>
                       </TouchableOpacity>
+                      {isCommunity && communityRecipe ? (
+                        <>
+                          <View style={styles.actionSheetDivider} />
+                          <TouchableOpacity style={styles.actionSheetItem} onPress={handleToggleVisibility}>
+                            <Text style={styles.actionSheetItemText}>
+                              {isPublicRecipe ? '나만보기로 변경' : '전체공개로 변경'}
+                            </Text>
+                          </TouchableOpacity>
+                        </>
+                      ) : null}
                       <View style={styles.actionSheetDivider} />
                       <TouchableOpacity style={styles.actionSheetItem} onPress={() => { setRecipeMenuVisible(false); handleDeleteRecipe(); }}>
                         <Text style={[styles.actionSheetItemText, { color: '#FF3B30' }]}>삭제</Text>

@@ -24,14 +24,32 @@ public class CommunityController {
     private final RateLimiter rateLimiter;
 
     @GetMapping
-    public ResponseEntity<List<CommunityRecipeDto>> getAll() throws ExecutionException, InterruptedException {
-        return ResponseEntity.ok(communityService.getAll());
+    public ResponseEntity<List<CommunityRecipeDto>> getAll(HttpServletRequest req) throws ExecutionException, InterruptedException {
+        // 인증은 선택 — 비로그인(웹 포함)도 호출한다. uid 는 없으면 null 이다.
+        String callerUid = AuthContext.uid(req);
+        boolean admin = AuthContext.isAdmin(req);
+        List<CommunityRecipeDto> visible = communityService.getAll().stream()
+                .filter(r -> isVisibleTo(r, callerUid, admin))
+                .toList();
+        return ResponseEntity.ok(visible);
+    }
+
+    /** 나만보기(isPublic=false)는 작성자 본인과 관리자에게만. 필드가 없는 과거 문서는 전체공개. */
+    private static boolean isVisibleTo(CommunityRecipeDto r, String callerUid, boolean admin) {
+        if (!Boolean.FALSE.equals(r.getIsPublic())) return true;
+        if (admin) return true;
+        return callerUid != null && callerUid.equals(r.getAuthorUid());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CommunityRecipeDto> getById(@PathVariable String id) throws ExecutionException, InterruptedException {
+    public ResponseEntity<CommunityRecipeDto> getById(@PathVariable String id, HttpServletRequest req) throws ExecutionException, InterruptedException {
         CommunityRecipeDto dto = communityService.getById(id);
-        return dto != null ? ResponseEntity.ok(dto) : ResponseEntity.notFound().build();
+        if (dto == null) return ResponseEntity.notFound().build();
+        if (!isVisibleTo(dto, AuthContext.uid(req), AuthContext.isAdmin(req))) {
+            // 존재 여부까지 감춘다 — 링크를 아는 사람에게도 노출되면 "나만보기"가 아니다
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(dto);
     }
 
     @PostMapping
@@ -77,6 +95,26 @@ public class CommunityController {
         }
         communityService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{id}/visibility")
+    public ResponseEntity<?> updateVisibility(
+            @PathVariable String id,
+            @RequestBody Map<String, Boolean> body,
+            HttpServletRequest req) throws ExecutionException, InterruptedException {
+        AuthContext.requireAuth(req);
+        CommunityRecipeDto existing = communityService.getById(id);
+        if (existing == null) return ResponseEntity.notFound().build();
+        String callerUid = AuthContext.uid(req);
+        if (!AuthContext.isAdmin(req) && !callerUid.equals(existing.getAuthorUid())) {
+            return ResponseEntity.status(403).body(Map.of("error", "공개 범위 변경 권한 없음"));
+        }
+        Boolean isPublic = body.get("isPublic");
+        if (isPublic == null) {
+            return ResponseEntity.badRequest().body(Map.of("error", "isPublic 은 필수입니다."));
+        }
+        communityService.updateVisibility(id, isPublic);
+        return ResponseEntity.ok(Map.of("isPublic", isPublic));
     }
 
     @PutMapping("/{id}/status")

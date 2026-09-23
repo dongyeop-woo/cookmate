@@ -37,6 +37,11 @@ public class CommunityRecipeDto {
     private String approvedAt;
     private Double reviewAvgRating;
     private List<String> tags;
+    /**
+     * 작성자가 고른 공개 범위. false 면 작성자 본인(과 관리자)에게만 보인다.
+     * 이 필드가 생기기 전 문서에는 값이 없으므로 null = 전체공개로 취급한다.
+     */
+    private Boolean isPublic;
 
     @Data
     @Builder
