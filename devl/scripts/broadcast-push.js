@@ -11,7 +11,7 @@
  *   # 전체 발송 (yes 확인 후 실행)
  *   node scripts/broadcast-push.js --all
  *
- * 제목/내용은 아래 TITLE / BODY 상수를 수정하세요.
+ * 제목/내용은 --title, --body 인자로 전달할 수 있습니다.
  * 탈퇴 유저(status='withdrawn')와 푸시 토큰 없는 유저는 자동 제외됩니다.
  */
 
@@ -19,8 +19,6 @@ const admin = require('firebase-admin');
 const readline = require('readline');
 const serviceAccount = require('../cookingbasedyw-firebase-adminsdk-fbsvc-b11f8d8de0.json');
 
-const TITLE = '휴일인데 밥은?';
-const BODY = '나랑 같이 요리하지 않을래...?';
 const CATEGORY = 'event';
 const ROUTE = null;
 
@@ -34,12 +32,16 @@ db.settings({ databaseId: 'cookmate' });
 
 function parseArgs() {
   const args = process.argv.slice(2);
-  const out = { mode: null, value: null };
+  const out = { mode: null, value: null, title: null, body: null };
   for (let i = 0; i < args.length; i++) {
     if (args[i] === '--all') out.mode = 'all';
     else if (args[i] === '--email') { out.mode = 'email'; out.value = args[++i]; }
     else if (args[i] === '--uid') { out.mode = 'uid'; out.value = args[++i]; }
+    else if (args[i] === '--title') { out.title = args[++i]; }
+    else if (args[i] === '--body') { out.body = args[++i]; }
   }
+  if (!out.title) out.title = '휴일인데 밥은?';
+  if (!out.body) out.body = '나랑 같이 요리하지 않을래...?';
   return out;
 }
 
@@ -62,14 +64,14 @@ async function fetchTargets({ mode, value }) {
     .map(u => ({ uid: u.uid, token: u.pushToken, email: u.email, nickname: u.nickname }));
 }
 
-async function sendPush(targets) {
+async function sendPush(targets, title, body) {
   let ok = 0, ng = 0;
   for (let i = 0; i < targets.length; i += PUSH_CHUNK) {
     const chunk = targets.slice(i, i + PUSH_CHUNK);
     const messages = chunk.map(t => ({
       to: t.token,
-      title: TITLE,
-      body: BODY,
+      title: title,
+      body: body,
       sound: 'default',
       priority: 'high',
       channelId: 'default-v2',
@@ -93,7 +95,7 @@ async function sendPush(targets) {
   console.log(`\n  ✅ 성공 ${ok}건 / ❌ 실패 ${ng}건`);
 }
 
-async function saveHistory(targets) {
+async function saveHistory(targets, title, body) {
   const now = new Date().toISOString();
   for (let i = 0; i < targets.length; i += FIRESTORE_BATCH) {
     const chunk = targets.slice(i, i + FIRESTORE_BATCH);
@@ -102,8 +104,8 @@ async function saveHistory(targets) {
       const ref = db.collection('notifications').doc();
       const payload = {
         uid: t.uid,
-        title: TITLE,
-        body: BODY,
+        title: title,
+        body: body,
         category: CATEGORY,
         read: false,
         createdAt: now,
@@ -125,6 +127,7 @@ function ask(q) {
   const opts = parseArgs();
   if (!opts.mode) {
     console.error('사용법: node scripts/broadcast-push.js (--all | --email <email> | --uid <uid>)');
+    console.error('사용법: node scripts/broadcast-push.js (--all | --email <email> | --uid <uid>) [--title "제목"] [--body "내용"]');
     process.exit(1);
   }
   if ((opts.mode === 'email' || opts.mode === 'uid') && !opts.value) {
@@ -133,8 +136,8 @@ function ask(q) {
   }
 
   console.log('\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-  console.log(`📨 제목: ${TITLE}`);
-  console.log(`📨 내용: ${BODY}`);
+  console.log(`📨 제목: ${opts.title}`);
+  console.log(`📨 내용: ${opts.body}`);
   console.log(`📨 카테고리: ${CATEGORY}`);
   console.log(`📨 모드: ${opts.mode}${opts.value ? ` (${opts.value})` : ''}`);
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
@@ -158,8 +161,8 @@ function ask(q) {
   }
 
   console.log('\n🚀 푸시 전송 시작...');
-  await sendPush(targets);
-  await saveHistory(targets);
+  await sendPush(targets, opts.title, opts.body);
+  await saveHistory(targets, opts.title, opts.body);
   console.log('\n✨ 완료\n');
   process.exit(0);
 })().catch(e => {

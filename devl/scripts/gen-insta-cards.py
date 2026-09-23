@@ -24,7 +24,7 @@ from PIL import Image, ImageDraw, ImageFont, ImageFilter
 API = 'https://yojalal.com/api/recipes'
 FONT = os.path.join(os.path.dirname(__file__), '..', 'assets', 'fonts', 'BMJUA.otf')
 # 카드 제목용. 주아체보다 획이 두꺼워 사진 위에서 더 눌러 담긴다.
-FONT_TITLE = os.path.join(os.path.dirname(__file__), '..', 'assets', 'Cafe24Ssurround-v2.0.otf')
+FONT_TITLE = os.path.join(os.path.dirname(__file__), '..', 'assets', '온글잎 윤탱체.ttf')
 # 본문 보조용 — 주아체는 굵기가 하나뿐이라 작은 글씨에서 가독성이 떨어진다.
 FONT_BODY = '/System/Library/Fonts/AppleSDGothicNeo.ttc'
 # 레시피 본문용 손글씨체(메모멘트 꾸꾸). 굵기가 하나뿐이라 weight 는 무시된다.
@@ -171,7 +171,9 @@ def palette_from(im, n=6):
           to8(colorsys.hls_to_rgb(best, 0.80, 0.95)))
     g2 = (to8(colorsys.hls_to_rgb(h2, 0.84, 0.92)),
           to8(colorsys.hls_to_rgb(h2, 0.64, 1.00)))
-    return [g1, g2]
+    g_strong = (to8(colorsys.hls_to_rgb(best, 0.72, 1.0)),
+                to8(colorsys.hls_to_rgb(best, 0.56, 1.0)))
+    return [g1, g2, g_strong]
 
 
 def cover_fit(im, box_w, box_h):
@@ -218,7 +220,7 @@ def rounded(size, radius, fill):
     return m.resize(size, Image.LANCZOS)
 
 # ── 커버 ────────────────────────────────────────────────
-def make_cover(hero_url, title, sub, style='calm'):
+def make_cover(hero_url, title, sub, style='calm', tag=''):
     card = Image.new('RGB', (W, H), WHITE)
     hero = fetch_image(hero_url)
     card.paste(cover_fit(hero, W, H), (0, 0))
@@ -253,7 +255,11 @@ def make_cover(hero_url, title, sub, style='calm'):
     max_w = SAFE_W
     if style == 'bold':
         max_w = int(W * 0.80)
-    manual = [t.strip() for t in title.split('|') if t.strip()]
+    # '*강조*' 로 감싼 줄만 색을 넣고 나머지는 흰색으로 둔다.
+    raw = [t.strip() for t in title.split('|') if t.strip()]
+    accent_at = {i for i, t in enumerate(raw) if t.startswith('*') and t.endswith('*')}
+    manual = [t.strip('*') for t in raw]
+    title = '|'.join(manual)
     top_size = 210 if style == 'bold' else int(STYLE['title_max'])
     for size in range(top_size, 69, -4):
         f_title = font(size)
@@ -269,19 +275,26 @@ def make_cover(hero_url, title, sub, style='calm'):
     lines = lines[:3]
     lh = int(size * 1.18 if style == 'bold' else size * 1.22)
     if style == 'bold':
-        # 화면 세로 정중앙에 큼직하게
-        y = int(H * 0.50) - len(lines) * lh // 2
-        for i, ln in enumerate(lines):
+        # 글자 뒤 초록 뭉치 — 원을 여러 개 겹쳐 손으로 칠한 듯한 형태로.
+        # 납작한 타원 하나면 얼룩처럼 보인다.
+        BLOB = (168, 226, 160)
+        y = int(H * 0.52) - len(lines) * lh // 2
+        layer = Image.new('RGBA', (W, H), (0, 0, 0, 0))
+        bd = ImageDraw.Draw(layer)
+        yy = y
+        for ln in lines:
             lw = d.textlength(ln, font=f_title)
-            bx0, by0 = (W - lw) / 2 - 46, y + lh * 0.08
-            blob = Image.new('RGBA', (int(lw) + 92, int(lh * 0.96)), (0, 0, 0, 0))
-            ImageDraw.Draw(blob).rounded_rectangle(
-                [0, 0, blob.width - 1, blob.height - 1],
-                radius=blob.height // 2, fill=GREEN_PALE + (205,))
-            blob = blob.filter(ImageFilter.GaussianBlur(3))
-            card.paste(blob, (int(bx0), int(by0)), blob)
-            y += lh
-        y = int(H * 0.50) - len(lines) * lh // 2
+            cy_, r = yy + lh * 0.52, lh * 0.44
+            span = lw + lh * 0.12
+            n = max(2, int(span / (r * 0.78)))
+            for k in range(n + 1):
+                px_ = W / 2 - span / 2 + span * k / n
+                wob = r * (0.86 + 0.14 * ((k * 7919) % 5) / 4)
+                bd.ellipse([px_ - wob, cy_ - r, px_ + wob, cy_ + r], fill=BLOB + (255,))
+            yy += lh
+        layer = layer.filter(ImageFilter.GaussianBlur(5))
+        layer.putalpha(layer.getchannel('A').point(lambda v: 234 if v > 130 else 0))
+        card.paste(layer, (0, 0), layer)
     else:
         y = H - 126 - len(lines) * lh - (62 if sub else 0)
     # 장식 수저·포크 — 제목 블록 양 끝에 맞춰 얹는다.
@@ -326,11 +339,16 @@ def make_cover(hero_url, title, sub, style='calm'):
         ImageDraw.Draw(mask).text((0, 0), text, font=fnt, fill=255)
         card.paste(vgrad((tw, th), *grad), pos, mask)
 
+    if tag:
+        # 제목과 같은 방식(흰 글씨 + 테두리). 알약 배경은 요소가 하나 더 늘어 복잡해진다.
+        tfn = font(54)
+        punch(((W - d.textlength(tag, font=tfn)) / 2, y - tfn.size - 14), tag, tfn, fill=WHITE)
+
     # 마스코트를 제목 마지막 글자 위에 올려 앉힌다. 기울이지 않고 똑바로,
     # 글자 폭에 맞춰 크기를 잡아 그 글자만 올라탄 것처럼 보이게 한다.
     w_title_stroke = max(4, int(f_title.size / STYLE['stroke_white']))
     mas_path = os.path.join(os.path.dirname(__file__), '..', 'assets', 'mascot-noline.png')
-    if os.path.exists(mas_path):
+    if style != 'bold' and os.path.exists(mas_path):
         last = lines[-1]
         last_w = d.textlength(last, font=f_title)
         ch_left = (W - last_w) / 2 + d.textlength(last[:-1], font=f_title)
@@ -348,7 +366,11 @@ def make_cover(hero_url, title, sub, style='calm'):
 
     for i, ln in enumerate(lines):
         lw = d.textlength(ln, font=f_title)
-        punch(((W - lw) / 2, y), ln, f_title, grad=auto_grad[i % len(auto_grad)])
+        if accent_at and i not in accent_at:
+            punch(((W - lw) / 2, y), ln, f_title, fill=WHITE)
+        else:
+            punch(((W - lw) / 2, y), ln, f_title,
+                  grad=auto_grad[2] if accent_at else auto_grad[i % 2])
         y += lh
     if sub:
         punch(((W - d.textlength(sub, font=font(54))) / 2, y + 4), sub, font(54))
@@ -626,6 +648,7 @@ def main():
     ap.add_argument('--layout', choices=['single', 'grid'], default='single',
                     help='single=레시피당 한 장(기본), grid=4칸 모음')
     ap.add_argument('--no-outro', action='store_true', help='마무리 팔로우 카드 생략')
+    ap.add_argument('--tag', default='', help='제목 위 작은 말풍선 (bold 스타일)')
     ap.add_argument('--style', choices=['calm', 'bold'], default='calm',
                     help="bold=제목을 크게 키우고 글자 뒤에 색 블롭. 피드에서 눈에 띄지만 사진은 덜 보인다")
     ap.add_argument('--ratio', choices=['4:5', '1:1'], default='4:5',
@@ -653,7 +676,7 @@ def main():
     outdir = os.path.join(a.out, slug)
     os.makedirs(outdir, exist_ok=True)
 
-    pages = [('01_cover.png', make_cover(picked[0]['image'], a.title, a.sub, a.style))]
+    pages = [('01_cover.png', make_cover(picked[0]['image'], a.title, a.sub, a.style, a.tag))]
     if a.layout == 'single':
         uniform = max(single_box_h(r) for r in picked)   # 넘길 때 패널이 튀지 않게
         for r in picked:
