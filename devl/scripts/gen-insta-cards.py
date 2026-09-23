@@ -11,7 +11,8 @@
         https://www.woowahan.com/fonts
 
 출력: out/insta/<slug>/01_cover.png, 02_grid.png, 03_grid.png ...
-      1080x1080, 커버 1장 + 레시피 4개당 그리드 1장.
+      1080x1080. 기본은 커버 1장 + 레시피당 1장(--layout single).
+      --layout grid 를 주면 예전처럼 4칸 모음으로 만든다.
 
 레시피 데이터·이미지는 라이브 API 에서 받는다(로컬 recipes.json 은 시드용이라 뒤처진다).
 글자는 코드로 그리므로 한글이 깨지지 않는다. AI 생성 표기는 넣지 않는다 —
@@ -277,43 +278,261 @@ def make_cover(hero_url, title, sub):
     return card
 
 # ── 4그리드 ──────────────────────────────────────────────
+
+
+# ── 마무리(팔로우 유도) 장 ───────────────────────────────
+def make_outro():
+    """캐러셀 마지막에 붙는 팔로우 유도 카드. 매 게시물 동일해야 브랜드가 쌓인다.
+
+    AI 이미지 생성으로는 만들 수 없다 — 한글이 깨지고 계정명이 틀리며
+    매번 결과가 달라진다. 이런 건 코드로 그린다.
+    """
+    # 배경 — 위아래 초록 그라데이션에 앱 카테고리 클레이 아이콘을 옅게 흩뿌린다.
+    # 격자무늬는 다른 계정들이 흔히 써서 겹친다. 우리 아이콘은 우리만 쓴다.
+    card = Image.new('RGB', (W, H))
+    strip = Image.new('RGB', (1, H))
+    c0, c1 = (31, 186, 126), (12, 138, 90)
+    for yy in range(H):
+        t = yy / (H - 1)
+        strip.putpixel((0, yy), tuple(round(c0[k] + (c1[k] - c0[k]) * t) for k in range(3)))
+    card.paste(strip.resize((W, H), Image.BILINEAR), (0, 0))
+
+    icodir = os.path.join(os.path.dirname(__file__), '..', 'assets', 'icons', 'categories')
+    if os.path.isdir(icodir):
+        names = sorted(f for f in os.listdir(icodir) if f.endswith('.png'))
+        spots = [(-40, 60, 150, -12), (300, -50, 190, 14), (760, 40, 165, -20),
+                 (60, 330, 140, 18), (860, 320, 150, 10), (-30, 700, 175, 8),
+                 (330, 860, 160, -16), (720, 760, 150, 20), (930, 900, 130, -10),
+                 (140, 980, 140, 12)]
+        for i, (sx, sy, sz, rot) in enumerate(spots):
+            f = os.path.join(icodir, names[i % len(names)])
+            ic = Image.open(f).convert('RGBA').resize((sz, sz), Image.LANCZOS)
+            a = ic.getchannel('A').point(lambda v: int(v * 0.16))   # 아주 옅게
+            ic.putalpha(a)
+            ic = ic.rotate(rot, expand=True, resample=Image.BICUBIC)
+            card.paste(ic, (sx, sy), ic)
+
+    d = ImageDraw.Draw(card)
+
+    # 가운데 흰 카드
+    cw, ch = W - 360, 320
+    # 흰 카드를 화면 중앙에서 살짝 위로. 아래로 배지·안내문구가 이어지므로
+    # 정중앙에 두면 전체가 아래로 처져 보인다.
+    cx, cy = (W - cw) // 2, (H - ch) // 2 - 56
+    # 은은한 테두리 광 — 넓으면 배경 아이콘을 다 지운다
+    glow = Image.new('RGBA', (cw + 56, ch + 56), (0, 0, 0, 0))
+    ImageDraw.Draw(glow).rounded_rectangle([28, 28, cw + 27, ch + 27], radius=36,
+                                           fill=(255, 255, 255, 190))
+    glow = glow.filter(ImageFilter.GaussianBlur(15))
+    card.paste(glow, (cx - 28, cy - 28), glow)
+    plate = Image.new('RGBA', (cw, ch), (0, 0, 0, 0))
+    ImageDraw.Draw(plate).rounded_rectangle([0, 0, cw - 1, ch - 1], radius=36,
+                                            fill=(255, 255, 255, 255))
+    card.paste(plate, (cx, cy), plate)
+
+    # 프로필 줄 (인스타 팔로우 바 흉내)
+    bx, by, bw, bh = cx + 28, cy + 32, cw - 56, 96
+    bar = Image.new('RGBA', (bw, bh), (0, 0, 0, 0))
+    ImageDraw.Draw(bar).rounded_rectangle([0, 0, bw - 1, bh - 1], radius=22,
+                                          fill=(242, 244, 246, 255))
+    card.paste(bar, (bx, by), bar)
+
+    ico = os.path.join(os.path.dirname(__file__), '..', 'assets', 'appIcon.png')
+    if os.path.exists(ico):
+        av = 66
+        im = Image.open(ico).convert('RGB').resize((av, av), Image.LANCZOS)
+        m = Image.new('L', (av * 4, av * 4), 0)
+        ImageDraw.Draw(m).ellipse([0, 0, av * 4 - 1, av * 4 - 1], fill=255)
+        card.paste(im, (bx + 22, by + (bh - av) // 2), m.resize((av, av), Image.LANCZOS))
+
+    d.text((bx + 100, by + 20), '@cookmate_yojalal', font=font(28), fill=INK)
+    d.text((bx + 100, by + 54), '요잘알 — 오늘 뭐 먹지?', font=body(21), fill=(130, 130, 130))
+
+    fw, fh = 142, 54
+    fx, fy = bx + bw - fw - 18, by + (bh - fh) // 2
+    btn = Image.new('RGBA', (fw, fh), (0, 0, 0, 0))
+    ImageDraw.Draw(btn).rounded_rectangle([0, 0, fw - 1, fh - 1], radius=16, fill=GREEN + (255,))
+    card.paste(btn, (fx, fy), btn)
+    d.text((fx + (fw - d.textlength('팔로우', font=font(26))) / 2, fy + 11),
+           '팔로우', font=font(26), fill=WHITE)
+
+    # 카피
+    for i, (txt, fnt, col) in enumerate([
+            ('요리에 자신 없어도 괜찮아요', font(34), (70, 70, 70)),
+            ('매일 새로운 레시피로 찾아올게요', font(38), GREEN_DEEP)]):
+        tw = d.textlength(txt, font=fnt)
+        d.text(((W - tw) / 2, cy + 168 + i * 55), txt, font=fnt, fill=col)
+
+    # 앱 다운로드 — 공식 스토어 배지를 쓴다.
+    # Apple/Google 모두 배지를 직접 그리는 걸 금지한다. 파일이 없으면
+    # 흉내내지 않고 문구로 대체한다.
+    d.text(((W - d.textlength('앱으로 더 편하게', font=font(30))) / 2, cy + ch + 44),
+           '앱으로 더 편하게', font=font(30), fill=WHITE)
+
+    badges = []
+    for fn in ('badge-appstore.png', 'badge-googleplay.png'):
+        fp = os.path.join(os.path.dirname(__file__), '..', 'assets', fn)
+        if os.path.exists(fp):
+            b = Image.open(fp).convert('RGBA')
+            # 배지마다 투명 여백이 달라서(구글은 위아래 29px) 그대로 높이를 맞추면
+            # 애플 쪽이 더 커 보인다. 여백을 잘라낸 뒤 높이를 맞춘다.
+            bb = b.getchannel('A').point(lambda v: 255 if v > 8 else 0).getbbox()
+            if bb:
+                b = b.crop(bb)
+            bh = 64
+            badges.append(b.resize((round(b.width * bh / b.height), bh), Image.LANCZOS))
+
+    by2 = cy + ch + 96
+    if len(badges) == 2:
+        gap = 34
+        bx2 = (W - (sum(b.width for b in badges) + gap)) // 2
+        for b in badges:
+            card.paste(b, (bx2, by2), b)
+            bx2 += b.width + gap
+        by2 += 64
+
+    txt = "스토어에서 '요잘알' 검색"
+    f2 = body(24, 'medium')
+    d.text(((W - d.textlength(txt, font=f2)) / 2, by2 + 22), txt, font=f2, fill=(222, 245, 233))
+
+    return card
+
+# ── 한 장에 레시피 하나 ─────────────────────────────────
+def make_single(r):
+    """레시피 1개를 1080x1080 한 장에. 피드에서 축소돼도 읽히도록 글자를 크게 쓴다."""
+    card = Image.new('RGB', (W, H), WHITE)
+    d = ImageDraw.Draw(card)
+
+    # 글을 먼저 배치해 보고 필요한 높이만큼만 패널을 깐다
+    f_ing, f_step = body(25, 'medium'), body(29, 'bold')
+    ing = ', '.join(f"{g['name']} {g['amount']}" for g in (r.get('ingredients') or []))
+    ing_lines = wrap(d, f'준비재료  {ing}', f_ing, W - 130)[:3]
+    step_lines = [wrap(d, f"{n}. {st['description']}", f_step, W - 130)[:2]
+                  for n, st in enumerate(r.get('steps') or [], 1)]
+
+    tf = font(70)
+    tt = f"#{r['title'].replace(' ', '')}"
+    while d.textlength(tt, font=tf) > W - 120 and tf.size > 40:
+        tf = font(tf.size - 2)
+
+    head = int(tf.size * 0.62)
+    need = head + len(ing_lines) * 34 + 18 + sum(len(g) * 38 + 10 for g in step_lines) + 40
+    box_h = min(int(H * 0.58), need)
+    top = H - box_h
+
+    if r.get('image'):
+        card.paste(cover_fit(fetch_image(r['image']), W, H), (0, 0))
+    card.paste(Image.new('RGBA', (W, box_h), (255, 255, 255, 245)), (0, top),
+               Image.new('RGBA', (W, box_h), (255, 255, 255, 245)))
+
+    LINE_Y = 86                      # 계정명·마크가 함께 놓이는 가로선
+
+    # 브랜드 마크
+    mk = os.path.join(os.path.dirname(__file__), '..', 'assets', 'brand-mark-white.png')
+    if os.path.exists(mk):
+        # 왼쪽 계정명과 같은 가로선(LINE_Y)에 중심을 맞춘다
+        ms = 88
+        mark = Image.open(mk).convert('RGBA').resize((ms, ms), Image.LANCZOS)
+        sh = Image.new('RGBA', (ms + 40, ms + 40), (0, 0, 0, 0))
+        sh.paste((0, 0, 0, 120), (20, 23), mark.getchannel('A'))
+        sh = sh.filter(ImageFilter.GaussianBlur(9))
+        card.paste(sh, (W - 48 - ms - 20, LINE_Y - ms // 2 - 20), sh)
+        card.paste(mark, (W - 48 - ms, LINE_Y - ms // 2), mark)
+
+    # 제목 — 패널 경계에 걸쳐 가운데
+    tw = d.textlength(tt, font=tf)
+    tx, ty = (W - tw) / 2, top - tf.size * 0.68
+    d.text((tx, ty), tt, font=tf, fill=WHITE, stroke_width=max(8, tf.size // 7), stroke_fill=WHITE)
+    d.text((tx, ty), tt, font=tf, fill=(0, 0, 0), stroke_width=max(3, tf.size // 14), stroke_fill=(0, 0, 0))
+    d.text((tx, ty), tt, font=tf, fill=GREEN_DEEP)
+
+    # 인스타 계정명 — 사진 오른쪽 아래, 패널 바로 위. 어느 장을 캡처해도 출처가 남는다.
+    d.text((W - 48, top - 20), '@cookmate_yojalal', font=font(28),
+           fill=(230, 230, 230), anchor='rd')
+
+    px, py = 62, top + head
+    for ln in ing_lines:
+        d.text((px, py), ln, font=f_ing, fill=(125, 125, 125)); py += 34
+    py += 18
+    for g in step_lines:
+        for k, ln in enumerate(g):
+            d.text((px + (0 if k == 0 else 26), py), ln, font=f_step, fill=INK)
+            py += 38
+        py += 10
+    return card
+
 def make_grid(recipes):
     card = Image.new('RGB', (W, H), WHITE)
     d = ImageDraw.Draw(card)
     half = W // 2
-    for i, r in enumerate(recipes):
+
+    # 1단계 — 칸마다 글을 배치해 보고 필요한 높이를 잰다.
+    # 칸마다 높이를 따로 쓰면 같은 줄에서 패널이 어긋나 보이므로,
+    # 재기만 하고 그리지는 않는다.
+    lay = []
+    for r in recipes:
+        f_ing, f_step = body(14, 'medium'), body(15, 'bold')
+        ing = ', '.join(f"{g['name']} {g['amount']}" for g in (r.get('ingredients') or [])[:6])
+        ing_lines = wrap(d, f'준비재료: {ing}', f_ing, half - 48)[:2]
+        step_lines = [wrap(d, f"{n}. {st['description']}", f_step, half - 48)[:2]
+                      for n, st in enumerate((r.get('steps') or [])[:4], 1)]
+        tf = font(34)
+        tt = f"#{r['title'].replace(' ', '')}"
+        while d.textlength(tt, font=tf) > half - 40 and tf.size > 20:
+            tf = font(tf.size - 2)
+        head = int(tf.size * 0.52)
+        need = head + len(ing_lines) * 19 + 4 \
+               + sum(len(g) * 20 + 2 for g in step_lines) + 18
+        lay.append(dict(r=r, ing=ing_lines, steps=step_lines, tf=tf, tt=tt,
+                        head=head, need=min(int(half * 0.62), need),
+                        f_ing=f_ing, f_step=f_step))
+
+    # 같은 줄은 더 긴 쪽에 맞춘다
+    row_h = [max(l['need'] for l in lay[k:k + 2]) for k in range(0, len(lay), 2)]
+
+    # 2단계 — 그리기
+    for i, L in enumerate(lay):
+        r = L['r']
         ox, oy = (i % 2) * half, (i // 2) * half
+        box_h = row_h[i // 2]
+        top = oy + half - box_h
+
         cell = Image.new('RGB', (half, half), (240, 240, 240))
         if r.get('image'):
             cell.paste(cover_fit(fetch_image(r['image']), half, half), (0, 0))
         card.paste(cell, (ox, oy))
 
-        # 반투명 흰 박스 — 아래 절반
-        box_h = int(half * 0.62)
-        panel = Image.new('RGBA', (half - 24, box_h), (255, 255, 255, 238))
-        card.paste(panel, (ox + 12, oy + half - box_h - 12), panel)
+        # 셀 오른쪽 위 브랜드 마크 (커버와 동일)
+        mk = os.path.join(os.path.dirname(__file__), '..', 'assets', 'brand-mark-white.png')
+        if os.path.exists(mk):
+            ms = int(half * 0.13)
+            mark = Image.open(mk).convert('RGBA').resize((ms, ms), Image.LANCZOS)
+            sh = Image.new('RGBA', (ms + 24, ms + 24), (0, 0, 0, 0))
+            sh.paste((0, 0, 0, 120), (12, 14), mark.getchannel('A'))
+            sh = sh.filter(ImageFilter.GaussianBlur(6))
+            card.paste(sh, (ox + half - ms - 34, oy + 10), sh)
+            card.paste(mark, (ox + half - ms - 22, oy + 22), mark)
 
-        px, py = ox + 34, oy + half - box_h + 4
-        # 제목 (해시태그)
-        d.text((px, py), f"#{r['title'].replace(' ', '')}", font=font(34, 'bold'), fill=GREEN_DEEP)
-        py += 46
-        # 준비재료
-        ing = ', '.join(f"{g['name']} {g['amount']}" for g in (r.get('ingredients') or [])[:6])
-        for ln in wrap(d, f'준비재료: {ing}', body(19), half - 76)[:2]:
-            d.text((px, py), ln, font=body(19), fill=(90, 90, 90)); py += 25
-        py += 6
-        # 조리 단계
-        for n, s in enumerate((r.get('steps') or [])[:4], 1):
-            for j, ln in enumerate(wrap(d, f"{n}. {s['description']}", body(20, 'medium'), half - 76)[:2]):
-                d.text((px + (0 if j == 0 else 18), py), ln, font=body(20, 'medium'), fill=INK)
-                py += 26
-            py += 3
-        # 구분선
-        d.line([(ox + 12, oy + half - box_h - 12), (ox + half - 12, oy + half - box_h - 12)],
-               fill=GREEN, width=3)
-    # 십자 여백선
-    d.line([(half, 0), (half, H)], fill=WHITE, width=6)
-    d.line([(0, half), (W, half)], fill=WHITE, width=6)
+        panel = Image.new('RGBA', (half, box_h), (255, 255, 255, 243))
+        card.paste(panel, (ox, top), panel)
+
+        # 제목 — 패널 위 경계에 걸치게 가운데. 사진과 설명을 끊어준다.
+        tf, tt = L['tf'], L['tt']
+        tw = d.textlength(tt, font=tf)
+        tx, ty = ox + (half - tw) / 2, top - tf.size * 0.66
+        d.text((tx, ty), tt, font=tf, fill=WHITE, stroke_width=max(5, tf.size // 7), stroke_fill=WHITE)
+        d.text((tx, ty), tt, font=tf, fill=(0, 0, 0), stroke_width=max(2, tf.size // 14), stroke_fill=(0, 0, 0))
+        d.text((tx, ty), tt, font=tf, fill=GREEN_DEEP)
+
+        px, py = ox + 24, top + L['head']
+        for ln in L['ing']:
+            d.text((px, py), ln, font=L['f_ing'], fill=(120, 120, 120)); py += 19
+        py += 4
+        for g in L['steps']:
+            for k, ln in enumerate(g):
+                d.text((px + (0 if k == 0 else 14), py), ln, font=L['f_step'], fill=INK)
+                py += 20
+            py += 2
     return card
 
 def main():
@@ -322,6 +541,9 @@ def main():
     ap.add_argument('--sub', default='')
     ap.add_argument('--ids', required=True, help='쉼표로 구분한 레시피 id')
     ap.add_argument('--out', default='out/insta')
+    ap.add_argument('--layout', choices=['single', 'grid'], default='single',
+                    help='single=레시피당 한 장(기본), grid=4칸 모음')
+    ap.add_argument('--no-outro', action='store_true', help='마무리 팔로우 카드 생략')
     a = ap.parse_args()
 
     ids = [s.strip() for s in a.ids.split(',') if s.strip()]
@@ -339,8 +561,15 @@ def main():
     os.makedirs(outdir, exist_ok=True)
 
     pages = [('01_cover.png', make_cover(picked[0]['image'], a.title, a.sub))]
-    for n in range(0, len(picked), 4):
-        pages.append((f'{len(pages)+1:02d}_grid.png', make_grid(picked[n:n + 4])))
+    if a.layout == 'single':
+        for r in picked:
+            pages.append((f"{len(pages)+1:02d}_{r['id']}.png", make_single(r)))
+    else:
+        for n in range(0, len(picked), 4):
+            pages.append((f'{len(pages)+1:02d}_grid.png', make_grid(picked[n:n + 4])))
+
+    if not a.no_outro:
+        pages.append((f'{len(pages)+1:02d}_outro.png', make_outro()))
 
     for name, im in pages:
         p = os.path.join(outdir, name)

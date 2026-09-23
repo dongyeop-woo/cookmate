@@ -44,3 +44,10 @@ assets/test2.jpg
 assets/deco-spoonandfork.png
 assets/mascot-cut.png
 assets/brand-mark-green.png
+
+# Apple/Google 브랜드 자산 — 저장소에 재배포하지 않는다. 받는 법:
+#   curl -sL "https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ko-kr?size=500x166" -o /tmp/b.svg \
+#     && magick -background none -density 900 /tmp/b.svg -resize x250 assets/badge-appstore.png
+#   curl -sL "https://play.google.com/intl/en_us/badges/static/images/badges/ko_badge_web_generic.png" -o assets/badge-googleplay.png
+assets/badge-appstore.png
+assets/badge-googleplay.png
