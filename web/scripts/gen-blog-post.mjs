@@ -37,6 +37,7 @@ const SEASON_KEYWORDS = {
   ],
   fall: [
     { kw: '환절기 보양 국', cats: ['저녁', '한식'] },
+    { kw: '명절 남은 음식 활용', cats: ['점심', '저녁', '한식'] },
     { kw: '제철 가을 채소', cats: ['점심', '저녁', '한식'] },
     { kw: '단호박 활용', cats: ['아침', '디저트', '간식'] },
     { kw: '면역력 식단', cats: ['아침', '점심', '저녁'] },
@@ -347,10 +348,42 @@ async function updateBlogIndex(slug, dateStr) {
   console.log(`[gen-blog] blog-index.ts 갱신: ${slug}`);
 }
 
+/**
+ * 명절 주간 전용 키워드. 한국 레시피 검색은 이 주에 연중 최대로 몰리는데,
+ * 일반 계절 키워드 풀에 섞으면 랜덤이라 놓칠 수 있어 기간 중엔 여기서만 뽑는다.
+ * 연휴가 바뀌면 날짜만 고쳐주면 된다.
+ */
+const HOLIDAY_WINDOWS = [
+  {
+    name: '추석',
+    from: '2026-09-24', to: '2026-09-29',
+    keywords: [
+      { kw: '추석 상차림', cats: ['한식', '저녁'] },
+      { kw: '명절 전 요리', cats: ['한식', '간식'] },
+      { kw: '차례상 나물', cats: ['한식', '반찬'] },
+      { kw: '명절 남은 음식 활용', cats: ['점심', '저녁', '한식'] },
+      { kw: '손님상 한 그릇', cats: ['점심', '한식'] },
+    ],
+  },
+];
+
+/** 오늘(KST)이 명절 주간이면 그 키워드 풀을, 아니면 계절 풀을 돌려준다. */
+function keywordPool(date, season) {
+  // Actions 는 UTC 로 돈다. 09:00 KST 발행이므로 KST 기준 날짜로 비교해야 한다.
+  const today = new Date(date.getTime() + 9 * 3600 * 1000).toISOString().slice(0, 10);
+  for (const h of HOLIDAY_WINDOWS) {
+    if (today >= h.from && today <= h.to) {
+      console.log(`[gen-blog] ${h.name} 주간 — 명절 키워드에서 선택`);
+      return h.keywords;
+    }
+  }
+  return SEASON_KEYWORDS[season];
+}
+
 async function main() {
   const today = new Date();
   const season = getCurrentSeason(today);
-  const keywords = SEASON_KEYWORDS[season];
+  const keywords = keywordPool(today, season);
   const picked = keywords[Math.floor(Math.random() * keywords.length)];
   const keyword = picked.kw;
   const cats = picked.cats;
