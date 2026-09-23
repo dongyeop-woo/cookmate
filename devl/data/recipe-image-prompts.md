@@ -274,17 +274,17 @@
 
 > **가로형(landscape)으로 요청**하세요. 6장 전부 필요합니다.
 
-**Step 1.** Wide 16:9. Three-quarter angle of a block of tofu being squeezed dry by hand over a white ceramic bowl, crumbles falling in on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+**Step 1.** Wide 16:9. Three-quarter angle of exactly two thick slices of white tofu — half a block, no more — draining in a round stainless steel sieve set over a bowl, water beading at the cut edges on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
 **Step 2.** Wide 16:9. Three-quarter angle of onion, carrot and scallion being finely diced on a wooden board, small colorful piles forming on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
 **Step 3.** Wide 16:9. Three-quarter angle of ground pork and crumbled tofu being kneaded together with the diced vegetables in a large bowl on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 4.** Wide 16:9. Three-quarter angle of small round patties being shaped by hand and dusted with pale frying flour on a tray on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+**Step 4.** Wide 16:9. Three-quarter angle of small round patties flecked with tiny orange carrot and green scallion pieces being shaped by hand and dusted with pale frying flour on a tray on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 5.** Wide 16:9. Three-quarter angle of egg-coated patties sizzling golden in a black pan over low heat, edges set and firm on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+**Step 5.** Wide 16:9. Three-quarter angle of egg-coated patties sizzling golden in a black pan over low heat, tiny orange carrot and green scallion pieces visible through the egg coating on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 6.** Wide 16:9. Three-quarter angle of golden dongeurangttaeng arranged neatly on a white ceramic plate, steam rising on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+**Step 6.** Wide 16:9. Three-quarter angle of golden dongeurangttaeng arranged neatly on a white ceramic plate, steam rising, tiny orange carrot and green scallion pieces speckled across each patty on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
 ## 🐟 동태전 (id: 220)
 

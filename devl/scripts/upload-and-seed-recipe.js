@@ -1,12 +1,13 @@
 /**
- * 로컬 이미지(images/recipe_<id>_step_<n>.png)를 Firebase Storage에 업로드하고
+ * 로컬 이미지(images/<id>-<n>.png)를 Firebase Storage에 업로드하고
  * recipes.json의 image / steps[].imageUrl / isAiImage 필드를 채운 뒤 Firestore에 seed.
  *
  * 사용법:
  *   node scripts/upload-and-seed-recipe.js <recipe_id>
  *
  * 전제조건:
- *   - images/recipe_<id>_step_*.png 가 존재 (gen-recipe-images.js로 사전 생성)
+ *   - images/<id>-<n>.png 가 존재 (예: 219-1.png). 예전 이름 recipe_<id>_step_<n>.png 도 인식
+ *   - 확장자는 png/jpg/jpeg/webp 아무거나 (업로드 시 JPEG 로 변환)
  *   - cookingbasedyw-firebase-adminsdk-fbsvc-b11f8d8de0.json 서비스 계정 키
  *
  * 흐름:
@@ -120,15 +121,26 @@ async function main() {
   console.log(`📋 [${recipe.id}] ${recipe.title} - ${stepCount} steps`);
 
   // 2. 이미지 파일 존재 확인
+  //    파일명은 짧은 쪽(219-1.png)을 권장하고, 예전 이름도 계속 받는다.
+  //    확장자는 받은 그대로 두면 되도록 png/jpg/jpeg/webp 를 모두 찾는다.
+  //    (업로드 직전에 어차피 JPEG 로 변환한다)
+  const EXTS = ['png', 'jpg', 'jpeg', 'webp', 'PNG', 'JPG', 'JPEG'];
+  const candidates = (n) => [
+    ...EXTS.map((e) => `${recipeId}-${n}.${e}`),
+    ...EXTS.map((e) => `recipe_${recipeId}_step_${n}.${e}`),
+  ];
+
   const imagePaths = [];
   for (let n = 1; n <= stepCount; n++) {
-    const p = path.join(IMAGES_DIR, `recipe_${recipeId}_step_${n}.png`);
-    if (!fs.existsSync(p)) {
-      console.error(`❌ 이미지 파일 누락: ${p}`);
-      console.error(`   먼저 실행: node scripts/gen-recipe-images.js ${recipeId} all`);
+    const found = candidates(n)
+      .map((name) => path.join(IMAGES_DIR, name))
+      .find((f) => fs.existsSync(f));
+    if (!found) {
+      console.error(`❌ ${n}번째 이미지 없음 — images/${recipeId}-${n}.png 로 저장해주세요.`);
+      console.error(`   (recipe_${recipeId}_step_${n}.png 형식도 인식합니다)`);
       process.exit(1);
     }
-    imagePaths.push(p);
+    imagePaths.push(found);
   }
   console.log(`✅ 이미지 ${stepCount}장 확인 완료`);
 
