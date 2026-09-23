@@ -12316,5 +12316,415 @@
             }
         ],
         "servings": "2"
+    },
+    {
+        "id": "219",
+        "title": "동그랑땡",
+        "author": "요잘알",
+        "time": 25,
+        "difficulty": "쉬움",
+        "calories": 320,
+        "rating": 4.8,
+        "likes": 0,
+        "bookmarks": 0,
+        "image": "",
+        "category": "한식",
+        "description": "명절상에 빠지면 섭섭한 동그랑땡이에요. 두부를 넣어 퍽퍽하지 않고 부드러워요.",
+        "ingredients": [
+            {
+                "name": "돼지고기 다짐육",
+                "amount": "300g",
+                "icon": "🥩"
+            },
+            {
+                "name": "두부",
+                "amount": "1/2모",
+                "icon": "🧊"
+            },
+            {
+                "name": "양파",
+                "amount": "1/4개",
+                "icon": "🧅"
+            },
+            {
+                "name": "당근",
+                "amount": "1/4개",
+                "icon": "🥕"
+            },
+            {
+                "name": "대파",
+                "amount": "1/2대",
+                "icon": "🌿"
+            },
+            {
+                "name": "달걀",
+                "amount": "2개",
+                "icon": "🥚"
+            },
+            {
+                "name": "부침가루",
+                "amount": "3큰술",
+                "icon": "🌾"
+            },
+            {
+                "name": "소금",
+                "amount": "약간",
+                "icon": "🧂"
+            }
+        ],
+        "steps": [
+            {
+                "step": 1,
+                "description": "두부 1/2모는 면포에 싸서 물기를 꼭 짜주세요.",
+                "time": 0
+            },
+            {
+                "step": 2,
+                "description": "양파 1/4개와 당근 1/4개, 대파 1/2대는 잘게 다져주세요.",
+                "time": 0
+            },
+            {
+                "step": 3,
+                "description": "볼에 돼지고기 다짐육 300g과 으깬 두부, 다진 채소, 소금 약간을 넣고 끈기가 생길 때까지 치대주세요.",
+                "time": 0
+            },
+            {
+                "step": 4,
+                "description": "한 숟갈씩 떠서 동그랗게 빚고 부침가루 3큰술을 고루 묻혀주세요.",
+                "time": 0
+            },
+            {
+                "step": 5,
+                "description": "달걀 2개를 풀어 입힌 뒤 팬에 중약불로 앞뒤 8분간 속까지 완전히 익혀주세요.",
+                "time": 8
+            },
+            {
+                "step": 6,
+                "description": "접시에 가지런히 담아 마무리합니다.",
+                "time": 0
+            }
+        ],
+        "servings": "3"
+    },
+    {
+        "id": "220",
+        "title": "동태전",
+        "author": "요잘알",
+        "time": 25,
+        "difficulty": "쉬움",
+        "calories": 240,
+        "rating": 4.7,
+        "likes": 0,
+        "bookmarks": 0,
+        "image": "",
+        "category": "한식",
+        "description": "명절 전 중에 제일 손이 많이 가는 동태전이에요. 물기만 잘 잡으면 실패하지 않아요.",
+        "ingredients": [
+            {
+                "name": "동태살",
+                "amount": "300g",
+                "icon": "🐟"
+            },
+            {
+                "name": "달걀",
+                "amount": "3개",
+                "icon": "🥚"
+            },
+            {
+                "name": "부침가루",
+                "amount": "4큰술",
+                "icon": "🌾"
+            },
+            {
+                "name": "식용유",
+                "amount": "3큰술",
+                "icon": "🫗"
+            },
+            {
+                "name": "소금",
+                "amount": "약간",
+                "icon": "🧂"
+            },
+            {
+                "name": "후추",
+                "amount": "약간",
+                "icon": "🧂"
+            }
+        ],
+        "steps": [
+            {
+                "step": 1,
+                "description": "동태살 300g은 키친타월로 물기를 꼼꼼히 닦고 소금과 후추를 뿌려 10분간 재워주세요.",
+                "time": 10
+            },
+            {
+                "step": 2,
+                "description": "접시에 부침가루 4큰술을 펼치고 동태살 앞뒤로 고루 묻혀주세요.",
+                "time": 0
+            },
+            {
+                "step": 3,
+                "description": "달걀 3개를 곱게 풀어 달걀물을 만들어주세요.",
+                "time": 0
+            },
+            {
+                "step": 4,
+                "description": "팬에 식용유 3큰술을 두르고 달걀물 입힌 동태살을 중약불에서 앞뒤 5분간 부쳐주세요.",
+                "time": 5
+            },
+            {
+                "step": 5,
+                "description": "속까지 하얗게 익으면 접시에 가지런히 담아 마무리합니다.",
+                "time": 0
+            }
+        ],
+        "servings": "3"
+    },
+    {
+        "id": "221",
+        "title": "소고기 산적",
+        "author": "요잘알",
+        "time": 30,
+        "difficulty": "보통",
+        "calories": 380,
+        "rating": 4.7,
+        "likes": 0,
+        "bookmarks": 0,
+        "image": "",
+        "category": "한식",
+        "description": "꼬치에 색색으로 꿰어 굽는 명절 산적이에요. 상에 올리면 제일 먼저 없어져요.",
+        "ingredients": [
+            {
+                "name": "소고기 우둔살",
+                "amount": "300g",
+                "icon": "🥩"
+            },
+            {
+                "name": "대파",
+                "amount": "2대",
+                "icon": "🌿"
+            },
+            {
+                "name": "맛살",
+                "amount": "4개",
+                "icon": "🦀"
+            },
+            {
+                "name": "달걀",
+                "amount": "2개",
+                "icon": "🥚"
+            },
+            {
+                "name": "부침가루",
+                "amount": "3큰술",
+                "icon": "🌾"
+            },
+            {
+                "name": "간장",
+                "amount": "2큰술",
+                "icon": "🫙"
+            },
+            {
+                "name": "설탕",
+                "amount": "1큰술",
+                "icon": "🍚"
+            },
+            {
+                "name": "참기름",
+                "amount": "1큰술",
+                "icon": "🫒"
+            }
+        ],
+        "steps": [
+            {
+                "step": 1,
+                "description": "소고기 우둔살 300g은 길게 썰어 간장 2큰술과 설탕 1큰술, 참기름 1큰술에 15분간 재워주세요.",
+                "time": 15
+            },
+            {
+                "step": 2,
+                "description": "대파 2대와 맛살 4개를 소고기와 같은 길이로 잘라주세요.",
+                "time": 0
+            },
+            {
+                "step": 3,
+                "description": "꼬치에 소고기와 대파, 맛살을 색이 번갈아 오도록 끼워주세요.",
+                "time": 0
+            },
+            {
+                "step": 4,
+                "description": "꼬치 앞뒤로 부침가루 3큰술을 고루 묻혀주세요.",
+                "time": 0
+            },
+            {
+                "step": 5,
+                "description": "달걀 2개를 풀어 입히고 팬에 중약불로 앞뒤 6분간 속까지 완전히 익혀주세요.",
+                "time": 6
+            },
+            {
+                "step": 6,
+                "description": "접시에 가지런히 담아 마무리합니다.",
+                "time": 0
+            }
+        ],
+        "servings": "3"
+    },
+    {
+        "id": "222",
+        "title": "토란국",
+        "author": "요잘알",
+        "time": 40,
+        "difficulty": "보통",
+        "calories": 180,
+        "rating": 4.6,
+        "likes": 0,
+        "bookmarks": 0,
+        "image": "",
+        "category": "한식",
+        "description": "추석에 끓이는 담백한 토란국이에요. 소금물에 담가 아린 맛만 빼면 어렵지 않아요.",
+        "ingredients": [
+            {
+                "name": "토란",
+                "amount": "300g",
+                "icon": "🥔"
+            },
+            {
+                "name": "소고기 양지",
+                "amount": "150g",
+                "icon": "🥩"
+            },
+            {
+                "name": "다시마",
+                "amount": "2장",
+                "icon": "🌊"
+            },
+            {
+                "name": "국간장",
+                "amount": "2큰술",
+                "icon": "🫙"
+            },
+            {
+                "name": "다진마늘",
+                "amount": "1작은술",
+                "icon": "🧄"
+            },
+            {
+                "name": "대파",
+                "amount": "1/2대",
+                "icon": "🌿"
+            },
+            {
+                "name": "참기름",
+                "amount": "1큰술",
+                "icon": "🫒"
+            }
+        ],
+        "steps": [
+            {
+                "step": 1,
+                "description": "토란 300g은 껍질을 벗겨 소금물에 10분간 담가 아린 맛을 빼주세요.",
+                "time": 10
+            },
+            {
+                "step": 2,
+                "description": "냄비에 참기름 1큰술을 두르고 소고기 양지 150g을 중불에서 3분간 볶아주세요.",
+                "time": 3
+            },
+            {
+                "step": 3,
+                "description": "물 1.5L와 다시마 2장을 넣고 센불에서 10분간 끓여주세요.",
+                "time": 10
+            },
+            {
+                "step": 4,
+                "description": "다시마를 건져내고 손질한 토란을 넣어 중불에서 15분간 푹 익혀주세요.",
+                "time": 15
+            },
+            {
+                "step": 5,
+                "description": "국간장 2큰술과 다진마늘 1작은술을 넣어 간을 맞춰주세요.",
+                "time": 0
+            },
+            {
+                "step": 6,
+                "description": "어슷 썬 대파를 올려 마무리합니다.",
+                "time": 0
+            }
+        ],
+        "servings": "3"
+    },
+    {
+        "id": "223",
+        "title": "도라지나물",
+        "author": "요잘알",
+        "time": 20,
+        "difficulty": "쉬움",
+        "calories": 90,
+        "rating": 4.5,
+        "likes": 0,
+        "bookmarks": 0,
+        "image": "",
+        "category": "반찬",
+        "description": "차례상에 올리는 삼색나물 중 하나예요. 소금에 주물러 쓴맛만 빼면 됩니다.",
+        "ingredients": [
+            {
+                "name": "도라지",
+                "amount": "200g",
+                "icon": "🌿"
+            },
+            {
+                "name": "소금",
+                "amount": "1큰술",
+                "icon": "🧂"
+            },
+            {
+                "name": "다진마늘",
+                "amount": "1작은술",
+                "icon": "🧄"
+            },
+            {
+                "name": "참기름",
+                "amount": "1큰술",
+                "icon": "🫒"
+            },
+            {
+                "name": "국간장",
+                "amount": "1작은술",
+                "icon": "🫙"
+            },
+            {
+                "name": "통깨",
+                "amount": "1작은술",
+                "icon": "🌰"
+            }
+        ],
+        "steps": [
+            {
+                "step": 1,
+                "description": "도라지 200g에 소금 1큰술을 뿌려 바락바락 주물러 쓴맛을 빼주세요.",
+                "time": 0
+            },
+            {
+                "step": 2,
+                "description": "찬물에 여러 번 헹궈 소금기를 씻어내고 물기를 꼭 짜주세요.",
+                "time": 0
+            },
+            {
+                "step": 3,
+                "description": "팬에 참기름 1큰술을 두르고 도라지를 중불에서 5분간 볶아주세요.",
+                "time": 5
+            },
+            {
+                "step": 4,
+                "description": "다진마늘 1작은술과 국간장 1작은술을 넣고 2분간 더 볶아주세요.",
+                "time": 2
+            },
+            {
+                "step": 5,
+                "description": "통깨 1작은술을 뿌리고 그릇에 담아 마무리합니다.",
+                "time": 0
+            }
+        ],
+        "servings": "2"
     }
 ]

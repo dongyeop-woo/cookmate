@@ -269,3 +269,79 @@
 **Step 5.** Wide 16:9. Baguette slices toasting to golden brown in a dry pan. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
 **Step 6.** Wide 16:9. French onion soup in a rustic crock, the gruyere crust browned and bubbling. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+## 🥩 동그랑땡 (id: 219)
+
+> **가로형(landscape)으로 요청**하세요. 6장 전부 필요합니다.
+
+**Step 1.** Wide 16:9. Three-quarter angle of a block of tofu being pressed dry in a cotton cloth, crumbs falling into a white bowl on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 2.** Wide 16:9. Three-quarter angle of onion, carrot and scallion being finely diced on a wooden board, small colorful piles forming on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 3.** Wide 16:9. Three-quarter angle of ground pork and crumbled tofu being kneaded together with the diced vegetables in a large bowl on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 4.** Wide 16:9. Three-quarter angle of small round patties being shaped by hand and dusted with pale frying flour on a tray on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 5.** Wide 16:9. Three-quarter angle of egg-coated patties sizzling golden in a black pan over low heat, edges set and firm on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 6.** Wide 16:9. Three-quarter angle of golden dongeurangttaeng arranged neatly on a white ceramic plate, steam rising on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+## 🐟 동태전 (id: 220)
+
+> **가로형(landscape)으로 요청**하세요. 5장 전부 필요합니다.
+
+**Step 1.** Wide 16:9. Three-quarter angle of pollock fillets being patted dry with paper towel on a wooden board, salt and pepper scattered on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 2.** Wide 16:9. Three-quarter angle of fillets being dredged in pale frying flour spread across a wide plate on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 3.** Wide 16:9. Three-quarter angle of three eggs being beaten smooth in a white bowl with a fork on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 4.** Wide 16:9. Three-quarter angle of egg-coated fillets frying gently in oil in a black pan, edges turning pale gold on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 5.** Wide 16:9. Three-quarter angle of golden dongtaejeon arranged in a row on a white ceramic plate on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+## 🥩 소고기 산적 (id: 221)
+
+> **가로형(landscape)으로 요청**하세요. 6장 전부 필요합니다.
+
+**Step 1.** Wide 16:9. Three-quarter angle of strips of beef marinating in dark soy glaze in a shallow bowl, glossy and dark on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 2.** Wide 16:9. Three-quarter angle of scallion and imitation crab sticks being cut to matching lengths on a wooden board on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 3.** Wide 16:9. Three-quarter angle of beef, scallion and crab stick being threaded onto wooden skewers in alternating colors on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 4.** Wide 16:9. Three-quarter angle of assembled skewers being dusted with pale frying flour on a tray on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 5.** Wide 16:9. Three-quarter angle of egg-coated skewers browning in a black pan over low heat, colors showing through on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 6.** Wide 16:9. Three-quarter angle of colorful beef sanjeok skewers lined up neatly on a white ceramic plate on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+## 🥔 토란국 (id: 222)
+
+> **가로형(landscape)으로 요청**하세요. 6장 전부 필요합니다.
+
+**Step 1.** Wide 16:9. Three-quarter angle of peeled taro roots soaking in cloudy salted water in a clear glass bowl on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 2.** Wide 16:9. Three-quarter angle of strips of beef brisket sizzling in sesame oil in a steel pot, edges browning on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 3.** Wide 16:9. Three-quarter angle of water and a sheet of dried kelp going into the pot, steam beginning to rise on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 4.** Wide 16:9. Three-quarter angle of peeled taro simmering in the clear broth, pieces turning soft and translucent on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 5.** Wide 16:9. Three-quarter angle of soy sauce and minced garlic being stirred into the pale broth with a ladle on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 6.** Wide 16:9. Three-quarter angle of taro soup in an earthenware bowl, diagonal scallion slices floating on the clear broth on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+## 🌿 도라지나물 (id: 223)
+
+> **가로형(landscape)으로 요청**하세요. 5장 전부 필요합니다.
+
+**Step 1.** Wide 16:9. Three-quarter angle of shredded bellflower root being rubbed with coarse salt in a white bowl on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 2.** Wide 16:9. Three-quarter angle of the roots being rinsed under running water, water running clear in a sieve on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 3.** Wide 16:9. Three-quarter angle of pale bellflower root stir-frying in sesame oil in a black pan on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 4.** Wide 16:9. Three-quarter angle of minced garlic and soy sauce being added to the pan, the roots turning glossy on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 5.** Wide 16:9. Three-quarter angle of doraji namul mounded in a small white bowl, toasted sesame scattered on top on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
