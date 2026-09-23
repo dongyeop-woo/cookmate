@@ -25,6 +25,8 @@ API = 'https://yojalal.com/api/recipes'
 FONT = os.path.join(os.path.dirname(__file__), '..', 'assets', 'fonts', 'BMJUA.otf')
 # 본문 보조용 — 주아체는 굵기가 하나뿐이라 작은 글씨에서 가독성이 떨어진다.
 FONT_BODY = '/System/Library/Fonts/AppleSDGothicNeo.ttc'
+# 레시피 본문용 손글씨체(메모멘트 꾸꾸). 굵기가 하나뿐이라 weight 는 무시된다.
+FONT_HAND = os.path.join(os.path.dirname(__file__), '..', 'assets', 'MemomentKkukkukk.ttf')
 W = H = 1080
 
 # 앱에서 쓰는 브랜드 색 그대로
@@ -70,6 +72,13 @@ def body(size, weight='regular'):
     idx = {'regular': 0, 'medium': 2, 'semibold': 4, 'bold': 6}[weight]
     return ImageFont.truetype(FONT_BODY, size, index=idx)
 
+
+def hand(size):
+    """손글씨체. 획이 가늘어 같은 크기의 고딕보다 작아 보이므로 크게 잡는다."""
+    if os.path.exists(FONT_HAND):
+        return ImageFont.truetype(FONT_HAND, size)
+    return body(size, 'medium')
+
 UA = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 '
                     '(KHTML, like Gecko) Chrome/126.0 Safari/537.36'}
 
@@ -89,6 +98,49 @@ def fetch_image(url):
         im = Image.open(io.BytesIO(r.read())).convert('RGB')
     _img_cache[url] = im
     return im.copy()
+
+# 분량 표기 (1컵 / 1/2대 / 500ml / 1큰술 …)
+_AMOUNT = re.compile(
+    r'\s*\d+(?:/\d+)?(?:\.\d+)?\s*'
+    r'(?:컵|대|장|개|봉|큰술|작은술|스푼|g|kg|ml|L|쪽|줌|캔|모|조각|마리|공기|T|알|포기|단)')
+
+def _has_batchim(ch):
+    return '가' <= ch <= '힣' and (ord(ch) - 0xAC00) % 28 != 0
+
+
+_PARTICLE_PAIRS = {'은': ('은', '는'), '는': ('은', '는'),
+                   '을': ('을', '를'), '를': ('을', '를'),
+                   '이': ('이', '가'), '가': ('이', '가'),
+                   '과': ('과', '와'), '와': ('과', '와')}
+
+
+def _fix_particle(name, rest):
+    """분량을 떼면 앞 글자 받침이 바뀌어 조사가 틀어진다('김치 1컵은' → '김치은')."""
+    if not rest or rest[0] not in _PARTICLE_PAIRS:
+        return rest
+    if len(rest) > 1 and rest[1] not in ' ,.\n':      # 조사가 아니라 단어의 첫 글자일 수 있다
+        return rest
+    with_b, without_b = _PARTICLE_PAIRS[rest[0]]
+    return (with_b if _has_batchim(name[-1]) else without_b) + rest[1:]
+
+
+def condense(text, ingredients):
+    """카드에 실을 짧은 문장. 재료 줄에 이미 적힌 분량을 단계에서 걷어낸다.
+
+    같은 정보를 두 번 보여줄 이유가 없고, 한 줄에 들어가면 훨씬 잘 읽힌다.
+    재료 줄에 없는 수치(물 500ml, 3분간 등)는 조리에 필요하므로 남긴다.
+    """
+    names = [g['name'] for g in (ingredients or []) if g.get('name')]
+    out = text
+    for n in sorted(names, key=len, reverse=True):
+        pat = re.compile(re.escape(n) + _AMOUNT.pattern)
+        while True:
+            m = pat.search(out)
+            if not m:
+                break
+            out = out[:m.start()] + n + _fix_particle(n, out[m.end():])
+    return re.sub(r'\s{2,}', ' ', out).strip()
+
 
 def palette_from(im, n=6):
     """사진의 주된 색조를 뽑아 밝은 파스텔 그라데이션을 만든다.
@@ -287,30 +339,8 @@ def make_outro():
     AI 이미지 생성으로는 만들 수 없다 — 한글이 깨지고 계정명이 틀리며
     매번 결과가 달라진다. 이런 건 코드로 그린다.
     """
-    # 배경 — 위아래 초록 그라데이션에 앱 카테고리 클레이 아이콘을 옅게 흩뿌린다.
-    # 격자무늬는 다른 계정들이 흔히 써서 겹친다. 우리 아이콘은 우리만 쓴다.
-    card = Image.new('RGB', (W, H))
-    strip = Image.new('RGB', (1, H))
-    c0, c1 = (31, 186, 126), (12, 138, 90)
-    for yy in range(H):
-        t = yy / (H - 1)
-        strip.putpixel((0, yy), tuple(round(c0[k] + (c1[k] - c0[k]) * t) for k in range(3)))
-    card.paste(strip.resize((W, H), Image.BILINEAR), (0, 0))
-
-    icodir = os.path.join(os.path.dirname(__file__), '..', 'assets', 'icons', 'categories')
-    if os.path.isdir(icodir):
-        names = sorted(f for f in os.listdir(icodir) if f.endswith('.png'))
-        spots = [(-40, 60, 150, -12), (300, -50, 190, 14), (760, 40, 165, -20),
-                 (60, 330, 140, 18), (860, 320, 150, 10), (-30, 700, 175, 8),
-                 (330, 860, 160, -16), (720, 760, 150, 20), (930, 900, 130, -10),
-                 (140, 980, 140, 12)]
-        for i, (sx, sy, sz, rot) in enumerate(spots):
-            f = os.path.join(icodir, names[i % len(names)])
-            ic = Image.open(f).convert('RGBA').resize((sz, sz), Image.LANCZOS)
-            a = ic.getchannel('A').point(lambda v: int(v * 0.16))   # 아주 옅게
-            ic.putalpha(a)
-            ic = ic.rotate(rot, expand=True, resample=Image.BICUBIC)
-            card.paste(ic, (sx, sy), ic)
+    # 배경 — 흰 바탕. 카드와 배지에 시선이 모이도록 장식을 두지 않는다.
+    card = Image.new('RGB', (W, H), WHITE)
 
     d = ImageDraw.Draw(card)
 
@@ -319,11 +349,11 @@ def make_outro():
     # 흰 카드를 화면 중앙에서 살짝 위로. 아래로 배지·안내문구가 이어지므로
     # 정중앙에 두면 전체가 아래로 처져 보인다.
     cx, cy = (W - cw) // 2, (H - ch) // 2 - 56
-    # 은은한 테두리 광 — 넓으면 배경 아이콘을 다 지운다
+    # 흰 배경 위에서는 흰 카드가 묻히므로 옅은 회색 그림자로 띄운다
     glow = Image.new('RGBA', (cw + 56, ch + 56), (0, 0, 0, 0))
-    ImageDraw.Draw(glow).rounded_rectangle([28, 28, cw + 27, ch + 27], radius=36,
-                                           fill=(255, 255, 255, 190))
-    glow = glow.filter(ImageFilter.GaussianBlur(15))
+    ImageDraw.Draw(glow).rounded_rectangle([28, 34, cw + 27, ch + 33], radius=36,
+                                           fill=(0, 0, 0, 46))
+    glow = glow.filter(ImageFilter.GaussianBlur(17))
     card.paste(glow, (cx - 28, cy - 28), glow)
     plate = Image.new('RGBA', (cw, ch), (0, 0, 0, 0))
     ImageDraw.Draw(plate).rounded_rectangle([0, 0, cw - 1, ch - 1], radius=36,
@@ -367,7 +397,7 @@ def make_outro():
     # Apple/Google 모두 배지를 직접 그리는 걸 금지한다. 파일이 없으면
     # 흉내내지 않고 문구로 대체한다.
     d.text(((W - d.textlength('앱으로 더 편하게', font=font(30))) / 2, cy + ch + 44),
-           '앱으로 더 편하게', font=font(30), fill=WHITE)
+           '앱으로 더 편하게', font=font(30), fill=INK)
 
     badges = []
     for fn in ('badge-appstore.png', 'badge-googleplay.png'):
@@ -393,35 +423,50 @@ def make_outro():
 
     txt = "스토어에서 '요잘알' 검색"
     f2 = body(24, 'medium')
-    d.text(((W - d.textlength(txt, font=f2)) / 2, by2 + 22), txt, font=f2, fill=(222, 245, 233))
+    d.text(((W - d.textlength(txt, font=f2)) / 2, by2 + 22), txt, font=f2, fill=(140, 140, 140))
 
     return card
 
 # ── 한 장에 레시피 하나 ─────────────────────────────────
-def make_single(r):
-    """레시피 1개를 1080x1080 한 장에. 피드에서 축소돼도 읽히도록 글자를 크게 쓴다."""
+def single_box_h(r):
+    """그 레시피가 필요로 하는 패널 높이. 세트 전체를 같은 높이로 맞추는 데 쓴다."""
+    return make_single(r, measure=True)
+
+
+def make_single(r, box_h=None, measure=False):
+    """레시피 1개를 1080x1080 한 장에. 피드에서 축소돼도 읽히도록 글자를 크게 쓴다.
+
+    box_h 를 주면 그 높이로 고정한다. 장마다 패널 높이가 다르면 캐러셀을
+    넘길 때 덜컹거려서, 세트 안에서는 가장 긴 것에 맞춘다.
+    """
     card = Image.new('RGB', (W, H), WHITE)
     d = ImageDraw.Draw(card)
 
     # 글을 먼저 배치해 보고 필요한 높이만큼만 패널을 깐다
-    f_ing, f_step = body(25, 'medium'), body(29, 'bold')
+    f_ing, f_step = hand(30), hand(34)
     ing = ', '.join(f"{g['name']} {g['amount']}" for g in (r.get('ingredients') or []))
     ing_lines = wrap(d, f'준비재료  {ing}', f_ing, W - 130)[:3]
-    step_lines = [wrap(d, f"{n}. {st['description']}", f_step, W - 130)[:2]
+    step_lines = [wrap(d, f"{n}. {condense(st['description'], r.get('ingredients'))}",
+                       f_step, W - 130)[:2]
                   for n, st in enumerate(r.get('steps') or [], 1)]
 
-    tf = font(70)
+    tf = font(62)
     tt = f"#{r['title'].replace(' ', '')}"
     while d.textlength(tt, font=tf) > W - 120 and tf.size > 40:
         tf = font(tf.size - 2)
 
     head = int(tf.size * 0.62)
-    need = head + len(ing_lines) * 34 + 18 + sum(len(g) * 38 + 10 for g in step_lines) + 40
-    box_h = min(int(H * 0.58), need)
+    need = min(int(H * 0.56),
+               head + len(ing_lines) * 34 + 36 + sum(len(g) * 40 + 8 for g in step_lines) + 36)
+    if measure:
+        return need
+    box_h = box_h or need
     top = H - box_h
 
     if r.get('image'):
-        card.paste(cover_fit(fetch_image(r['image']), W, H), (0, 0))
+        # 사진은 패널 위쪽만 보인다. 1080 정사각에 맞추면 원본(약 1100x620)을
+        # 1.7배 확대하게 돼 흐려진다. 실제로 보이는 크기에만 맞춘다.
+        card.paste(cover_fit(fetch_image(r['image']), W, top), (0, 0))
     card.paste(Image.new('RGBA', (W, box_h), (255, 255, 255, 245)), (0, top),
                Image.new('RGBA', (W, box_h), (255, 255, 255, 245)))
 
@@ -452,13 +497,13 @@ def make_single(r):
 
     px, py = 62, top + head
     for ln in ing_lines:
-        d.text((px, py), ln, font=f_ing, fill=(125, 125, 125)); py += 34
-    py += 18
+        d.text((px, py), ln, font=f_ing, fill=(135, 135, 135)); py += 34
+    py += 34                                   # 재료 줄과 조리 단계 사이 여백
     for g in step_lines:
         for k, ln in enumerate(g):
-            d.text((px + (0 if k == 0 else 26), py), ln, font=f_step, fill=INK)
-            py += 38
-        py += 10
+            d.text((px + (0 if k == 0 else 24), py), ln, font=f_step, fill=INK)
+            py += 40
+        py += 8
     return card
 
 def make_grid(recipes):
@@ -474,7 +519,8 @@ def make_grid(recipes):
         f_ing, f_step = body(14, 'medium'), body(15, 'bold')
         ing = ', '.join(f"{g['name']} {g['amount']}" for g in (r.get('ingredients') or [])[:6])
         ing_lines = wrap(d, f'준비재료: {ing}', f_ing, half - 48)[:2]
-        step_lines = [wrap(d, f"{n}. {st['description']}", f_step, half - 48)[:2]
+        step_lines = [wrap(d, f"{n}. {condense(st['description'], r.get('ingredients'))}",
+                           f_step, half - 48)[:2]
                       for n, st in enumerate((r.get('steps') or [])[:4], 1)]
         tf = font(34)
         tt = f"#{r['title'].replace(' ', '')}"
@@ -562,8 +608,9 @@ def main():
 
     pages = [('01_cover.png', make_cover(picked[0]['image'], a.title, a.sub))]
     if a.layout == 'single':
+        uniform = max(single_box_h(r) for r in picked)   # 넘길 때 패널이 튀지 않게
         for r in picked:
-            pages.append((f"{len(pages)+1:02d}_{r['id']}.png", make_single(r)))
+            pages.append((f"{len(pages)+1:02d}_{r['id']}.png", make_single(r, uniform)))
     else:
         for n in range(0, len(picked), 4):
             pages.append((f'{len(pages)+1:02d}_grid.png', make_grid(picked[n:n + 4])))
