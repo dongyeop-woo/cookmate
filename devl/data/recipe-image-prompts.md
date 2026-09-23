@@ -1,6 +1,10 @@
 # 레시피 단계별 이미지 생성 프롬프트 (ChatGPT 이미지 생성용)
 
-각 프롬프트는 3문장 시네마틱 구조로 작성: ① 주체+액션+디테일 → ② 세팅+소품 → ③ 스타일 마커. ChatGPT 에 그대로 복붙해 사용.
+**스텝 설명에 나오는 재료는 프롬프트에도 전부 넣을 것.** 설명엔 김치·대파·어묵이 있는데 프롬프트에 김치만
+적으면 사진에 김치만 나온다. 썰기 같은 준비 단계는 정물이라 여러 재료가 한 프레임에 들어간다.
+
+**프롬프트 하나에 동작은 하나만.** 동작을 여러 개 넣으면 모델이 한 프레임에 전부 우겨넣어 어색해지고,
+여백을 채우려고 레시피에 없는 재료(견과·향신료 등)를 멋대로 만들어낸다. 짧을수록 정확하다. ChatGPT 에 그대로 복붙해 사용.
 
 한 레시피는 **한 도구로 끝까지** 뽑으세요. 도구를 섞으면 화풍이 달라져 시리즈 일관성이 깨집니다.
 203~210 은 Google Flow(Imagen 4)로, 211 부터는 ChatGPT 로 생성했습니다.
@@ -151,115 +155,117 @@
 
 ## 🍌 바나나 팬케이크 (id: 212)
 
-> **가로형(landscape)으로 요청**하세요. 앱이 스텝 이미지를 16:10 으로 자르기 때문에, 세로로 뽑으면 위아래가 잘려나갑니다.
+> **가로형(landscape)으로 요청**하세요. 앱이 스텝 이미지를 16:10 으로 자릅니다.
 > 6장 전부 필요합니다 — `upload-and-seed-recipe.js` 가 한 장이라도 없으면 중단합니다.
 
-**Step 1.** Wide 16:9 landscape composition. Three-quarter angle of a ripe spotted banana being mashed with a fork in a white ceramic bowl into a thick golden puree, sliced banana coins fanned on a wooden board beside it on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, calm weekend breakfast.
+**Step 1.** Wide 16:9. A ripe spotted banana being mashed with a fork in a white ceramic bowl, banana coins on a wooden board beside it. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 2.** Wide 16:9 landscape composition. Three-quarter angle of two cracked eggs and a pour of milk being whisked into the mashed banana, pale flour sifting over the surface as a spatula folds it in on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, calm weekend breakfast.
+**Step 2.** Wide 16:9. Flour being sifted into pale banana batter in the same bowl, a whisk resting in it. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 3.** Wide 16:9 landscape composition. Three-quarter angle of thick pale batter resting undisturbed in the white ceramic bowl, surface smooth and glossy with slow bubbles rising on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, calm weekend breakfast.
+**Step 3.** Wide 16:9. Thick pale batter resting in the white bowl, surface smooth with slow bubbles. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 4.** Wide 16:9 landscape composition. Three-quarter angle of a ladle pouring one round of batter onto a buttered matte black pan, the circle spreading with edges setting to pale gold on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, calm weekend breakfast.
+**Step 4.** Wide 16:9. A ladle pouring one round of batter onto a buttered black pan. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 5.** Wide 16:9 landscape composition. Three-quarter angle of a spatula flipping a pancake to reveal a deep even golden-brown surface, bubbles across the raw batter above on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, calm weekend breakfast.
+**Step 5.** Wide 16:9. A spatula flipping a pancake to reveal a deep golden-brown surface. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 6.** Wide 16:9 landscape composition. Three-quarter angle of a tall stack of golden banana pancakes on a white plate, crowned with banana coins and a thick ribbon of amber honey sliding down, a fork and glass of milk within frame on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, calm weekend breakfast.
+**Step 6.** Wide 16:9. A tall stack of golden banana pancakes on a white plate, banana coins and honey on top. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
 ## 🍜 김치 우동 (id: 213)
 
-> **가로형(landscape)으로 요청**하세요. 앱이 스텝 이미지를 16:10 으로 자르기 때문에, 세로로 뽑으면 위아래가 잘려나갑니다.
+> **가로형(landscape)으로 요청**하세요. 앱이 스텝 이미지를 16:10 으로 자릅니다.
 > 6장 전부 필요합니다 — `upload-and-seed-recipe.js` 가 한 장이라도 없으면 중단합니다.
 
-**Step 1.** Wide 16:9 landscape composition. Three-quarter angle of well-fermented kimchi sliced into bite-size pieces on a wooden board, diagonal scallion and fish cake strips beside it on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, comforting midnight bowl.
+**Step 1.** Wide 16:9. Well-fermented kimchi being sliced on a wooden board, with diagonally cut scallion and bite-size fish cake pieces laid out beside it. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 2.** Wide 16:9 landscape composition. Three-quarter angle of the kimchi sizzling in sesame oil in a small steel pot, edges darkening as steam rises on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, comforting midnight bowl.
+**Step 2.** Wide 16:9. Kimchi sizzling in sesame oil in a small steel pot, steam rising. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 3.** Wide 16:9 landscape composition. Three-quarter angle of clear water being poured into the pot, the broth instantly blooming a deep red-orange on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, comforting midnight bowl.
+**Step 3.** Wide 16:9. Water being poured into the pot, the broth blooming deep red-orange. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 4.** Wide 16:9 landscape composition. Three-quarter angle of fish cake strips, soy sauce and red chili flakes going into the bubbling red broth on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, comforting midnight bowl.
+**Step 4.** Wide 16:9. Fish cake pieces, a spoonful of soy sauce and a scatter of red chili flakes going into the bubbling red broth. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 5.** Wide 16:9 landscape composition. Three-quarter angle of thick white udon noodles being loosened into the red broth with chopsticks, scallion scattered on top on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, comforting midnight bowl.
+**Step 5.** Wide 16:9. Thick udon noodles being loosened into the red broth with chopsticks, diagonal scallion slices dropped on top. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 6.** Wide 16:9 landscape composition. Three-quarter angle of kimchi udon in a deep ceramic bowl, glossy noodles lifted high on chopsticks above the steaming red broth on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, comforting midnight bowl.
+**Step 6.** Wide 16:9. Kimchi udon in a deep bowl, glossy noodles lifted on chopsticks over steaming broth. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
 ## 🍗 마늘 간장 닭날개 (id: 214)
 
-> **가로형(landscape)으로 요청**하세요. 앱이 스텝 이미지를 16:10 으로 자르기 때문에, 세로로 뽑으면 위아래가 잘려나갑니다.
+> **가로형(landscape)으로 요청**하세요. 앱이 스텝 이미지를 16:10 으로 자릅니다.
 > 6장 전부 필요합니다 — `upload-and-seed-recipe.js` 가 한 장이라도 없으면 중단합니다.
 
-**Step 1.** Wide 16:9 landscape composition. Three-quarter angle of raw chicken wings patted dry on a wooden board, a fork piercing the skin with small punctures visible on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, irresistible late-night bite.
+**Step 1.** Wide 16:9. Raw chicken wings patted dry on a wooden board, a fork piercing the skin. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 2.** Wide 16:9 landscape composition. Three-quarter angle of whole garlic cloves being halved on the same board, cut faces bright ivory on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, irresistible late-night bite.
+**Step 2.** Wide 16:9. Whole garlic cloves being halved on a wooden board. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 3.** Wide 16:9 landscape composition. Three-quarter angle of chicken wings laid in a hot oiled black pan, skin turning deep golden and crisping at the edges on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, irresistible late-night bite.
+**Step 3.** Wide 16:9. Chicken wings searing in a black pan, skin turning deep golden. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 4.** Wide 16:9 landscape composition. Three-quarter angle of tongs flipping the wings to an evenly browned underside as halved garlic tumbles in beside them on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, irresistible late-night bite.
+**Step 4.** Wide 16:9. Tongs flipping the browned wings as halved garlic tumbles into the pan. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 5.** Wide 16:9 landscape composition. Three-quarter angle of dark soy glaze poured over the wings and garlic, bubbling and reducing to a glossy syrup on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, irresistible late-night bite.
+**Step 5.** Wide 16:9. Dark soy glaze bubbling and reducing around the wings in the pan. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 6.** Wide 16:9 landscape composition. Three-quarter angle of glossy garlic soy chicken wings piled on a white plate, caramelised garlic tucked between them, toasted sesame scattered on top, a frosted glass of beer within frame on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, irresistible late-night bite.
+**Step 6.** Wide 16:9. Glossy garlic soy chicken wings piled on a white plate, toasted sesame scattered on top. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
 ## 🐟 참치마요 덮밥 (id: 215)
 
-> **가로형(landscape)으로 요청**하세요. 앱이 스텝 이미지를 16:10 으로 자르기 때문에, 세로로 뽑으면 위아래가 잘려나갑니다.
+> **가로형(landscape)으로 요청**하세요. 앱이 스텝 이미지를 16:10 으로 자릅니다.
 > 5장 전부 필요합니다 — `upload-and-seed-recipe.js` 가 한 장이라도 없으면 중단합니다.
 
-**Step 1.** Wide 16:9 landscape composition. Three-quarter angle of an opened tuna tin pressed with its lid to drain the oil, a slim scallion sliced into fine rings on a wooden board beside it on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, quick satisfying supper.
+**Step 1.** Wide 16:9. An opened tuna tin pressed with its lid to drain the oil, finely sliced scallion on a wooden board beside it. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 2.** Wide 16:9 landscape composition. Three-quarter angle of drained tuna and white mayonnaise folded together in a small white bowl into a creamy pale mixture on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, quick satisfying supper.
+**Step 2.** Wide 16:9. Tuna and white mayonnaise folded together in a small white bowl. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 3.** Wide 16:9 landscape composition. Three-quarter angle of a fresh egg frying sunny-side up in a black pan, the white set and the yolk still glossy and soft on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, quick satisfying supper.
+**Step 3.** Wide 16:9. A fresh egg frying sunny-side up in a black pan, the yolk glossy and soft. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 4.** Wide 16:9 landscape composition. Three-quarter angle of dark soy drizzled over steaming white rice in a ceramic bowl, creamy tuna mayo mounded high on top on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, quick satisfying supper.
+**Step 4.** Wide 16:9. Creamy tuna mayo mounded over steaming white rice in a ceramic bowl. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 5.** Wide 16:9 landscape composition. Three-quarter angle of the finished tuna mayo rice bowl, sunny-side-up egg centred on the mound, shredded seaweed and scallion scattered over the glossy yolk on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, quick satisfying supper.
+**Step 5.** Wide 16:9. A finished tuna mayo rice bowl, sunny-side-up egg centred, shredded seaweed and scallion on top. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
 ## 🦐 감바스 알 아히요 (id: 216)
 
-> **가로형(landscape)으로 요청**하세요. 앱이 스텝 이미지를 16:10 으로 자르기 때문에, 세로로 뽑으면 위아래가 잘려나갑니다.
-> 5장 전부 필요합니다 — `upload-and-seed-recipe.js` 가 한 장이라도 없으면 중단합니다.
+> **가로형(landscape)으로 요청**하세요. 앱이 스텝 이미지를 16:10 으로 자릅니다.
+> 6장 전부 필요합니다 — `upload-and-seed-recipe.js` 가 한 장이라도 없으면 중단합니다.
 
-**Step 1.** Wide 16:9 landscape composition. Three-quarter angle of raw shrimp peeled and deveined on a wooden board, coarse salt scattered over them in a white bowl on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, Spanish tapas evening.
+**Step 1.** Wide 16:9. Raw shrimp being peeled and deveined on a wooden board. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 2.** Wide 16:9 landscape composition. Three-quarter angle of garlic cloves sliced into thin translucent coins on the same wooden board on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, Spanish tapas evening.
+**Step 2.** Wide 16:9. Peeled shrimp resting in a white bowl, coarse salt scattered over them. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 3.** Wide 16:9 landscape composition. Three-quarter angle of garlic slices bubbling gently in a shallow pool of olive oil in a small black skillet over low heat on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, Spanish tapas evening.
+**Step 3.** Wide 16:9. Garlic cloves sliced into thin translucent coins on a wooden board. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 4.** Wide 16:9 landscape composition. Three-quarter angle of dried red chillies crushed by hand into the golden garlic oil as coral-pink shrimp cook alongside on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, Spanish tapas evening.
+**Step 4.** Wide 16:9. Garlic slices bubbling gently in olive oil in a small black skillet. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 5.** Wide 16:9 landscape composition. Three-quarter angle of gambas al ajillo bubbling in the black skillet, coral shrimp and golden garlic suspended in glossy oil, thick slices of crusty baguette leaning against the rim on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, Spanish tapas evening.
+**Step 5.** Wide 16:9. Coral-pink shrimp cooking in the golden garlic oil with crushed red chillies. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 6.** Wide 16:9. Gambas al ajillo bubbling in the skillet, crusty baguette slices leaning at the rim. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
 ## 🍄 버섯 크림 리조또 (id: 217)
 
-> **가로형(landscape)으로 요청**하세요. 앱이 스텝 이미지를 16:10 으로 자르기 때문에, 세로로 뽑으면 위아래가 잘려나갑니다.
+> **가로형(landscape)으로 요청**하세요. 앱이 스텝 이미지를 16:10 으로 자릅니다.
 > 6장 전부 필요합니다 — `upload-and-seed-recipe.js` 가 한 장이라도 없으면 중단합니다.
 
-**Step 1.** Wide 16:9 landscape composition. Three-quarter angle of button mushrooms sliced into even thin pieces on a wooden board, finely diced onion piled beside them on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, elegant restaurant plate.
+**Step 1.** Wide 16:9. Button mushrooms sliced thin on a wooden board, finely diced onion beside them. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 2.** Wide 16:9 landscape composition. Three-quarter angle of diced onion softening in melted butter in a wide shallow pan, turning translucent and glossy on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, elegant restaurant plate.
+**Step 2.** Wide 16:9. Diced onion softening in melted butter in a wide shallow pan. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 3.** Wide 16:9 landscape composition. Three-quarter angle of sliced mushrooms browning in the same pan, moisture evaporating and edges turning deep gold on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, elegant restaurant plate.
+**Step 3.** Wide 16:9. Sliced mushrooms browning in the same pan, edges turning deep gold. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 4.** Wide 16:9 landscape composition. Three-quarter angle of dry white rice grains stirred into the mushrooms and butter, each grain translucent at the edge on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, elegant restaurant plate.
+**Step 4.** Wide 16:9. Dry white rice grains being stirred into the mushrooms and butter. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 5.** Wide 16:9 landscape composition. Three-quarter angle of warm stock ladled into the rice, steam rising as a wooden spoon stirs in slow circles on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, elegant restaurant plate.
+**Step 5.** Wide 16:9. Warm stock being ladled into the rice, a wooden spoon stirring. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 6.** Wide 16:9 landscape composition. Three-quarter angle of mushroom cream risotto spread wide in a shallow white bowl, glossy and flowing, crowned with shaved parmesan and cracked black pepper on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, elegant restaurant plate.
+**Step 6.** Wide 16:9. Mushroom cream risotto spread wide in a shallow white bowl, shaved parmesan on top. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
 ## 🧅 프렌치 어니언 수프 (id: 218)
 
-> **가로형(landscape)으로 요청**하세요. 앱이 스텝 이미지를 16:10 으로 자르기 때문에, 세로로 뽑으면 위아래가 잘려나갑니다.
+> **가로형(landscape)으로 요청**하세요. 앱이 스텝 이미지를 16:10 으로 자릅니다.
 > 6장 전부 필요합니다 — `upload-and-seed-recipe.js` 가 한 장이라도 없으면 중단합니다.
 
-**Step 1.** Wide 16:9 landscape composition. Three-quarter angle of onions sliced pole to pole into thin even strips on a wooden board, a tall pale pile forming on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, golden bistro warmth.
+**Step 1.** Wide 16:9. Onions being sliced into thin even strips on a wooden board, a tall pale pile forming. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 2.** Wide 16:9 landscape composition. Three-quarter angle of the mountain of sliced onion collapsed and turned deep amber brown in a pot of foaming butter, a wooden spoon dragging through on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, golden bistro warmth.
+**Step 2.** Wide 16:9. Sliced onion turned deep amber brown in a pot of butter, a wooden spoon dragging through. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 3.** Wide 16:9 landscape composition. Three-quarter angle of coarse salt sprinkled over the glossy mahogany caramelised onions in the pot on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, golden bistro warmth.
+**Step 3.** Wide 16:9. Coarse salt being sprinkled over the glossy caramelised onions in the pot. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 4.** Wide 16:9 landscape composition. Three-quarter angle of dark beef stock poured over the caramelised onions, the pot filling with a deep brown broth on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, golden bistro warmth.
+**Step 4.** Wide 16:9. Dark beef stock being poured over the caramelised onions. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 5.** Wide 16:9 landscape composition. Three-quarter angle of baguette slices toasting to golden brown in a dry pan, surfaces crisp and lightly charred on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, golden bistro warmth.
+**Step 5.** Wide 16:9. Baguette slices toasting to golden brown in a dry pan. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 6.** Wide 16:9 landscape composition. Three-quarter angle of french onion soup in a rustic crock, the gruyere crust browned and bubbling with a molten cheese pull lifting from the surface on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, golden bistro warmth.
+**Step 6.** Wide 16:9. French onion soup in a rustic crock, the gruyere crust browned and bubbling. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
