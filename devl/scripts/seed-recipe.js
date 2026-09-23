@@ -49,6 +49,7 @@ async function seedRecipe(targetId) {
     description: recipe.description,
     ingredients: recipe.ingredients,
     steps: recipe.steps,
+    servings: recipe.servings || '1',
     updatedAt: now,
   };
   if (!snap.exists) payload.createdAt = now;

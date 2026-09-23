@@ -22,6 +22,8 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+const os = require('os');
+const { execFileSync } = require('child_process');
 const admin = require('firebase-admin');
 
 const RECIPES_JSON = path.join(__dirname, '..', 'data', 'recipes.json');
@@ -42,8 +44,33 @@ const bucket = admin.storage().bucket();
  * Firebase Storage에 이미지 업로드 후 다운로드 토큰 포함된 공개 URL 반환.
  * 기존 앱이 사용하는 패턴과 동일: recipeImages/admin_{timestamp}_{hex}.jpg
  */
+/** 업로드 상한 — 기존 레시피 이미지(약 136KB)와 자릿수를 맞추기 위한 기준. */
+const MAX_EDGE = 1100;
+const JPEG_QUALITY = 65;
+
+/**
+ * Flow 에서 받은 원본은 장당 2MB 가 넘는다. 그대로 올리면 기존 이미지의 20배가 되어
+ * 사용자 데이터와 Storage 요금을 함께 먹는다. sips(macOS 기본 탑재)로 줄여서 올린다.
+ * sips 가 없는 환경에서는 경고만 남기고 원본을 올린다.
+ */
+function compressToJpeg(localPath) {
+  const out = path.join(os.tmpdir(), `yj_${crypto.randomBytes(6).toString('hex')}.jpg`);
+  try {
+    execFileSync('sips', ['-Z', String(MAX_EDGE), '-s', 'format', 'jpeg',
+      '-s', 'formatOptions', String(JPEG_QUALITY), localPath, '--out', out], { stdio: 'ignore' });
+    const buf = fs.readFileSync(out);
+    fs.unlinkSync(out);
+    return buf;
+  } catch (e) {
+    console.warn(`  ⚠️  압축 실패(${e.message.split('\n')[0]}) — 원본 그대로 업로드합니다.`);
+    return fs.readFileSync(localPath);
+  }
+}
+
 async function uploadImage(localPath, recipeId, stepNum) {
-  const buffer = fs.readFileSync(localPath);
+  const raw = fs.statSync(localPath).size;
+  const buffer = compressToJpeg(localPath);
+  process.stdout.write(`(${(raw / 1048576).toFixed(1)}MB→${Math.round(buffer.length / 1024)}KB) `);
   const ts = Date.now();
   const rand = crypto.randomBytes(4).toString('hex');
   const remoteName = `recipeImages/admin_${ts}_${rand}.jpg`;
@@ -143,6 +170,7 @@ async function main() {
     description: recipe.description,
     ingredients: recipe.ingredients,
     steps: recipe.steps,
+    servings: recipe.servings || '1',
     updatedAt: now,
   };
   if (!snap.exists) payload.createdAt = now;

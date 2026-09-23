@@ -123,3 +123,173 @@
 **Step 4.** Three-quarter angle of exactly two square slices of pale yellow processed American cheese melting into the creamy salmon-pink noodles in the same small stainless steel deep pot as a wooden spatula tosses everything together, the cheese turning the sauce into a glossy thick uniform coating that drapes off every noodle. The pot sits on the induction burner on a dark studio counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, intoxicating cheese melt moment.
 
 **Step 5.** Three-quarter hero shot of glossy creamy salmon-pink carbo buldak noodles plated high in a deep matte black ceramic bowl, generously crowned with a fluffy mountain of pale yellow shredded mozzarella in the center and topped with one single jewel-bright bright orange round raw egg yolk sitting on top of the cheese mountain. The bowl sits centered on a dark studio counter with metal chopsticks and a glass of cold milk just within frame. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, ultimate viral midnight hero.
+
+## 🌽 콘치즈 (id: 211)
+
+> 9장 전부 필요합니다 — `upload-and-seed-recipe.js` 가 한 장이라도 없으면 중단합니다.
+
+**Step 1.** Three-quarter angle of golden corn kernels draining through a small stainless steel sieve over a clear glass bowl, an opened Hangul-labeled 스위트콘 can beside it. A matte black cast iron skillet and a butter block sit nearby on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, cozy late-night prep.
+
+**Step 2.** Three-quarter angle of a green scallion being sliced into fine rings on a rustic wooden board, the pale rounds fanning into a neat pile. The sieve of drained corn sits just behind on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, careful kitchen detail.
+
+**Step 3.** Three-quarter angle of white mayonnaise and a spoonful of sugar being folded into the drained corn in a clear glass bowl, a spatula leaving thick creamy ribbons. On a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, rich creamy build.
+
+**Step 4.** Three-quarter angle, close, of a cube of butter melting and foaming across a matte black cast iron skillet over low heat, pooling into a glossy golden film. On a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, warm buttery start.
+
+**Step 5.** Three-quarter angle of the creamy corn spread in an even layer across the same cast iron skillet, kernels sizzling and deepening to toasted gold, a wooden spatula at the rim. On a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, sizzling comfort food.
+
+**Step 6.** Three-quarter angle of shredded mozzarella being showered over the hot corn in the same skillet, loose strands piling high and slumping at the edges from the heat. On a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, cheese avalanche.
+
+**Step 7.** Three-quarter angle of the mozzarella melted into a glossy molten blanket over the corn, bubbling gently with golden-browned blisters, a glass lid lifted just above releasing steam. On a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, molten cheese payoff.
+
+**Step 8.** Three-quarter angle, close, of coarse black pepper being ground over the molten cheese, dark specks scattering across the glossy surface. On a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, final seasoning.
+
+**Step 9.** Three-quarter hero shot of finished corn cheese in the cast iron skillet, molten mozzarella stretching into a long glossy pull from a wooden spoon, crowned with fresh scallion rings and cracked pepper. A frosted glass of cold beer just within frame on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, ultimate cheese pull hero.
+
+## 🍌 바나나 팬케이크 (id: 212)
+
+> 9장 전부 필요합니다 — `upload-and-seed-recipe.js` 가 한 장이라도 없으면 중단합니다.
+
+**Step 1.** Three-quarter angle of a ripe spotted banana being mashed with a fork in a white ceramic bowl into a thick golden puree, a second banana and two brown eggs beside it on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, calm morning prep.
+
+**Step 2.** Three-quarter angle of a banana sliced into even round coins on a rustic wooden board, the ivory rounds in an overlapping row. On a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, bright breakfast detail.
+
+**Step 3.** Three-quarter angle of two cracked eggs and a pour of milk being whisked into the mashed banana in the same white bowl, turning a smooth pale custard yellow. On a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, smooth batter.
+
+**Step 4.** Three-quarter angle of pale flour being sifted over the banana mixture in the same bowl, a spatula folding it in with a few streaks still visible. On a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, gentle folding.
+
+**Step 5.** Three-quarter angle of thick pale batter resting in the same white bowl, the surface smooth and glossy with slow bubbles rising. On a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, quiet resting batter.
+
+**Step 6.** Three-quarter angle, close, of a paper towel wiping a thin film of melted butter across a matte black non-stick pan over low heat. On a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, careful nonstick prep.
+
+**Step 7.** Three-quarter angle of a ladle pouring one round of batter onto the same pan, spreading into a smooth circle with edges setting to pale gold. On a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, satisfying first pour.
+
+**Step 8.** Three-quarter angle, close, of a spatula flipping a pancake in the same pan to reveal a deep even golden-brown surface, bubbles across the raw batter above. On a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, perfect golden flip.
+
+**Step 9.** Three-quarter hero shot of a tall stack of five golden banana pancakes on a white plate, crowned with banana coins and a thick ribbon of amber honey sliding down. A fork and a glass of milk just within frame on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, weekend breakfast hero.
+
+## 🍜 김치 우동 (id: 213)
+
+> 8장 전부 필요합니다 — `upload-and-seed-recipe.js` 가 한 장이라도 없으면 중단합니다.
+
+**Step 1.** Three-quarter angle of well-fermented kimchi being sliced into bite-size pieces on a wooden board, the deep red leaves glistening. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, warm late-night prep.
+
+**Step 2.** Three-quarter angle of a scallion cut on the diagonal and fish cakes sliced into strips beside the chopped kimchi on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, tidy mise en place.
+
+**Step 3.** Three-quarter angle of the kimchi sizzling in sesame oil in a small steel pot over medium heat, edges darkening and steam rising. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, fragrant first sear.
+
+**Step 4.** Three-quarter angle of clear water being poured into the pot of sautéed kimchi, the broth instantly blooming a deep red-orange. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, broth taking colour.
+
+**Step 5.** Three-quarter angle of fish cake strips, soy sauce and a spoonful of red chili flakes going into the simmering red broth. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, deepening the flavour.
+
+**Step 6.** Three-quarter angle of thick white udon noodles being loosened into the bubbling red broth with chopsticks. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, noodles going in.
+
+**Step 7.** Three-quarter angle of diagonal scallion slices scattered over the finished red broth, wilting instantly in the steam. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, final green note.
+
+**Step 8.** Three-quarter hero shot of kimchi udon in a deep ceramic bowl, thick glossy noodles lifted high on chopsticks above the steaming red broth, fish cake and scallion on top on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, comforting midnight hero.
+
+## 🍗 마늘 간장 닭날개 (id: 214)
+
+> 9장 전부 필요합니다 — `upload-and-seed-recipe.js` 가 한 장이라도 없으면 중단합니다.
+
+**Step 1.** Three-quarter angle of raw chicken wings being patted dry with paper towel on a wooden board, the skin pale and taut. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, careful prep.
+
+**Step 2.** Three-quarter angle of a fork piercing the chicken wing skin repeatedly, small punctures visible across the surface. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, precise technique detail.
+
+**Step 3.** Three-quarter angle of whole garlic cloves being halved on the same wooden board, cut faces bright ivory. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, garlic prep.
+
+**Step 4.** Three-quarter angle of chicken wings laid in a hot oiled black pan, the skin turning deep golden and crisping at the edges. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, sizzling sear.
+
+**Step 5.** Three-quarter angle of tongs flipping the wings to reveal an evenly browned golden underside in the same pan. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, perfect colour.
+
+**Step 6.** Three-quarter angle of halved garlic cloves tumbling into the pan beside the browned wings, edges just turning gold. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, garlic hitting the heat.
+
+**Step 7.** Three-quarter angle of dark soy glaze being poured over the wings and garlic, bubbling and reducing to a glossy syrup. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, rich braise.
+
+**Step 8.** Three-quarter angle, close, of the wings coated in a thick glossy dark glaze, black pepper being cracked over the top. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, final seasoning.
+
+**Step 9.** Three-quarter hero shot of glossy garlic soy chicken wings piled on a white plate, caramelised garlic cloves tucked between them and toasted sesame scattered on top. A frosted glass of beer just within frame on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, irresistible late-night hero.
+
+## 🐟 참치마요 덮밥 (id: 215)
+
+> 8장 전부 필요합니다 — `upload-and-seed-recipe.js` 가 한 장이라도 없으면 중단합니다.
+
+**Step 1.** Three-quarter angle of an opened canned tuna tin being pressed with its lid to drain the oil, the flaked tuna compacting inside. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, quick prep.
+
+**Step 2.** Three-quarter angle of drained tuna and white mayonnaise being folded together in a small white bowl into a creamy pale mixture. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, creamy mix.
+
+**Step 3.** Three-quarter angle of a slim scallion sliced into fine rings on a wooden board, a small bright green pile forming. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, fresh garnish prep.
+
+**Step 4.** Three-quarter angle of a fresh egg frying sunny-side up in a black pan, the white set and the yolk still glossy and soft. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, perfect runny yolk.
+
+**Step 5.** Three-quarter angle of dark soy sauce being drizzled in a circle over steaming white rice in a ceramic bowl. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, simple seasoning.
+
+**Step 6.** Three-quarter angle of creamy tuna mayo being mounded high over the seasoned rice in the same bowl. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, generous topping.
+
+**Step 7.** Three-quarter angle of the sunny-side-up egg being laid on top of the tuna mayo mound, yolk glossy and intact. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, the crowning moment.
+
+**Step 8.** Three-quarter hero shot of the finished tuna mayo rice bowl, shredded seaweed and scallion rings scattered over the glossy yolk, chopsticks resting at the rim on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, satisfying 10-minute hero.
+
+## 🦐 감바스 알 아히요 (id: 216)
+
+> 8장 전부 필요합니다 — `upload-and-seed-recipe.js` 가 한 장이라도 없으면 중단합니다.
+
+**Step 1.** Three-quarter angle of raw shrimp being peeled and deveined with a toothpick on a wooden board, the pink-grey bodies curling. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, careful seafood prep.
+
+**Step 2.** Three-quarter angle of peeled shrimp resting in a white bowl with a scatter of coarse salt over them. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, quiet marinating.
+
+**Step 3.** Three-quarter angle of garlic cloves being sliced into thin coins on the same wooden board, translucent at the edges. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, garlic detail.
+
+**Step 4.** Three-quarter angle of garlic slices bubbling gently in a shallow pool of olive oil in a small black skillet over low heat. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, slow golden infusion.
+
+**Step 5.** Three-quarter angle of dried red chillies being crushed by hand into the golden garlic oil, flecks dispersing. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, adding the heat.
+
+**Step 6.** Three-quarter angle of shrimp being laid into the bubbling garlic oil, turning from grey to bright coral pink. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, shrimp going in.
+
+**Step 7.** Three-quarter angle of chopped parsley being scattered over the cooked coral-pink shrimp in the sizzling oil. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, fresh green finish.
+
+**Step 8.** Three-quarter hero shot of gambas al ajillo bubbling in the black skillet, coral shrimp and golden garlic suspended in glossy olive oil, thick slices of crusty baguette leaning against the rim on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, Spanish tapas hero.
+
+## 🍚 버섯 크림 리조또 (id: 217)
+
+> 9장 전부 필요합니다 — `upload-and-seed-recipe.js` 가 한 장이라도 없으면 중단합니다.
+
+**Step 1.** Three-quarter angle of button mushrooms being sliced into even thin pieces on a wooden board, pale cross-sections fanned out. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, clean prep.
+
+**Step 2.** Three-quarter angle of onion being finely diced on the same board, small translucent cubes piled neatly. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, precise knife work.
+
+**Step 3.** Three-quarter angle of diced onion softening in melted butter in a wide shallow pan, turning translucent and glossy. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, buttery base.
+
+**Step 4.** Three-quarter angle of sliced mushrooms browning in the same pan, moisture evaporating and edges turning deep gold. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, concentrated mushroom flavour.
+
+**Step 5.** Three-quarter angle of dry white rice grains being stirred into the mushrooms and butter, each grain turning translucent at the edge. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, toasting the rice.
+
+**Step 6.** Three-quarter angle of warm stock being ladled into the rice, steam rising as a wooden spoon stirs in slow circles. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, patient risotto stirring.
+
+**Step 7.** Three-quarter angle of cream being poured into the softened rice, the mixture turning pale and glossy. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, luxurious finish.
+
+**Step 8.** Three-quarter angle of grated parmesan and cracked pepper being folded into the creamy risotto until smooth and flowing. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, final emulsion.
+
+**Step 9.** Three-quarter hero shot of mushroom cream risotto spread wide in a shallow white bowl, glossy and flowing, crowned with shaved parmesan and cracked black pepper on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, elegant restaurant hero.
+
+## 🧅 프렌치 어니언 수프 (id: 218)
+
+> 9장 전부 필요합니다 — `upload-and-seed-recipe.js` 가 한 장이라도 없으면 중단합니다.
+
+**Step 1.** Three-quarter angle of onions being sliced pole to pole into thin even strips on a wooden board, a tall pale pile forming. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, patient prep.
+
+**Step 2.** Three-quarter angle of the mountain of sliced onion tumbling into a deep pot of melted foaming butter. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, the long cook begins.
+
+**Step 3.** Three-quarter angle of the onions collapsed to a fraction of their volume and turned deep amber brown, a wooden spoon dragging through them. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, deep caramelisation.
+
+**Step 4.** Three-quarter angle, close, of coarse salt being sprinkled over the glossy mahogany caramelised onions in the pot. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, seasoning the base.
+
+**Step 5.** Three-quarter angle of dark beef stock being poured over the caramelised onions, the pot filling with a deep brown broth. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, building the soup.
+
+**Step 6.** Three-quarter angle, close, of black pepper being cracked over the simmering dark onion broth. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, final seasoning.
+
+**Step 7.** Three-quarter angle of baguette slices toasting to golden brown in a dry pan, surfaces crisp and lightly charred. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, crouton detail.
+
+**Step 8.** Three-quarter angle of shredded gruyere blanketing a toasted baguette slice floating on dark soup in an oven-safe crock, going into the oven. on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, about to melt.
+
+**Step 9.** Three-quarter hero shot of french onion soup in a rustic crock, the gruyere crust browned and bubbling with a molten cheese pull lifting from the surface, set on a small plate on a dark slate counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, golden bistro hero.
