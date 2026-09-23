@@ -456,8 +456,10 @@ def make_single(r, box_h=None, measure=False):
         tf = font(tf.size - 2)
 
     head = int(tf.size * 0.62)
+    # 재료 아래 여백(36)은 늘리되 패널 아래 여백(16)에서 상쇄해, 패널 높이와
+    # 사진 크기는 그대로 두고 조리 단계만 아래로 내려간다.
     need = min(int(H * 0.56),
-               head + len(ing_lines) * 34 + 36 + sum(len(g) * 40 + 8 for g in step_lines) + 36)
+               head + len(ing_lines) * 34 + 36 + sum(len(g) * 40 + 8 for g in step_lines) + 16)
     if measure:
         return need
     box_h = box_h or need
