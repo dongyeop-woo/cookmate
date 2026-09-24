@@ -12327,7 +12327,7 @@
         "rating": 4.8,
         "likes": 0,
         "bookmarks": 0,
-        "image": "",
+        "image": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790208524031_efb85536.jpg?alt=media&token=b40bafbc-d937-46c5-b783-719cf073a427",
         "category": "한식",
         "description": "명절상에 빠지면 섭섭한 동그랑땡이에요. 두부를 넣어 퍽퍽하지 않고 부드러워요.",
         "ingredients": [
@@ -12376,32 +12376,44 @@
             {
                 "step": 1,
                 "description": "두부 1/2모는 도톰하게 썰어 체에 밭쳐 10분간 물기를 빼주세요.",
-                "time": 10
+                "time": 10,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790208517918_0eed45e0.jpg?alt=media&token=4f14d6d0-52bc-4ba9-b53a-6e2c2e5d7c54",
+                "isAiImage": true
             },
             {
                 "step": 2,
                 "description": "양파 1/4개와 당근 1/4개, 대파 1/2대는 잘게 다져주세요.",
-                "time": 0
+                "time": 0,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790208519484_b9ce11ce.jpg?alt=media&token=3967e956-8e4b-4127-b39b-13fa65af5e81",
+                "isAiImage": true
             },
             {
                 "step": 3,
                 "description": "볼에 돼지고기 다짐육 300g과 으깬 두부, 다진 채소, 소금 약간을 넣고 끈기가 생길 때까지 치대주세요.",
-                "time": 0
+                "time": 0,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790208520666_cba4d9f9.jpg?alt=media&token=cdd9d016-9109-4072-bf2a-272f3b9f88e6",
+                "isAiImage": true
             },
             {
                 "step": 4,
                 "description": "한 숟갈씩 떠서 동그랗게 빚고 부침가루 3큰술을 고루 묻혀주세요.",
-                "time": 0
+                "time": 0,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790208521893_d4ac7af9.jpg?alt=media&token=2897961b-20d7-48a4-8480-db9946e31d0a",
+                "isAiImage": true
             },
             {
                 "step": 5,
                 "description": "달걀 2개를 풀어 입힌 뒤 팬에 중약불로 앞뒤 8분간 속까지 완전히 익혀주세요.",
-                "time": 8
+                "time": 8,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790208523142_e6e6a6e3.jpg?alt=media&token=6a98407b-2709-4873-8182-4b9c7ad4bc3c",
+                "isAiImage": true
             },
             {
                 "step": 6,
                 "description": "접시에 가지런히 담아 마무리합니다.",
-                "time": 0
+                "time": 0,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790208524031_efb85536.jpg?alt=media&token=b40bafbc-d937-46c5-b783-719cf073a427",
+                "isAiImage": true
             }
         ],
         "servings": "3"
@@ -12416,7 +12428,7 @@
         "rating": 4.7,
         "likes": 0,
         "bookmarks": 0,
-        "image": "",
+        "image": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790208532985_e0c9d00e.jpg?alt=media&token=72311675-6f07-43b4-93b7-42f1d8268ed3",
         "category": "한식",
         "description": "명절 전 중에 제일 손이 많이 가는 동태전이에요. 물기만 잘 잡으면 실패하지 않아요.",
         "ingredients": [
@@ -12455,27 +12467,37 @@
             {
                 "step": 1,
                 "description": "동태살 300g은 키친타월로 물기를 꼼꼼히 닦고 소금과 후추를 뿌려 10분간 재워주세요.",
-                "time": 10
+                "time": 10,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790208526049_ff54939a.jpg?alt=media&token=b2ee8a30-90c9-482a-8bdf-5c2391a61fe5",
+                "isAiImage": true
             },
             {
                 "step": 2,
                 "description": "접시에 부침가루 4큰술을 펼치고 동태살 앞뒤로 고루 묻혀주세요.",
-                "time": 0
+                "time": 0,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790208528746_c0755207.jpg?alt=media&token=8ac53ed2-f2a0-464c-bfb8-f395c09c9b5e",
+                "isAiImage": true
             },
             {
                 "step": 3,
                 "description": "달걀 3개를 곱게 풀어 달걀물을 만들어주세요.",
-                "time": 0
+                "time": 0,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790208530889_7566abca.jpg?alt=media&token=23aadb77-c6b3-4b32-b8b1-9f7aed6f0894",
+                "isAiImage": true
             },
             {
                 "step": 4,
                 "description": "팬에 식용유 3큰술을 두르고 달걀물 입힌 동태살을 중약불에서 앞뒤 5분간 부쳐주세요.",
-                "time": 5
+                "time": 5,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790208531752_dd2be5ca.jpg?alt=media&token=8c454b51-6671-464a-89d7-fae42ac31fec",
+                "isAiImage": true
             },
             {
                 "step": 5,
                 "description": "속까지 하얗게 익으면 접시에 가지런히 담아 마무리합니다.",
-                "time": 0
+                "time": 0,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790208532985_e0c9d00e.jpg?alt=media&token=72311675-6f07-43b4-93b7-42f1d8268ed3",
+                "isAiImage": true
             }
         ],
         "servings": "3"
@@ -12490,7 +12512,7 @@
         "rating": 4.7,
         "likes": 0,
         "bookmarks": 0,
-        "image": "",
+        "image": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790208541022_71998143.jpg?alt=media&token=4a74385e-b0df-41b7-8dc3-3aee0cf91008",
         "category": "한식",
         "description": "꼬치에 색색으로 꿰어 굽는 명절 산적이에요. 상에 올리면 제일 먼저 없어져요.",
         "ingredients": [
@@ -12539,32 +12561,44 @@
             {
                 "step": 1,
                 "description": "소고기 우둔살 300g은 길게 썰어 간장 2큰술과 설탕 1큰술, 참기름 1큰술에 15분간 재워주세요.",
-                "time": 15
+                "time": 15,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790208534467_895e9fd2.jpg?alt=media&token=80442b58-ff4d-42d0-ad9f-53eb0622d7f6",
+                "isAiImage": true
             },
             {
                 "step": 2,
                 "description": "대파 2대와 맛살 4개를 소고기와 같은 길이로 잘라주세요.",
-                "time": 0
+                "time": 0,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790208536085_dcdc88a3.jpg?alt=media&token=823e288d-6b4b-4563-99f1-bc9ff1976510",
+                "isAiImage": true
             },
             {
                 "step": 3,
                 "description": "꼬치에 소고기와 대파, 맛살을 색이 번갈아 오도록 끼워주세요.",
-                "time": 0
+                "time": 0,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790208537153_d8605d33.jpg?alt=media&token=6283fd22-e97e-46c6-90f7-3122f1da66b9",
+                "isAiImage": true
             },
             {
                 "step": 4,
                 "description": "꼬치 앞뒤로 부침가루 3큰술을 고루 묻혀주세요.",
-                "time": 0
+                "time": 0,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790208538401_cd867055.jpg?alt=media&token=1120f1fc-8f9c-43a5-bdbc-b345a51368c0",
+                "isAiImage": true
             },
             {
                 "step": 5,
                 "description": "달걀 2개를 풀어 입히고 팬에 중약불로 앞뒤 6분간 속까지 완전히 익혀주세요.",
-                "time": 6
+                "time": 6,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790208539715_c797f448.jpg?alt=media&token=8952b331-25ba-493e-84b3-4d2b1c78a6cb",
+                "isAiImage": true
             },
             {
                 "step": 6,
                 "description": "접시에 가지런히 담아 마무리합니다.",
-                "time": 0
+                "time": 0,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790208541022_71998143.jpg?alt=media&token=4a74385e-b0df-41b7-8dc3-3aee0cf91008",
+                "isAiImage": true
             }
         ],
         "servings": "3"
@@ -12579,7 +12613,7 @@
         "rating": 4.6,
         "likes": 0,
         "bookmarks": 0,
-        "image": "",
+        "image": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790208548117_5c54c422.jpg?alt=media&token=defa467d-5e74-4f2d-b521-05669e3a2a23",
         "category": "한식",
         "description": "추석에 끓이는 담백한 토란국이에요. 소금물에 담가 아린 맛만 빼면 어렵지 않아요.",
         "ingredients": [
@@ -12623,32 +12657,44 @@
             {
                 "step": 1,
                 "description": "토란 300g은 껍질을 벗겨 소금물에 10분간 담가 아린 맛을 빼주세요.",
-                "time": 10
+                "time": 10,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790208542839_2e0fbf46.jpg?alt=media&token=8b9e7fcb-5e0f-48d2-98f2-4f6b6d794e60",
+                "isAiImage": true
             },
             {
                 "step": 2,
                 "description": "냄비에 참기름 1큰술을 두르고 소고기 양지 150g을 중불에서 3분간 볶아주세요.",
-                "time": 3
+                "time": 3,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790208544231_287d7092.jpg?alt=media&token=84bb1796-4986-49c4-965e-59adf8d106c2",
+                "isAiImage": true
             },
             {
                 "step": 3,
                 "description": "물 1.5L와 다시마 2장을 넣고 센불에서 10분간 끓여주세요.",
-                "time": 10
+                "time": 10,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790208545331_1d64b1cc.jpg?alt=media&token=6650562f-072d-4a45-9478-e31e0b4b20eb",
+                "isAiImage": true
             },
             {
                 "step": 4,
                 "description": "다시마를 건져내고 손질한 토란을 넣어 중불에서 15분간 푹 익혀주세요.",
-                "time": 15
+                "time": 15,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790208546239_ac45dd89.jpg?alt=media&token=05e38355-6298-4602-bc33-b8e64f4ddf9a",
+                "isAiImage": true
             },
             {
                 "step": 5,
                 "description": "국간장 2큰술과 다진마늘 1작은술을 넣어 간을 맞춰주세요.",
-                "time": 0
+                "time": 0,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790208547220_6c438818.jpg?alt=media&token=2dfc9025-4469-45b5-a806-16d037b6df4e",
+                "isAiImage": true
             },
             {
                 "step": 6,
                 "description": "어슷 썬 대파를 올려 마무리합니다.",
-                "time": 0
+                "time": 0,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790208548117_5c54c422.jpg?alt=media&token=defa467d-5e74-4f2d-b521-05669e3a2a23",
+                "isAiImage": true
             }
         ],
         "servings": "3"
@@ -12663,7 +12709,7 @@
         "rating": 4.5,
         "likes": 0,
         "bookmarks": 0,
-        "image": "",
+        "image": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790208555015_3f4460fe.jpg?alt=media&token=179d0cdb-ef13-4243-ba23-422323faf4e9",
         "category": "반찬",
         "description": "차례상에 올리는 삼색나물 중 하나예요. 소금에 주물러 쓴맛만 빼면 됩니다.",
         "ingredients": [
@@ -12702,27 +12748,44 @@
             {
                 "step": 1,
                 "description": "도라지 200g에 소금 1큰술을 뿌려 바락바락 주물러 쓴맛을 빼주세요.",
-                "time": 0
+                "time": 0,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790208549628_6d91b3fd.jpg?alt=media&token=f5fa1adb-6d1b-4eba-9a62-695d5064ac33",
+                "isAiImage": true
             },
             {
                 "step": 2,
                 "description": "찬물에 여러 번 헹궈 소금기를 씻어내고 물기를 꼭 짜주세요.",
-                "time": 0
+                "time": 0,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790208550767_8843dad1.jpg?alt=media&token=f958cd31-65a3-4c25-924e-c88783d2c93a",
+                "isAiImage": true
             },
             {
                 "step": 3,
-                "description": "팬에 참기름 1큰술을 두르고 도라지를 중불에서 5분간 볶아주세요.",
-                "time": 5
+                "description": "끓는 물에 도라지를 넣고 1분간 데친 뒤 찬물에 헹궈 물기를 짜주세요.",
+                "time": 1,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790208551812_bf87314f.jpg?alt=media&token=282bf672-336e-4962-992d-8a1600b78264",
+                "isAiImage": true
             },
             {
                 "step": 4,
-                "description": "다진마늘 1작은술과 국간장 1작은술을 넣고 2분간 더 볶아주세요.",
-                "time": 2
+                "description": "팬에 참기름 1큰술을 두르고 도라지를 중불에서 4분간 볶아주세요.",
+                "time": 4,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790208552737_0d2db77a.jpg?alt=media&token=290c680e-e256-427d-b3ca-9d514dc739fa",
+                "isAiImage": true
             },
             {
                 "step": 5,
+                "description": "다진마늘 1작은술과 국간장 1작은술을 넣고 2분간 더 볶아주세요.",
+                "time": 2,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790208553801_52f5eae2.jpg?alt=media&token=676cd932-8852-45a3-936f-eb9dc89c96ce",
+                "isAiImage": true
+            },
+            {
+                "step": 6,
                 "description": "통깨 1작은술을 뿌리고 그릇에 담아 마무리합니다.",
-                "time": 0
+                "time": 0,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790208555015_3f4460fe.jpg?alt=media&token=179d0cdb-ef13-4243-ba23-422323faf4e9",
+                "isAiImage": true
             }
         ],
         "servings": "2"

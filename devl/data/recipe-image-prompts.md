@@ -330,18 +330,20 @@
 
 **Step 5.** Wide 16:9. Three-quarter angle of soy sauce and minced garlic being stirred into the pale broth with a ladle on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 6.** Wide 16:9. Three-quarter angle of taro soup in an earthenware bowl, diagonal scallion slices floating on the clear broth on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+**Step 6.** Wide 16:9. Three-quarter angle of taro soup in an earthenware bowl, soft white taro chunks and thin strips of braised beef brisket suspended in the clear broth, diagonal scallion slices floating on top on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
 ## 🌿 도라지나물 (id: 223)
 
-> **가로형(landscape)으로 요청**하세요. 5장 전부 필요합니다.
+> **가로형(landscape)으로 요청**하세요. 6장 전부 필요합니다.
 
-**Step 1.** Wide 16:9. Three-quarter angle of shredded bellflower root being rubbed with coarse salt in a white bowl on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+**Step 1.** Wide 16:9. Three-quarter angle of shredded bellflower root being rubbed with coarse salt in a white ceramic bowl on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 2.** Wide 16:9. Three-quarter angle of the roots being rinsed under running water, water running clear in a sieve on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+**Step 2.** Wide 16:9. Three-quarter angle of the salted roots being rinsed under running water in a stainless steel sieve, water running clear on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 3.** Wide 16:9. Three-quarter angle of pale bellflower root stir-frying in sesame oil in a black pan on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+**Step 3.** Wide 16:9. Three-quarter angle of bellflower root blanching in a pot of boiling water for a moment, then resting in a bowl of cold water on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 4.** Wide 16:9. Three-quarter angle of minced garlic and soy sauce being added to the pan, the roots turning glossy on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+**Step 4.** Wide 16:9. Three-quarter angle of pale ivory bellflower root stir-frying in sesame oil in a black pan, edges turning translucent and glossy on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 5.** Wide 16:9. Three-quarter angle of doraji namul mounded in a small white bowl, toasted sesame scattered on top on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+**Step 5.** Wide 16:9. Three-quarter angle of minced garlic and a splash of soy sauce going into the pan, the roots taking on a light golden sheen on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 6.** Wide 16:9. Three-quarter angle of doraji namul mounded in a small white ceramic bowl, glossy ivory strands with toasted sesame scattered on top on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
