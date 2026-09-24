@@ -5,7 +5,7 @@ on:
   # 수동 운영은 "말해야 돌아가는" 구조라 결국 끊김 — 비용(약 52원/편)보다
   # 공백의 손해가 훨씬 컸음.
   schedule:
-    - cron: '0 1 * * *' # 매일 01:00 UTC = 10:00 KST
+    - cron: '0 0 * * *' # 매일 00:00 UTC = 09:00 KST
   workflow_dispatch: # 수동 실행 (Actions 탭에서 "Run workflow")
 
 permissions:
