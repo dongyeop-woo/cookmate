@@ -146,7 +146,7 @@ export default function WelcomeScreen() {
       {/* 로고 영역 — 화면 상단 40% 지점에 중앙 배치 */}
       <View style={styles.center}>
         <Animated.View style={[styles.appIconWrapper, { transform: [{ translateY: floatAnim }] }]}>
-          <Image source={require('../../assets/icon.png')} style={styles.appIcon} />
+          <Image source={require('../../assets/appIcon-padded.png')} style={styles.appIcon} />
         </Animated.View>
         <Text style={styles.appName}>오늘 뭐 해먹지?</Text>
         <Text style={styles.tagline}>쉽고 맛있게 따라하는 오늘의 레시피</Text>

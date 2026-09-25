@@ -216,7 +216,7 @@ export default function NotificationsScreen() {
                   </View>
                 ) : style.icon === 'app-icon' ? (
                   <View style={[styles.notifIcon, { backgroundColor: '#FFFFFF' }]}>
-                    <Image source={require('../assets/icon.png')} style={{ width: 28, height: 28 }} contentFit="contain" />
+                    <Image source={require('../assets/appIcon-padded.png')} style={{ width: 28, height: 28 }} contentFit="contain" />
                   </View>
                 ) : (
                   <View style={[styles.notifIcon, { backgroundColor: style.iconBg }]}>
