@@ -98,9 +98,16 @@ async function fetchRecipesByCategories(cats, preferNewest = false) {
     if (preferNewest) {
       // 명절 주간에는 그 시기에 맞춰 새로 올린 레시피를 먼저 쓴다.
       // 랜덤으로 뽑으면 기존 레시피에 묻혀 정작 명절 메뉴가 빠진다.
+      //
+      // 최신순으로 넘기는 것만으로는 부족했다. 2026-09-24 추석 글에서 후보
+      // 8개 중 상위 4개가 전부 그날 올린 명절 레시피였는데도, 모델이 키워드에
+      // 더 잘 맞는 옛 레시피를 골라 신규는 2개만 실렸다. 프롬프트가 신규를
+      // 구분할 수 있도록 여기서 isNew 를 달아 준다.
+      const weekAgo = Date.now() - 7 * 24 * 3600 * 1000;
       return [...filtered]
         .sort((a, b) => (Number(b.id) || 0) - (Number(a.id) || 0))
-        .slice(0, 8);
+        .slice(0, 8)
+        .map((r) => ({ ...r, isNew: Date.parse(r.createdAt ?? '') > weekAgo }));
     }
     // 셔플 + 상위 8개
     return filtered.sort(() => Math.random() - 0.5).slice(0, 8);
@@ -118,7 +125,7 @@ function recipeContextBlock(recipes) {
       const kcal = r.calories ?? 0;
       const diff = r.difficulty ?? '';
       const desc = (r.description ?? '').replace(/\s+/g, ' ').slice(0, 80);
-      return `${i + 1}. **${r.title}** (id=${r.id}, 카테고리=${r.category})
+      return `${i + 1}. **${r.title}**${r.isNew ? ' 〔신규〕' : ''} (id=${r.id}, 카테고리=${r.category})
    - 이미지: ${r.image}
    - 메타: ${time}분 · ${diff} · ${kcal}kcal
    - 설명: ${desc}
@@ -130,6 +137,12 @@ function recipeContextBlock(recipes) {
 function buildPrompt(date, keyword, recentPosts, recipes) {
   const dateStr = date.toISOString().slice(0, 10);
   const recipesBlock = recipeContextBlock(recipes);
+  const newOnes = recipes.filter((r) => r.isNew);
+  // 〔신규〕가 있으면 그게 오늘 글의 존재 이유다. 모델이 알아서 고르게 두면
+  // 키워드에 잘 맞는 옛 레시피에 밀리므로 전부 넣으라고 못 박는다.
+  const newRule = newOnes.length
+    ? `\n**〔신규〕가 붙은 ${newOnes.length}개는 이 시기에 맞춰 오늘 새로 올린 레시피입니다. 하나도 빼지 말고 전부 카드로 넣고, 본문 앞쪽(1번부터) 순서로 배치하세요.** 이 규칙은 아래 "메뉴 배열 순서"보다 우선합니다. 나머지 레시피는 6개를 채우는 용도로만 쓰세요.\n`
+    : '';
   const firstImage = recipes[0]?.image ?? 'https://yojalal.com/img/app-icon.png';
   const linkTarget = recentPosts[0];
 
@@ -147,6 +160,7 @@ function buildPrompt(date, keyword, recentPosts, recipes) {
 
 # 활용 가능한 요잘알 레시피 (8개 중 4~6개를 본문에 카드로 박으세요)
 ${recipesBlock}
+${newRule}
 
 # 메뉴 배열 순서
 조리 시간이 **짧은 것부터 긴 것 순서**로 배열하세요.
@@ -365,10 +379,12 @@ const HOLIDAY_WINDOWS = [
     name: '추석',
     from: '2026-09-24', to: '2026-09-29',
     keywords: [
-      { kw: '추석 상차림', cats: ['한식', '저녁'] },
+      // 상차림 글에는 나물·전 같은 반찬이 같이 올라야 한 상이 된다.
+      { kw: '추석 상차림', cats: ['한식', '저녁', '반찬'] },
       { kw: '명절 전 요리', cats: ['한식', '간식'] },
       { kw: '차례상 나물', cats: ['한식', '반찬'] },
-      { kw: '명절 남은 음식 활용', cats: ['점심', '저녁', '한식'] },
+      // 연휴 첫날에 "남은 음식"을 쓰면 아직 남은 게 없다. 후반부에만 뽑는다.
+      { kw: '명절 남은 음식 활용', cats: ['점심', '저녁', '한식'], from: '2026-09-27' },
       { kw: '손님상 한 그릇', cats: ['점심', '한식'] },
     ],
   },
@@ -386,7 +402,8 @@ function keywordPool(date, season) {
   for (const h of HOLIDAY_WINDOWS) {
     if (today >= h.from && today <= h.to) {
       console.log(`[gen-blog] ${h.name} 주간 — 명절 키워드에서 선택`);
-      return h.keywords;
+      // from/to 가 달린 키워드는 해당 구간에만 후보로 올린다.
+      return h.keywords.filter((k) => (!k.from || today >= k.from) && (!k.to || today <= k.to));
     }
   }
   return SEASON_KEYWORDS[season];
