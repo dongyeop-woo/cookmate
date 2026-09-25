@@ -18,7 +18,7 @@
 글자는 코드로 그리므로 한글이 깨지지 않는다. AI 생성 표기는 넣지 않는다 —
 캡션에 직접 쓰기로 했다.
 """
-import argparse, colorsys, io, json, os, re, sys, urllib.request
+import argparse, colorsys, datetime, io, json, os, re, sys, urllib.request
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 API = 'https://yojalal.com/api/recipes'
@@ -80,6 +80,13 @@ def body(size, weight='regular'):
     return ImageFont.truetype(FONT_BODY, size, index=idx)
 
 
+def jua(size):
+    """주아체 전용. font() 는 윤탱체가 있으면 그쪽을 쓰므로 따로 둔다."""
+    if os.path.exists(FONT):
+        return ImageFont.truetype(FONT, size)
+    return body(size, 'semibold')
+
+
 def hand(size):
     """손글씨체. 획이 가늘어 같은 크기의 고딕보다 작아 보이므로 크게 잡는다."""
     if os.path.exists(FONT_HAND):
@@ -99,10 +106,14 @@ def fetch_recipes():
 
 _img_cache = {}
 def fetch_image(url):
+    """URL 또는 로컬 경로. --img-dir 로 갈아끼운 파일은 경로로 들어온다."""
     if url in _img_cache:
         return _img_cache[url].copy()
-    with _get(url) as r:
-        im = Image.open(io.BytesIO(r.read())).convert('RGB')
+    if url.startswith('http'):
+        with _get(url) as r:
+            im = Image.open(io.BytesIO(r.read())).convert('RGB')
+    else:
+        im = Image.open(url).convert('RGB')
     _img_cache[url] = im
     return im.copy()
 
@@ -146,6 +157,9 @@ def condense(text, ingredients):
             if not m:
                 break
             out = out[:m.start()] + n + _fix_particle(n, out[m.end():])
+    # 손글씨체(메모멘트)에 가운뎃점 글리프가 비어 있어 '진간장·미림' 이
+    # '진간장  미림' 처럼 빈칸 두 개로 보인다. 쉼표로 바꿔 쓴다.
+    out = out.replace('·', ', ')
     return re.sub(r'\s{2,}', ' ', out).strip()
 
 
@@ -211,7 +225,13 @@ def wrap(draw, text, fnt, max_w, prefer_space=False):
             lines.append(cur); cur = ch
     if cur:
         lines.append(cur)
-    return lines
+    # 글자 단위로 끊다 보면 '식혀주세요 / . 이게' 처럼 구두점만 다음 줄로
+    # 넘어간다. 앞 줄로 끌어올린다.
+    for i in range(1, len(lines)):
+        while lines[i] and lines[i][0] in '.,!?)]}%…':
+            lines[i - 1] += lines[i][0]
+            lines[i] = lines[i][1:].lstrip()
+    return [ln for ln in lines if ln]
 
 def rounded(size, radius, fill):
     m = Image.new('RGBA', (size[0] * 4, size[1] * 4), (0, 0, 0, 0))
@@ -497,12 +517,7 @@ def make_single(r, box_h=None, measure=False):
 
     # 글을 먼저 배치해 보고 필요한 높이만큼만 패널을 깐다
     S = H / 1080                               # 4:5 면 1.25배
-    f_ing, f_step = hand(round(30 * S)), hand(round(34 * S))
     ing = ', '.join(f"{g['name']} {g['amount']}" for g in (r.get('ingredients') or []))
-    ing_lines = wrap(d, f'준비재료  {ing}', f_ing, W - 130)[:3]
-    step_lines = [wrap(d, f"{n}. {condense(st['description'], r.get('ingredients'))}",
-                       f_step, W - 130)[:2]
-                  for n, st in enumerate(r.get('steps') or [], 1)]
 
     tf = font(round(62 * S))
     tt = f"#{r['title'].replace(' ', '')}"
@@ -510,12 +525,39 @@ def make_single(r, box_h=None, measure=False):
         tf = font(tf.size - 2)
 
     head = int(tf.size * 0.62)
+    # 패널 높이는 고정. 장마다 사진 크기가 달라지면 캐러셀이 덜컹거린다.
+    CAP = int(H * 0.56)
+    # 단계가 많은 레시피(잔치국수 7단계)는 기본 크기로 상한을 넘겨 마지막 줄이
+    # 잘렸다. 들어갈 때까지 글자를 조금씩 줄인다 — 설명을 지우는 것보다 낫다.
     # 재료 아래 여백(36)은 늘리되 패널 아래 여백(16)에서 상쇄해, 패널 높이와
     # 사진 크기는 그대로 두고 조리 단계만 아래로 내려간다.
-    LH_I, LH_S = round(34 * S), round(40 * S)
-    need = min(int(H * 0.56),
-               head + len(ing_lines) * LH_I + round(36 * S)
+    def fit_step(n, body, fnt):
+        """2줄 안에 넣는다. 넘치면 뒤 문장부터 덜어낸다.
+
+        글자 수로 자르면 '진하게 내야 풍미' 처럼 말이 끊긴 채 끝난다.
+        핵심 동작은 첫 문장에 있고 뒤에 붙는 건 보통 팁이라, 문장 단위로
+        덜어내면 카드가 짧아지면서도 읽을 수 있는 문장으로 남는다.
+        """
+        parts = [x for x in re.split(r'(?<=[.!?])\s*', body.strip()) if x]
+        while True:
+            lines = wrap(d, f"{n}. " + ' '.join(parts), fnt, W - 130)
+            if len(lines) <= 2 or len(parts) <= 1:
+                return lines[:2]
+            parts.pop()
+
+    scale = 1.0
+    while True:
+        f_ing, f_step = hand(round(30 * S * scale)), hand(round(34 * S * scale))
+        LH_I, LH_S = round(34 * S * scale), round(40 * S * scale)
+        ing_lines = wrap(d, f'준비재료  {ing}', f_ing, W - 130)[:3]
+        step_lines = [fit_step(n, condense(st['description'], r.get('ingredients')), f_step)
+                      for n, st in enumerate(r.get('steps') or [], 1)]
+        raw = (head + len(ing_lines) * LH_I + round(36 * S)
                + sum(len(g) * LH_S + 8 for g in step_lines) + 16)
+        if raw <= CAP or scale <= 0.74:
+            break
+        scale -= 0.03
+    need = min(CAP, raw)
     if measure:
         return need
     box_h = box_h or need
@@ -639,18 +681,230 @@ def make_grid(recipes):
             py += 2
     return card
 
+# ── 스토리(9:16) ────────────────────────────────────────
+def _round_thumb(im, s, radius=30):
+    """정사각 썸네일을 둥근 모서리로."""
+    th = cover_fit(im, s, s)
+    m = rounded((s, s), radius, (255, 255, 255, 255)).getchannel('A')
+    out = Image.new('RGBA', (s, s), (0, 0, 0, 0))
+    out.paste(th, (0, 0), m)
+    return out
+
+
+def make_story(recipes, title, sub='', tag=None, bg='photo', date_str=None):
+    """스토리 전용 한 장(1080x1920).
+
+    인스타 스토리는 위아래 각 250px 를 자체 UI(프로필·답장창)가 덮는다.
+    그래서 모든 요소를 y 260~1660 안에만 넣는다. 피드 카드와 달리 한 장으로
+    끝나므로 레시피 목록을 전부 담되, 사진은 첫 레시피 것을 배경으로 깐다.
+    """
+    if date_str is None:
+        # Actions/로컬 모두 KST 기준으로 찍는다.
+        now = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))
+        date_str = now.strftime('%Y.%m.%d')
+    card = Image.new('RGB', (W, H), WHITE)
+    hero = fetch_image(recipes[0]['image'])
+    auto_grad = palette_from(hero)   # 흰 바탕이어도 제목 색은 음식 사진에서 뽑는다
+    dark = (bg == 'photo')
+    if dark:
+        card.paste(cover_fit(hero, W, H), (0, 0))
+        # 전체를 한 번 눌러 두고 위아래를 더 어둡게 — 흰 글씨가 어느 사진에서도 뜬다.
+        dim = Image.new('L', (1, H))
+        for y in range(H):
+            t = y / (H - 1)
+            edge = max(0.0, 1 - t / 0.32) ** 1.5 + max(0.0, (t - 0.60) / 0.40) ** 1.4
+            dim.putpixel((0, y), min(226, int(120 + 106 * edge)))
+        card.paste(Image.new('RGB', (W, H), (8, 26, 18)), (0, 0), dim.resize((W, H)))
+
+    d = ImageDraw.Draw(card)
+    CTA_Y = 1508          # 하단 덩어리(날짜·알약·핸들)의 기준선
+
+    def vgrad(size, c_top, c_bot):
+        h = max(2, size[1])
+        strip = Image.new('RGB', (1, h))
+        for yy in range(h):
+            t = yy / (h - 1)
+            strip.putpixel((0, yy), tuple(
+                round(c_top[k] + (c_bot[k] - c_top[k]) * t) for k in range(3)))
+        return strip.resize(size, Image.BILINEAR)
+
+    def punch(pos, text, fnt, grad=None, fill=WHITE):
+        """커버와 같은 3겹(흰 → 검정 → 채움). 브랜드 톤을 맞춘다."""
+        pos = (int(pos[0]), int(pos[1]))
+        w_out = max(4, int(fnt.size / STYLE['stroke_white']))
+        w_mid = max(2, int(fnt.size / STYLE['stroke_black']))
+        if dark:
+            d.text(pos, text, font=fnt, fill=WHITE, stroke_width=w_out, stroke_fill=WHITE)
+            d.text(pos, text, font=fnt, fill=(0, 0, 0), stroke_width=w_mid,
+                   stroke_fill=(0, 0, 0))
+        else:
+            # 흰 배경에서는 바깥 흰 테두리가 사라지므로 검정을 바깥 테두리로 쓴다.
+            # 두께는 글자 크기에 비례해야 한다 — 고정값으로 두면 작은 태그가
+            # 테두리에 먹혀 통째로 검게 보인다.
+            d.text(pos, text, font=fnt, fill=(0, 0, 0),
+                   stroke_width=max(3, int(fnt.size / 14)), stroke_fill=(0, 0, 0))
+        if grad is None:
+            d.text(pos, text, font=fnt, fill=fill)
+            return
+        tw = int(d.textlength(text, font=fnt)) + fnt.size
+        th = int(fnt.size * 1.9)
+        mask = Image.new('L', (tw, th), 0)
+        ImageDraw.Draw(mask).text((0, 0), text, font=fnt, fill=255)
+        card.paste(vgrad((tw, th), *grad), pos, mask)
+
+    # 브랜드 마크 — 오른쪽 위, 안전영역 아래.
+    y = 356          # 상단 안전영역(250) 과 목록 사이 — 너무 붙으면 답답하다
+    if tag:
+        tfn = font(50)
+        punch(((W - d.textlength(tag, font=tfn)) / 2, y), tag, tfn, fill=WHITE)
+        y += tfn.size + 26
+
+    # 제목 — '|' 로 직접 줄을 나눈다. 스토리는 세로가 길어 3줄까지 여유가 있다.
+    raw = [t.strip() for t in title.split('|') if t.strip()]
+    accent_at = {i for i, t in enumerate(raw) if t.startswith('*') and t.endswith('*')}
+    lines = [t.strip('*') for t in raw]
+    SAFE_W = int(W * 0.84)
+    if len(lines) == 1:
+        # '|' 없이 한 덩어리로 주면 '한 줄 인사말'로 본다. 줄바꿈 없이 통째로
+        # 들어가는 크기까지만 줄인다 — 헤드라인이 아니라 말 거는 톤이다.
+        for size in range(96, 37, -2):
+            f_title = font(size)
+            if d.textlength(lines[0], font=f_title) <= SAFE_W:
+                break
+    else:
+        for size in range(128, 59, -4):
+            f_title = font(size)
+            if max(d.textlength(t, font=f_title) for t in lines) <= SAFE_W:
+                break
+    lines = lines[:3]
+    lh = int(size * 1.20)
+    for i, ln in enumerate(lines):
+        lw = d.textlength(ln, font=f_title)
+        # '*...*' 로 감싼 줄만 사진에서 뽑은 색이 들어간다. 표시가 없으면 전부 흰색 —
+        # 자동으로 색을 넣으면 매일 제목 색이 바뀌어 브랜드가 안 쌓인다.
+        if i in accent_at:
+            punch(((W - lw) / 2, y), ln, f_title, grad=auto_grad[2])
+        else:
+            punch(((W - lw) / 2, y), ln, f_title, fill=WHITE)
+        y += lh
+    if sub:
+        sfn = font(48)
+        punch(((W - d.textlength(sub, font=sfn)) / 2, y + 6), sub, sfn)
+        y += sfn.size + 24
+
+    # 레시피 목록 — 남은 세로를 n 등분해 아래 CTA 자리를 항상 남긴다.
+    LIST_TOP = max(y + 64, 520)
+    # CTA 알약(1548)과 목록 사이 숨 쉴 틈. 붙여 두면 패널이 알약을 밀어내는
+    # 것처럼 보여 하단이 답답하다.
+    LIST_BOT = 1352
+    n = len(recipes)
+    row_h = min(200, (LIST_BOT - LIST_TOP) // max(1, n))
+    thumb = min(172, row_h - 28)
+    ry = LIST_TOP + ((LIST_BOT - LIST_TOP) - row_h * n) // 2
+
+    # 목록 뒤 반투명 패널. 배경을 흐리고 어둡게 깔아 글씨가 사진과 겹쳐도 읽힌다.
+    pad_x, pad_y = 60, 30
+    px0, py0 = pad_x, ry - pad_y
+    px1, py1 = W - pad_x, ry + row_h * n + pad_y
+    pmask = rounded((px1 - px0, py1 - py0), 48, (255, 255, 255, 255)).getchannel('A')
+    if dark:
+        reg = card.crop((px0, py0, px1, py1)).filter(ImageFilter.GaussianBlur(16))
+        reg = Image.blend(reg, Image.new('RGB', reg.size, (10, 24, 18)), 0.62)
+    else:
+        reg = Image.new('RGB', (px1 - px0, py1 - py0), (244, 250, 246))
+    card.paste(reg, (px0, py0), pmask)
+
+    f_name, f_meta = font(58), body(36, 'medium')
+    for i, r in enumerate(recipes):
+        t_im = _round_thumb(fetch_image(r['image']), thumb)
+        tx, ty = 92, ry + (row_h - thumb) // 2
+        sh = Image.new('RGBA', (thumb + 40, thumb + 40), (0, 0, 0, 0))
+        sh.paste((0, 0, 0, 130 if dark else 55), (20, 24), t_im.getchannel('A'))
+        card.paste(sh.filter(ImageFilter.GaussianBlur(11)), (tx - 20, ty - 20),
+                   sh.filter(ImageFilter.GaussianBlur(11)))
+        card.paste(t_im, (tx, ty), t_im)
+
+        # 번호 뱃지 — 목록이라는 걸 한눈에 알리고 시선 순서를 만든다.
+        bd_ = 46
+        badge = Image.new('RGBA', (bd_, bd_), (0, 0, 0, 0))
+        ImageDraw.Draw(badge).ellipse([0, 0, bd_ - 1, bd_ - 1], fill=GREEN + (255,))
+        bf = font(32)
+        ImageDraw.Draw(badge).text((bd_ / 2, bd_ / 2 - 3), str(i + 1), font=bf,
+                                   fill=WHITE, anchor='mm')
+        card.paste(badge, (tx - 14, ty - 14), badge)
+
+        # 이름은 왼쪽, 시간·난이도는 패널 오른쪽 끝에 붙인다. 둘 다 왼쪽에 몰면
+        # 패널 오른쪽 절반이 비어 균형이 깨진다.
+        nx = tx + thumb + 34
+        meta = f"{round(r.get('time') or 0)}분 · {r.get('difficulty') or ''}".strip(' ·')
+        mx_right = px1 - 44
+        name = r['title']
+        avail = mx_right - d.textlength(meta, font=f_meta) - 40 - nx
+        while d.textlength(name, font=f_name) > avail and len(name) > 4:
+            name = name[:-1]
+        cy = ry + row_h / 2
+        if dark:
+            d.text((nx, cy), name, font=f_name, fill=WHITE,
+                   stroke_width=3, stroke_fill=(0, 0, 0), anchor='lm')
+            d.text((mx_right, cy), meta, font=f_meta, fill=(226, 226, 226), anchor='rm')
+        else:
+            d.text((nx, cy), name, font=f_name, fill=INK, anchor='lm')
+            d.text((mx_right, cy), meta, font=f_meta, fill=(120, 128, 124), anchor='rm')
+        ry += row_h
+
+    # 날짜 — CTA 알약(1548) 바로 위, 가운데. 알약·핸들과 한 줄로 세워 하단을
+    # 중앙 정렬 덩어리로 묶는다. 손글씨체는 숫자 글립이 들쭉날쭉해 주아체로 쓴다.
+    if date_str:
+        df = jua(42)
+        track = 4
+        total = sum(d.textlength(c, font=df) for c in date_str) + track * (len(date_str) - 1)
+        dx = (W - total) / 2
+        # 위(패널 바닥)·아래(알약 윗변) 여백을 같게. 폰트 상자가 아니라 실제
+        # 글자가 차지하는 높이를 재서 가운데를 잡아야 눈으로 맞아 보인다.
+        bx = d.textbbox((0, 0), date_str, font=df, anchor='la')
+        dy = (py1 + CTA_Y) / 2 - (bx[3] - bx[1]) / 2 - bx[1]
+        col = (214, 214, 214) if dark else (176, 184, 180)
+        for c in date_str:
+            d.text((dx, dy), c, font=df, fill=col, anchor='la')
+            dx += d.textlength(c, font=df) + track
+
+    # 하단 CTA — 스토리는 링크 스티커를 사용자가 직접 얹으므로 문구만 둔다.
+    cta = '전체 레시피는 요잘알 앱에서'
+    cf = font(52)
+    pill_w = int(d.textlength(cta, font=cf)) + 88
+    pill = rounded((pill_w, 92), 46, GREEN + (240,))
+    card.paste(pill, ((W - pill_w) // 2, CTA_Y), pill)
+    d.text((W / 2, CTA_Y + 46), cta, font=cf, fill=WHITE, anchor='mm')
+
+    handle = '@cookmate_yojalal'
+    hf = font(40)
+    if dark:
+        d.text((W / 2, CTA_Y + 120), handle, font=hf, fill=(238, 238, 238), anchor='mm',
+               stroke_width=3, stroke_fill=(0, 0, 0))
+    else:
+        d.text((W / 2, CTA_Y + 120), handle, font=hf, fill=(150, 158, 154), anchor='mm')
+    return card
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--title', required=True)
     ap.add_argument('--sub', default='')
     ap.add_argument('--ids', required=True, help='쉼표로 구분한 레시피 id')
     ap.add_argument('--out', default='out/insta')
-    ap.add_argument('--layout', choices=['single', 'grid'], default='single',
-                    help='single=레시피당 한 장(기본), grid=4칸 모음')
+    ap.add_argument('--layout', choices=['single', 'grid', 'story'], default='single',
+                    help='single=레시피당 한 장(기본), grid=4칸 모음, story=9:16 한 장')
     ap.add_argument('--no-outro', action='store_true', help='마무리 팔로우 카드 생략')
-    ap.add_argument('--tag', default='', help='제목 위 작은 말풍선 (bold 스타일)')
+    ap.add_argument('--tag', default='', help='제목 위 작은 문구 (기본 없음)')
+    ap.add_argument('--img-dir', default=None,
+                    help='<id>-*.jpg 가 있으면 라이브 이미지 대신 그 파일을 쓴다. '
+                         'Storage 에 아직 안 올린 교체본으로 미리 뽑을 때.')
     ap.add_argument('--style', choices=['calm', 'bold'], default='calm',
                     help="bold=제목을 크게 키우고 글자 뒤에 색 블롭. 피드에서 눈에 띄지만 사진은 덜 보인다")
+    ap.add_argument('--bg', choices=['photo', 'white'], default='photo',
+                    help='story 전용. white=사진 배경 없이 흰 바탕')
+    ap.add_argument('--date', default=None,
+                    help="story 오른쪽 위 날짜. 기본은 오늘(KST). ''  주면 숨긴다")
     ap.add_argument('--ratio', choices=['4:5', '1:1'], default='4:5',
                     help='4:5(1080x1350, 기본) 는 피드 노출이 크고 프로필 그리드 잘림도 적다')
     a = ap.parse_args()
@@ -658,6 +912,9 @@ def main():
     global H
     if a.ratio == '4:5':
         H = 1350
+    if a.layout == 'story':
+        # 스토리는 9:16 고정. --ratio 는 무시한다.
+        H = 1920
     if a.layout == 'grid' and a.ratio != '1:1':
         print('[insta] grid 레이아웃은 정사각 전용 — 1:1 로 진행합니다.')
         H = 1080
@@ -672,9 +929,27 @@ def main():
     if noimg:
         sys.exit(f'❌ 이미지가 없는 레시피: {", ".join(noimg)}')
 
+    if a.img_dir:
+        import glob as _glob
+        for r in picked:
+            hit = sorted(_glob.glob(os.path.join(a.img_dir, f"{r['id']}-*"))
+                         + _glob.glob(os.path.join(a.img_dir, f"{r['id']}.*")))
+            if hit:
+                print(f"  ↻ {r['id']} {r['title']} — 로컬 교체본 사용: {os.path.basename(hit[0])}")
+                r['image'] = hit[0]
+
     slug = re.sub(r'[^0-9A-Za-z가-힣]+', '-', a.title).strip('-')
     outdir = os.path.join(a.out, slug)
     os.makedirs(outdir, exist_ok=True)
+
+    if a.layout == 'story':
+        pages = [('01_story.png', make_story(picked, a.title, a.sub, a.tag, a.bg, a.date))]
+        for name, im in pages:
+            pth = os.path.join(outdir, name)
+            im.save(pth, quality=95)
+            print(f'  {pth}  ({os.path.getsize(pth)//1024}KB)')
+        print(f'\n✅ 스토리 1장 생성 — {", ".join(r["title"] for r in picked)}')
+        return
 
     pages = [('01_cover.png', make_cover(picked[0]['image'], a.title, a.sub, a.style, a.tag))]
     if a.layout == 'single':
