@@ -6,6 +6,10 @@
 **프롬프트 하나에 동작은 하나만.** 동작을 여러 개 넣으면 모델이 한 프레임에 전부 우겨넣어 어색해지고,
 여백을 채우려고 레시피에 없는 재료(견과·향신료 등)를 멋대로 만들어낸다. 짧을수록 정확하다. ChatGPT 에 그대로 복붙해 사용.
 
+**한국 음식은 재료를 영어 일반명사로만 쓰면 다른 나라 요리가 나온다.** `fish cake sheets` 라고만 쓰면
+두껍고 빨간 중식 볶음이 나온다. 로마자 표기(eomuk, gochujang, banchan)와 `Korean` 을 함께 쓰고,
+간장 양념이면 `Not spicy, no chili, no red sauce` 를 명시할 것. 모델의 기본값은 매운 한식이다.
+
 한 레시피는 **한 도구로 끝까지** 뽑으세요. 도구를 섞으면 화풍이 달라져 시리즈 일관성이 깨집니다.
 203~210 은 Google Flow(Imagen 4)로, 211 부터는 ChatGPT 로 생성했습니다.
 
@@ -22,22 +26,6 @@
 **Step 4.** Three-quarter angle of creamy white milk and a splash of starchy noodle water being poured into the seasoned 350g of ramyun noodles in the small stainless steel deep pot, dark black bean and red spicy sauce gradually melting together into a uniform glossy chocolate-brown coating that clings to every noodle strand as a wooden spatula tosses everything together. The pot bubbles gently on the induction burner on a dark studio counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, viral midnight noodle build.
 
 **Step 5.** Three-quarter hero shot of around 350g of glossy uniform chocolate-brown jjapaguri noodles mounded high in a deep matte black ceramic bowl, one square pat of golden butter fully melted into a shiny glistening yellow pool spreading across the noodle surface, one single square slice of pale yellow processed American cheese draped flat on top in the center already softening and slumping at the edges from the warmth of the noodles. The bowl sits centered on a dark studio counter with metal chopsticks resting on a folded gray napkin beside it. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, iconic late-night ramyun hero.
-
----
-
-## 🧀 치즈 라면 (id: 204)
-
-**Step 1.** Top-down shot of a small round stainless steel ramyun pot of bubbling water on an induction burner, a yellow Korean Hangul-printed 신라면 (Shin Ramyun) seasoning packet being torn open above and dark red chili seasoning powder pouring in to bloom into a deep crimson broth, dried vegetable flakes scattering across the surface. The pot sits on a small studio counter with one empty red Korean Hangul-printed 신라면 noodle wrapper (no English text on packaging) folded beside it. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, classic Korean studio ramyun setup.
-
-**Step 2.** Three-quarter angle of a single dry pale yellow brick of wavy ramyun noodles being snapped in half and sliding into the same small round stainless steel pot of deep red bubbling broth, the noodle brick starting to bloom and unfurl into golden strands as the broth rolls vigorously around it. The pot rests on a single induction burner on a small studio counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, comforting late-night ramyun ritual.
-
-**Step 3.** Top-down shot of fully cooked golden wavy ramyun noodles in vivid red broth in the same small stainless steel pot, a single fresh cracked egg with intact bright orange round yolk gently lowered onto the noodles beside around 8 diagonal 1cm slices of bright green scallion scattered on top. The pot sits on the induction burner on a small studio counter beside one empty eggshell. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, deeply Korean comfort food moment.
-
-**Step 4.** Close-up of the same small stainless steel pot showing the egg white in the red ramyun broth turning opaque and pillowy around a still-glossy intact bright orange round yolk, around 8 diagonal scallion slices floating beside it, broth simmering gently with a thin wisp of steam rising. The pot sits on the induction burner on a small studio counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, intimate noodle close-up.
-
-**Step 5.** Three-quarter angle of a single square slice of pale yellow processed American cheese being draped over the noodles in the red broth in the same small stainless steel pot, cheese edges already beginning to soften and slump into the steaming surface, melting cheese forming a creamy yellow square blanket across the top with the orange yolk peeking from beneath. The pot sits on a small round wooden trivet on a studio counter beside metal chopsticks. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, magic melting cheese moment.
-
-**Step 6.** Three-quarter hero shot of finished cheese ramyun in the same small stainless steel pot served pot-on-trivet style, the melted pale yellow cheese square cap pulled slightly aside to reveal golden wavy noodles in vivid red broth with intact bright orange runny round yolk and around 8 fresh green scallion slices, metal chopsticks lifting a glossy noodle pull. The pot sits centered on a small studio counter with a small kimchi side dish and a glass of water just within frame. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, ultimate Korean comfort hero.
 
 ---
 
@@ -222,19 +210,17 @@
 ## 🦐 감바스 알 아히요 (id: 216)
 
 > **가로형(landscape)으로 요청**하세요. 앱이 스텝 이미지를 16:10 으로 자릅니다.
-> 6장 전부 필요합니다 — `upload-and-seed-recipe.js` 가 한 장이라도 없으면 중단합니다.
+> 5장 전부 필요합니다 — `upload-and-seed-recipe.js` 가 한 장이라도 없으면 중단합니다.
 
-**Step 1.** Wide 16:9. Raw shrimp being peeled and deveined on a wooden board. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+**Step 1.** Wide 16:9. Store-bought cleaned shrimp resting in a white bowl, coarse salt scattered over them. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 2.** Wide 16:9. Peeled shrimp resting in a white bowl, coarse salt scattered over them. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+**Step 2.** Wide 16:9. Garlic cloves sliced into thin translucent coins on a wooden board. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 3.** Wide 16:9. Garlic cloves sliced into thin translucent coins on a wooden board. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+**Step 3.** Wide 16:9. Garlic slices bubbling gently in olive oil in a small black skillet. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 4.** Wide 16:9. Garlic slices bubbling gently in olive oil in a small black skillet. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+**Step 4.** Wide 16:9. Coral-pink shrimp cooking in the golden garlic oil with crushed red chillies. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
-**Step 5.** Wide 16:9. Coral-pink shrimp cooking in the golden garlic oil with crushed red chillies. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
-
-**Step 6.** Wide 16:9. Gambas al ajillo bubbling in the skillet, crusty baguette slices leaning at the rim. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+**Step 5.** Wide 16:9. Gambas al ajillo bubbling in the skillet, crusty baguette slices leaning at the rim. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
 ## 🍄 버섯 크림 리조또 (id: 217)
 
@@ -347,3 +333,79 @@
 **Step 5.** Wide 16:9. Three-quarter angle of minced garlic and a splash of soy sauce going into the pan, the roots taking on a light golden sheen on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
 **Step 6.** Wide 16:9. Three-quarter angle of doraji namul mounded in a small white ceramic bowl, glossy ivory strands with toasted sesame scattered on top on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+## 🍢 어묵볶음 (id: 224)
+
+> **가로형(landscape)으로 요청**하세요. 6장 전부 필요합니다.
+
+**Step 1.** Wide 16:9. Three-quarter angle of Korean flat fish cake sheets (eomuk, thin soft pale-beige sheets about 3mm thick) being sliced into 1cm-wide strips on a wooden board, very fine onion and carrot matchsticks piled beside them on a dark slate counter. Korean home kitchen. Not spicy, no chili, no red sauce. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 2.** Wide 16:9. Three-quarter angle of the thin floppy pale-beige eomuk strips blanching briefly in a pot of boiling water, then draining in a stainless steel sieve on a dark slate counter. Korean home kitchen. Not spicy, no chili, no red sauce. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 3.** Wide 16:9. Three-quarter angle of very fine onion and carrot matchsticks softening in a lightly oiled black pan on a dark slate counter. Korean home kitchen. Not spicy, no chili, no red sauce. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 4.** Wide 16:9. Three-quarter angle of the soft pale eomuk strips going into the pan with dark Korean soy sauce and minced garlic, the strips limp and folding as they take on a soy-brown tint on a dark slate counter. Korean home kitchen. Not spicy, no chili, no red sauce. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 5.** Wide 16:9. Three-quarter angle of the soy-glazed eomuk stir-fry turning deep glossy soy brown over strong heat in the black pan, strips soft and curling on a dark slate counter. Korean home kitchen. Not spicy, no chili, no red sauce. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 6.** Wide 16:9. Three-quarter angle of Korean eomuk bokkeum banchan mounded in a small white ceramic side-dish bowl, soft floppy soy-glazed fish cake strips in deep brown with fine onion and carrot threads, diagonal scallion slices and a sheen of sesame oil on top, served on a dark slate counter. Korean side dish. Not spicy, no chili, no red sauce. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+## 🥚 메추리알 장조림 (id: 225)
+
+> **가로형(landscape)으로 요청**하세요. 5장 전부 필요합니다.
+
+**Step 1.** Wide 16:9. Three-quarter angle of dark Korean soy sauce being poured from one small glass jug into a small steel pot of gently simmering water, a little bowl of sugar and a small glass of cooking wine resting beside the pot on a dark slate counter. One pouring stream only, one hand only. Korean home kitchen. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 2.** Wide 16:9. Three-quarter angle of about thirty peeled boiled quail eggs and sliced garlic being lowered into the dark simmering soy broth in the pot on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 3.** Wide 16:9. Three-quarter angle of the quail eggs simmering uncovered in the reducing soy broth, their surfaces turning deep mahogany brown on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 4.** Wide 16:9. Three-quarter angle of whole shishito peppers being added to the pot among the browned quail eggs on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 5.** Wide 16:9. Three-quarter angle of mechurial jangjorim resting in the pot off the heat, mahogany quail eggs and green shishito peppers glistening in the reduced dark soy braise on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+## 🥬 무생채 (id: 226)
+
+> **가로형(landscape)으로 요청**하세요. 5장 전부 필요합니다.
+
+**Step 1.** Wide 16:9. Three-quarter angle of a white Korean radish being cut into fine 0.3cm matchsticks on a wooden board, a tall pale pile forming on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 2.** Wide 16:9. Three-quarter angle of the radish matchsticks tossed with coarse red pepper flakes in a white ceramic bowl, strands turning bright red on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 3.** Wide 16:9. Three-quarter angle of a spoonful of seasoning being added onto the red-coated radish strands in a white ceramic bowl, small saucers of sugar, vinegar, minced garlic and salt lined up beside the bowl on a dark slate counter. One hand only, one spoon only. Korean home kitchen. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 4.** Wide 16:9. Three-quarter angle of hands gently tossing the seasoned radish in the bowl, strands glossy and still crisp on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 5.** Wide 16:9. Three-quarter angle of musaengchae mounded in a small white ceramic bowl, vivid red crisp radish strands topped with chopped chives and toasted sesame on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+## 🍠 고구마 맛탕 (id: 227)
+
+> **가로형(landscape)으로 요청**하세요. 6장 전부 필요합니다.
+
+**Step 1.** Wide 16:9. Three-quarter angle of unpeeled sweet potatoes cut into bite-size chunks soaking in a clear bowl of cold water on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 2.** Wide 16:9. Three-quarter angle of the sweet potato chunks being patted completely dry on a kitchen towel on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 3.** Wide 16:9. Three-quarter angle of the sweet potato chunks deep-frying in hot oil in a black pot, surfaces turning golden and crisp on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 4.** Wide 16:9. Three-quarter angle of sugar and water bubbling into a clear syrup in a separate black pan, untouched by any spoon, on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 5.** Wide 16:9. Three-quarter angle of the fried sweet potato chunks being tossed quickly in the clear syrup, every piece coated in glass-like gloss on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 6.** Wide 16:9. Three-quarter angle of goguma mattang spread apart on a white ceramic plate, glossy candied chunks scattered with black sesame on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+## 🍳 오므라이스 (id: 228)
+
+> **가로형(landscape)으로 요청**하세요. 6장 전부 필요합니다.
+
+**Step 1.** Wide 16:9. Three-quarter angle of onion, carrot and sausage being finely diced on a wooden board on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 2.** Wide 16:9. Three-quarter angle of the diced onion, carrot and sausage sizzling in melted butter in a black pan on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 3.** Wide 16:9. Three-quarter angle of white rice and ketchup being stirred into the pan, the grains turning even orange-red on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 4.** Wide 16:9. Three-quarter angle of beaten egg being strained through a fine sieve into a clear bowl on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 5.** Wide 16:9. Three-quarter angle of the strained egg spread into a thin pale yellow sheet in a lightly oiled pan, surface still glossy and soft on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 6.** Wide 16:9. Three-quarter angle of omurice on a white plate, the soft egg blanket draped over the ketchup rice with a red ketchup line across the top on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.

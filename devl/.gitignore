@@ -58,3 +58,6 @@ assets/Cafe24Ssurround-*.ttf
 assets/Cafe24Ssurround-*.otf
 # 메모멘트 꾸꾸 (본문 손글씨체) — 동일
 assets/MemomentKkukkukk.*
+
+# 매일 recipe-image-prompts.md 에서 추려 만드는 임시 파일
+data/today-prompts.md

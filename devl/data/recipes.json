@@ -11046,74 +11046,6 @@
         ]
     },
     {
-        "id": "204",
-        "title": "치즈 라면",
-        "author": "요잘알",
-        "time": 7,
-        "difficulty": "쉬움",
-        "calories": 620,
-        "rating": 4.8,
-        "likes": 0,
-        "bookmarks": 0,
-        "image": "",
-        "category": "야식",
-        "description": "라면 위에 슬쩍 녹인 치즈 한 장이 만드는 마법! 자취 냉장고에 꼭 한 장은 있는 그 치즈로 끝!",
-        "ingredients": [
-            {
-                "name": "라면",
-                "amount": "1봉",
-                "icon": "🍜"
-            },
-            {
-                "name": "슬라이스치즈",
-                "amount": "1장",
-                "icon": "🧀"
-            },
-            {
-                "name": "계란",
-                "amount": "1개",
-                "icon": "🥚"
-            },
-            {
-                "name": "대파",
-                "amount": "1/4대",
-                "icon": "🌿"
-            }
-        ],
-        "steps": [
-            {
-                "step": 1,
-                "description": "냄비에 물 550ml를 끓이고 분말스프와 건더기스프를 넣어 풀어주세요.",
-                "time": 0
-            },
-            {
-                "step": 2,
-                "description": "물이 끓어오르면 면을 반으로 부숴 넣고 4분간 끓여주세요.",
-                "time": 4
-            },
-            {
-                "step": 3,
-                "description": "어슷썬 대파를 넣고 계란을 깨뜨려 노른자 안 깨지게 그대로 올려주세요.",
-                "time": 0
-            },
-            {
-                "step": 4,
-                "description": "30초 더 끓여 흰자 가장자리만 살짝 익힌 뒤 불을 꺼주세요.",
-                "time": 0.5
-            },
-            {
-                "step": 5,
-                "description": "슬라이스치즈를 면 위에 덮듯 올리고 1분 두어 살짝 녹여주세요. 휘젓지 않는 게 치즈 살리는 비법!",
-                "time": 1
-            },
-            {
-                "step": 6,
-                "description": "냄비째 받침에 올려 마무리합니다.",
-                "time": 0
-            }
-        ]
-    },
-    {
         "id": "205",
         "title": "스팸 김치찌개",
         "author": "요잘알",
@@ -11483,7 +11415,7 @@
             },
             {
                 "step": 5,
-                "description": "나머지 식빵으로 덮은 뒤 반으로 잘라 접시에 담아 마무리합니다.",
+                "description": "나머지 식빵으로 덮은 뒤 반으로 잘라 마무리합니다.",
                 "time": 0
             }
         ]
@@ -12075,7 +12007,7 @@
         "description": "올리브유에 마늘과 새우를 자작하게 익히는 스페인식 안주예요. 바게트를 꼭 곁들이세요.",
         "ingredients": [
             {
-                "name": "새우",
+                "name": "손질 새우살",
                 "amount": "15마리",
                 "icon": "🦐"
             },
@@ -12112,13 +12044,8 @@
         ],
         "steps": [
             {
-                "step": 1,
-                "description": "새우 15마리는 껍질을 벗기고 등쪽 내장을 이쑤시개로 제거해주세요.",
-                "time": 0
-            },
-            {
                 "step": 2,
-                "description": "손질한 새우에 소금 1작은술을 뿌려 5분간 재워주세요.",
+                "description": "손질 새우살 15마리에 소금 1작은술을 뿌려 5분간 재워주세요.",
                 "time": 5
             },
             {
@@ -12138,7 +12065,7 @@
             },
             {
                 "step": 6,
-                "description": "파슬리를 약간 뿌려 불을 끄고, 바게트 1/2개를 곁들여 팬째 받침에 올려 마무리합니다.",
+                "description": "파슬리를 약간 뿌려 불을 끄고 바게트 1/2개를 곁들여 마무리합니다.",
                 "time": 0
             }
         ],
@@ -12227,7 +12154,7 @@
             },
             {
                 "step": 6,
-                "description": "쌀이 익으면 생크림 200ml를 넣어 3분간 졸이고, 파마산치즈 3큰술과 후추 약간을 섞어 접시에 넓게 펴 담아 마무리합니다.",
+                "description": "쌀이 익으면 생크림 200ml를 넣어 3분간 졸이고, 파마산치즈 3큰술과 후추 약간을 섞어 마무리합니다.",
                 "time": 3
             }
         ],
@@ -12311,7 +12238,7 @@
             },
             {
                 "step": 6,
-                "description": "내열 그릇에 수프를 담고 바게트와 그뤼에르치즈 1컵을 올려 200도 오븐에서 5분간 구운 뒤, 접시에 받쳐 마무리합니다.",
+                "description": "내열 그릇에 수프를 담고 바게트와 그뤼에르치즈 1컵을 올려 200도 오븐에서 5분간 구워 마무리합니다.",
                 "time": 5
             }
         ],
@@ -12789,5 +12716,481 @@
             }
         ],
         "servings": "2"
+    },
+    {
+        "author": "요잘알",
+        "rating": 4.5,
+        "likes": 0,
+        "bookmarks": 0,
+        "image": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790303582033_32b206fb.jpg?alt=media&token=fda79654-4297-4b8e-b0d5-404aa2626f76",
+        "id": "224",
+        "title": "어묵볶음",
+        "time": 15,
+        "difficulty": "쉬움",
+        "calories": 180,
+        "category": "반찬",
+        "description": "한 번 만들면 삼일은 먹는 자취 필수 밑반찬. 물엿 한 큰술이 윤기를 냅니다.",
+        "ingredients": [
+            {
+                "name": "사각어묵",
+                "amount": "4장",
+                "icon": "🍢"
+            },
+            {
+                "name": "양파",
+                "amount": "1/4개",
+                "icon": "🧅"
+            },
+            {
+                "name": "당근",
+                "amount": "1/4개",
+                "icon": "🥕"
+            },
+            {
+                "name": "대파",
+                "amount": "1/2대",
+                "icon": "🌿"
+            },
+            {
+                "name": "간장",
+                "amount": "2큰술",
+                "icon": "🫙"
+            },
+            {
+                "name": "물엿",
+                "amount": "1큰술",
+                "icon": "🍯"
+            },
+            {
+                "name": "다진마늘",
+                "amount": "1작은술",
+                "icon": "🧄"
+            },
+            {
+                "name": "참기름",
+                "amount": "1작은술",
+                "icon": "🫒"
+            }
+        ],
+        "steps": [
+            {
+                "step": 1,
+                "description": "사각어묵 4장은 1cm 폭으로 길게 썰고, 양파 1/4개와 당근 1/4개는 가늘게 채 썰어주세요.",
+                "time": 0,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790303575999_19922b4a.jpg?alt=media&token=5957bd71-21f7-467c-949e-a473040c7798",
+                "isAiImage": true
+            },
+            {
+                "step": 2,
+                "description": "끓는 물에 어묵을 넣고 30초간 데쳐 기름기를 빼고 체에 밭쳐주세요.",
+                "time": 0.5,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790303577182_d2e1aa7b.jpg?alt=media&token=bb3278f7-ac5c-4139-a10f-adc054499150",
+                "isAiImage": true
+            },
+            {
+                "step": 3,
+                "description": "팬에 기름을 약간 두르고 양파와 당근을 중불에서 2분간 볶아주세요.",
+                "time": 2,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790303578286_d05718ad.jpg?alt=media&token=e63c2370-60ab-46bb-b7ce-3e6dcaca00a7",
+                "isAiImage": true
+            },
+            {
+                "step": 4,
+                "description": "어묵을 넣고 간장 2큰술, 다진마늘 1작은술을 넣어 3분간 볶아주세요.",
+                "time": 3,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790303579484_f94712bf.jpg?alt=media&token=e674426f-0210-4c75-85de-aca0ed2f8bf6",
+                "isAiImage": true
+            },
+            {
+                "step": 5,
+                "description": "물엿 1큰술을 넣고 센불에서 1분간 볶아 윤기를 내주세요.",
+                "time": 1,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790303580713_d11462fe.jpg?alt=media&token=d62dc23e-ce1c-4848-9c73-64465ff2d0e2",
+                "isAiImage": true
+            },
+            {
+                "step": 6,
+                "description": "어슷썬 대파 1/2대와 참기름 1작은술을 넣고 섞어 마무리합니다.",
+                "time": 0,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790303582033_32b206fb.jpg?alt=media&token=fda79654-4297-4b8e-b0d5-404aa2626f76",
+                "isAiImage": true
+            }
+        ],
+        "servings": "3"
+    },
+    {
+        "author": "요잘알",
+        "rating": 4.5,
+        "likes": 0,
+        "bookmarks": 0,
+        "image": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790303587460_38f7495c.jpg?alt=media&token=3c87964c-e0c5-4478-8318-1a58f683e12e",
+        "id": "225",
+        "title": "메추리알 장조림",
+        "time": 25,
+        "difficulty": "쉬움",
+        "calories": 210,
+        "category": "반찬",
+        "description": "삶은 메추리알 사서 조리기만 하면 끝. 밥반찬으로도 도시락 반찬으로도 좋아요.",
+        "ingredients": [
+            {
+                "name": "삶은 메추리알",
+                "amount": "30개",
+                "icon": "🥚"
+            },
+            {
+                "name": "꽈리고추",
+                "amount": "8개",
+                "icon": "🌶️"
+            },
+            {
+                "name": "간장",
+                "amount": "5큰술",
+                "icon": "🫙"
+            },
+            {
+                "name": "설탕",
+                "amount": "2큰술",
+                "icon": "🍚"
+            },
+            {
+                "name": "맛술",
+                "amount": "2큰술",
+                "icon": "🍶"
+            },
+            {
+                "name": "마늘",
+                "amount": "5쪽",
+                "icon": "🧄"
+            },
+            {
+                "name": "물",
+                "amount": "1.5컵",
+                "icon": "💧"
+            }
+        ],
+        "steps": [
+            {
+                "step": 1,
+                "description": "냄비에 물 1.5컵과 간장 5큰술, 설탕 2큰술, 맛술 2큰술을 넣고 센불에 끓여주세요.",
+                "time": 0,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790303583483_99458036.jpg?alt=media&token=4280afca-208b-44c6-b026-6f9cb6267c2e",
+                "isAiImage": true
+            },
+            {
+                "step": 2,
+                "description": "끓어오르면 삶은 메추리알 30개와 편으로 썬 마늘 5쪽을 넣어주세요.",
+                "time": 0,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790303584636_94328950.jpg?alt=media&token=62f462c5-b54e-4e5f-bce2-578abfce7ae4",
+                "isAiImage": true
+            },
+            {
+                "step": 3,
+                "description": "중불로 줄여 뚜껑을 열고 15분간 조려주세요. 중간에 두세 번 굴려야 색이 고르게 배요.",
+                "time": 15,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790303585596_e944ef28.jpg?alt=media&token=664c79bb-e9f9-4131-b6ed-0738156336ec",
+                "isAiImage": true
+            },
+            {
+                "step": 4,
+                "description": "꽈리고추 8개를 꼭지째 넣고 5분간 더 조려주세요.",
+                "time": 5,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790303586577_b8fe69f1.jpg?alt=media&token=889eecbe-097f-435e-859d-a519993cb0e4",
+                "isAiImage": true
+            },
+            {
+                "step": 5,
+                "description": "국물이 자작해지면 불을 끄고 그대로 5분간 식혀 간을 배게 해 마무리합니다.",
+                "time": 5,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790303587460_38f7495c.jpg?alt=media&token=3c87964c-e0c5-4478-8318-1a58f683e12e",
+                "isAiImage": true
+            }
+        ],
+        "servings": "4"
+    },
+    {
+        "author": "요잘알",
+        "rating": 4.5,
+        "likes": 0,
+        "bookmarks": 0,
+        "image": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790303592924_da6af8ce.jpg?alt=media&token=83d57cf7-30c0-424b-8818-007feef4a5ae",
+        "id": "226",
+        "title": "무생채",
+        "time": 10,
+        "difficulty": "쉬움",
+        "calories": 60,
+        "category": "반찬",
+        "description": "가을 무가 가장 단 때예요. 소금에 절이지 않고 바로 무쳐야 아삭합니다.",
+        "ingredients": [
+            {
+                "name": "무",
+                "amount": "400g",
+                "icon": "🥬"
+            },
+            {
+                "name": "고춧가루",
+                "amount": "2큰술",
+                "icon": "🌶️"
+            },
+            {
+                "name": "설탕",
+                "amount": "1큰술",
+                "icon": "🍚"
+            },
+            {
+                "name": "식초",
+                "amount": "1큰술",
+                "icon": "🍶"
+            },
+            {
+                "name": "다진마늘",
+                "amount": "1작은술",
+                "icon": "🧄"
+            },
+            {
+                "name": "소금",
+                "amount": "1작은술",
+                "icon": "🧂"
+            },
+            {
+                "name": "쪽파",
+                "amount": "2뿌리",
+                "icon": "🌿"
+            },
+            {
+                "name": "통깨",
+                "amount": "1작은술",
+                "icon": "🌰"
+            }
+        ],
+        "steps": [
+            {
+                "step": 1,
+                "description": "무 400g은 껍질을 벗기고 0.3cm 두께로 채 썰어주세요. 굵으면 양념이 겉돌아요.",
+                "time": 0,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790303588818_087b8eff.jpg?alt=media&token=935af318-d3af-4230-91a8-e7dfea04230a",
+                "isAiImage": true
+            },
+            {
+                "step": 2,
+                "description": "볼에 채 썬 무와 고춧가루 2큰술을 넣고 버무려 2분간 두어 색을 입혀주세요.",
+                "time": 2,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790303590207_e3133f7e.jpg?alt=media&token=26cdc592-18f0-4503-b02b-932a7ab06b28",
+                "isAiImage": true
+            },
+            {
+                "step": 3,
+                "description": "설탕 1큰술, 식초 1큰술, 다진마늘 1작은술, 소금 1작은술을 넣어주세요.",
+                "time": 0,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790303591091_283ca583.jpg?alt=media&token=a90a93a2-178b-4609-a2cf-9325f051dfd1",
+                "isAiImage": true
+            },
+            {
+                "step": 4,
+                "description": "손으로 가볍게 주물러 3분간 버무려주세요. 세게 치대면 물이 생겨 흐물해져요.",
+                "time": 3,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790303591976_6ec64200.jpg?alt=media&token=c1b0f60d-bb1a-43d4-87c5-727f4f8e5c88",
+                "isAiImage": true
+            },
+            {
+                "step": 5,
+                "description": "송송 썬 쪽파 2뿌리와 통깨 1작은술을 넣고 섞어 마무리합니다.",
+                "time": 0,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790303592924_da6af8ce.jpg?alt=media&token=83d57cf7-30c0-424b-8818-007feef4a5ae",
+                "isAiImage": true
+            }
+        ],
+        "servings": "3"
+    },
+    {
+        "author": "요잘알",
+        "rating": 4.5,
+        "likes": 0,
+        "bookmarks": 0,
+        "image": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790303598927_8435dd16.jpg?alt=media&token=b9bf742f-7bd9-4ad0-9a65-1561a0ec485f",
+        "id": "227",
+        "title": "고구마 맛탕",
+        "time": 20,
+        "difficulty": "쉬움",
+        "calories": 320,
+        "category": "디저트",
+        "description": "가을 고구마로 만드는 겉바속촉 간식. 설탕물이 갈색으로 변하기 전에 불을 꺼야 해요.",
+        "ingredients": [
+            {
+                "name": "고구마",
+                "amount": "2개",
+                "icon": "🍠"
+            },
+            {
+                "name": "식용유",
+                "amount": "2컵",
+                "icon": "🫗"
+            },
+            {
+                "name": "설탕",
+                "amount": "4큰술",
+                "icon": "🍚"
+            },
+            {
+                "name": "물",
+                "amount": "2큰술",
+                "icon": "💧"
+            },
+            {
+                "name": "물엿",
+                "amount": "1큰술",
+                "icon": "🍯"
+            },
+            {
+                "name": "검은깨",
+                "amount": "1작은술",
+                "icon": "🌰"
+            }
+        ],
+        "steps": [
+            {
+                "step": 1,
+                "description": "고구마 2개는 껍질째 씻어 한입 크기로 썰고 찬물에 5분간 담가 전분을 빼주세요.",
+                "time": 5,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790303594140_672b3e54.jpg?alt=media&token=40165be8-2f19-4a27-b3c4-b41c37aa8255",
+                "isAiImage": true
+            },
+            {
+                "step": 2,
+                "description": "물기를 키친타월로 완전히 닦아주세요. 물기가 남으면 기름이 튑니다.",
+                "time": 0,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790303595282_dae2cd70.jpg?alt=media&token=5904ab2f-1b39-4371-8c35-34c2da0e9d0f",
+                "isAiImage": true
+            },
+            {
+                "step": 3,
+                "description": "160도로 달군 식용유에 고구마를 넣고 7분간 튀긴 뒤 건져 기름을 빼주세요.",
+                "time": 7,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790303596127_1341c2fe.jpg?alt=media&token=6993e1ee-5fc7-43ff-91dc-e0056d7c58c2",
+                "isAiImage": true
+            },
+            {
+                "step": 4,
+                "description": "다른 팬에 설탕 4큰술과 물 2큰술을 넣고 중불에서 젓지 말고 3분간 끓여주세요.",
+                "time": 3,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790303597032_380492f7.jpg?alt=media&token=2e2114a6-ba2d-421e-b02a-aaad7f7b7224",
+                "isAiImage": true
+            },
+            {
+                "step": 5,
+                "description": "설탕물이 투명하게 끓어오르면 물엿 1큰술과 튀긴 고구마를 넣고 1분간 빠르게 버무려주세요.",
+                "time": 1,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790303597845_baa3219f.jpg?alt=media&token=5e25c198-3089-4c7a-978d-b0c1ebab3f3f",
+                "isAiImage": true
+            },
+            {
+                "step": 6,
+                "description": "검은깨 1작은술을 뿌리고 서로 붙지 않게 펼쳐 마무리합니다.",
+                "time": 0,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790303598927_8435dd16.jpg?alt=media&token=b9bf742f-7bd9-4ad0-9a65-1561a0ec485f",
+                "isAiImage": true
+            }
+        ],
+        "servings": "2"
+    },
+    {
+        "id": "228",
+        "title": "오므라이스",
+        "author": "요잘알",
+        "time": 20,
+        "difficulty": "쉬움",
+        "calories": 620,
+        "rating": 4.5,
+        "likes": 0,
+        "bookmarks": 0,
+        "image": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790303605380_cacdf366.jpg?alt=media&token=041b2158-909d-4288-afa2-c932c146cdbe",
+        "category": "양식",
+        "description": "케첩밥을 반숙 계란으로 덮는 한 그릇. 계란물을 체에 거르면 표면이 매끈해져요.",
+        "ingredients": [
+            {
+                "name": "밥",
+                "amount": "1공기",
+                "icon": "🍚"
+            },
+            {
+                "name": "계란",
+                "amount": "3개",
+                "icon": "🥚"
+            },
+            {
+                "name": "양파",
+                "amount": "1/4개",
+                "icon": "🧅"
+            },
+            {
+                "name": "당근",
+                "amount": "1/4개",
+                "icon": "🥕"
+            },
+            {
+                "name": "소시지",
+                "amount": "2개",
+                "icon": "🌭"
+            },
+            {
+                "name": "케첩",
+                "amount": "3큰술",
+                "icon": "🍅"
+            },
+            {
+                "name": "버터",
+                "amount": "1큰술",
+                "icon": "🧈"
+            },
+            {
+                "name": "소금",
+                "amount": "약간",
+                "icon": "🧂"
+            }
+        ],
+        "steps": [
+            {
+                "step": 1,
+                "description": "양파 1/4개, 당근 1/4개, 소시지 2개를 잘게 다져주세요.",
+                "time": 0,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790303600320_190f9015.jpg?alt=media&token=225bb563-0c14-4e95-86eb-c8eabbfd40d1",
+                "isAiImage": true
+            },
+            {
+                "step": 2,
+                "description": "팬에 버터 1큰술을 녹이고 다진 재료를 중불에서 3분간 볶아주세요.",
+                "time": 3,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790303601442_d72cd60c.jpg?alt=media&token=b4cef7fa-6788-4b98-a4a9-69c420ccb77f",
+                "isAiImage": true
+            },
+            {
+                "step": 3,
+                "description": "밥 1공기와 케첩 2큰술을 넣고 3분간 볶은 뒤 소금으로 간해 다른 그릇에 덜어주세요.",
+                "time": 3,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790303602394_03ad0aef.jpg?alt=media&token=c4c9781a-fc3d-403f-a3a3-7052bcb80e5b",
+                "isAiImage": true
+            },
+            {
+                "step": 4,
+                "description": "계란 3개에 소금을 약간 넣어 풀고 체에 한 번 걸러주세요. 알끈을 걸러야 표면이 매끈해져요.",
+                "time": 0,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790303603609_7090d3d8.jpg?alt=media&token=53ac0f0a-f9da-45f6-9590-f94f361f6b95",
+                "isAiImage": true
+            },
+            {
+                "step": 5,
+                "description": "약불 팬에 기름을 얇게 두르고 계란물을 부어 2분간 반숙으로 익혀주세요.",
+                "time": 2,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790303604477_60c409e1.jpg?alt=media&token=40e2425f-5c50-4f30-aa11-814609a440c6",
+                "isAiImage": true
+            },
+            {
+                "step": 6,
+                "description": "케첩밥을 올려 계란으로 감싸고 케첩 1큰술을 뿌려 마무리합니다.",
+                "time": 0,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790303605380_cacdf366.jpg?alt=media&token=041b2158-909d-4288-afa2-c932c146cdbe",
+                "isAiImage": true
+            }
+        ],
+        "servings": "1"
     }
 ]
