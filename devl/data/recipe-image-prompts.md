@@ -6,6 +6,10 @@
 **프롬프트 하나에 동작은 하나만.** 동작을 여러 개 넣으면 모델이 한 프레임에 전부 우겨넣어 어색해지고,
 여백을 채우려고 레시피에 없는 재료(견과·향신료 등)를 멋대로 만들어낸다. 짧을수록 정확하다. ChatGPT 에 그대로 복붙해 사용.
 
+**조리도구도 한국 것으로 지정할 것.** 안 적으면 거품기와 대형 서양 믹싱볼이 나온다.
+스테인리스 볼, 금속 숟가락, 젓가락, 뚝배기처럼 집에서 실제로 쓰는 것을 적고,
+양도 `Small home portion` 으로 못 박는다.
+
 **한국 음식은 재료를 영어 일반명사로만 쓰면 다른 나라 요리가 나온다.** `fish cake sheets` 라고만 쓰면
 두껍고 빨간 중식 볶음이 나온다. 로마자 표기(eomuk, gochujang, banchan)와 `Korean` 을 함께 쓰고,
 간장 양념이면 `Not spicy, no chili, no red sauce` 를 명시할 것. 모델의 기본값은 매운 한식이다.
@@ -409,3 +413,77 @@
 **Step 5.** Wide 16:9. Three-quarter angle of the strained egg spread into a thin pale yellow sheet in a lightly oiled pan, surface still glossy and soft on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
 **Step 6.** Wide 16:9. Three-quarter angle of omurice on a white plate, the soft egg blanket draped over the ketchup rice with a red ketchup line across the top on a dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+## 🥚 계란찜 (id: 229)
+
+> **가로형(landscape)으로 요청**하세요. 5장 전부 필요합니다.
+
+**Step 1.** Wide 16:9. Three-quarter angle of water simmering in a small Korean earthenware ttukbaegi pot with a spoonful of salted shrimp going in on a dark slate counter. Korean home kitchen. Not spicy, no chili, no red sauce. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 2.** Wide 16:9. Three-quarter angle of four eggs being beaten with chopsticks in a small stainless steel bowl, still loose and streaky on a dark slate counter. Korean home kitchen. Not spicy, no chili, no red sauce. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 3.** Wide 16:9. Three-quarter angle of beaten egg being poured into the simmering ttukbaegi while chopsticks stir it into soft fluffy curds on a dark slate counter. Korean home kitchen. Not spicy, no chili, no red sauce. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 4.** Wide 16:9. Three-quarter angle of the egg curds in the ttukbaegi half set and rising, a lid resting half open above the pot on a dark slate counter. Korean home kitchen. Not spicy, no chili, no red sauce. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 5.** Wide 16:9. Three-quarter angle of Korean gyeran jjim risen tall and puffy in the ttukbaegi, topped with thin scallion rings and a sheen of sesame oil on a dark slate counter. Korean side dish. Not spicy, no chili, no red sauce. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+## 🐟 북엇국 (id: 230)
+
+> **가로형(landscape)으로 요청**하세요. 6장 전부 필요합니다.
+
+**Step 1.** Wide 16:9. Three-quarter angle of dried pollock strips soaking in a bowl of cold water, then squeezed dry by hand on a dark slate counter. Korean home kitchen. Not spicy, no chili, no red sauce. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 2.** Wide 16:9. Three-quarter angle of the pale dried pollock strips being stir-fried in sesame oil in a steel pot, turning glossy on a dark slate counter. Korean home kitchen. Not spicy, no chili, no red sauce. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 3.** Wide 16:9. Three-quarter angle of thin square-cut white radish slices going into the pot with the pollock on a dark slate counter. Korean home kitchen. Not spicy, no chili, no red sauce. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 4.** Wide 16:9. Three-quarter angle of the pot filled with water, the broth turning milky white as it simmers on a dark slate counter. Korean home kitchen. Not spicy, no chili, no red sauce. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 5.** Wide 16:9. Three-quarter angle of beaten egg being drizzled in a thin ribbon into the milky simmering broth on a dark slate counter. Korean home kitchen. Not spicy, no chili, no red sauce. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 6.** Wide 16:9. Three-quarter angle of Korean bugeoguk in a white ceramic bowl, milky broth with soft pollock strips, radish and egg ribbons, topped with diagonal scallion slices on a dark slate counter. Korean soup. Not spicy, no chili, no red sauce. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+## 🥔 감자조림 (id: 231)
+
+> **가로형(landscape)으로 요청**하세요. 5장 전부 필요합니다.
+
+**Step 1.** Wide 16:9. Three-quarter angle of peeled potatoes cut into bite-size chunks soaking in a clear bowl of cold water on a dark slate counter. Korean home kitchen. Not spicy, no chili, no red sauce. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 2.** Wide 16:9. Three-quarter angle of dark soy braising liquid coming to a boil in a small steel pot on a dark slate counter. Korean home kitchen. Not spicy, no chili, no red sauce. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 3.** Wide 16:9. Three-quarter angle of the potato chunks simmering in the dark soy liquid, surfaces turning glossy brown on a dark slate counter. Korean home kitchen. Not spicy, no chili, no red sauce. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 4.** Wide 16:9. Three-quarter angle of sliced onion and a spoonful of corn syrup being added to the braising potatoes on a dark slate counter. Korean home kitchen. Not spicy, no chili, no red sauce. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 5.** Wide 16:9. Three-quarter angle of Korean gamja jorim in a small white ceramic side-dish bowl, glossy soy-brown potato chunks with soft onion and toasted sesame on a dark slate counter. Korean side dish. Not spicy, no chili, no red sauce. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+## 🍜 김치말이국수 (id: 232)
+
+> **가로형(landscape)으로 요청**하세요. 5장 전부 필요합니다.
+
+**Step 1.** Wide 16:9. Three-quarter angle of cloudy orange-red Korean kimchi brine being poured from a small glass jar into a stainless steel bowl of water, fine red chili flakes floating on the surface, a metal spoon resting in the bowl and small saucers of sugar and vinegar beside it on a dark slate counter. Korean home kitchen. Small home portion, stainless steel bowl, metal spoon only — no whisk, no large western mixing bowl. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 2.** Wide 16:9. Three-quarter angle of the cloudy orange-red kimchi broth in a stainless steel bowl with a thin layer of slushy ice crystals forming on its surface on a dark slate counter. Korean home kitchen. Small home portion, stainless steel bowl only. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 3.** Wide 16:9. Three-quarter angle of thin white somen noodles being rinsed under cold running water in a stainless steel sieve on a dark slate counter. Korean home kitchen. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 4.** Wide 16:9. Three-quarter angle of the icy cloudy orange-red kimchi broth being poured over a coiled nest of thin white somen noodles in a white ceramic bowl on a dark slate counter. Korean home kitchen. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 5.** Wide 16:9. Three-quarter angle of Korean kimchi mari guksu in a white ceramic bowl, thin white somen noodles in icy cloudy orange-red kimchi broth topped with chopped kimchi, cucumber strips and half a boiled egg on a dark slate counter. Korean cold noodle dish. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+## 🍗 닭강정 (id: 233)
+
+> **가로형(landscape)으로 요청**하세요. 6장 전부 필요합니다.
+
+**Step 1.** Wide 16:9. Three-quarter angle of bite-size boneless chicken thigh pieces resting on a wooden board, patted dry and seasoned on a dark slate counter. Korean home kitchen. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 2.** Wide 16:9. Three-quarter angle of the chicken pieces being tossed with potato starch inside a plastic bag, every piece dusted white on a dark slate counter. Korean home kitchen. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 3.** Wide 16:9. Three-quarter angle of the coated chicken frying in hot oil in a black pot, surfaces turning pale gold on a dark slate counter. Korean home kitchen. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 4.** Wide 16:9. Three-quarter angle of the chicken frying a second time in hotter oil, crust turning deep golden and craggy on a dark slate counter. Korean home kitchen. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 5.** Wide 16:9. Three-quarter angle of glossy red gochujang and ketchup sauce bubbling in a black pan on a dark slate counter. Korean home kitchen. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 6.** Wide 16:9. Three-quarter angle of Korean dakgangjeong piled in a white ceramic bowl, crisp golden chicken chunks coated in glossy red sauce on a dark slate counter. Korean fried chicken. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
