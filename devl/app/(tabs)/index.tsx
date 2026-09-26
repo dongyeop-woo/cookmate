@@ -17,7 +17,14 @@ import { LinearGradient } from 'expo-linear-gradient';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AttendanceToast from '../../components/AttendanceModal';
 import WelcomeToast from '../../components/WelcomeModal';
-import { checkAttendance } from '../../services/api';
+import PushOptInSheet from '../../components/PushOptInSheet';
+import { checkAttendance, updatePushToken } from '../../services/api';
+import {
+  shouldAskPushOptIn,
+  markPushOptInAsked,
+  markPushOptInDeclined,
+  registerForPushNotifications,
+} from '../../services/notifications';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { useFocusEffect } from '@react-navigation/native';
@@ -608,6 +615,8 @@ export default function HomeScreen() {
     visible: false,
     earnedPoints: 0,
   });
+  // 푸시 사전 동의 시트 — 출석 토스트가 사라진 뒤에 띄운다.
+  const [pushOptIn, setPushOptIn] = useState(false);
 
   // 가입 직후 홈 진입 시 환영 토스트 표시 (한 번만).
   // 첫 페인트 후로 미뤄 메인 스레드 부담 분산 — 토스트는 즉시 표시 안 돼도 UX 영향 없음.
@@ -644,6 +653,12 @@ export default function HomeScreen() {
         earnedPoints: res.awardedPoints,
         bonusPoints: res.bonusPoints,
       });
+      // 연속 2일째부터 푸시 동의를 묻는다. 첫날은 아직 앱을 쓸 이유를 못 찾은
+      // 상태라 거부로 이어지고, iOS 는 그 거부가 영구적이다. 출석 포인트를
+      // 받아본 다음이라야 "놓치면 아깝다"가 생긴다. 토스트가 사라진 뒤 띄운다.
+      if (res.streak >= 2 && (await shouldAskPushOptIn())) {
+        setTimeout(() => setPushOptIn(true), 3400);
+      }
     } catch (e: any) {
       // "오늘 이미 출석체크를 완료했습니다" 는 정상 흐름이라 조용히 넘긴다.
       // 그 외 실패는 다음 진입에 다시 시도할 수 있게 가드를 푼다.
@@ -1246,6 +1261,29 @@ export default function HomeScreen() {
         earnedPoints={attendanceToast.earnedPoints}
         bonusPoints={attendanceToast.bonusPoints}
         onAutoDismiss={() => setAttendanceToast(prev => ({ ...prev, visible: false }))}
+      />
+      <PushOptInSheet
+        visible={pushOptIn}
+        onAccept={async () => {
+          setPushOptIn(false);
+          await markPushOptInAsked();
+          // 여기서만 시스템 권한창을 띄운다.
+          const token = await registerForPushNotifications();
+          if (token && firebaseUser?.uid) {
+            try {
+              await updatePushToken(firebaseUser.uid, token);
+            } catch (e) {
+              console.warn('푸시 토큰 저장 실패:', e);
+            }
+          }
+        }}
+        onDecline={async () => {
+          setPushOptIn(false);
+          // 시스템 창을 띄우지 않았으므로 권한은 여전히 undetermined —
+          // 나중에 다시 물어볼 기회가 남는다.
+          await markPushOptInAsked();
+          await markPushOptInDeclined();
+        }}
       />
       <WelcomeToast
         visible={welcomeToast.visible}

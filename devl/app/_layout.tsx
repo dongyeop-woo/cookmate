@@ -298,10 +298,14 @@ export default function Layout() {
               syncPremiumOnLaunch(user.uid, initialPremium, profile.premiumSource)
                 .then(setIsPremium)
                 .catch(() => {});
+              // prompt:false — 앱 시작 시에는 절대 시스템 권한창을 띄우지 않는다.
+              // 앱이 뭘 하는지도 모르는 시점의 요청은 거부율이 가장 높고, iOS 는
+              // 한 번 거부당하면 앱에서 다시 물을 수 없다. 실제로 가입자의 68%가
+              // 토큰 없는 상태였다(2026-09-26). 요청은 홈의 사전 동의 시트에서만 한다.
               getPushEnabled().then(async (enabled) => {
                 if (enabled) {
                   try {
-                    const token = await registerForPushNotifications();
+                    const token = await registerForPushNotifications({ prompt: false });
                     if (token) await updatePushToken(user.uid, token);
                   } catch {}
                 }
