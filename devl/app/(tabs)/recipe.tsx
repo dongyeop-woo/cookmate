@@ -143,7 +143,9 @@ export default function RecipeScreen() {
   const [timeFilter, setTimeFilter] = useState<TimeFilter>('all');
   const [difficultyFilter, setDifficultyFilter] = useState<DifficultyFilter>('all');
   const [calorieFilter, setCalorieFilter] = useState<CalorieFilter>('all');
-  const [sortType, setSortType] = useState<'인기순' | '최신순'>('인기순');
+  // 기본은 최신순. 인기순으로 두면 새로 올린 레시피가 목록 아래로 묻혀,
+  // 매일 올리는 신규 레시피가 사실상 노출되지 않는다.
+  const [sortType, setSortType] = useState<'인기순' | '최신순'>('최신순');
   const [showFilterMenu, setShowFilterMenu] = useState(false);
   const activeFilterCount = (timeFilter !== 'all' ? 1 : 0) + (difficultyFilter !== 'all' ? 1 : 0) + (calorieFilter !== 'all' ? 1 : 0);
   const [authorImages, setAuthorImages] = useState<Record<string, string>>({});
