@@ -14,7 +14,6 @@ import {
   TouchableWithoutFeedback,
   ActivityIndicator,
   Alert,
-  Linking,
 } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -32,16 +31,6 @@ import KakaoShareLink from 'react-native-kakao-share-link';
 const bannerAdUnitId = __DEV__ ? TestIds.ADAPTIVE_BANNER : Platform.OS === 'ios'
   ? 'ca-app-pub-8542314434357214/6417512417'
   : 'ca-app-pub-8542314434357214/3982920767';
-
-// 쿠팡 파트너스 lptag — partners.coupang.com에서 발급받은 본인 파트너 식별자.
-const COUPANG_PARTNER_LPTAG = 'AF8701960';
-const openCoupangSearch = (query: string) => {
-  const q = encodeURIComponent(query.trim());
-  const url = COUPANG_PARTNER_LPTAG
-    ? `https://www.coupang.com/np/search?q=${q}&lptag=${COUPANG_PARTNER_LPTAG}`
-    : `https://www.coupang.com/np/search?q=${q}`;
-  Linking.openURL(url).catch(() => Alert.alert('오류', '쿠팡을 열 수 없어요.'));
-};
 
 const { width } = Dimensions.get('window');
 const PIXEL_RATIO = Math.ceil(Dimensions.get('window').scale);
@@ -843,19 +832,9 @@ export default function RecipeDetailScreen() {
                 </View>
                 <View style={styles.ingredientRight}>
                   <Text style={styles.ingredientAmount}>{ingredient.amount}</Text>
-                  <TouchableOpacity
-                    style={styles.ingredientBuyBtn}
-                    activeOpacity={0.7}
-                    onPress={() => openCoupangSearch(ingredient.name)}
-                    hitSlop={{ top: 6, bottom: 6, left: 4, right: 4 }}
-                  >
-                    <Ionicons name="cart-outline" size={12} color="#FFFFFF" />
-                    <Text style={styles.ingredientBuyText}>구매</Text>
-                  </TouchableOpacity>
                 </View>
               </View>
             ))}
-            <Text style={styles.coupangDisclosure}>구매 버튼은 쿠팡파트너스 활동의 일환으로, 일정액의 수수료를 제공받습니다.</Text>
           </View>
 
           {/* 배너 광고 */}
@@ -1490,27 +1469,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 10,
   },
-  ingredientBuyBtn: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 3,
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    borderRadius: 12,
-    backgroundColor: '#1BAE74',
-  },
-  ingredientBuyText: {
-    fontSize: 11,
-    fontWeight: '700',
-    color: '#FFFFFF',
-  },
-  coupangDisclosure: {
-    fontSize: 10,
-    color: '#9E9E9E',
-    marginTop: 10,
-    lineHeight: 14,
-  },
-
   // AdMob Banner
   adBanner: {
     alignItems: 'center',
