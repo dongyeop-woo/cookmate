@@ -80,7 +80,12 @@ def frame_cover(r, title):
 def frame_step(r, idx, st):
     """스텝 컷 — 사진 위, 설명 아래."""
     card = Image.new('RGB', (VW, VH), gen.WHITE)
-    box_h = 560
+    # 패널을 560 으로 고정했더니 한두 줄짜리 단계에서 흰 여백이 절반이었다.
+    # 글 길이에 맞춰 잡고 남는 높이는 사진이 가져가게 한다.
+    _d0 = ImageDraw.Draw(card)
+    _txt = gen.condense(st['description'], r.get('ingredients'))
+    _n = len(gen.wrap(_d0, _txt, gen.hand(52), VW - 130)[:4])
+    box_h = 130 + _n * 66 + 120
     top = VH - box_h
     img = st.get('imageUrl') or r.get('image')
     card.paste(gen.cover_fit(gen.fetch_image(img), VW, top), (0, 0))
@@ -102,11 +107,16 @@ def frame_step(r, idx, st):
         y += 66
     if st.get('time'):
         t = f"{int(st['time'])}분" if st['time'] >= 1 else f"{round(st['time'] * 60)}초"
-        d.text((VW - 64, VH - 74), f'⏱ {t}', font=gen.font(46), fill=gen.GREEN_DEEP, anchor='rd')
+        # 화면 맨 아래에 두면 설명 마지막 줄과 겹친다. 스텝 배지와 같은 줄에 놓는다.
+        d.text((VW - 64, top), f'{t}', font=gen.font(52), fill=gen.GREEN_DEEP, anchor='rm')
     return card
 
 
 def frame_outro(r):
+    """아웃트로 — 정사각 카드를 가운데 놓으면 위아래가 텅 빈다. 9:16 으로 그린다."""
+    # make_outro 는 정사각 기준으로 좌표가 잡혀 있어 1920 높이로 그리면 요소가
+    # 작게 떠 버린다. 정사각으로 그려 가운데 두는 쪽이 보기 낫다(배경이 흰색이라
+    # 위아래 여백이 티나지 않는다).
     card = gen.make_outro().resize((VW, VW), Image.LANCZOS)
     out = Image.new('RGB', (VW, VH), gen.WHITE)
     out.paste(card, (0, (VH - VW) // 2))
@@ -119,6 +129,8 @@ def main():
     ap.add_argument('--title', default='', help='표지 문구 (기본: 레시피 제목)')
     ap.add_argument('--sec', type=float, default=1.6, help='스텝당 노출 시간(초)')
     ap.add_argument('--out', default='out/reels')
+    ap.add_argument('--motion', choices=['on', 'off'], default='on',
+                    help='컷마다 천천히 확대/축소 (기본 on)')
     a = ap.parse_args()
 
     db = gen.fetch_recipes()
@@ -133,21 +145,40 @@ def main():
         plan.append((frame_step(r, i, st), a.sec))
     plan.append((frame_outro(r), 3.0))
 
-    # ffmpeg concat 용 목록 — 프레임마다 지속시간을 지정한다
+    # 컷마다 천천히 확대/축소(켄번스). 정지 이미지를 그냥 이어붙이면 슬라이드쇼로
+    # 보여서 릴스에서 바로 넘겨진다. 방향을 번갈아 주면 컷 전환이 또렷해진다.
+    #
+    # zoompan 은 입력 해상도가 낮으면 떨림이 생긴다. 2배로 키운 뒤 줌을 준다.
     listing = []
     for i, (im, sec) in enumerate(plan):
-        p = os.path.join(tmp, f'{i:03d}.png')
-        im.save(p)
-        listing.append(f"file '{p}'\nduration {sec}")
-    listing.append(f"file '{os.path.join(tmp, f'{len(plan)-1:03d}.png')}'")   # 마지막 프레임 고정용
+        src = os.path.join(tmp, f'{i:03d}.png')
+        im.save(src)
+        clip = os.path.join(tmp, f'{i:03d}.mp4')
+        n = max(2, int(sec * FPS))
+        if a.motion == 'off':
+            z = '1'
+        elif i % 2 == 0:
+            z = f'min(1+0.10*on/{n},1.10)'      # 들어가며 확대
+        else:
+            z = f'max(1.10-0.10*on/{n},1.0)'    # 빠지며 축소
+        vf = (f"scale={VW*2}:{VH*2},zoompan=z='{z}':d={n}"
+              f":x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
+              f":s={VW}x{VH}:fps={FPS},format=yuv420p")
+        rc = subprocess.run(
+            ['ffmpeg', '-y', '-loop', '1', '-i', src, '-vf', vf, '-t', str(sec),
+             '-c:v', 'libx264', '-preset', 'medium', '-crf', '20', '-pix_fmt', 'yuv420p', clip],
+            capture_output=True, text=True)
+        if rc.returncode != 0:
+            shutil.rmtree(tmp, ignore_errors=True)
+            sys.exit('❌ 컷 렌더 실패:\n' + rc.stderr[-1200:])
+        listing.append(f"file '{clip}'")
     lst = os.path.join(tmp, 'list.txt')
     open(lst, 'w').write('\n'.join(listing) + '\n')
 
     os.makedirs(a.out, exist_ok=True)
     dst = os.path.join(a.out, f"{r['id']}_{r['title'].replace(' ', '')}.mp4")
     cmd = ['ffmpeg', '-y', '-f', 'concat', '-safe', '0', '-i', lst,
-           '-vf', f'fps={FPS},format=yuv420p', '-c:v', 'libx264', '-preset', 'medium',
-           '-crf', '20', '-movflags', '+faststart', dst]
+           '-c', 'copy', '-movflags', '+faststart', dst]
     res = subprocess.run(cmd, capture_output=True, text=True)
     shutil.rmtree(tmp, ignore_errors=True)
     if res.returncode != 0:

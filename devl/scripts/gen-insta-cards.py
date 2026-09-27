@@ -532,13 +532,18 @@ def make_single(r, box_h=None, measure=False):
     # 재료 아래 여백(36)은 늘리되 패널 아래 여백(16)에서 상쇄해, 패널 높이와
     # 사진 크기는 그대로 두고 조리 단계만 아래로 내려간다.
     def fit_step(n, body, fnt):
-        """2줄 안에 넣는다. 넘치면 뒤 문장부터 덜어낸다.
+        """카드에는 각 단계의 첫 문장만, 2줄 안에 싣는다.
 
-        글자 수로 자르면 '진하게 내야 풍미' 처럼 말이 끊긴 채 끝난다.
-        핵심 동작은 첫 문장에 있고 뒤에 붙는 건 보통 팁이라, 문장 단위로
-        덜어내면 카드가 짧아지면서도 읽을 수 있는 문장으로 남는다.
+        레시피 본문은 '동작 문장 + 팁 문장' 구조가 많은데, 팁까지 다 실으면
+        단계마다 2줄을 먹어 패널이 길어진다. 패널 높이는 세트에서 가장 긴
+        것에 맞추므로 한 레시피가 길면 나머지 카드까지 아래 여백이 뜬다.
+        카드는 훑어보는 용도고 팁은 앱에 그대로 있으므로 첫 문장이면 된다.
+
+        글자 수로 자르면 '진하게 내야 풍미' 처럼 말이 끊기므로 항상 문장
+        단위로 덜어낸다.
         """
         parts = [x for x in re.split(r'(?<=[.!?])\s*', body.strip()) if x]
+        parts = parts[:1] if len(parts) > 1 else parts
         while True:
             lines = wrap(d, f"{n}. " + ' '.join(parts), fnt, W - 130)
             if len(lines) <= 2 or len(parts) <= 1:
@@ -595,6 +600,8 @@ def make_single(r, box_h=None, measure=False):
     d.text((W - 48, top - 20), '@cookmate_yojalal', font=font(28),
            fill=(230, 230, 230), anchor='rd')
 
+    # 글 시작 위치는 패널 위에 고정. 세로 가운데 정렬로 바꿔 봤더니 단계가
+    # 적은 카드에서 글이 아래로 내려가, 앞서 올린 게시물들과 템플릿이 달라졌다.
     px, py = 62, top + head
     for ln in ing_lines:
         d.text((px, py), ln, font=f_ing, fill=(135, 135, 135)); py += LH_I
