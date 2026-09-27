@@ -4,11 +4,28 @@ import Topbar from '../../Topbar';
 import Footer from '../../Footer';
 import BlogViewTracker from '../../BlogViewTracker';
 import BlogViewCount from '../../BlogViewCount';
+import AdFitBanner from '../../AdFitBanner';
 import { getAllSlugs, loadPost } from '@/lib/blog';
 
 export const dynamic = 'force-static';
 
 type Props = { params: Promise<{ slug: string }> };
+
+/**
+ * 본문을 광고 넣을 자리에서 둘로 가른다.
+ *
+ * 매거진 글은 `## 들어가며` → `## 1. 메뉴` → `## 2. 메뉴` … 구조라,
+ * 3번째 h2(= 레시피 카드 두 개를 지난 자리) 앞이 자연스럽다. 글 맨 아래에만
+ * 두면 500~900자짜리 글에서는 끝까지 내려간 사람만 보게 된다.
+ *
+ * 애드핏은 한 페이지에 같은 광고 단위를 두 번 넣을 수 없어 하나만 끼운다.
+ */
+function splitForAd(html: string): [string, string] {
+  const at = [...html.matchAll(/<h2[\s>]/g)].map((m) => m.index ?? -1).filter((i) => i >= 0);
+  const cut = at[3] ?? at[Math.floor(at.length / 2)];
+  if (cut === undefined || cut <= 0) return [html, ''];
+  return [html.slice(0, cut), html.slice(cut)];
+}
 
 function safeDecode(s: string): string {
   try { return decodeURIComponent(s); } catch { return s; }
@@ -72,6 +89,7 @@ export default async function BlogPostPage({ params }: Props) {
   const slug = safeDecode(raw);
   const post = loadPost(slug);
   if (!post) notFound();
+  const [bodyHead, bodyTail] = splitForAd(post.bodyHtml);
 
   return (
     <>
@@ -93,8 +111,17 @@ export default async function BlogPostPage({ params }: Props) {
 
         <article
           className="blog-post-body"
-          dangerouslySetInnerHTML={{ __html: post.bodyHtml }}
+          dangerouslySetInnerHTML={{ __html: bodyHead }}
         />
+        {bodyTail && (
+          <>
+            <AdFitBanner />
+            <article
+              className="blog-post-body"
+              dangerouslySetInnerHTML={{ __html: bodyTail }}
+            />
+          </>
+        )}
       </main>
       <Footer />
 
