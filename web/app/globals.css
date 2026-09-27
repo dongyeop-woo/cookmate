@@ -1407,3 +1407,29 @@ img { display: block; }
   display: inline-flex; align-items: center; gap: 3px;
   font-size: 11px; color: #999;
 }
+
+/* 매거진 글 하단 앱 설치 유도 — 검색 유입을 앱으로 넘기는 유일한 동선 */
+.blog-app-cta {
+  display: flex; align-items: center; gap: 12px;
+  margin: 28px 0 8px;
+  padding: 16px;
+  background: #F4FAF6;
+  border: 1px solid #DCEFE3;
+  border-radius: 14px;
+}
+.blog-app-cta img { width: 48px; height: 48px; border-radius: 11px; flex-shrink: 0; }
+.blog-app-cta-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1; }
+.blog-app-cta-text strong { font-size: 15px; font-weight: 800; color: #1A1A1A; }
+.blog-app-cta-text span { font-size: 12px; color: #6B7A72; }
+.blog-app-cta-btn {
+  flex-shrink: 0;
+  background: #0B9A61; color: #fff;
+  font-size: 13px; font-weight: 700;
+  padding: 9px 14px; border-radius: 10px;
+  border: 0; cursor: pointer;
+}
+.blog-app-cta-btn:hover { background: #0A8755; }
+@media (max-width: 420px) {
+  .blog-app-cta { flex-wrap: wrap; }
+  .blog-app-cta-btn { width: 100%; text-align: center; }
+}

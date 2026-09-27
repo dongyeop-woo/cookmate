@@ -5,6 +5,7 @@ import Footer from '../../Footer';
 import BlogViewTracker from '../../BlogViewTracker';
 import BlogViewCount from '../../BlogViewCount';
 import AdFitBanner from '../../AdFitBanner';
+import AppDownloadModal from '../../AppDownloadModal';
 import { getAllSlugs, loadPost } from '@/lib/blog';
 
 export const dynamic = 'force-static';
@@ -122,6 +123,19 @@ export default async function BlogPostPage({ params }: Props) {
             />
           </>
         )}
+
+        {/* 검색으로 들어온 사람이 글을 다 읽고 나가는 걸 막는 유일한 동선.
+            글 본문은 "나머지는 요잘알 앱에서 확인 가능합니다" 로 끝나는데
+            정작 누를 게 없었다. 매거진 페이지엔 사이드바가 없어서 앱 유도가
+            상단바 링크 하나뿐이었다. */}
+        <aside className="blog-app-cta">
+          <img src="/img/appIcon-padded.png" alt="" aria-hidden />
+          <div className="blog-app-cta-text">
+            <strong>요잘알 앱에서 더 보기</strong>
+            <span>레시피 전체를 단계별 사진과 함께</span>
+          </div>
+          <AppDownloadModal className="blog-app-cta-btn">앱 다운로드</AppDownloadModal>
+        </aside>
       </main>
       <Footer />
 
