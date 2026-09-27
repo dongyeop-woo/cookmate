@@ -6,6 +6,11 @@
 **프롬프트 하나에 동작은 하나만.** 동작을 여러 개 넣으면 모델이 한 프레임에 전부 우겨넣어 어색해지고,
 여백을 채우려고 레시피에 없는 재료(견과·향신료 등)를 멋대로 만들어낸다. 짧을수록 정확하다. ChatGPT 에 그대로 복붙해 사용.
 
+**"AI 느낌"은 매끈함에서 온다.** 표면이 플라스틱처럼 반들거리고, 조명이 너무 고르고,
+재료가 자로 잰 듯 놓이면 바로 티가 난다. 카메라·렌즈를 박고, 그림자가 지는 단일 광원을
+지정하고, `uneven pieces` `stray crumbs` `subtle film grain` 처럼 흠집을 일부러 넣는다.
+`Avoid: CGI look, plastic or waxy surfaces, over-smoothed textures, perfect symmetry` 도 붙인다.
+
 **조리도구도 한국 것으로 지정할 것.** 안 적으면 거품기와 대형 서양 믹싱볼이 나온다.
 스테인리스 볼, 금속 숟가락, 젓가락, 뚝배기처럼 집에서 실제로 쓰는 것을 적고,
 양도 `Small home portion` 으로 못 박는다.
@@ -80,48 +85,6 @@
 **Step 6.** Three-quarter hero shot of a deep ceramic bowl piled with around 200g of glossy mahogany bulgogi and around 40 translucent softened onion strips over fluffy short-grain white rice, crowned with one sunny-side-up egg with intact runny bright orange round yolk, around 12 vivid green scallion 0.3cm slices scattered on top. The bowl sits centered on a warm wooden table with metal chopsticks and a small kimchi side dish nearby. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, irresistible Korean rice bowl hero.
 
 ---
-
-## 🍲 떡국 (id: 208)
-
-**Step 1.** Top-down shot of around 30 pale white oval flat rice cake slices (each about 3cm long) submerged in a clear glass bowl of cold water for soaking, the disks slightly translucent at the edges, beside a small heap of around 12 thinly sliced 2cm pieces of beef brisket on a wooden cutting board. A small earthenware pot, a small jar of white minced garlic, and a small bottle of amber soup soy sauce rest on a warm wooden counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, traditional Korean kitchen mise en place.
-
-**Step 2.** Three-quarter angle of around 12 thinly sliced 2cm beef brisket pieces sizzling and turning brown in the same small earthenware pot with a thin glaze of sesame oil, fragrant steam rising as the meat releases its first bubbling juices. The pot sits on a single induction burner on a warm wooden counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, depth-building broth foundation.
-
-**Step 3.** Top-down shot of cool clear water being poured over around 12 browned 2cm beef brisket pieces in the same small earthenware pot, a small spoonful of white minced garlic dissolving into a slowly clouding pale broth that begins to bubble around the meat. The pot rests on the induction burner on a warm wooden counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, careful soup development.
-
-**Step 4.** Three-quarter angle of around 30 soaked white oval flat rice cake slices being lowered into a clear pale amber beef broth seasoned with soup soy sauce in the same small earthenware pot, the disks slowly sinking and softening as the broth bubbles gently around them and around 12 brown beef pieces. The pot sits on the induction burner on a warm wooden counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, peaceful traditional cooking moment.
-
-**Step 5.** Top-down shot of around 30 swollen translucent white oval rice cake disks floating to the surface of the clear amber soup in the same small earthenware pot, one fresh egg being whisked and drizzled in a thin spiral, instantly forming delicate soft yellow egg ribbons across the broth alongside around 10 diagonal 1cm slices of bright green scallion. The pot sits on the induction burner on a warm wooden counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, iconic egg ribbon swirl.
-
-**Step 6.** Three-quarter hero shot of a steaming deep ceramic bowl of clear amber tteokguk filled with around 30 plump white oval rice cake disks, soft yellow egg ribbons, around 12 slices of brown 2cm beef, and around 10 bright green scallion 1cm slices floating in clean amber broth. The bowl sits centered on a warm wooden table with a metal spoon and a small dish of seasoned seaweed beside it. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, heartwarming Korean New Year hero.
-
----
-
-## 🥪 김치 마요 토스트 (id: 209)
-
-**Step 1.** Top-down shot of about 1/2 cup of vivid red aged kimchi being squeezed of excess liquid by hand inside a small fine mesh strainer over a clear glass bowl, deep crimson juice dripping into the bowl below. A wooden cutting board, a sharp knife, and two square slices of soft white sandwich bread rest on a clean white morning counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, bright Korean cafe brunch prep.
-
-**Step 2.** Three-quarter angle of two square slices of soft white sandwich bread being toasted to even golden brown on a small low-heat dry black nonstick frying pan, edges turning crisp and beautifully gilded while centers stay pillowy soft. The pan sits on a single induction burner on a clean white counter beside a small jar of Kewpie mayonnaise. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, simple morning toast moment.
-
-**Step 3.** Top-down angle of one fresh egg cracked into the same small black nonstick pan beside the two golden brown toasted bread slices, the egg white spreading into a lacy golden-edged frill while the bright orange round yolk sits intact and glossy in the center. The pan sits on the induction burner on a clean white counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, classic breakfast egg moment.
-
-**Step 4.** Three-quarter angle of one golden brown toasted bread slice on a wooden cutting board being layered in order with a thin even spread of white Kewpie mayonnaise, one single pale yellow square processed cheese slice, a vivid red mound of about 1/2 cup of finely chopped drained kimchi, and one lacy sunny-side-up egg with intact bright orange round yolk on top. The board sits on a clean white morning counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, irresistible color contrast build.
-
-**Step 5.** Three-quarter hero shot of one finished kimchi mayo toast sandwich on a wooden board, the second golden brown toast crowning the layered stack and a sharp knife mid-cut diagonally to reveal one slice of melting pale yellow cheese, about 1/2 cup of vivid red kimchi, and one dripping bright orange runny yolk. The board sits centered on a clean white morning counter beside a glass of cold milk. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, viral Korean cafe brunch hero.
-
----
-
-## 🌶️ 까르보 불닭 (id: 210)
-
-**Step 1.** Top-down shot of a small stainless steel deep pot bubbling vigorously with boiling water on an induction burner, one single brick of dry pale white carbo buldak ramyun noodles being lowered in carefully, the noodles already starting to bloom outward in the rolling water. The pot sits on a dark studio counter with one empty pink-and-white Korean Hangul-printed 까르보 불닭볶음면 noodle wrapper (no English text on packaging), one unopened pale pink Korean Hangul powder seasoning packet, one unopened red Korean Hangul liquid sauce packet, and a small carton of milk arranged beside it. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, viral midnight noodle ritual setup.
-
-**Step 2.** Three-quarter angle of fully cooked springy pale-yellow ramyun noodles being drained against the same small stainless steel deep pot, exactly 8 tablespoons of starchy off-white noodle water reserved at the bottom in a small puddle. The pot rests on the induction burner on a dark studio counter beside an empty clear glass measuring cup. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, careful late-night cooking moment.
-
-**Step 3.** Top-down shot of 100ml of cold creamy white milk being poured over the drained pale-yellow noodles in the same small stainless steel deep pot as one packet of pale pink carbo seasoning powder and one packet of glossy red liquid sauce are squeezed in, the colors swirling together into a creamy salmon-pink coating that begins to cling to every noodle strand. The pot sits on the induction burner on a dark studio counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, viral creamy spicy build.
-
-**Step 4.** Three-quarter angle of exactly two square slices of pale yellow processed American cheese melting into the creamy salmon-pink noodles in the same small stainless steel deep pot as a wooden spatula tosses everything together, the cheese turning the sauce into a glossy thick uniform coating that drapes off every noodle. The pot sits on the induction burner on a dark studio counter. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, intoxicating cheese melt moment.
-
-**Step 5.** Three-quarter hero shot of glossy creamy salmon-pink carbo buldak noodles plated high in a deep matte black ceramic bowl, generously crowned with a fluffy mountain of pale yellow shredded mozzarella in the center and topped with one single jewel-bright bright orange round raw egg yolk sitting on top of the cheese mountain. The bowl sits centered on a dark studio counter with metal chopsticks and a glass of cold milk just within frame. Shot on Canon EOS R5, 50mm f/1.8, natural window light, shallow depth of field, hyperrealistic food photography, ultimate viral midnight hero.
 
 ## 🌽 콘치즈 (id: 211)
 
@@ -210,55 +173,6 @@
 **Step 4.** Wide 16:9. Creamy tuna mayo mounded over steaming white rice in a ceramic bowl. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
 **Step 5.** Wide 16:9. A finished tuna mayo rice bowl, sunny-side-up egg centred, shredded seaweed and scallion on top. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
-
-## 🦐 감바스 알 아히요 (id: 216)
-
-> **가로형(landscape)으로 요청**하세요. 앱이 스텝 이미지를 16:10 으로 자릅니다.
-> 5장 전부 필요합니다 — `upload-and-seed-recipe.js` 가 한 장이라도 없으면 중단합니다.
-
-**Step 1.** Wide 16:9. Store-bought cleaned shrimp resting in a white bowl, coarse salt scattered over them. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
-
-**Step 2.** Wide 16:9. Garlic cloves sliced into thin translucent coins on a wooden board. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
-
-**Step 3.** Wide 16:9. Garlic slices bubbling gently in olive oil in a small black skillet. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
-
-**Step 4.** Wide 16:9. Coral-pink shrimp cooking in the golden garlic oil with crushed red chillies. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
-
-**Step 5.** Wide 16:9. Gambas al ajillo bubbling in the skillet, crusty baguette slices leaning at the rim. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
-
-## 🍄 버섯 크림 리조또 (id: 217)
-
-> **가로형(landscape)으로 요청**하세요. 앱이 스텝 이미지를 16:10 으로 자릅니다.
-> 6장 전부 필요합니다 — `upload-and-seed-recipe.js` 가 한 장이라도 없으면 중단합니다.
-
-**Step 1.** Wide 16:9. Button mushrooms sliced thin on a wooden board, finely diced onion beside them. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
-
-**Step 2.** Wide 16:9. Diced onion softening in melted butter in a wide shallow pan. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
-
-**Step 3.** Wide 16:9. Sliced mushrooms browning in the same pan, edges turning deep gold. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
-
-**Step 4.** Wide 16:9. Dry white rice grains being stirred into the mushrooms and butter. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
-
-**Step 5.** Wide 16:9. Warm stock being ladled into the rice, a wooden spoon stirring. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
-
-**Step 6.** Wide 16:9. Mushroom cream risotto spread wide in a shallow white bowl, shaved parmesan on top. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
-
-## 🧅 프렌치 어니언 수프 (id: 218)
-
-> **가로형(landscape)으로 요청**하세요. 앱이 스텝 이미지를 16:10 으로 자릅니다.
-> 6장 전부 필요합니다 — `upload-and-seed-recipe.js` 가 한 장이라도 없으면 중단합니다.
-
-**Step 1.** Wide 16:9. Onions being sliced into thin even strips on a wooden board, a tall pale pile forming. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
-
-**Step 2.** Wide 16:9. Sliced onion turned deep amber brown in a pot of butter, a wooden spoon dragging through. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
-
-**Step 3.** Wide 16:9. Coarse salt being sprinkled over the glossy caramelised onions in the pot. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
-
-**Step 4.** Wide 16:9. Dark beef stock being poured over the caramelised onions. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
-
-**Step 5.** Wide 16:9. Baguette slices toasting to golden brown in a dry pan. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
-
-**Step 6.** Wide 16:9. French onion soup in a rustic crock, the gruyere crust browned and bubbling. Dark slate counter. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
 ## 🥩 동그랑땡 (id: 219)
 
@@ -487,3 +401,75 @@
 **Step 5.** Wide 16:9. Three-quarter angle of glossy red gochujang and ketchup sauce bubbling in a black pan on a dark slate counter. Korean home kitchen. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
 
 **Step 6.** Wide 16:9. Three-quarter angle of Korean dakgangjeong piled in a white ceramic bowl, crisp golden chicken chunks coated in glossy red sauce on a dark slate counter. Korean fried chicken. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+## 🍆 가지볶음 (id: 238)
+
+> **가로형(landscape)으로 요청**하세요. 5장 전부 필요합니다.
+
+**Step 1.** Wide 16:9. Three-quarter angle of eggplants being cut lengthwise then into short batons on a wooden board on a dark slate counter. Korean home kitchen. Not spicy, no chili, no red sauce. Shot on a Sony A7 IV with a 50mm f/2.8 lens, single soft window light from the left with natural falloff and real shadows. True-to-life color, visible food texture and small natural imperfections — uneven pieces, a few stray crumbs, a little oil sheen on the pan. Subtle film grain. A documentary photo of real home cooking, not a studio advertisement. Avoid: CGI look, 3D render, plastic or waxy surfaces, over-smoothed textures, airbrushed gloss, perfect symmetry, artificial saturation, HDR glow. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 2.** Wide 16:9. Three-quarter angle of the eggplant batons sizzling in oil in a black pan over high heat, edges turning glossy on a dark slate counter. Korean home kitchen. Not spicy, no chili, no red sauce. Shot on a Sony A7 IV with a 50mm f/2.8 lens, single soft window light from the left with natural falloff and real shadows. True-to-life color, visible food texture and small natural imperfections — uneven pieces, a few stray crumbs, a little oil sheen on the pan. Subtle film grain. A documentary photo of real home cooking, not a studio advertisement. Avoid: CGI look, 3D render, plastic or waxy surfaces, over-smoothed textures, airbrushed gloss, perfect symmetry, artificial saturation, HDR glow. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 3.** Wide 16:9. Three-quarter angle of sliced onion and minced garlic going into the pan with the eggplant on a dark slate counter. Korean home kitchen. Not spicy, no chili, no red sauce. Shot on a Sony A7 IV with a 50mm f/2.8 lens, single soft window light from the left with natural falloff and real shadows. True-to-life color, visible food texture and small natural imperfections — uneven pieces, a few stray crumbs, a little oil sheen on the pan. Subtle film grain. A documentary photo of real home cooking, not a studio advertisement. Avoid: CGI look, 3D render, plastic or waxy surfaces, over-smoothed textures, airbrushed gloss, perfect symmetry, artificial saturation, HDR glow. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 4.** Wide 16:9. Three-quarter angle of dark soy sauce being poured over the eggplant in the pan, everything turning glossy brown on a dark slate counter. Korean home kitchen. Not spicy, no chili, no red sauce. Shot on a Sony A7 IV with a 50mm f/2.8 lens, single soft window light from the left with natural falloff and real shadows. True-to-life color, visible food texture and small natural imperfections — uneven pieces, a few stray crumbs, a little oil sheen on the pan. Subtle film grain. A documentary photo of real home cooking, not a studio advertisement. Avoid: CGI look, 3D render, plastic or waxy surfaces, over-smoothed textures, airbrushed gloss, perfect symmetry, artificial saturation, HDR glow. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 5.** Wide 16:9. Three-quarter angle of Korean gaji bokkeum in a small white ceramic side-dish bowl, soft soy-glazed eggplant batons topped with chopped scallion and toasted sesame on a dark slate counter. Korean side dish. Not spicy, no chili, no red sauce. Shot on a Sony A7 IV with a 50mm f/2.8 lens, single soft window light from the left with natural falloff and real shadows. True-to-life color, visible food texture and small natural imperfections — uneven pieces, a few stray crumbs, a little oil sheen on the pan. Subtle film grain. A documentary photo of real home cooking, not a studio advertisement. Avoid: CGI look, 3D render, plastic or waxy surfaces, over-smoothed textures, airbrushed gloss, perfect symmetry, artificial saturation, HDR glow. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+## 🥒 애호박볶음 (id: 234)
+
+> **가로형(landscape)으로 요청**하세요. 5장 전부 필요합니다.
+
+**Step 1.** Wide 16:9. Three-quarter angle of a green Korean zucchini being sliced into thin half-moons on a wooden board on a dark slate counter. Korean home kitchen. Not spicy, no chili, no red sauce. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 2.** Wide 16:9. Three-quarter angle of the zucchini half-moons resting in a stainless steel bowl with coarse salt scattered over them, liquid pooling at the bottom on a dark slate counter. Korean home kitchen. Not spicy, no chili, no red sauce. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 3.** Wide 16:9. Three-quarter angle of minced garlic sizzling in oil in a black pan on a dark slate counter. Korean home kitchen. Not spicy, no chili, no red sauce. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 4.** Wide 16:9. Three-quarter angle of the zucchini half-moons stir-frying in the pan over high heat, edges turning translucent on a dark slate counter. Korean home kitchen. Not spicy, no chili, no red sauce. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 5.** Wide 16:9. Three-quarter angle of Korean aehobak bokkeum in a small white ceramic side-dish bowl, soft pale green zucchini half-moons topped with chopped scallion and toasted sesame on a dark slate counter. Korean side dish. Not spicy, no chili, no red sauce. Hyperrealistic food photography, natural window light, shallow depth of field. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+## 🌭 소세지 야채볶음 (id: 235)
+
+> **가로형(landscape)으로 요청**하세요. 6장 전부 필요합니다.
+
+**Step 1.** Wide 16:9. Three-quarter angle of small cocktail sausages on a wooden board, each scored with shallow knife cuts on a dark slate counter. Korean home kitchen. Shot on a Sony A7 IV with a 50mm f/2.8 lens, single soft window light from the left with natural falloff and real shadows. True-to-life color, visible food texture and small natural imperfections — uneven pieces, a few stray crumbs, a little oil sheen on the pan. Subtle film grain. A documentary photo of real home cooking, not a studio advertisement. Avoid: CGI look, 3D render, plastic or waxy surfaces, over-smoothed textures, airbrushed gloss, perfect symmetry, artificial saturation, HDR glow. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 2.** Wide 16:9. Three-quarter angle of the scored sausages blanching briefly in a pot of boiling water, then draining in a stainless steel sieve on a dark slate counter. Korean home kitchen. Shot on a Sony A7 IV with a 50mm f/2.8 lens, single soft window light from the left with natural falloff and real shadows. True-to-life color, visible food texture and small natural imperfections — uneven pieces, a few stray crumbs, a little oil sheen on the pan. Subtle film grain. A documentary photo of real home cooking, not a studio advertisement. Avoid: CGI look, 3D render, plastic or waxy surfaces, over-smoothed textures, airbrushed gloss, perfect symmetry, artificial saturation, HDR glow. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 3.** Wide 16:9. Three-quarter angle of onion, green bell pepper and carrot cut into bite-size pieces on a wooden board on a dark slate counter. Korean home kitchen. Shot on a Sony A7 IV with a 50mm f/2.8 lens, single soft window light from the left with natural falloff and real shadows. True-to-life color, visible food texture and small natural imperfections — uneven pieces, a few stray crumbs, a little oil sheen on the pan. Subtle film grain. A documentary photo of real home cooking, not a studio advertisement. Avoid: CGI look, 3D render, plastic or waxy surfaces, over-smoothed textures, airbrushed gloss, perfect symmetry, artificial saturation, HDR glow. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 4.** Wide 16:9. Three-quarter angle of the chopped vegetables stir-frying in a black pan over high heat on a dark slate counter. Korean home kitchen. Shot on a Sony A7 IV with a 50mm f/2.8 lens, single soft window light from the left with natural falloff and real shadows. True-to-life color, visible food texture and small natural imperfections — uneven pieces, a few stray crumbs, a little oil sheen on the pan. Subtle film grain. A documentary photo of real home cooking, not a studio advertisement. Avoid: CGI look, 3D render, plastic or waxy surfaces, over-smoothed textures, airbrushed gloss, perfect symmetry, artificial saturation, HDR glow. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 5.** Wide 16:9. Three-quarter angle of ketchup and soy sauce being poured over the sausages and vegetables in the pan, everything turning glossy red on a dark slate counter. Korean home kitchen. Shot on a Sony A7 IV with a 50mm f/2.8 lens, single soft window light from the left with natural falloff and real shadows. True-to-life color, visible food texture and small natural imperfections — uneven pieces, a few stray crumbs, a little oil sheen on the pan. Subtle film grain. A documentary photo of real home cooking, not a studio advertisement. Avoid: CGI look, 3D render, plastic or waxy surfaces, over-smoothed textures, airbrushed gloss, perfect symmetry, artificial saturation, HDR glow. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 6.** Wide 16:9. Three-quarter angle of Korean sausage vegetable stir-fry in a white ceramic bowl, glossy red-glazed sausages with colourful peppers, onion and carrot on a dark slate counter. Korean side dish. Shot on a Sony A7 IV with a 50mm f/2.8 lens, single soft window light from the left with natural falloff and real shadows. True-to-life color, visible food texture and small natural imperfections — uneven pieces, a few stray crumbs, a little oil sheen on the pan. Subtle film grain. A documentary photo of real home cooking, not a studio advertisement. Avoid: CGI look, 3D render, plastic or waxy surfaces, over-smoothed textures, airbrushed gloss, perfect symmetry, artificial saturation, HDR glow. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+## 🧈 두부김치 (id: 236)
+
+> **가로형(landscape)으로 요청**하세요. 5장 전부 필요합니다.
+
+**Step 1.** Wide 16:9. Three-quarter angle of a block of tofu being sliced into thick slabs on a wooden board on a dark slate counter. Korean home kitchen. Not spicy, no chili, no red sauce. Shot on a Sony A7 IV with a 50mm f/2.8 lens, single soft window light from the left with natural falloff and real shadows. True-to-life color, visible food texture and small natural imperfections — uneven pieces, a few stray crumbs, a little oil sheen on the pan. Subtle film grain. A documentary photo of real home cooking, not a studio advertisement. Avoid: CGI look, 3D render, plastic or waxy surfaces, over-smoothed textures, airbrushed gloss, perfect symmetry, artificial saturation, HDR glow. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 2.** Wide 16:9. Three-quarter angle of the tofu slabs blanching in a pot of boiling water, steam rising, on a dark slate counter. Korean home kitchen. Not spicy, no chili, no red sauce. Shot on a Sony A7 IV with a 50mm f/2.8 lens, single soft window light from the left with natural falloff and real shadows. True-to-life color, visible food texture and small natural imperfections — uneven pieces, a few stray crumbs, a little oil sheen on the pan. Subtle film grain. A documentary photo of real home cooking, not a studio advertisement. Avoid: CGI look, 3D render, plastic or waxy surfaces, over-smoothed textures, airbrushed gloss, perfect symmetry, artificial saturation, HDR glow. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 3.** Wide 16:9. Three-quarter angle of chopped aged kimchi stir-frying in sesame oil in a black pan on a dark slate counter. Korean home kitchen. Shot on a Sony A7 IV with a 50mm f/2.8 lens, single soft window light from the left with natural falloff and real shadows. True-to-life color, visible food texture and small natural imperfections — uneven pieces, a few stray crumbs, a little oil sheen on the pan. Subtle film grain. A documentary photo of real home cooking, not a studio advertisement. Avoid: CGI look, 3D render, plastic or waxy surfaces, over-smoothed textures, airbrushed gloss, perfect symmetry, artificial saturation, HDR glow. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 4.** Wide 16:9. Three-quarter angle of red pepper flakes and a spoonful of sugar being sprinkled over the kimchi in the pan on a dark slate counter. Korean home kitchen. Shot on a Sony A7 IV with a 50mm f/2.8 lens, single soft window light from the left with natural falloff and real shadows. True-to-life color, visible food texture and small natural imperfections — uneven pieces, a few stray crumbs, a little oil sheen on the pan. Subtle film grain. A documentary photo of real home cooking, not a studio advertisement. Avoid: CGI look, 3D render, plastic or waxy surfaces, over-smoothed textures, airbrushed gloss, perfect symmetry, artificial saturation, HDR glow. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 5.** Wide 16:9. Three-quarter angle of Korean dubu kimchi on a white ceramic plate, a ring of warm pale tofu slabs around a mound of glossy red stir-fried kimchi, topped with diagonal scallion slices on a dark slate counter. Korean drinking snack. Shot on a Sony A7 IV with a 50mm f/2.8 lens, single soft window light from the left with natural falloff and real shadows. True-to-life color, visible food texture and small natural imperfections — uneven pieces, a few stray crumbs, a little oil sheen on the pan. Subtle film grain. A documentary photo of real home cooking, not a studio advertisement. Avoid: CGI look, 3D render, plastic or waxy surfaces, over-smoothed textures, airbrushed gloss, perfect symmetry, artificial saturation, HDR glow. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+## 🌱 콩나물불고기 (id: 237)
+
+> **가로형(landscape)으로 요청**하세요. 5장 전부 필요합니다.
+
+**Step 1.** Wide 16:9. Three-quarter angle of gochujang, red pepper flakes, soy sauce and minced garlic being stirred into a thick red marinade in a small bowl on a dark slate counter. Korean home kitchen. One hand only, one spoon only. Shot on a Sony A7 IV with a 50mm f/2.8 lens, single soft window light from the left with natural falloff and real shadows. True-to-life color, visible food texture and small natural imperfections — uneven pieces, a few stray crumbs, a little oil sheen on the pan. Subtle film grain. A documentary photo of real home cooking, not a studio advertisement. Avoid: CGI look, 3D render, plastic or waxy surfaces, over-smoothed textures, airbrushed gloss, perfect symmetry, artificial saturation, HDR glow. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 2.** Wide 16:9. Three-quarter angle of sliced pork being tossed with the red marinade in a stainless steel bowl on a dark slate counter. Korean home kitchen. Shot on a Sony A7 IV with a 50mm f/2.8 lens, single soft window light from the left with natural falloff and real shadows. True-to-life color, visible food texture and small natural imperfections — uneven pieces, a few stray crumbs, a little oil sheen on the pan. Subtle film grain. A documentary photo of real home cooking, not a studio advertisement. Avoid: CGI look, 3D render, plastic or waxy surfaces, over-smoothed textures, airbrushed gloss, perfect symmetry, artificial saturation, HDR glow. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 3.** Wide 16:9. Three-quarter angle of a wide black pan with a bed of fresh bean sprouts and sliced onion spread across the bottom on a dark slate counter. Korean home kitchen. Shot on a Sony A7 IV with a 50mm f/2.8 lens, single soft window light from the left with natural falloff and real shadows. True-to-life color, visible food texture and small natural imperfections — uneven pieces, a few stray crumbs, a little oil sheen on the pan. Subtle film grain. A documentary photo of real home cooking, not a studio advertisement. Avoid: CGI look, 3D render, plastic or waxy surfaces, over-smoothed textures, airbrushed gloss, perfect symmetry, artificial saturation, HDR glow. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 4.** Wide 16:9. Three-quarter angle of the marinated red pork spread over the bean sprouts in the pan, a lid resting half open above on a dark slate counter. Korean home kitchen. Shot on a Sony A7 IV with a 50mm f/2.8 lens, single soft window light from the left with natural falloff and real shadows. True-to-life color, visible food texture and small natural imperfections — uneven pieces, a few stray crumbs, a little oil sheen on the pan. Subtle film grain. A documentary photo of real home cooking, not a studio advertisement. Avoid: CGI look, 3D render, plastic or waxy surfaces, over-smoothed textures, airbrushed gloss, perfect symmetry, artificial saturation, HDR glow. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
+
+**Step 5.** Wide 16:9. Three-quarter angle of Korean kongnamul bulgogi finished in the wide black pan, glossy red pork over wilted bean sprouts, steam rising, topped with scallion on a dark slate counter. Korean dinner dish. Shot on a Sony A7 IV with a 50mm f/2.8 lens, single soft window light from the left with natural falloff and real shadows. True-to-life color, visible food texture and small natural imperfections — uneven pieces, a few stray crumbs, a little oil sheen on the pan. Subtle film grain. A documentary photo of real home cooking, not a studio advertisement. Avoid: CGI look, 3D render, plastic or waxy surfaces, over-smoothed textures, airbrushed gloss, perfect symmetry, artificial saturation, HDR glow. Only the ingredients described — no nuts, seeds, extra spices or garnishes.
