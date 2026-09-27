@@ -18,11 +18,27 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
   const r = await fetchRecipe(id);
   if (!r) return { title: '레시피를 찾을 수 없습니다', robots: { index: false } };
-  const desc =
-    r.description?.replace(/<[^>]+>/g, '').slice(0, 150) ??
-    `${formatTime(r.time)}분 · ${r.difficulty ?? '쉬움'} · ${r.calories ?? 0}kcal`;
+  // 검색 결과에서 고를 근거를 준다. 네이버 기준 노출 1,471회에 클릭 3회
+  // (CTR 0.2%) 였던 '카츠동 레시피 — 요잘알' 이 문제였다. 경쟁 블로그 글은
+  // 제목에 시간·난이도가 들어가는데 우리는 요리 이름뿐이었다.
+  //
+  // '레시피' 대신 '만드는 법' 을 쓴다 — 사람들이 실제로 치는 말이라 검색어와
+  // 제목이 겹쳐 굵게 표시된다.
+  const mins = formatTime(r.time);
+  const spec = [
+    mins ? `${mins}분` : null,
+    r.difficulty ?? null,
+    r.calories ? `${r.calories}kcal` : null,
+    r.ingredients?.length ? `재료 ${r.ingredients.length}개` : null,
+  ].filter(Boolean).join(' · ');
+
+  const body = r.description?.replace(/<[^>]+>/g, '').trim() ?? '';
+  // 설명 앞에 스펙을 붙인다. 검색 결과에서 사람들이 먼저 보는 건 감성 카피가
+  // 아니라 "얼마나 걸리나, 어려운가" 다.
+  const desc = `${spec}. ${body}`.trim().slice(0, 155);
+
   return {
-    title: `${r.title} 레시피`,
+    title: `${r.title} 만드는 법${mins ? ` · ${mins}분` : ''}`,
     description: desc,
     alternates: { canonical: `https://yojalal.com/recipe/${id}` },
     openGraph: {
