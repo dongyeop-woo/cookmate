@@ -17,7 +17,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import { useAuth } from '../_layout';
-import { createReview, uploadReviewImage, updateReview } from '../../services/api';
+import { createReview, uploadReviewImage, updateReview, safeProfileImage } from '../../services/api';
 
 export default function ReviewWriteScreen() {
   const router = useRouter();
@@ -107,7 +107,7 @@ export default function ReviewWriteScreen() {
           recipeId: recipeId as string,
           uid: firebaseUser.uid,
           authorNickname: userProfile?.nickname,
-          authorProfileImage: userProfile?.profileImage,
+          authorProfileImage: safeProfileImage(userProfile?.profileImage),
           photoUrl,
           content: content.trim(),
           rating: rating > 0 ? rating : undefined,

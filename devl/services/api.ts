@@ -610,6 +610,24 @@ export async function fetchReviewsByUser(uid: string): Promise<Review[]> {
   return request<Review[]>(`/api/reviews/user/${encodeURIComponent(uid)}`);
 }
 
+/**
+ * 다른 기기에서도 열리는 프로필 이미지 URL만 통과시킨다.
+ *
+ * 앱에서 번들 이미지를 require() 로 불러오면 개발 중에는 Metro 주소
+ * (http://192.168.x.x:8081/assets/...) 가 나온다. 그게 저장되면 개발 PC
+ * 밖에서는 영영 안 열리고, 값이 비어 있지도 않아 닉네임 첫 글자 폴백도
+ * 타지 않아 회색 빈 원만 남는다. 실제로 후기 228건 중 127건이 그 상태였다
+ * (2026-09-27 정리). 'default' 로 떨어뜨려 폴백을 타게 한다.
+ */
+export function safeProfileImage(url?: string | null): string {
+  if (!url || url === 'default') return 'default';
+  if (!/^https?:\/\//.test(url)) return 'default';
+  if (/^https?:\/\/(192\.168\.|10\.|172\.(1[6-9]|2\d|3[01])\.|127\.|localhost)/.test(url)) {
+    return 'default';
+  }
+  return url;
+}
+
 export async function createReview(input: {
   recipeId: string;
   uid: string;
