@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Dimensions,
+  PixelRatio,
   Modal,
   TextInput,
   Alert,
@@ -52,7 +53,16 @@ const isSmallPhone = !isTablet && height < 700;
 const IMAGE_HEIGHT = isTablet ? 320 : isSmallPhone ? 130 : 180;
 const IMAGE_MIN_HEIGHT = isTablet ? 220 : isSmallPhone ? 90 : 110;
 const DESC_FONT_SIZE = isTablet ? 28 : isSmallPhone ? 17 : 20;
-const DESC_LINE_HEIGHT = isTablet ? 46 : isSmallPhone ? 26 : 34;
+
+/**
+ * 시스템 글꼴 배율 상한. 요리 화면은 스크롤이 없는 고정 레이아웃이라,
+ * One UI 처럼 글꼴을 크게 키우면 글자가 아래 요소를 덮는다. 실제로 갤럭시에서
+ * 타이머 숫자가 단계 설명 위로, 음성 안내가 버튼 위로 겹쳐 나왔다 (2026-09-27).
+ */
+const MAX_FONT_SCALE = 1.15;
+/** 줄 높이도 실제 배율만큼 늘려야 글자가 제 줄 상자를 넘지 않는다. */
+const FONT_SCALE = Math.min(PixelRatio.getFontScale(), MAX_FONT_SCALE);
+const DESC_LINE_HEIGHT = Math.round((isTablet ? 46 : isSmallPhone ? 26 : 34) * FONT_SCALE);
 const TIMER_SECTION_MIN = isTablet ? 320 : isSmallPhone ? 150 : 220;
 
 const SINO_KOREAN = ['일', '이', '삼', '사', '오', '육', '칠', '팔', '구', '십',
@@ -928,7 +938,7 @@ export default function CookingModeScreen() {
       {/* Step Info */}
       {hasTimer && (
         <View style={styles.stepSectionCompact}>
-          <Text style={styles.stepDescription} lineBreakStrategyIOS="hangul-word">{renderDescription(step.description, styles.stepDescriptionHighlight)}</Text>
+          <Text maxFontSizeMultiplier={MAX_FONT_SCALE} style={styles.stepDescription} lineBreakStrategyIOS="hangul-word">{renderDescription(step.description, styles.stepDescriptionHighlight)}</Text>
         </View>
       )}
 
@@ -985,7 +995,7 @@ export default function CookingModeScreen() {
           </>
         ) : (
           <View style={styles.noTimerContainer}>
-              <Text style={styles.stepDescription} lineBreakStrategyIOS="hangul-word">{renderDescription(step.description, styles.stepDescriptionHighlight)}</Text>
+              <Text maxFontSizeMultiplier={MAX_FONT_SCALE} style={styles.stepDescription} lineBreakStrategyIOS="hangul-word">{renderDescription(step.description, styles.stepDescriptionHighlight)}</Text>
           </View>
         )}
       </View>
@@ -993,8 +1003,8 @@ export default function CookingModeScreen() {
       {/* Navigation — bottom padding은 safeAreaInsets 기반 (SE같은 홈버튼 기기는 0) */}
       {isVoiceMode && (
         <View style={styles.voiceHintRowBottom}>
-          <Text style={styles.voiceHintLabel}>이렇게 말해보세요</Text>
-          <Text style={styles.voiceHintText}>
+          <Text maxFontSizeMultiplier={MAX_FONT_SCALE} style={styles.voiceHintLabel}>이렇게 말해보세요</Text>
+          <Text maxFontSizeMultiplier={MAX_FONT_SCALE} style={styles.voiceHintText}>
             {hasTimer
               ? '"다음" · "이전" · "끝" · "다시 듣기" · "타이머 시작" · "정지"'
               : '"다음" · "이전" · "끝" · "다시 듣기"'}

@@ -12,6 +12,15 @@ interface Props {
   compact?: boolean;
 }
 
+/**
+ * 시스템 글꼴 배율 상한.
+ *
+ * One UI 처럼 글꼴을 크게 키우는 환경에서는 72pt 숫자가 90pt 넘게 커지는데,
+ * 요리 화면은 스크롤 없는 고정 레이아웃이라 글자가 아래 요소를 덮는다.
+ * 실제로 갤럭시에서 타이머가 단계 설명 위로 겹쳐 나왔다 (2026-09-27).
+ */
+const MAX_FONT_SCALE = 1.15;
+
 const NORMAL_COLOR = '#1BAE74';
 const URGENT_COLOR = '#FF3B30';
 const TRACK_COLOR = '#E9ECEF';
@@ -73,6 +82,7 @@ export default function FlatTimer({ timeLeft, totalSeconds, isRunning, compact =
   return (
     <View style={styles.container}>
       <Animated.Text
+        maxFontSizeMultiplier={MAX_FONT_SCALE}
         style={[
           styles.timeText,
           compact && styles.timeTextCompact,
@@ -81,7 +91,7 @@ export default function FlatTimer({ timeLeft, totalSeconds, isRunning, compact =
       >
         {timeStr}
       </Animated.Text>
-      <Text style={[styles.totalText, compact && styles.totalTextCompact]}>{formatTotal(totalSeconds)}</Text>
+      <Text maxFontSizeMultiplier={MAX_FONT_SCALE} style={[styles.totalText, compact && styles.totalTextCompact]}>{formatTotal(totalSeconds)}</Text>
       <View style={styles.progressTrack}>
         <Animated.View
           style={[
@@ -93,7 +103,7 @@ export default function FlatTimer({ timeLeft, totalSeconds, isRunning, compact =
           ]}
         />
       </View>
-      {isUrgent && <Text style={styles.urgentLabel}>곧 완료!</Text>}
+      {isUrgent && <Text maxFontSizeMultiplier={MAX_FONT_SCALE} style={styles.urgentLabel}>곧 완료!</Text>}
     </View>
   );
 }
