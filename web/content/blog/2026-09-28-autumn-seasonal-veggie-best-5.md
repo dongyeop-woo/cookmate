@@ -9,7 +9,7 @@ tags:
   - 가을레시피
   - 국물요리
   - 집밥
-image: https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790398923896_d8c2bf74.jpg?alt=media&token=bb30b998-8f98-4a5c-9a7d-ab18d38f2d59
+image: https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1777150713320_66813739.jpg?alt=media
 ---
 
 ## 들어가며

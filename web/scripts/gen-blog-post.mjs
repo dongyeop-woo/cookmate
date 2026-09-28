@@ -88,12 +88,14 @@ async function getRecentPosts(limit = 6) {
         const slug = f.replace(/\.md$/, '');
         let title = slug;
         let keyword = '';
+        let image = '';
         try {
           const raw = await fs.readFile(path.join(CONTENT_DIR, f), 'utf-8');
           title = raw.match(/^title:\s*(.+)$/m)?.[1].trim().replace(/^["']|["']$/g, '') ?? slug;
           keyword = raw.match(/^keyword:\s*(.+)$/m)?.[1].trim().replace(/^["']|["']$/g, '') ?? '';
+          image = raw.match(/^image:\s*(.+)$/m)?.[1].trim().replace(/^["']|["']$/g, '') ?? '';
         } catch {}
-        return { slug, title, keyword };
+        return { slug, title, keyword, image };
       }),
     );
   } catch {
@@ -155,7 +157,17 @@ function buildPrompt(date, keyword, recentPosts, recipes) {
   const newRule = newOnes.length
     ? `\n**〔신규〕가 붙은 ${newOnes.length}개는 이 시기에 맞춰 오늘 새로 올린 레시피입니다. 하나도 빼지 말고 전부 카드로 넣고, 본문 앞쪽(1번부터) 순서로 배치하세요.** 이 규칙은 아래 "메뉴 배열 순서"보다 우선합니다. 나머지 레시피는 6개를 채우는 용도로만 쓰세요.\n`
     : '';
-  const firstImage = recipes[0]?.image ?? 'https://yojalal.com/img/app-icon.png';
+  // 커버는 모델이 고르는 게 아니라 여기서 정해 프롬프트에 박아 넣는다.
+  // 그래서 목록 순서가 그대로 커버가 되는데, 후보 정렬이 날짜와 무관해
+  // 카테고리만 겹치면 어제와 같은 그림이 걸린다(2026-09-27·28 둘 다 북엇국).
+  // 최근 글이 쓴 커버는 건너뛴다.
+  const usedCovers = new Set(recentPosts.map((p) => p.image).filter(Boolean));
+  const freshCover = recipes.find((r) => r.image && !usedCovers.has(r.image));
+  if (!freshCover && recipes.length) {
+    console.log('[gen-blog] 후보 커버가 전부 최근 사용 — 첫 번째로 진행');
+  }
+  const firstImage =
+    freshCover?.image ?? recipes[0]?.image ?? 'https://yojalal.com/img/app-icon.png';
   // 최신 글 하나만 걸면 글이 사슬처럼 한 줄로 이어져, 크롤러가 한 갈래로밖에
   // 못 탄다. 최신·중간·오래된 것을 섞어 링크 그물을 만든다. 2026-09-27 에
   // 9월 글 전부가 '구글에 알려지지 않은 URL' 로 뜬 뒤 넣은 조치다.
