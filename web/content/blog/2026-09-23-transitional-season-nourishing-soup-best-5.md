@@ -1,4 +1,5 @@
 ---
+keyword: 환절기 보양 국
 title: 환절기 보양 국 BEST 5
 description: 일교차 큰 요즘, 몸 데우는 국물 요리 5가지 시간순 큐레이션
 date: 2026-09-23

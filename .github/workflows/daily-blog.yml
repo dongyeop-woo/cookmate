@@ -5,10 +5,12 @@ on:
   # 수동 운영은 "말해야 돌아가는" 구조라 결국 끊김 — 비용(약 52원/편)보다
   # 공백의 손해가 훨씬 컸음.
   schedule:
-    # 정각(0분)은 전 세계 워크플로가 몰려 무료 러너 배정이 밀린다. 실제로
-    # 09-20~23 모두 00:00 UTC 지정인데 03:52~03:59 UTC(약 4시간 지연)에 돌았다.
-    # 어중간한 분으로 옮기면 경합이 줄어 몇 분 안에 잡힌다.
-    - cron: '47 23 * * *' # 매일 23:47 UTC = 08:47 KST (지연 감안해 09시 도착)
+    # 크론은 "이 시각 이후에 돈다"는 뜻일 뿐 시작 시각을 보장하지 않는다.
+    # 실제 지연: 09-24 12분, 09-26 2시간, 09-22·23·25 약 4시간.
+    # 그래서 발행 시각을 크론에 맡기지 않는다. 넉넉히 일찍 깨워서 글을 만들어
+    # 두고, 아래 "발행 시각까지 대기" 단계에서 09:40 KST 에 맞춰 푸시한다.
+    # (public 저장소라 Actions 분이 무제한이므로 대기 비용이 없다)
+    - cron: '40 20 * * *' # 20:40 UTC = 05:40 KST — 목표까지 4시간 여유
   workflow_dispatch: # 수동 실행 (Actions 탭에서 "Run workflow")
 
 permissions:
@@ -42,6 +44,22 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: node scripts/gen-blog-post.mjs
 
+      # 글은 이미 만들어졌고, 여기서 시각만 맞춘다. 러너 배정이 늦어
+      # 이미 목표를 지났으면 기다리지 않고 바로 내보낸다.
+      - name: 발행 시각(09:40 KST)까지 대기
+        run: |
+          NOW=$(date -u +%s)
+          if [ "$(date -u +%H)" -ge 12 ]; then
+            TARGET=$(date -u -d 'tomorrow 00:40' +%s)   # 저녁(UTC)에 시작 → 다음 자정 뒤
+          else
+            TARGET=$(date -u -d 'today 00:40' +%s)      # 이미 자정을 넘겨 시작
+          fi
+          WAIT=$(( TARGET - NOW ))
+          [ "$WAIT" -lt 0 ] && WAIT=0
+          [ "$WAIT" -gt 15300 ] && WAIT=15300           # 잡 6시간 제한 안쪽으로
+          echo "지금 $(date -u '+%F %T') UTC — ${WAIT}초 대기 후 발행"
+          sleep "$WAIT"
+
       - name: 변경사항 커밋 + 푸시
         run: |
           cd ..
@@ -52,7 +70,8 @@ jobs:
             echo "변경사항 없음 (스크립트가 글 생성 못한 듯)"
             exit 1
           fi
-          DATE=$(date -u +%Y-%m-%d)
+          # 글 파일명과 같은 KST 기준으로 맞춘다 (UTC 로 쓰면 하루 어긋난다)
+          DATE=$(TZ=Asia/Seoul date +%Y-%m-%d)
           git commit -m "blog: 자동 발행 ${DATE}"
           git push
 

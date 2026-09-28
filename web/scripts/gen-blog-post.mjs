@@ -77,11 +77,13 @@ async function getRecentPosts(limit = 6) {
       files.map(async (f) => {
         const slug = f.replace(/\.md$/, '');
         let title = slug;
+        let keyword = '';
         try {
           const raw = await fs.readFile(path.join(CONTENT_DIR, f), 'utf-8');
           title = raw.match(/^title:\s*(.+)$/m)?.[1].trim().replace(/^["']|["']$/g, '') ?? slug;
+          keyword = raw.match(/^keyword:\s*(.+)$/m)?.[1].trim().replace(/^["']|["']$/g, '') ?? '';
         } catch {}
-        return { slug, title };
+        return { slug, title, keyword };
       }),
     );
   } catch {
@@ -381,7 +383,9 @@ async function updateBlogIndex(slug, dateStr) {
 const HOLIDAY_WINDOWS = [
   {
     name: '추석',
-    from: '2026-09-24', to: '2026-09-29',
+    // 연휴 마지막 날까지만. 9/28(월)부터는 일상 복귀라 추석 키워드를 계속
+    // 물리면 같은 주제가 엿새 내리 나간다(9/24~27 실제로 나흘 연속).
+    from: '2026-09-24', to: '2026-09-27',
     keywords: [
       // 상차림 글에는 나물·전 같은 반찬이 같이 올라야 한 상이 된다.
       { kw: '추석 상차림', cats: ['한식', '저녁', '반찬'] },
@@ -413,14 +417,39 @@ function keywordPool(date, season) {
   return SEASON_KEYWORDS[season];
 }
 
+/**
+ * 최근에 쓴 키워드는 후보에서 뺀다.
+ *
+ * 그냥 무작위로 뽑으면 같은 주제가 연달아 나간다(2026-09-24~27 추석 나흘 연속).
+ * 다 걸러지면 — 후보가 최근 글 수보다 적을 때 — 원래 풀로 돌아간다.
+ */
+function dropRecentlyUsed(pool, recentPosts) {
+  const used = new Set(recentPosts.map((p) => p.keyword).filter(Boolean));
+  const fresh = pool.filter((k) => !used.has(k.kw));
+  if (!fresh.length) {
+    console.log('[gen-blog] 후보가 전부 최근 사용 — 원래 풀로 복귀');
+    return pool;
+  }
+  if (fresh.length < pool.length) {
+    console.log(`[gen-blog] 최근 사용 제외 ${pool.length}→${fresh.length}개`);
+  }
+  return fresh;
+}
+
+/** 프론트매터에 이번 글의 키워드를 남긴다. 다음 날 중복 판정에 쓰인다. */
+function stampKeyword(markdown, kw) {
+  if (/^keyword:\s*/m.test(markdown)) return markdown;
+  return markdown.replace(/^---\n/, `---\nkeyword: ${kw}\n`);
+}
+
 async function main() {
   const today = new Date();
   const season = getCurrentSeason(today);
-  const keywords = keywordPool(today, season);
+  const recentPosts = await getRecentPosts();
+  const keywords = dropRecentlyUsed(keywordPool(today, season), recentPosts);
   const picked = keywords[Math.floor(Math.random() * keywords.length)];
   const keyword = picked.kw;
   const cats = picked.cats;
-  const recentPosts = await getRecentPosts();
   const recipes = await fetchRecipesByCategories(cats, isHolidayWeek(today));
 
   console.log(`[gen-blog] 시작 — 날짜=${today.toISOString().slice(0, 10)} 계절=${season} 키워드="${keyword}" 매칭레시피=${recipes.length}개`);
@@ -438,8 +467,11 @@ async function main() {
   let markdown = meta.image ? rawMarkdown : ensureImageInFrontmatter(rawMarkdown, recipes[0]?.image);
   // 카드 안 image URL 환각 교정
   markdown = fixRecipeCardImages(markdown, recipes);
+  markdown = stampKeyword(markdown, keyword);
 
-  const dateStr = today.toISOString().slice(0, 10);
+  // Actions 는 UTC 로 돈다. 크론이 UTC 자정 앞이라 UTC 날짜를 쓰면 파일이
+  // 전날 이름으로 저장돼 어제 글을 덮어쓴다. 키워드 선택과 같은 KST 기준으로 맞춘다.
+  const dateStr = new Date(today.getTime() + 9 * 3600 * 1000).toISOString().slice(0, 10);
   // 파일명: date prefix + slug (sort + 중복 방지)
   const filename = `${dateStr}-${meta.slug}.md`;
   const fullSlug = filename.replace(/\.md$/, '');
