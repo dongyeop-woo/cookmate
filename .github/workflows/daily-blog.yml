@@ -8,9 +8,10 @@ on:
     # 크론은 "이 시각 이후에 돈다"는 뜻일 뿐 시작 시각을 보장하지 않는다.
     # 실제 지연: 09-24 12분, 09-26 2시간, 09-22·23·25 약 4시간.
     # 그래서 발행 시각을 크론에 맡기지 않는다. 넉넉히 일찍 깨워서 글을 만들어
-    # 두고, 아래 "발행 시각까지 대기" 단계에서 09:40 KST 에 맞춰 푸시한다.
+    # 두고, 아래 "발행 시각까지 대기" 단계에서 09:00 KST 에 맞춰 푸시한다.
     # (public 저장소라 Actions 분이 무제한이므로 대기 비용이 없다)
-    - cron: '40 20 * * *' # 20:40 UTC = 05:40 KST — 목표까지 4시간 여유
+    # 분은 정각을 피한다 — 배정 경합이 덜해 지연 자체가 줄어든다.
+    - cron: '37 19 * * *' # 19:37 UTC = 04:37 KST — 목표까지 4시간 23분 여유
   workflow_dispatch: # 수동 실행 (Actions 탭에서 "Run workflow")
 
 permissions:
@@ -46,17 +47,17 @@ jobs:
 
       # 글은 이미 만들어졌고, 여기서 시각만 맞춘다. 러너 배정이 늦어
       # 이미 목표를 지났으면 기다리지 않고 바로 내보낸다.
-      - name: 발행 시각(09:40 KST)까지 대기
+      - name: 발행 시각(09:00 KST)까지 대기
         run: |
           NOW=$(date -u +%s)
           if [ "$(date -u +%H)" -ge 12 ]; then
-            TARGET=$(date -u -d 'tomorrow 00:40' +%s)   # 저녁(UTC)에 시작 → 다음 자정 뒤
+            TARGET=$(date -u -d 'tomorrow 00:00' +%s)   # 저녁(UTC)에 시작 → 다음 자정
           else
-            TARGET=$(date -u -d 'today 00:40' +%s)      # 이미 자정을 넘겨 시작
+            TARGET=$(date -u -d 'today 00:00' +%s)      # 이미 자정을 넘겨 시작
           fi
           WAIT=$(( TARGET - NOW ))
           [ "$WAIT" -lt 0 ] && WAIT=0
-          [ "$WAIT" -gt 15300 ] && WAIT=15300           # 잡 6시간 제한 안쪽으로
+          [ "$WAIT" -gt 16800 ] && WAIT=16800           # 잡 6시간 제한 안쪽으로
           echo "지금 $(date -u '+%F %T') UTC — ${WAIT}초 대기 후 발행"
           sleep "$WAIT"
 
@@ -67,6 +68,12 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add web/content/blog/ web/lib/blog-index.ts
           if git diff --staged --quiet; then
+            # 오늘 글이 이미 있으면 생성기가 중복 방지로 건너뛴 것 — 정상이다.
+            TODAY=$(TZ=Asia/Seoul date +%Y-%m-%d)
+            if ls web/content/blog/${TODAY}-*.md >/dev/null 2>&1; then
+              echo "오늘(${TODAY}) 글은 이미 발행됨 — 중복 방지로 종료"
+              exit 0
+            fi
             echo "변경사항 없음 (스크립트가 글 생성 못한 듯)"
             exit 1
           fi

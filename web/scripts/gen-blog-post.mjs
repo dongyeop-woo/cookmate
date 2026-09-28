@@ -66,6 +66,16 @@ function getCurrentSeason(date) {
 }
 
 /** 최근 글 {slug, title} — 중복 방지 + 내부 링크 앵커 텍스트용. 최신순. */
+/**
+ * KST 기준 YYYY-MM-DD.
+ *
+ * Actions 는 UTC 로 돈다. 발행을 09:00 KST 로 맞추려고 크론을 UTC 자정보다
+ * 앞(19:37 UTC)에 두었기 때문에, UTC 날짜를 쓰면 글 날짜가 하루 어긋난다.
+ */
+function kstDate(date) {
+  return new Date(date.getTime() + 9 * 3600 * 1000).toISOString().slice(0, 10);
+}
+
 async function getRecentPosts(limit = 6) {
   try {
     const files = (await fs.readdir(CONTENT_DIR))
@@ -137,7 +147,7 @@ function recipeContextBlock(recipes) {
 }
 
 function buildPrompt(date, keyword, recentPosts, recipes) {
-  const dateStr = date.toISOString().slice(0, 10);
+  const dateStr = kstDate(date);
   const recipesBlock = recipeContextBlock(recipes);
   const newOnes = recipes.filter((r) => r.isNew);
   // 〔신규〕가 있으면 그게 오늘 글의 존재 이유다. 모델이 알아서 고르게 두면
@@ -400,13 +410,12 @@ const HOLIDAY_WINDOWS = [
 
 /** 오늘(KST)이 명절 주간이면 그 키워드 풀을, 아니면 계절 풀을 돌려준다. */
 function isHolidayWeek(date) {
-  const today = new Date(date.getTime() + 9 * 3600 * 1000).toISOString().slice(0, 10);
+  const today = kstDate(date);
   return HOLIDAY_WINDOWS.some((h) => today >= h.from && today <= h.to);
 }
 
 function keywordPool(date, season) {
-  // Actions 는 UTC 로 돈다. 09:00 KST 발행이므로 KST 기준 날짜로 비교해야 한다.
-  const today = new Date(date.getTime() + 9 * 3600 * 1000).toISOString().slice(0, 10);
+  const today = kstDate(date);
   for (const h of HOLIDAY_WINDOWS) {
     if (today >= h.from && today <= h.to) {
       console.log(`[gen-blog] ${h.name} 주간 — 명절 키워드에서 선택`);
@@ -444,6 +453,18 @@ function stampKeyword(markdown, kw) {
 
 async function main() {
   const today = new Date();
+
+  // 같은 날 두 번 돌면 글이 하나 더 생기거나(주제가 다를 때) 덮어쓴다(같을 때).
+  // 예약 실행이 늦게 붙는 날 수동 실행을 겹쳐 돌리면 실제로 그렇게 된다.
+  // 다시 뽑고 싶을 때만 FORCE_REGEN=1 로 연다.
+  const already = (await fs.readdir(CONTENT_DIR).catch(() => []))
+    .filter((f) => f.startsWith(`${kstDate(today)}-`) && f.endsWith('.md'));
+  if (already.length && process.env.FORCE_REGEN !== '1') {
+    console.log(`[gen-blog] 오늘(${kstDate(today)}) 글이 이미 있음 — 건너뜀: ${already[0]}`);
+    console.log('[gen-blog] 다시 만들려면 FORCE_REGEN=1');
+    return;
+  }
+
   const season = getCurrentSeason(today);
   const recentPosts = await getRecentPosts();
   const keywords = dropRecentlyUsed(keywordPool(today, season), recentPosts);
@@ -469,9 +490,7 @@ async function main() {
   markdown = fixRecipeCardImages(markdown, recipes);
   markdown = stampKeyword(markdown, keyword);
 
-  // Actions 는 UTC 로 돈다. 크론이 UTC 자정 앞이라 UTC 날짜를 쓰면 파일이
-  // 전날 이름으로 저장돼 어제 글을 덮어쓴다. 키워드 선택과 같은 KST 기준으로 맞춘다.
-  const dateStr = new Date(today.getTime() + 9 * 3600 * 1000).toISOString().slice(0, 10);
+  const dateStr = kstDate(today);
   // 파일명: date prefix + slug (sort + 중복 방지)
   const filename = `${dateStr}-${meta.slug}.md`;
   const fullSlug = filename.replace(/\.md$/, '');
