@@ -1,0 +1,100 @@
+[
+  {
+    "file": "musk.jpg",
+    "name": "Elon Musk",
+    "org": "xAI",
+    "license": "Public domain",
+    "credit": ""
+  },
+  {
+    "file": "altman.jpg",
+    "name": "Sam Altman",
+    "org": "OpenAI",
+    "license": "CC BY 2.0",
+    "credit": "Sam Altman by Village Global, CC BY 2.0"
+  },
+  {
+    "file": "amodei.jpg",
+    "name": "Dario Amodei",
+    "org": "Anthropic",
+    "license": "CC BY 2.0",
+    "credit": "Dario Amodei by TechCrunch, CC BY 2.0"
+  },
+  {
+    "file": "feifei.jpg",
+    "name": "Fei-Fei Li",
+    "org": "Stanford HAI",
+    "license": "CC BY 2.0",
+    "credit": "Fei-Fei Li by ITU, CC BY 2.0"
+  },
+  {
+    "file": "ng.jpg",
+    "name": "Andrew Ng",
+    "org": "DeepLearning.AI",
+    "license": "CC BY 2.0",
+    "credit": "Andrew Ng by TechCrunch, CC BY 2.0"
+  },
+  {
+    "file": "lecun.jpg",
+    "name": "Yann LeCun",
+    "org": "Meta AI",
+    "license": "CC BY 4.0",
+    "credit": "Yann LeCun by EPFL, CC BY 4.0"
+  },
+  {
+    "file": "pichai.jpg",
+    "name": "Sundar Pichai",
+    "org": "Google",
+    "license": "CC BY 4.0",
+    "credit": "Sundar Pichai (2023), CC BY 4.0"
+  },
+  {
+    "file": "bengio.jpg",
+    "name": "Yoshua Bengio",
+    "org": "Mila",
+    "license": "CC BY 4.0",
+    "credit": "Yoshua Bengio, CC BY 4.0"
+  },
+  {
+    "file": "karpathy.jpg",
+    "name": "Andrej Karpathy",
+    "org": "Eureka Labs",
+    "license": "CC0",
+    "credit": ""
+  },
+  {
+    "file": "suleyman.jpg",
+    "name": "Mustafa Suleyman",
+    "org": "Microsoft AI",
+    "license": "CC BY 2.0",
+    "credit": "Mustafa Suleyman, CC BY 2.0"
+  },
+  {
+    "file": "delangue.jpg",
+    "name": "Clement Delangue",
+    "org": "Hugging Face",
+    "license": "CC BY 3.0",
+    "credit": "Clement Delangue by SiliconANGLE theCUBE, CC BY 3.0"
+  },
+  {
+    "file": "lisasu.jpg",
+    "name": "Lisa Su",
+    "org": "AMD",
+    "license": "CC BY 4.0",
+    "credit": "Lisa Su by SXSW, CC BY 4.0"
+  },
+  {
+    "file": "jeffdean.jpg",
+    "name": "Jeff Dean",
+    "org": "Google DeepMind",
+    "license": "CC BY 3.0",
+    "credit": "Jeff Dean by Purdue Engineering, CC BY 3.0"
+  },
+  {
+    "file": "mensch.jpg",
+    "name": "Arthur Mensch",
+    "org": "Mistral AI",
+    "license": "CC0",
+    "credit": ""
+  }
+]

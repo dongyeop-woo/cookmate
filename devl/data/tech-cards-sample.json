@@ -1,0 +1,44 @@
+{
+  "handle": "@atticdesk",
+  "label": "AI · 실무",
+  "title": "AI한테 일 못 시키는\n사람들의 공통점",
+  "title_accent": "5가지",
+  "items": [
+    {
+      "head": "한 번에 다 시킨다",
+      "body": "큰 일 하나를 통째로 던지면 뭉개진 답이 온다. 작은 일 다섯 개로 쪼개면 다섯 번 다 쓸 만하다.",
+      "image": "people/altman.jpg",
+      "caption": "SAM ALTMAN · OpenAI"
+    },
+    {
+      "head": "배경을 안 준다",
+      "body": "누구에게 보여줄 건지, 왜 필요한지를 빼면 AI는 가장 무난한 답을 고른다. 무난한 답은 못 쓴다.",
+      "image": "people/feifei.jpg",
+      "caption": "FEI-FEI LI · Stanford HAI"
+    },
+    {
+      "head": "예시를 안 준다",
+      "body": "원하는 걸 열 줄로 설명하는 것보다 마음에 드는 샘플 하나를 붙이는 게 빠르다.",
+      "image": "people/ng.jpg",
+      "caption": "ANDREW NG · DeepLearning.AI"
+    },
+    {
+      "head": "첫 답변에서 멈춘다",
+      "body": "첫 답은 초안이다. “세 번째 문단만 더 구체적으로” 한 마디에서 결과가 갈린다.",
+      "image": "people/amodei.jpg",
+      "caption": "DARIO AMODEI · Anthropic"
+    },
+    {
+      "head": "형식을 안 정한다",
+      "body": "표로, 세 줄로, 존댓말로. 형식을 먼저 박아두면 고쳐 쓰는 시간이 사라진다.",
+      "image": "people/lecun.jpg",
+      "caption": "YANN LECUN · Meta AI"
+    }
+  ],
+  "outro_body": "매일 하나씩, 실무에서 바로 쓰는 AI 사용법",
+  "issue": "NO.01 · 2026",
+  "cover_image": "people/musk.jpg",
+  "cover_caption": "ELON MUSK · xAI",
+  "photo_mode": "color",
+  "brand_mark": "AD"
+}

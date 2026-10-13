@@ -38,6 +38,8 @@ GREEN_PALE = (217, 241, 227)
 # 제목용 강조색 — 앱에서 쓰는 노랑/주황 그대로. 따뜻한 음식 사진 위에서
 # 초록은 가라앉아서 줄마다 번갈아 쓴다.
 INK        = (26, 26, 26)
+# 밑줄 붓 자국 색(assets/underline-brush.png 원본 빨강)
+BRUSH_RED  = (237, 28, 36)
 WHITE      = (255, 255, 255)
 
 # ── 조절값 ────────────────────────────────────────────────
@@ -240,7 +242,7 @@ def rounded(size, radius, fill):
     return m.resize(size, Image.LANCZOS)
 
 # ── 커버 ────────────────────────────────────────────────
-def make_cover(hero_url, title, sub, style='calm', tag=''):
+def make_cover(hero_url, title, sub, style='calm', tag='', underline=''):
     card = Image.new('RGB', (W, H), WHITE)
     hero = fetch_image(hero_url)
     card.paste(cover_fit(hero, W, H), (0, 0))
@@ -386,11 +388,55 @@ def make_cover(hero_url, title, sub, style='calm', tag=''):
 
     for i, ln in enumerate(lines):
         lw = d.textlength(ln, font=f_title)
+        grad_i = auto_grad[2] if accent_at else auto_grad[i % 2]
         if accent_at and i not in accent_at:
             punch(((W - lw) / 2, y), ln, f_title, fill=WHITE)
         else:
-            punch(((W - lw) / 2, y), ln, f_title,
-                  grad=auto_grad[2] if accent_at else auto_grad[i % 2])
+            punch(((W - lw) / 2, y), ln, f_title, grad=grad_i)
+        # 특정 낱말 밑줄 — 제목과 같은 3겹(흰 테두리→검정→그라데이션)으로 그려야
+        # 따로 붙인 선이 아니라 글자의 일부로 읽힌다.
+        if underline and underline in ln:
+            j = ln.index(underline)
+            ux = (W - lw) / 2 + d.textlength(ln[:j], font=f_title)
+            uw = d.textlength(underline, font=f_title)
+            ink_bot = f_title.getbbox(underline)[3]      # 기준선 → 글자 밑변
+            uy = y + ink_bot + int(size * 0.05)
+            brush = os.path.join(os.path.dirname(__file__), '..', 'assets',
+                                 'underline-brush.png')
+            if os.path.exists(brush):
+                # 손으로 그은 붓 자국. 글자보다 조금 넓게 빼야 밑줄로 읽힌다.
+                # 원본 비율대로 줄이면 낱말 폭에서는 실오라기처럼 얇아진다.
+                # 가로는 낱말에, 세로는 글자 크기에 맞추고, 그래도 남는
+                # 가로 압축분은 알파를 부풀려(MaxFilter) 획 두께로 되돌린다.
+                bi = Image.open(brush).convert('RGBA')
+                bw, bh = int(uw * 1.14), max(12, int(size * 0.30))
+                bi = bi.resize((bw, bh), Image.LANCZOS)
+                # 획 굵히기. 세로로 많이 눌린 그림이라 팽창 폭은 글자 크기가
+                # 아니라 '눌린 뒤 높이' 에 맞춰야 한다. 글자 기준으로 잡으면
+                # 34px 높이에 7px 를 먹여 붓 끝이 뭉개진다.
+                k = max(3, (int(bh * 0.14) // 2) * 2 + 1)
+                # 가장자리를 비워 두지 않으면 MaxFilter 가 끝 픽셀을 복제해
+                # 가늘게 빠지는 붓 끝이 수직으로 잘린 모양이 된다.
+                pad = k
+                canvas = Image.new('RGBA', (bw + pad * 2, bh + pad * 2), (0, 0, 0, 0))
+                canvas.paste(bi, (pad, pad))
+                al = canvas.getchannel('A').filter(ImageFilter.MaxFilter(k))
+                bi = Image.new('RGBA', canvas.size, BRUSH_RED + (255,))
+                bi.putalpha(al)
+                card.paste(bi, (int(ux - (bw - uw) / 2) - pad,
+                                int(uy - size * 0.07) - pad), bi)
+            else:
+                # 획 자체를 글자 굵기만큼 두껍게 잡아야 테두리에 먹히지 않는다.
+                th = max(8, int(size * 0.13))
+                for pad, col in ((max(3, int(size / 24)), WHITE),
+                                 (max(2, int(size / 48)), (0, 0, 0))):
+                    d.rounded_rectangle([ux - pad, uy - pad, ux + uw + pad, uy + th + pad],
+                                        radius=(th + 2 * pad) / 2, fill=col)
+                gw, gh = int(uw) + 1, th + 1
+                lm = Image.new('L', (gw, gh), 0)
+                ImageDraw.Draw(lm).rounded_rectangle([0, 0, gw - 1, gh - 1],
+                                                     radius=th / 2, fill=255)
+                card.paste(vgrad((gw, gh), *grad_i), (int(ux), int(uy)), lm)
         y += lh
     if sub:
         punch(((W - d.textlength(sub, font=font(54))) / 2, y + 4), sub, font(54))
@@ -542,7 +588,8 @@ def make_single(r, box_h=None, measure=False):
         글자 수로 자르면 '진하게 내야 풍미' 처럼 말이 끊기므로 항상 문장
         단위로 덜어낸다.
         """
-        parts = [x for x in re.split(r'(?<=[.!?])\s*', body.strip()) if x]
+        # 뒤에 숫자가 이어지면 문장 끝이 아니라 소수점이다('1.5cm', '0.5작은술').
+        parts = [x for x in re.split(r'(?<=[.!?])(?!\d)\s*', body.strip()) if x]
         parts = parts[:1] if len(parts) > 1 else parts
         while True:
             lines = wrap(d, f"{n}. " + ' '.join(parts), fnt, W - 130)
@@ -903,6 +950,8 @@ def main():
                     help='single=레시피당 한 장(기본), grid=4칸 모음, story=9:16 한 장')
     ap.add_argument('--no-outro', action='store_true', help='마무리 팔로우 카드 생략')
     ap.add_argument('--tag', default='', help='제목 위 작은 문구 (기본 없음)')
+    ap.add_argument('--underline', default='',
+                    help='커버 제목에서 밑줄 칠 낱말 (예: "팬 하나")')
     ap.add_argument('--img-dir', default=None,
                     help='<id>-*.jpg 가 있으면 라이브 이미지 대신 그 파일을 쓴다. '
                          'Storage 에 아직 안 올린 교체본으로 미리 뽑을 때.')
@@ -958,7 +1007,7 @@ def main():
         print(f'\n✅ 스토리 1장 생성 — {", ".join(r["title"] for r in picked)}')
         return
 
-    pages = [('01_cover.png', make_cover(picked[0]['image'], a.title, a.sub, a.style, a.tag))]
+    pages = [('01_cover.png', make_cover(picked[0]['image'], a.title, a.sub, a.style, a.tag, a.underline))]
     if a.layout == 'single':
         uniform = max(single_box_h(r) for r in picked)   # 넘길 때 패널이 튀지 않게
         for r in picked:

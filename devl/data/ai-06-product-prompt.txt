@@ -1,0 +1,52 @@
+# NO.06 기준 제품 만들기 — 수분크림
+# 이 프롬프트로 제품 한 장을 먼저 만들고, 그 이미지를 올린 뒤 명령어 8개를 돌린다.
+# 브랜드명은 실존하지 않는 것으로 지었다. 실제 브랜드명을 쓰면 상표 문제가 된다.
+
+
+## 추천 — 유리 자 (JAR)
+
+Square 1:1. A single skincare moisturizer jar standing upright in the center of a
+pure white seamless background, frosted glass body with a matte ivory lid and a
+small minimal label reading "AQUA VEIL", no other text. Soft even studio lighting
+from both sides with a faint contact shadow directly under the jar, nothing else
+in frame. Hyperrealistic product photography, shot on a Sony A7 IV with a 90mm
+macro lens, true-to-life color, visible glass texture and tiny natural
+imperfections. Avoid: CGI look, 3D render, plastic gloss, HDR glow, studio
+reflections, extra props, any text besides the label.
+
+
+## 대안 A — 튜브 (TUBE)
+
+Square 1:1. A single skincare tube standing upright in the center of a pure white
+seamless background, soft matte white plastic with a pale blue cap and a minimal
+label reading "AQUA VEIL", no other text. Soft even studio lighting from both
+sides, faint contact shadow under the tube, nothing else in frame.
+Hyperrealistic product photography, shot on a Sony A7 IV with a 90mm macro lens,
+true-to-life color, visible matte texture. Avoid: CGI look, 3D render, glossy
+plastic, HDR glow, extra props, any text besides the label.
+
+
+## 대안 B — 펌프 보틀 (PUMP)
+
+Square 1:1. A single skincare pump bottle standing upright in the center of a pure
+white seamless background, translucent pale blue body with a white pump head and a
+minimal label reading "AQUA VEIL", no other text. Soft even studio lighting from
+both sides, faint contact shadow under the bottle, nothing else in frame.
+Hyperrealistic product photography, shot on a Sony A7 IV with a 90mm macro lens,
+true-to-life color. Avoid: CGI look, 3D render, heavy gloss, HDR glow, extra
+props, any text besides the label.
+
+
+## 순서
+
+1. 위 프롬프트로 제품 이미지 1장 생성
+2. 마음에 들 때까지 다시 뽑기 (라벨 글자가 깨지면 다시)
+3. 그 이미지를 대화에 올린 채로 /THUMBNAIL /DETAIL ... 순서대로 실행
+4. 결과 8장을 devl/assets/products/ 에 저장
+
+## 주의
+
+- 8장 전부 **같은 제품 이미지**로 뽑아야 한다. 중간에 다시 만들면 전/후가 안 맞는다.
+- 라벨 글자는 AI가 자주 뭉갠다. 카드에서는 작게 들어가서 티가 덜 나지만,
+  01 THUMBNAIL 컷만은 글자가 깨끗한 걸로 고른다.
+- 실존 브랜드명(라네즈·이니스프리 등)을 넣으면 안 된다. AQUA VEIL 은 가상이다.

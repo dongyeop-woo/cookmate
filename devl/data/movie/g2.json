@@ -1,0 +1,70 @@
+{
+  "handle": "@atticdesk",
+  "label": "영화 · 추석",
+  "issue": "NO.03 · 2026",
+  "theme": "dark",
+  "layout": "poster",
+  "cols": 5,
+  "title": "액션 · 스릴러",
+  "title_accent": "10편",
+  "kicker": "심장이 뛰어야 잠이 깬다",
+  "footer_right": "2 / 5",
+  "tiles": [
+    {
+      "name": "베테랑",
+      "org": "2015",
+      "image": "posters/veteran-2015-film.jpg"
+    },
+    {
+      "name": "범죄도시",
+      "org": "2017",
+      "image": "posters/the-outlaws-2017-film.jpg"
+    },
+    {
+      "name": "아저씨",
+      "org": "2010",
+      "image": "posters/the-man-from-nowhere-2010-film.jpg"
+    },
+    {
+      "name": "신세계",
+      "org": "2013",
+      "image": "posters/new-world-2013-film.jpg"
+    },
+    {
+      "name": "추격자",
+      "org": "2008",
+      "image": "posters/the-chaser-2008-film.jpg"
+    },
+    {
+      "name": "부산행",
+      "org": "2016",
+      "image": "posters/train-to-busan.jpg"
+    },
+    {
+      "name": "악마를 보았다",
+      "org": "2010",
+      "image": "posters/i-saw-the-devil.jpg"
+    },
+    {
+      "name": "존 윅",
+      "org": "2014",
+      "image": "posters/john-wick.jpg"
+    },
+    {
+      "name": "다크 나이트",
+      "org": "2008",
+      "image": "posters/the-dark-knight.jpg"
+    },
+    {
+      "name": "미션 임파서블: 고스트 프로토콜",
+      "org": "2011",
+      "image": "posters/mission-impossible-ghost-protocol.jpg"
+    }
+  ],
+  "photo_mode": "color",
+  "title_size": 54,
+  "name_size": 20,
+  "year_size": 17,
+  "label_h": 78,
+  "brand_mark": "AD"
+}

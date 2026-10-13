@@ -1,0 +1,70 @@
+{
+  "handle": "@atticdesk",
+  "label": "영화 · 추석",
+  "issue": "NO.03 · 2026",
+  "theme": "dark",
+  "layout": "poster",
+  "cols": 5,
+  "title": "드라마",
+  "title_accent": "10편",
+  "kicker": "명절 끝에 남는 이야기",
+  "footer_right": "3 / 5",
+  "tiles": [
+    {
+      "name": "기생충",
+      "org": "2019",
+      "image": "posters/parasite-2019-film.jpg"
+    },
+    {
+      "name": "미나리",
+      "org": "2020",
+      "image": "posters/minari-film.jpg"
+    },
+    {
+      "name": "헤어질 결심",
+      "org": "2022",
+      "image": "posters/decision-to-leave.jpg"
+    },
+    {
+      "name": "버닝",
+      "org": "2018",
+      "image": "posters/burning-2018-film.jpg"
+    },
+    {
+      "name": "살인의 추억",
+      "org": "2003",
+      "image": "posters/memories-of-murder.jpg"
+    },
+    {
+      "name": "변호인",
+      "org": "2013",
+      "image": "posters/the-attorney.jpg"
+    },
+    {
+      "name": "국제시장",
+      "org": "2014",
+      "image": "posters/ode-to-my-father.jpg"
+    },
+    {
+      "name": "웰컴 투 동막골",
+      "org": "2005",
+      "image": "posters/welcome-to-dongmakgol.jpg"
+    },
+    {
+      "name": "택시운전사",
+      "org": "2017",
+      "image": "posters/a-taxi-driver.jpg"
+    },
+    {
+      "name": "8월의 크리스마스",
+      "org": "1998",
+      "image": "posters/christmas-in-august.jpg"
+    }
+  ],
+  "photo_mode": "color",
+  "title_size": 54,
+  "name_size": 20,
+  "year_size": 17,
+  "label_h": 78,
+  "brand_mark": "AD"
+}

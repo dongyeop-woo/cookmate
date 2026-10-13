@@ -1,0 +1,43 @@
+{
+  "handle": "@ai.desk.kr",
+  "label": "영화 · 추석",
+  "issue": "NO.03 · 2026",
+  "photo_mode": "color",
+  "title": "추석 연휴에 볼 영화\n상황별로 골랐다",
+  "title_accent": "5편",
+  "cover_image": null,
+  "cover_caption": null,
+  "items": [
+    {
+      "head": "극한직업",
+      "body": "온 가족이 거실에 모였을 때. 대사마다 웃음이 터져서 나이대가 갈려도 같이 본다.",
+      "image": null,
+      "caption": "2019 · 코미디"
+    },
+    {
+      "head": "인사이드 아웃 2",
+      "body": "조카까지 같이 앉았을 때. 아이는 웃고 어른은 자기 얘기로 듣는다.",
+      "image": null,
+      "caption": "2024 · 애니메이션"
+    },
+    {
+      "head": "미나리",
+      "body": "명절 끝에 가족 얘기가 남았을 때. 이민 가정 이야기지만 결국 우리 집 풍경이다.",
+      "image": null,
+      "caption": "2020 · 드라마"
+    },
+    {
+      "head": "인터스텔라",
+      "body": "긴 연휴에 시간을 통째로 쓸 때. 세 시간짜리를 끊지 않고 볼 수 있는 날이 흔치 않다.",
+      "image": null,
+      "caption": "2014 · SF"
+    },
+    {
+      "head": "헤어질 결심",
+      "body": "다들 자고 자정 넘어 혼자 남았을 때. 두 번째로 볼 때 더 많은 것이 보인다.",
+      "image": null,
+      "caption": "2022 · 멜로"
+    }
+  ],
+  "outro_body": "상황 따라 고르는 추석 영화 다섯"
+}

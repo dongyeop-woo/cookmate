@@ -1,0 +1,12 @@
+rules_version = '2';
+
+// 이 앱은 모든 Firestore 접근을 백엔드 (Firebase Admin SDK 사용)를 통해 수행한다.
+// Admin SDK는 이 규칙을 자동으로 우회하므로, 클라이언트 SDK의 직접 접근은 전부 차단한다.
+// 이렇게 두면 "API 권한 검증 우회해서 Firestore 직접 읽기/쓰기" 경로가 닫힌다.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "handle": "@cookmate_yojalal",
+  "mark": "요잘알",
+  "tagline": "매일 새 레시피",
+  "bg": "#12241c",
+  "accent": "#1bae74",
+  "tile_ratio": "1:1",
+  "cols": 5,
+  "title": "명절 · 집밥 · 자취요리",
+  "subtitle": "요잘알 최신 레시피 20",
+  "tiles": [
+    {
+      "image": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790208555015_3f4460fe.jpg?alt=media&token=179d0cdb-ef13-4243-ba23-422323faf4e9",
+      "name": "도라지나물"
+    },
+    {
+      "image": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790208548117_5c54c422.jpg?alt=media&token=defa467d-5e74-4f2d-b521-05669e3a2a23",
+      "name": "토란국"
+    },
+    {
+      "image": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790208541022_71998143.jpg?alt=media&token=4a74385e-b0df-41b7-8dc3-3aee0cf91008",
+      "name": "소고기 산적"
+    },
+    {
+      "image": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790208532985_e0c9d00e.jpg?alt=media&token=72311675-6f07-43b4-93b7-42f1d8268ed3",
+      "name": "동태전"
+    },
+    {
+      "image": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790208524031_efb85536.jpg?alt=media&token=b40bafbc-d937-46c5-b783-719cf073a427",
+      "name": "동그랑땡"
+    },
+    {
+      "image": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790132090443_856d85e3.jpg?alt=media&token=45a866e4-ca1c-4fbf-83f7-ab670d70c587",
+      "name": "참치마요 덮밥"
+    },
+    {
+      "image": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790132086062_8551acb1.jpg?alt=media&token=d4d487e2-4270-42aa-9f26-2f972fb77b67",
+      "name": "마늘 간장 닭날개"
+    },
+    {
+      "image": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790132081154_9a6b8782.jpg?alt=media&token=994b87e3-8b8b-4548-8e37-8474cc891046",
+      "name": "김치 우동"
+    },
+    {
+      "image": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790129363770_943888bb.jpg?alt=media&token=f9f88098-6d5a-4527-94c3-fbb9323c7fd2",
+      "name": "바나나 팬케이크"
+    },
+    {
+      "image": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1790126274992_7fa6fc55.jpg?alt=media&token=198ecdff-f224-4b15-9ed5-62404c25a7b4",
+      "name": "콘치즈"
+    },
+    {
+      "image": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1777850024509_890c0663.jpg?alt=media",
+      "name": "소불고기 덮밥"
+    },
+    {
+      "image": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1777846900898_3f796ed7.jpg?alt=media",
+      "name": "계란말이 덮밥"
+    },
+    {
+      "image": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1777846167756_e997f702.jpg?alt=media",
+      "name": "스팸 김치찌개"
+    },
+    {
+      "image": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1777772363656_2af5b550.jpg?alt=media",
+      "name": "짜파구리"
+    },
+    {
+      "image": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1777771241984_b7ec180b.jpg?alt=media",
+      "name": "베이컨 마늘 볶음밥"
+    },
+    {
+      "image": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1777768742802_854dfa3d.jpg?alt=media",
+      "name": "스팸마요 덮밥"
+    },
+    {
+      "image": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1777668167182_5d6f5431.jpg?alt=media",
+      "name": "호떡"
+    },
+    {
+      "image": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1777667465008_71d264bf.jpg?alt=media",
+      "name": "휘낭시에"
+    },
+    {
+      "image": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1777666382366_1b13d80b.jpg?alt=media",
+      "name": "베트남 쌀국수"
+    },
+    {
+      "image": "https://firebasestorage.googleapis.com/v0/b/cookingbasedyw.firebasestorage.app/o/recipeImages%2Fadmin_1777665747276_f35e2a12.jpg?alt=media",
+      "name": "함박스테이크"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+# ATTIC DESK NO.06 — 제품 광고 컷 명령어 8개
+# ChatGPT 설정 → 맞춤 설정 / Claude 프로젝트 지침 / Gemini 저장된 정보에 붙여넣기
+# 그다음 제품 사진을 올리고 명령어만 치면 됩니다.
+
+When I type /THUMBNAIL, place the product I uploaded on a clean white background,
+centered, soft even lighting, with generous margin on all sides so it works as an
+online store main image. No text, no props.
+
+When I type /DETAIL, place the product on a plain surface with one relevant prop,
+soft side light, and leave the upper third empty so description text can be added.
+
+When I type /SHELF, place the product on a retail store shelf among neutral,
+blurred competitor items. The product should be in sharp focus at eye level.
+
+When I type /FLATLAY, shoot the product from directly above on a flat surface,
+arranged with two or three small props, even shadowless lighting.
+
+When I type /UNBOXING, show hands opening the product box with the product half
+revealed, warm indoor light, shallow depth of field.
+
+When I type /GIFT, present the product as a wrapped gift with ribbon and simple
+seasonal decoration, warm light, one color theme only.
+
+When I type /SUBWAY, place the product on a large subway station advertising
+panel with realistic perspective, reflections and ambient station lighting.
+
+When I type /MACRO, show an extreme close-up of the product surface, label and
+texture with very shallow depth of field.
+
+# 결과가 밋밋하면 명령어 뒤에 조건을 덧붙이세요.
+#   /THUMBNAIL 배경은 연한 베이지로
+#   /SHELF 편의점 냉장고 안으로

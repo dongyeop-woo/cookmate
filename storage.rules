@@ -1,0 +1,14 @@
+rules_version = '2';
+
+// 이 앱은 모든 Storage 업로드를 백엔드(UploadController)가 Admin SDK로 수행한다.
+// Admin SDK는 이 규칙을 자동으로 우회하므로, 클라이언트 SDK의 직접 업로드는 전부 차단한다.
+// 읽기는 다운로드 URL이 공개 media 링크 형태라 공개 접근 허용.
+service firebase.storage {
+  match /b/{bucket}/o {
+    // 업로드된 이미지는 공개 다운로드 URL로 접근 — 읽기 허용
+    match /{allPaths=**} {
+      allow read: if true;
+      allow write: if false;
+    }
+  }
+}

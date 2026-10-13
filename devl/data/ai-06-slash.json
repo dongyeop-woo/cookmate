@@ -1,0 +1,72 @@
+{
+  "handle": "@atticdesk",
+  "brand_mark": "AD",
+  "label": "AI · 단축어",
+  "issue": "NO.06 · 2026",
+  "layout": "swap",
+  "photo_mode": "color",
+  "title": "제품 사진 한 장 +\n명령어 한 단어",
+  "title_accent": "광고 컷 완성",
+  "cover_image": "products/after-gift.png",
+  "cover_caption": null,
+  "items": [
+    {
+      "head": "/SUBWAY",
+      "ui_title": "지하철 광고판",
+      "palette": "cool",
+      "seed": 71,
+      "after": "products/after-subway.png"
+    },
+    {
+      "head": "/GIFT",
+      "ui_title": "선물 포장 연출",
+      "palette": "clay",
+      "seed": 67,
+      "after": "products/after-gift.png"
+    },
+    {
+      "head": "/SHELF",
+      "ui_title": "매장 진열대",
+      "palette": "cool",
+      "seed": 37,
+      "after": "products/after-shelf.png"
+    },
+    {
+      "head": "/UNBOXING",
+      "ui_title": "언박싱 장면",
+      "palette": "sunset",
+      "seed": 53,
+      "after": "products/after-unboxing.png"
+    },
+    {
+      "head": "/FLATLAY",
+      "ui_title": "위에서 본 구성",
+      "palette": "warm",
+      "seed": 41,
+      "after": "products/after-flatlay.png"
+    },
+    {
+      "head": "/MACRO",
+      "ui_title": "질감 접사",
+      "palette": "lime",
+      "seed": 83,
+      "after": "products/after-macro.png"
+    },
+    {
+      "head": "/DETAIL",
+      "ui_title": "상세페이지 컷",
+      "palette": "clay",
+      "seed": 23,
+      "after": "products/after-detail.png"
+    },
+    {
+      "head": "/THUMBNAIL",
+      "ui_title": "쇼핑몰 대표 이미지",
+      "palette": "mono",
+      "seed": 11,
+      "after": "products/after-thumbnail.png"
+    }
+  ],
+  "product": "products/aqua-veil-cut.png",
+  "photo_dim": 0.9
+}

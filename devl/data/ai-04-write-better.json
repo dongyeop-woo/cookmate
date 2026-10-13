@@ -1,0 +1,44 @@
+{
+  "handle": "@atticdesk",
+  "brand_mark": "AD",
+  "label": "AI · 실무",
+  "issue": "NO.04 · 2026",
+  "photo_mode": "color",
+  "title": "“좋게 써줘”가\n최악인 이유",
+  "title_accent": "5가지",
+  "cover_image": "people/karpathy.jpg",
+  "cover_caption": "ANDREJ KARPATHY · Eureka Labs",
+  "items": [
+    {
+      "head": "기준이 없다",
+      "body": "무엇이 좋은지 안 정하면 AI는 가장 무난한 답을 고른다. 무난한 문장은 아무도 안 읽는다.",
+      "image": "people/feifei.jpg",
+      "caption": "FEI-FEI LI · Stanford HAI"
+    },
+    {
+      "head": "고칠 데가 안 보인다",
+      "body": "그렇게 받은 답은 마음에 안 들어도 어디를 고치라고 말할 수가 없다. 결국 통째로 다시 시킨다.",
+      "image": "people/amodei.jpg",
+      "caption": "DARIO AMODEI · Anthropic"
+    },
+    {
+      "head": "길이만 늘어난다",
+      "body": "지시가 없으면 형용사와 부사가 붙는다. 좋아진 게 아니라 길어진 것이다.",
+      "image": "people/lecun.jpg",
+      "caption": "YANN LECUN · Meta AI"
+    },
+    {
+      "head": "매번 답이 튄다",
+      "body": "기준이 없으니 같은 요청에도 결과가 달라진다. 어제 잘 나온 걸 오늘 재현할 수 없다.",
+      "image": "people/bengio.jpg",
+      "caption": "YOSHUA BENGIO · Mila"
+    },
+    {
+      "head": "대신 이렇게",
+      "body": "누구에게, 몇 줄로, 어떤 톤으로. 이 세 가지만 적어도 첫 답부터 달라진다.",
+      "image": "people/ng.jpg",
+      "caption": "ANDREW NG · DeepLearning.AI"
+    }
+  ],
+  "outro_body": "쓸 만한 것만 골라 올립니다"
+}

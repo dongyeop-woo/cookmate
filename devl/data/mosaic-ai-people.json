@@ -1,0 +1,79 @@
+{
+  "handle": "@atticdesk",
+  "label": "AI · 인물",
+  "issue": "NO.04 · 2026",
+  "theme": "dark",
+  "photo_mode": "color",
+  "title": "지금 AI를\n움직이는 사람들",
+  "title_accent": "13인",
+  "kicker": "이름은 알아두면 기사 읽는 속도가 달라진다",
+  "footer_right": "13인",
+  "tiles": [
+    {
+      "image": "people/altman.jpg",
+      "name": "Sam Altman",
+      "org": "OpenAI"
+    },
+    {
+      "image": "people/amodei.jpg",
+      "name": "Dario Amodei",
+      "org": "Anthropic"
+    },
+    {
+      "image": "people/pichai.jpg",
+      "name": "Sundar Pichai",
+      "org": "Google"
+    },
+    {
+      "image": "people/musk.jpg",
+      "name": "Elon Musk",
+      "org": "xAI"
+    },
+    {
+      "image": "people/feifei.jpg",
+      "name": "Fei-Fei Li",
+      "org": "Stanford HAI"
+    },
+    {
+      "image": "people/lecun.jpg",
+      "name": "Yann LeCun",
+      "org": "Meta AI"
+    },
+    {
+      "image": "people/bengio.jpg",
+      "name": "Yoshua Bengio",
+      "org": "Mila"
+    },
+    {
+      "image": "people/suleyman.jpg",
+      "name": "Mustafa Suleyman",
+      "org": "Microsoft AI"
+    },
+    {
+      "image": "people/karpathy.jpg",
+      "name": "Andrej Karpathy",
+      "org": "Eureka Labs"
+    },
+    {
+      "image": "people/lisasu.jpg",
+      "name": "Lisa Su",
+      "org": "AMD"
+    },
+    {
+      "image": "people/jeffdean.jpg",
+      "name": "Jeff Dean",
+      "org": "Google DeepMind"
+    },
+    {
+      "image": "people/mensch.jpg",
+      "name": "Arthur Mensch",
+      "org": "Mistral AI"
+    },
+    {
+      "image": "people/delangue.jpg",
+      "name": "Clement Delangue",
+      "org": "Hugging Face"
+    }
+  ],
+  "brand_mark": "AD"
+}

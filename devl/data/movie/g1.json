@@ -1,0 +1,70 @@
+{
+  "handle": "@atticdesk",
+  "label": "영화 · 추석",
+  "issue": "NO.03 · 2026",
+  "theme": "dark",
+  "layout": "poster",
+  "cols": 5,
+  "title": "코미디",
+  "title_accent": "10편",
+  "kicker": "웃다 보면 연휴가 간다",
+  "footer_right": "1 / 5",
+  "tiles": [
+    {
+      "name": "극한직업",
+      "org": "2019",
+      "image": "posters/extreme-job.jpg"
+    },
+    {
+      "name": "과속스캔들",
+      "org": "2008",
+      "image": "posters/scandal-makers.jpg"
+    },
+    {
+      "name": "수상한 그녀",
+      "org": "2014",
+      "image": "posters/miss-granny.jpg"
+    },
+    {
+      "name": "완벽한 타인",
+      "org": "2018",
+      "image": "posters/intimate-strangers-2018-film.jpg"
+    },
+    {
+      "name": "스물",
+      "org": "2015",
+      "image": "posters/twenty-2015-film.jpg"
+    },
+    {
+      "name": "럭키",
+      "org": "2016",
+      "image": "posters/luck-key.jpg"
+    },
+    {
+      "name": "미녀는 괴로워",
+      "org": "2006",
+      "image": "posters/200-pounds-beauty.jpg"
+    },
+    {
+      "name": "인턴",
+      "org": "2015",
+      "image": "posters/the-intern-2015-film.jpg"
+    },
+    {
+      "name": "그랜드 부다페스트 호텔",
+      "org": "2014",
+      "image": "posters/the-grand-budapest-hotel.jpg"
+    },
+    {
+      "name": "미드나잇 인 파리",
+      "org": "2011",
+      "image": "posters/midnight-in-paris.jpg"
+    }
+  ],
+  "photo_mode": "color",
+  "title_size": 54,
+  "name_size": 20,
+  "year_size": 17,
+  "label_h": 78,
+  "brand_mark": "AD"
+}

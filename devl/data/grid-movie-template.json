@@ -1,0 +1,23 @@
+{
+  "handle": "@ai.desk.kr",
+  "mark": "CC",
+  "tagline": "Inspire Everyday",
+  "bg": "#3B2FB8",
+  "tile_ratio": "2:3",
+  "cols": 5,
+  "title": "범죄 · 액션 · 스릴러",
+  "subtitle": "연휴에 몰아볼 드라마 20",
+  "_주의": "tiles 의 image 는 비워둔 상태다. 포스터는 배급사 저작권이라 자동으로 받아오지 않는다. 직접 넣고 쓰려면 아래 image 에 파일 경로를 채운다.",
+  "tiles": [
+    {"image": null, "name": "브레이킹 배드"}, {"image": null, "name": "베터 콜 사울"},
+    {"image": null, "name": "아메리칸즈"}, {"image": null, "name": "마인드헌터"},
+    {"image": null, "name": "홈랜드"}, {"image": null, "name": "피키 블라인더스"},
+    {"image": null, "name": "나르코스"}, {"image": null, "name": "슬로 호시스"},
+    {"image": null, "name": "오자크"}, {"image": null, "name": "저스티파이드"},
+    {"image": null, "name": "종이의 집"}, {"image": null, "name": "센스 오브 아나키"},
+    {"image": null, "name": "프리즌 브레이크"}, {"image": null, "name": "시그널"},
+    {"image": null, "name": "비밀의 숲"}, {"image": null, "name": "괴물"},
+    {"image": null, "name": "더 글로리"}, {"image": null, "name": "나르코스: 멕시코"},
+    {"image": null, "name": "악의 꽃"}, {"image": null, "name": "모범택시"}
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "handle": "@atticdesk",
+  "label": "영화 · 추석",
+  "issue": "NO.03 · 2026",
+  "theme": "dark",
+  "layout": "poster",
+  "cols": 5,
+  "title": "SF · 판타지",
+  "title_accent": "10편",
+  "kicker": "시간이 통째로 필요한 것들",
+  "footer_right": "4 / 5",
+  "tiles": [
+    {
+      "name": "인터스텔라",
+      "org": "2014",
+      "image": "posters/interstellar-film.jpg"
+    },
+    {
+      "name": "인셉션",
+      "org": "2010",
+      "image": "posters/inception.jpg"
+    },
+    {
+      "name": "매트릭스",
+      "org": "1999",
+      "image": "posters/the-matrix.jpg"
+    },
+    {
+      "name": "컨택트",
+      "org": "2016",
+      "image": "posters/arrival-film.jpg"
+    },
+    {
+      "name": "그녀",
+      "org": "2013",
+      "image": "posters/her-2013-film.jpg"
+    },
+    {
+      "name": "엑스 마키나",
+      "org": "2014",
+      "image": "posters/ex-machina-film.jpg"
+    },
+    {
+      "name": "블레이드 러너 2049",
+      "org": "2017",
+      "image": "posters/blade-runner-2049.jpg"
+    },
+    {
+      "name": "듄",
+      "org": "2021",
+      "image": "posters/dune-2021-film.jpg"
+    },
+    {
+      "name": "신과함께: 죄와 벌",
+      "org": "2017",
+      "image": "posters/along-with-the-gods-the-two-worlds.jpg"
+    },
+    {
+      "name": "승리호",
+      "org": "2021",
+      "image": "posters/space-sweepers.jpg"
+    }
+  ],
+  "photo_mode": "color",
+  "title_size": 54,
+  "name_size": 20,
+  "year_size": 17,
+  "label_h": 78,
+  "brand_mark": "AD"
+}

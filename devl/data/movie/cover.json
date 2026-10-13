@@ -1,0 +1,22 @@
+{
+  "handle": "@atticdesk",
+  "label": "영화 · 추석",
+  "issue": "NO.03 · 2026",
+  "theme": "dark",
+  "photo_mode": "color",
+  "title": "연휴는 닷새\n뭘 볼지 정했나",
+  "title_accent": "영화 장르별 50편",
+  "cover_image": "stills/extreme-job-still.jpg",
+  "cover_caption": null,
+  "items": [],
+  "photo_blur": 0,
+  "photo_dim": 0.95,
+  "photo_fit": "cover",
+  "photo_zoom": 1.0,
+  "photo_focus": [
+    0.5,
+    0.3
+  ],
+  "photo_sharpen": 60,
+  "brand_mark": "AD"
+}

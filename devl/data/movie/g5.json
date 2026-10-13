@@ -1,0 +1,70 @@
+{
+  "handle": "@atticdesk",
+  "label": "영화 · 추석",
+  "issue": "NO.03 · 2026",
+  "theme": "dark",
+  "layout": "poster",
+  "cols": 5,
+  "title": "애니메이션 · 가족",
+  "title_accent": "10편",
+  "kicker": "조카까지 같이 앉았을 때",
+  "footer_right": "5 / 5",
+  "tiles": [
+    {
+      "name": "인사이드 아웃 2",
+      "org": "2024",
+      "image": "posters/inside-out-2.jpg"
+    },
+    {
+      "name": "센과 치히로의 행방불명",
+      "org": "2001",
+      "image": "posters/spirited-away.jpg"
+    },
+    {
+      "name": "하울의 움직이는 성",
+      "org": "2004",
+      "image": "posters/howl-s-moving-castle-film.jpg"
+    },
+    {
+      "name": "너의 이름은.",
+      "org": "2016",
+      "image": "posters/your-name.jpg"
+    },
+    {
+      "name": "코코",
+      "org": "2017",
+      "image": "posters/coco-2017-film.jpg"
+    },
+    {
+      "name": "소울",
+      "org": "2020",
+      "image": "posters/soul-2020-film.jpg"
+    },
+    {
+      "name": "업",
+      "org": "2009",
+      "image": "posters/up-2009-film.jpg"
+    },
+    {
+      "name": "주토피아",
+      "org": "2016",
+      "image": "posters/zootopia.jpg"
+    },
+    {
+      "name": "엘리멘탈",
+      "org": "2023",
+      "image": "posters/elemental-2023-film.jpg"
+    },
+    {
+      "name": "마당을 나온 암탉",
+      "org": "2011",
+      "image": "posters/leafie-a-hen-into-the-wild.jpg"
+    }
+  ],
+  "photo_mode": "color",
+  "title_size": 54,
+  "name_size": 20,
+  "year_size": 17,
+  "label_h": 78,
+  "brand_mark": "AD"
+}

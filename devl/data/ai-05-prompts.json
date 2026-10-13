@@ -1,0 +1,165 @@
+{
+  "handle": "@atticdesk",
+  "brand_mark": "AD",
+  "label": "AI · 프롬프트",
+  "issue": "NO.05 · 2026",
+  "photo_mode": "color",
+  "title": "복사해서 쓰는\nAI 프롬프트",
+  "title_accent": "10개",
+  "cover_image": "people/altman.jpg",
+  "cover_caption": "SAM ALTMAN · OpenAI",
+  "items": [
+    {
+      "head": "회의록 정리",
+      "body": "아래 회의 내용을 결정된 것, 미정인 것, 실행 항목으로 나눠 표로 정리해줘. 담당자와 기한 칸도 넣어줘.",
+      "ui_title": "회의록.txt",
+      "result": {
+        "type": "table",
+        "cols": [
+          "결정",
+          "미정",
+          "실행"
+        ],
+        "rows": 3
+      }
+    },
+    {
+      "head": "긴 문서 요약",
+      "body": "이 문서를 세 줄로 요약하고, 내가 놓치면 안 될 숫자 세 개를 따로 뽑아줘.",
+      "ui_title": "보고서.pdf",
+      "result": {
+        "type": "numbered",
+        "widths": [
+          0.9,
+          0.76,
+          0.82
+        ]
+      }
+    },
+    {
+      "head": "메일 톤 바꾸기",
+      "body": "아래 메일을 거절한다는 내용은 그대로 두고, 상대가 기분 상하지 않게 다시 써줘. 다섯 문장 이내로.",
+      "ui_title": "메일 작성",
+      "result": {
+        "type": "mail"
+      }
+    },
+    {
+      "head": "반대 의견 받기",
+      "body": "내 기획안이야. 이걸 승인하지 않을 사람 입장에서 반대 근거 세 가지를 써줘. 봐주지 말고.",
+      "ui_title": "기획안.docx",
+      "result": {
+        "type": "bullets",
+        "marker": "!",
+        "widths": [
+          0.88,
+          0.72,
+          0.8
+        ]
+      }
+    },
+    {
+      "head": "엑셀 수식",
+      "body": "이 표에서 조건에 맞는 값만 합산하는 수식을 알려주고, 각 인자가 뭘 하는지 한 줄씩 설명해줘.",
+      "ui_title": "매출.xlsx",
+      "result": {
+        "type": "sheet",
+        "formula": "=SUMIF(B2:B40,\"완료\",C2:C40)"
+      }
+    },
+    {
+      "head": "초안 덜어내기",
+      "body": "이 글에서 빼도 뜻이 안 변하는 문장을 표시해줘. 왜 빼도 되는지 한 줄씩 붙여서.",
+      "ui_title": "초안.docx",
+      "result": {
+        "type": "strike",
+        "lines": [
+          [
+            0.92,
+            false
+          ],
+          [
+            0.8,
+            true
+          ],
+          [
+            0.86,
+            false
+          ],
+          [
+            0.6,
+            true
+          ]
+        ]
+      }
+    },
+    {
+      "head": "처음 배울 때",
+      "body": "이 주제를 처음 배우는 사람에게 설명하듯 알려줘. 그리고 초보가 오해하기 쉬운 지점 세 개를 짚어줘.",
+      "ui_title": "학습 노트",
+      "result": {
+        "type": "numbered",
+        "widths": [
+          0.86,
+          0.92,
+          0.7
+        ]
+      }
+    },
+    {
+      "head": "제목 뽑기",
+      "body": "이 글의 제목 후보 열 개를 만들어줘. 다섯 개는 담백하게, 다섯 개는 궁금하게.",
+      "ui_title": "제목 후보",
+      "result": {
+        "type": "bullets",
+        "marker": "—",
+        "widths": [
+          0.72,
+          0.86,
+          0.64,
+          0.8
+        ]
+      }
+    },
+    {
+      "head": "사실 확인",
+      "body": "아래 글에서 사실 확인이 필요한 문장에 표시하고, 왜 확인이 필요한지 이유를 적어줘.",
+      "ui_title": "원고.txt",
+      "result": {
+        "type": "highlight",
+        "lines": [
+          [
+            0.9,
+            false
+          ],
+          [
+            0.72,
+            true
+          ],
+          [
+            0.84,
+            false
+          ],
+          [
+            0.66,
+            true
+          ]
+        ]
+      }
+    },
+    {
+      "head": "발표 대비",
+      "body": "이 발표를 듣고 나올 법한 까다로운 질문 다섯 개와, 각 질문에 답하는 방향을 알려줘.",
+      "ui_title": "발표 자료",
+      "result": {
+        "type": "bullets",
+        "marker": "Q",
+        "widths": [
+          0.82,
+          0.9,
+          0.7
+        ]
+      }
+    }
+  ]
+}

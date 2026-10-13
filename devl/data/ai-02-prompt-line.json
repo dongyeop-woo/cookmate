@@ -1,0 +1,44 @@
+{
+  "handle": "@atticdesk",
+  "label": "AI · 실무",
+  "issue": "NO.02 · 2026",
+  "photo_mode": "color",
+  "title": "이 한 줄만 넣어도\n답이 달라진다",
+  "title_accent": "5가지",
+  "cover_image": "people/altman.jpg",
+  "cover_caption": "SAM ALTMAN · OpenAI",
+  "items": [
+    {
+      "head": "누구에게 보여줄지",
+      "body": "독자를 한 줄로 못 박으면 문장 길이와 어휘가 통째로 바뀐다. 팀장 보고용과 고객 안내용은 다른 글이다.",
+      "image": "people/feifei.jpg",
+      "caption": "FEI-FEI LI · Stanford HAI"
+    },
+    {
+      "head": "몇 줄로 쓸지",
+      "body": "분량을 안 정하면 답은 늘 어중간하게 길어진다. “세 줄로” 한 마디를 박으면 핵심만 남는다.",
+      "image": "people/ng.jpg",
+      "caption": "ANDREW NG · DeepLearning.AI"
+    },
+    {
+      "head": "무엇을 쓰지 말지",
+      "body": "금지어를 적는 쪽이 요구사항을 열 줄 쓰는 것보다 빠르다. 과장 없이, 이모지 없이. 그거면 된다.",
+      "image": "people/amodei.jpg",
+      "caption": "DARIO AMODEI · Anthropic"
+    },
+    {
+      "head": "어떤 형식으로",
+      "body": "표인지 목록인지 문단인지를 먼저 정한다. 받아서 옮겨 담는 시간이 통째로 사라진다.",
+      "image": "people/lecun.jpg",
+      "caption": "YANN LECUN · Meta AI"
+    },
+    {
+      "head": "모르면 모른다고",
+      "body": "이 한 줄이 지어낸 답을 크게 줄인다. 확실하지 않은 대목을 먼저 표시하게 만드는 게 핵심이다.",
+      "image": "people/pichai.jpg",
+      "caption": "SUNDAR PICHAI · Google"
+    }
+  ],
+  "outro_body": "매일 하나씩, 실무에서 바로 쓰는 AI 사용법",
+  "brand_mark": "AD"
+}
