@@ -9,6 +9,7 @@ export type BlogIndexEntry = {
 };
 
 export const BLOG_INDEX: BlogIndexEntry[] = [
+  { slug: '2026-10-25-autumn-lunchbox-recipe-best-5', date: '2026-10-25' },
   { slug: '2026-10-24-leftover-holiday-food-recipe-best-6', date: '2026-10-24' },
   { slug: '2026-10-23-autumn-mushroom-recipe-best-5', date: '2026-10-23' },
   { slug: '2026-10-22-seasonal-change-soup-recipe-best-5', date: '2026-10-22' },
